@@ -14,7 +14,12 @@ AnimePeak is an android app that allows users to stream and watch anime shows an
 ## Installation
 
 AnimePeak will be available in fdroid soon.
-    
+
+## TODO
+- Add Support for external video player
+- Add Favourite/Watch List feature
+- Add Chromecast Support
+
 
 
 
