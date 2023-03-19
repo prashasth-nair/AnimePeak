@@ -2,4 +2,8 @@
     <string name="app_name">AnimePeak</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_video_player">VideoPlayer</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="cannot_find_anime">Cannot Find Anime \' Anime name\' </string>
 </resources>

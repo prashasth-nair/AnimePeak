@@ -1,9 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Anime_Details">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:layout_height="match_parent"
+
+    android:background="#2e343b"
+    tools:context=".Activity.Anime_Details">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+
+
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/ani_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/custom_toolbar"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="#2e343b"
+
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:padding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Anime_Image_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/Anime_Image"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY" />
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/Anime_Image_card"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:id="@+id/release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="Release Date: "
+
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/Anime_release"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="2002"
+
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                         />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/Status_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/release_date"
+                    >
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="Status: "
+
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/Anime_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="10dp"
+                        android:text="Completed"
+
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                         />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/episode_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ani_details"
+        android:paddingStart="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Episodes:"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episode_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/episode_text"
+        android:layout_marginTop="10dp"
+
+        />
+</RelativeLayout>

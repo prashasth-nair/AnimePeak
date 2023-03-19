@@ -14,10 +14,17 @@
         android:theme="@style/Theme.AnimePeak"
         tools:targetApi="31">
         <activity
-            android:name=".Anime_Details"
-            android:exported="false" />
+            android:name=".Activity.VideoPlayer"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize"
+            android:exported="false"
+         />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.Anime_Details"
+            android:exported="false"
+            />
+        <activity
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,9 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#2e343b"
 
+    tools:context=".Fragments.HomeFragment">
+
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_recycler"
         android:layout_width="match_parent"

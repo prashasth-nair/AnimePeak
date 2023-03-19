@@ -3,13 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment">
+    android:background="#2e343b"
+    tools:context=".Fragments.SearchFragment">
+    <ImageView
+        android:id="@+id/loading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/not_found"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Search"
         android:layout_centerInParent="true"
-        android:textSize="30dp"/>
+        android:text="@string/cannot_find_anime"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/searchbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/search_box_background"
+            android:hint="Search"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:imeOptions="actionSearch"
+            android:textColorHint="#A0A0A0"
+            android:textSize="16sp"/>
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:src="@drawable/baseline_search_24"
+            />
+
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/searchbar"
+        />
 
 </RelativeLayout>

@@ -1,10 +1,8 @@
-package com.example.animepeak;
+package com.example.animepeak.Adapters;
 
-import static android.content.ContentValues.TAG;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.os.AsyncTask;
-import android.util.Log;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,48 +10,40 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.animepeak.Activity.Anime_Details;
+import com.example.animepeak.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
-public class MainAdapter extends  RecyclerView.Adapter<MainAdapter.ViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
     Activity activity;
     private List<String> TitleUrlList;
     private List<String> imageUrlList;
-    private List<String> UrlList;
+    private List<String> IDList;
 
-    public MainAdapter(Activity activity, List<String> TitleUrlList,List<String> imageUrlList,List<String> UrlList) {
+    public SearchAdapter(Activity activity, List<String> titleUrlList, List<String> imageUrlList, List<String> IDList) {
         this.activity = activity;
-        this.TitleUrlList = TitleUrlList;
+        TitleUrlList = titleUrlList;
         this.imageUrlList = imageUrlList;
-        this.UrlList = UrlList;
-
+        this.IDList = IDList;
     }
 
     @NonNull
     @Override
-    public MainAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
+        SearchAdapter.ViewHolder viewHolder = new SearchAdapter.ViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.ani_title.setText(TitleUrlList.get(position)); // Setting title of the anime
         String imageUrl = imageUrlList.get(position);
 
@@ -64,25 +54,34 @@ public class MainAdapter extends  RecyclerView.Adapter<MainAdapter.ViewHolder> {
                 .load(imageUrl)
                 .into(holder.ani_image);
 
+        holder.main_ani_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, Anime_Details.class);
 
-
+                intent.putExtra("Title", TitleUrlList.get(position));
+                intent.putExtra("Image", imageUrlList.get(position));
+                intent.putExtra("ID", IDList.get(position));
+                activity.startActivity(intent);
+            }
+        });
     }
-
-
 
     @Override
     public int getItemCount() {
         return TitleUrlList.size();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ani_image;
         TextView ani_title;
+        CardView main_ani_item;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ani_image = itemView.findViewById(R.id.ani_img);
             ani_title = itemView.findViewById(R.id.ani_title);
+            main_ani_item = itemView.findViewById(R.id.main_ani_item);
         }
     }
 }
