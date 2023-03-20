@@ -1,5 +1,6 @@
 package com.example.animepeak.Fragments;
 
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -59,7 +60,15 @@ public class HomeFragment extends Fragment {
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
         loading = (ImageView) getView().findViewById(R.id.loading);
-        recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // Portrait orientation
+            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape orientation
+            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+        }
+
         mainAdapter = new MainAdapter(getActivity(), TitleUrlList, imageUrlList, IDList);
         recyclerView.setAdapter(mainAdapter);
 // Inflate the layout for this fragment
@@ -152,6 +161,19 @@ public class HomeFragment extends Fragment {
                 mainAdapter = new MainAdapter(getActivity(), TitleUrlList, imageUrlList, IDList);
                 recyclerView.setAdapter(mainAdapter);
             }
+        }
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+            mainAdapter = new MainAdapter(getActivity(), TitleUrlList, imageUrlList, IDList);
+            recyclerView.setAdapter(mainAdapter);
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+            mainAdapter = new MainAdapter(getActivity(), TitleUrlList, imageUrlList, IDList);
+            recyclerView.setAdapter(mainAdapter);
         }
     }
 }

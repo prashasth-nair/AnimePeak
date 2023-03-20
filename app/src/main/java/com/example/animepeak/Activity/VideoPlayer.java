@@ -27,6 +27,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
@@ -35,6 +36,8 @@ import java.util.Objects;
 public class VideoPlayer extends AppCompatActivity {
     String EpisodeID;
     VideoView videoView;
+    private WeakReference<VideoView> mVideoViewRef;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,11 +90,11 @@ public class VideoPlayer extends AppCompatActivity {
                 JSONObject source = sources.getJSONObject(0);
                 String Link = source.getString("file");
                 // Set the MediaController for the VideoView
+                mVideoViewRef = new WeakReference<>(videoView);
                 MediaController mediaController = new MediaController(VideoPlayer.this);
                 videoView.setMediaController(mediaController);
                 mediaController.setAnchorView(videoView);
 
-//                String videoUrl = "https://example.com/video.mp4";
 
                 Uri videoUri = Uri.parse(Link);
                 videoView.setVideoURI(videoUri);
@@ -105,5 +108,17 @@ public class VideoPlayer extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (videoView != null) {
+            // Release the VideoView resources
+            videoView.stopPlayback();
+            videoView = null;
+        }
+        // Clear the WeakReference
+        mVideoViewRef.clear();
     }
 }

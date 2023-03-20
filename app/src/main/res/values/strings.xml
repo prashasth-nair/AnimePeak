@@ -6,4 +6,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="cannot_find_anime">Cannot Find Anime \' Anime name\' </string>
+    <string name="anime_name">Anime Name</string>
+    <string name="episodes">Episodes:</string>
 </resources>

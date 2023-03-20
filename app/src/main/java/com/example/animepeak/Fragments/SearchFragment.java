@@ -1,5 +1,7 @@
 package com.example.animepeak.Fragments;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -15,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -89,7 +92,14 @@ public class SearchFragment extends Fragment {
         searchView = (RecyclerView) getView().findViewById(R.id.search_recycle);
         loading = (ImageView) getView().findViewById(R.id.loading);
 
-        searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // Portrait orientation
+            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape orientation
+            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+        }
         searchAdapter= new SearchAdapter(getActivity(), TitleUrlList, imageUrlList, IDList);
         // notify the adapter that the data has changed
         searchAdapter.notifyDataSetChanged();
@@ -117,6 +127,9 @@ public class SearchFragment extends Fragment {
                     .asGif()
                     .load(R.raw.loading_animation)
                     .into(loading);
+            search_Box.clearFocus();
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(search_Box.getWindowToken(), 0);
         }
 
         @Override
@@ -178,6 +191,7 @@ public class SearchFragment extends Fragment {
             }
         }
 
+
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
@@ -199,6 +213,17 @@ public class SearchFragment extends Fragment {
             }else {
                 not_found.setVisibility(View.GONE);
             }
+        }
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+
+        } else {
+            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+
         }
     }
 

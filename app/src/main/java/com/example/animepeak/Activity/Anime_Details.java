@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.animepeak.Adapters.Ani_Details_Adapter;
+import com.example.animepeak.Adapters.MainAdapter;
 import com.example.animepeak.R;
 
 import org.json.JSONArray;
@@ -69,12 +72,41 @@ public class Anime_Details extends AppCompatActivity {
 
         Anime_Image = findViewById(R.id.Anime_Image);
         recyclerView =  findViewById(R.id.episode_list);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // Portrait orientation
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape orientation
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
+        }
+
         Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes,Anime_Details.this);
         recyclerView.setAdapter(ani_details_adapter);
-        new Anime_Details.GetJsonTask().execute();
 
+        if (!isDestroyed()) {
+            // Load the image using Glide or Picasso here
+            System.setProperty("okio.buffer-size", "16384");
+            new Anime_Details.GetJsonTask().execute();
 
+        } else {
+            // The activity has been destroyed, so don't perform any operation here
+            finish();
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
+            Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes,Anime_Details.this);
+            recyclerView.setAdapter(ani_details_adapter);
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+            Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes,Anime_Details.this);
+            recyclerView.setAdapter(ani_details_adapter);
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -144,6 +176,7 @@ public class Anime_Details extends AppCompatActivity {
                 Status.setText(status);
                 Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes,Anime_Details.this);
                 recyclerView.setAdapter(ani_details_adapter);
+
                 Glide.with(Anime_Details.this)
                         .load(img)
                         .into(Anime_Image);
@@ -155,4 +188,5 @@ public class Anime_Details extends AppCompatActivity {
             }
         }
     }
+
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_ani_item"
     android:layout_width="200dp"
     android:layout_height="350dp"
-    android:id="@+id/main_ani_item"
-    app:cardBackgroundColor="#2e343b"
-   >
+    app:cardBackgroundColor="#2e343b">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +12,7 @@
 
         >
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/ani_title"
@@ -27,7 +26,7 @@
 
                 android:scaleType="centerCrop"
                 android:src="@drawable/baseline_settings_24" />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/ani_title"
@@ -35,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:padding="5dp"
-            android:text="Anime Name"
+            android:text="@string/anime_name"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="16dp"
+            android:textSize="14sp"
 
-            android:textStyle="bold"
 
             />
     </RelativeLayout>
