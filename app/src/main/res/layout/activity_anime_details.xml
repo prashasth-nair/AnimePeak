@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
     android:background="#2e343b"
     tools:context=".Activity.Anime_Details">
 
@@ -25,7 +24,7 @@
         android:layout_height="100dp"
         android:layout_centerInParent="true" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/custom_toolbar"
@@ -49,7 +48,7 @@
                 <RelativeLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    android:layout_height="wrap_content"
                     android:padding="10dp">
 
                     <androidx.cardview.widget.CardView
@@ -64,6 +63,19 @@
                             android:layout_height="200dp"
                             android:scaleType="fitXY" />
                     </androidx.cardview.widget.CardView>
+                    <io.github.glailton.expandabletextview.ExpandableTextView
+                        android:id="@+id/expand_txt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/Anime_Image_card"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        app:collapsedLines="2"
+                        android:layout_marginTop="10dp"
+                        app:ellipsizeTextColor="@color/yellow"
+                        android:layout_marginStart="5dp"
+                        android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -75,62 +87,32 @@
                             android:id="@+id/release_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="10dp"
-                                android:text="Release Date: "
-
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/Anime_release"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="10dp"
-                                android:text="2002"
+                                android:text="Release Date: 2002"
 
                                 android:textColor="@color/white"
                                 android:textSize="18sp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/Status_layout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/release_date"
-                            android:orientation="horizontal">
-
-                            <TextView
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="10dp"
-                                android:text="Status: "
-
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/Anime_status"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingStart="10dp"
-                                android:text="Completed"
+                                android:text="Status: Completed"
 
                                 android:textColor="@color/white"
                                 android:textSize="18sp" />
                         </LinearLayout>
                     </RelativeLayout>
 
-
                 </RelativeLayout>
+
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
@@ -155,9 +137,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/episode_text"
+                android:layout_margin="10dp"
                 android:layout_marginTop="10dp"
 
                 />
+
         </RelativeLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+
 </RelativeLayout>

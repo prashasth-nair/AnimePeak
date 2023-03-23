@@ -1,7 +1,13 @@
 package com.example.animepeak.Adapters;
 
+import static com.example.animepeak.Sources.Hanime.Hanime_details.HID;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +19,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.animepeak.Activity.Anime_Details;
 import com.example.animepeak.Activity.VideoPlayer;
 import com.example.animepeak.R;
+import com.example.animepeak.Sources.GogoAnime;
+import com.example.animepeak.Sources.Zoro;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapter.ViewHolder> {
     JSONArray episodes;
     Activity activity;
-
+    String name = null;
+    String id = null;
     public Ani_Details_Adapter(JSONArray episodes, Activity activity) {
         this.episodes = episodes;
         this.activity = activity;
@@ -38,21 +48,46 @@ public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapte
 
 
     @Override
-    public void onBindViewHolder(@NonNull Ani_Details_Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Ani_Details_Adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         try {
             // Get the first element of the array
-            JSONObject firstElement = episodes.getJSONObject(position);
-            // Get the value of the "name" field
-            String name = firstElement.getString("episodeNum");
-            String id = firstElement.getString("episodeId");
-            holder.episode_name.setText(name);
+
+            SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+            String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+            if (Source.equals("Hanime")){
+
+            id = String.valueOf(HID);
+//                JSONObject firstElement = episodes.getJSONObject(0);
+                holder.episode_name.setText("1");
+            }else {
+                JSONObject firstElement = episodes.getJSONObject(position);
+                name = firstElement.getString("number");
+                id = firstElement.getString("id");
+
+                holder.episode_name.setText(name);
+            }
+
+
             holder.episode_name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(activity, VideoPlayer.class);
+                    JSONObject firstElement = null;
+                    try {
+                        firstElement = episodes.getJSONObject(position);
+                        name = firstElement.getString("number");
+                        id = firstElement.getString("id");
+                        intent.putExtra("ID", id);
+                        intent.putExtra("Length", episodes.length());
+                        if (!Source.equals("Hanime")) {
+                            intent.putExtra("current_episode", position);
+                        }
+                        activity.startActivity(intent);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
 
-                    intent.putExtra("ID", id);
-                    activity.startActivity(intent);
+
                 }
             });
 
@@ -64,7 +99,13 @@ public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapte
 
     @Override
     public int getItemCount() {
-        return episodes.length();
+        SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+        if (Source.equals("Hanime")) {
+            return 1;
+        }else {
+            return episodes.length();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

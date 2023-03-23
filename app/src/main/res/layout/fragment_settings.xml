@@ -10,12 +10,41 @@
         android:id="@+id/Settings_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="@string/settings"
         android:textColor="@color/white"
-        android:textSize="28dp"
+        android:textSize="28sp"
         android:textStyle="italic"
         android:textAlignment="center"
         />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        app:boxBackgroundColor="@color/white"
+        android:layout_below="@+id/Settings_Title"
+        android:layout_margin="10dp"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/sources"
+            android:textColorHint="@color/white"
+
+            android:layout_weight="1"
+
+            android:inputType="none"
+            tools:ignore="LabelFor" />
+
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </RelativeLayout>

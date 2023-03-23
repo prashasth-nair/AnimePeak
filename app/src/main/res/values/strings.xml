@@ -8,4 +8,13 @@
     <string name="cannot_find_anime">Cannot Find Anime \' Anime name\' </string>
     <string name="anime_name">Anime Name</string>
     <string name="episodes">Episodes:</string>
+    <string name="sources">Sources</string>
+    <string name="settings">Settings</string>
+    <string name="zoro">Zoro</string>
+    <string-array name="source_list">
+        <item>GogoAnime</item>
+        <item>Zoro</item>
+        <item>Hanime</item>
+
+    </string-array>
 </resources>

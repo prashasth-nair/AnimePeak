@@ -2,6 +2,7 @@ package com.example.animepeak.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 
@@ -26,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
+        FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container,  homeFragment, "HOME_FRAGMENT_TAG");
+        tr.addToBackStack(null);
+        tr.commit();
+
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
@@ -34,10 +39,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container,  homeFragment, "HOME_FRAGMENT_TAG")
+                                .commit();
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
                         return true;
                     case R.id.search:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,searchFragment).commit();
+                        FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.container,  searchFragment, "SEARCH_FRAGMENT_TAG");
+                        tr.addToBackStack(null);
+                        tr.commit();
+
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.container,searchFragment).commit();
                         return true;
                     case R.id.settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
