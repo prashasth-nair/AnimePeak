@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
-    android:background="#2e343b"
+    android:background="@color/background_main"
     tools:context=".Activity.Anime_Details">
 
     <androidx.appcompat.widget.Toolbar
@@ -16,7 +16,23 @@
 
 
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/white" >
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:gravity="center"
+
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+
+            android:singleLine="true" />
+    </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/loading"
@@ -40,7 +56,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="#2e343b"
+                app:cardBackgroundColor="@color/background_second"
 
                 app:cardCornerRadius="20dp"
                 app:cardElevation="6dp">

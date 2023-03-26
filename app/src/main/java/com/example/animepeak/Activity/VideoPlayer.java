@@ -1,7 +1,9 @@
 package com.example.animepeak.Activity;
 
 
+import static com.example.animepeak.Activity.Anime_Details.episodeID_list;
 import static com.example.animepeak.Activity.Anime_Details.episodes;
+import static com.example.animepeak.Activity.Anime_Details.streamingUrls;
 
 import androidx.annotation.Nullable;
 
@@ -33,6 +35,7 @@ import com.example.animepeak.Sources.GogoAnime;
 import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
 import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
@@ -51,20 +54,27 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
 public class VideoPlayer extends AppCompatActivity {
-    public static String EpisodeID;
-    int Length;
-    int Current;
+//    public static String EpisodeID;
+//    int Length;
+    public static int Current;
     public static PlayerView videoView;
     public static ImageView video_loading;
     public static LinearLayout previous_eps;
     public static LinearLayout next_eps;
     public static LinearLayout exo_track_selection_view;
-    public static WeakReference<VideoView> mVideoViewRef;
+
     public static ExoPlayer player;
+    private GogoAnime.Gogoanime_stream gogoanime_stream;
+    private  Zoro.Zoro_stream zoro_stream;
+    private Hanime.Hanime_stream hanime_stream;
+
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -78,8 +88,6 @@ public class VideoPlayer extends AppCompatActivity {
         video_loading = findViewById(R.id.video_loading);
 
         Intent intent = getIntent();
-        EpisodeID = intent.getStringExtra("ID");
-        Length = intent.getIntExtra("Length", 0);
         Current = intent.getIntExtra("current_episode", 0);
 
         SharedPreferences sharedpreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
@@ -89,29 +97,8 @@ public class VideoPlayer extends AppCompatActivity {
         ImageButton back = findViewById(R.id.back);
         previous_eps = findViewById(R.id.previousEpisode);
         next_eps = findViewById(R.id.nextEpisode);
+        Log.d("EpisodeList", String.valueOf(episodeID_list));
         exo_track_selection_view = findViewById(R.id.exo_track_selection_view);
-
-
-        exo_track_selection_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // create a TrackSelectionDialogBuilder
-//                TrackSelectionDialogBuilder builder = new TrackSelectionDialogBuilder(VideoPlayer.this, "Video Quality");
-//
-//// get the current media source
-//                MediaSource mediaSource = exoPlayer.getCurrentMediaSource();
-//
-//// get the available track groups from the media source
-//                MappingTrackSelector.MappedTrackInfo mappedTrackInfo = exoPlayer.getTrackSelector().getCurrentMappedTrackInfo();
-//                if (mappedTrackInfo != null) {
-//                    int rendererIndex = 0; // the index of the renderer for which to show track selection dialog (e.g. video renderer)
-//                    int rendererType = mappedTrackInfo.getRendererType(rendererIndex);
-//                    TrackGroupArray trackGroups = mappedTrackInfo.getTrackGroups(rendererIndex);
-//                    builder.setTrackNameProvider(new AdaptiveTrackNameProvider(trackGroups));
-//                    builder.build().show();
-//                }
-            }
-        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,63 +109,82 @@ public class VideoPlayer extends AppCompatActivity {
         previous_eps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Current", String.valueOf(Current));
+
                 if ((Current - 1) >= 0) {
+                    Current = Current - 1;
 
-                    try {
-
-                        JSONObject firstElement = episodes.getJSONObject(Current - 1);
-                        String name = firstElement.getString("number");
-                        String id = firstElement.getString("id");
-                        intent.putExtra("ID", id);
-                        intent.putExtra("Length", episodes.length());
-
-                        if (!Source.equals("Hanime")) {
-                            intent.putExtra("current_episode", Current-1);
+                        if (gogoanime_stream!=null){
+                            gogoanime_stream.cancel(true);
+                        } if (zoro_stream!=null){
+                            zoro_stream.cancel(true);
+                        } if (hanime_stream!=null){
+                            hanime_stream.cancel(true);
                         }
-                        finish();
-                        startActivity(intent);
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
+                        if (player != null) {
+                            player.stop();
+                        }
+                        if (Source.equals("GogoAnime")) {
+
+                            gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
+                            gogoanime_stream.execute();
+                        } else if (Source.equals("Zoro")) {
+
+                            zoro_stream = new Zoro.Zoro_stream(VideoPlayer.this);
+                            zoro_stream.execute();
+                        } else if (Source.equals("Hanime")) {
+                            hanime_stream = new Hanime.Hanime_stream(VideoPlayer.this);
+                            hanime_stream.execute();
+                        }
 
                 }
             }
         });
-        int next_int = Current + 1;
+
         next_eps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int next_int = Current + 1;
+                if (next_int < episodeID_list.size()) {
+                    Current = next_int;
+                    if (gogoanime_stream!=null){
+                        gogoanime_stream.cancel(true);
+                    }
+                    if (zoro_stream!=null){
+                        zoro_stream.cancel(true);
+                    }
+                    if (hanime_stream!=null){
+                        hanime_stream.cancel(true);
+                    }
+                    if (player != null) {
+                        player.stop();
+                    }
+                    if (Source.equals("GogoAnime")) {
 
-                if (next_int < Length) {
-                    try {
-                        Intent intent = new Intent(VideoPlayer.this, VideoPlayer.class);
-                        JSONObject firstElement = episodes.getJSONObject(next_int);
-                        String name = firstElement.getString("number");
-                        String id = firstElement.getString("id");
-                        Log.d("NextID", String.valueOf(next_int));
-                        intent.putExtra("ID", id);
-                        intent.putExtra("Length", episodes.length());
-                        if (!Source.equals("Hanime")) {
-                            intent.putExtra("current_episode", next_int);
-                        }
-                        finish();
+                        gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
+                        gogoanime_stream.execute();
+                    } else if (Source.equals("Zoro")) {
 
-                        startActivity(intent);
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
+                        zoro_stream = new Zoro.Zoro_stream(VideoPlayer.this);
+                        zoro_stream.execute();
+                    } else if (Source.equals("Hanime")) {
+                        hanime_stream = new Hanime.Hanime_stream(VideoPlayer.this);
+                        hanime_stream.execute();
                     }
                 }
             }
         });
 
         if (Source.equals("GogoAnime")) {
-            new GogoAnime.Gogoanime_stream(this).execute();
+
+            gogoanime_stream = new GogoAnime.Gogoanime_stream(this);
+            gogoanime_stream.execute();
         } else if (Source.equals("Zoro")) {
 
-            new Zoro.Zoro_stream(this).execute();
+            zoro_stream = new Zoro.Zoro_stream(this);
+            zoro_stream.execute();
         } else if (Source.equals("Hanime")) {
-            new Hanime.Hanime_stream(this).execute();
+            hanime_stream = new Hanime.Hanime_stream(this);
+            hanime_stream.execute();
         }
     }
 
@@ -203,14 +209,51 @@ public class VideoPlayer extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (gogoanime_stream!=null) {
+            gogoanime_stream.cancel(true);
+        } if (zoro_stream!=null){
+            zoro_stream.cancel(true);
+        } if (hanime_stream!=null){
+            hanime_stream.cancel(true);
+        }
         if (player != null) {
             if (player.isPlaying()) {
+
                 player.stop();
                 player.release();
-
+                player = null;
             }
+
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (gogoanime_stream!=null) {
+            gogoanime_stream.cancel(true);
+        } if (zoro_stream!=null){
+            zoro_stream.cancel(true);
+        } if (hanime_stream!=null){
+            hanime_stream.cancel(true);
+        }
+
+        if (player != null) {
+            if (player.isPlaying()) {
+                Log.d("Debug", "ExoPlayer is still playing!");
+                player.stop();
+                player.release();
+                player = null;
+            }
+
         }
 
     }

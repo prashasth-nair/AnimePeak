@@ -108,5 +108,6 @@ public class SettingsFragment extends Fragment {
         autoCompleteTextView.setAdapter(arrayAdapter);
 
 
+
     }
 }

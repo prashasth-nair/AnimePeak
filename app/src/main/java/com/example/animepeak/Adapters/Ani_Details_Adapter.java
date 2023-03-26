@@ -72,20 +72,27 @@ public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapte
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(activity, VideoPlayer.class);
-                    JSONObject firstElement = null;
-                    try {
-                        firstElement = episodes.getJSONObject(position);
-                        name = firstElement.getString("number");
-                        id = firstElement.getString("id");
+//                    JSONObject firstElement = null;
+                    if (Source.equals("Hanime")) {
+                        id = String.valueOf(HID);
                         intent.putExtra("ID", id);
-                        intent.putExtra("Length", episodes.length());
-                        if (!Source.equals("Hanime")) {
-                            intent.putExtra("current_episode", position);
-                        }
-                        activity.startActivity(intent);
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
+                        intent.putExtra("Length", 1);
                     }
+//                        }else {
+////                            firstElement = episodes.getJSONObject(position);
+////                            name = firstElement.getString("number");
+//
+//
+////                            id = firstElement.getString("id");
+////                            intent.putExtra("ID", id);
+////                            intent.putExtra("Length", episodes.length());
+//                        }
+
+
+                    if (!Source.equals("Hanime")) {
+                        intent.putExtra("current_episode", position);
+                    }
+                    activity.startActivity(intent);
 
 
                 }

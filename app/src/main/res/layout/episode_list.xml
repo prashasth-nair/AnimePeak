@@ -3,9 +3,10 @@
     android:layout_width="100dp"
     android:layout_height="50dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="7dp"
+    app:cardCornerRadius="8dp"
     android:layout_margin="15px"
     app:cardBackgroundColor="#ffd74a"
+
     >
 
     <TextView

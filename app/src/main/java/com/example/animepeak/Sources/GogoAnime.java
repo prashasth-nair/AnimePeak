@@ -6,14 +6,17 @@ import static com.example.animepeak.Activity.Anime_Details.Release;
 import static com.example.animepeak.Activity.Anime_Details.anime_details;
 import static com.example.animepeak.Activity.Anime_Details.details_loading;
 import static com.example.animepeak.Activity.Anime_Details.details_recyclerView;
+import static com.example.animepeak.Activity.Anime_Details.episodeID_list;
 import static com.example.animepeak.Activity.Anime_Details.episode_text;
 import static com.example.animepeak.Activity.Anime_Details.episodes;
 import static com.example.animepeak.Activity.Anime_Details.expandableTextView;
+import static com.example.animepeak.Activity.Anime_Details.extractEpisodeIds;
 import static com.example.animepeak.Activity.Anime_Details.img;
 import static com.example.animepeak.Activity.Anime_Details.releasedDate;
 import static com.example.animepeak.Activity.Anime_Details.status;
-import static com.example.animepeak.Activity.VideoPlayer.EpisodeID;
-import static com.example.animepeak.Activity.VideoPlayer.mVideoViewRef;
+
+import static com.example.animepeak.Activity.VideoPlayer.Current;
+
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
@@ -40,18 +43,18 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.MediaController;
+
 
 import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.Anime_Details;
-import com.example.animepeak.Activity.VideoPlayer;
+
 import com.example.animepeak.Adapters.Ani_Details_Adapter;
 import com.example.animepeak.Adapters.MainAdapter;
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
-import com.google.android.exoplayer2.ExoPlayer;
+
 import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.ui.PlayerView;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,11 +64,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 public class GogoAnime {
     //    GogoAnime
@@ -193,6 +195,7 @@ public class GogoAnime {
                     .into(details_loading);
         }
 
+        @SuppressLint("WrongThread")
         @Override
         protected String doInBackground(Void... voids) {
             String result = "";
@@ -210,6 +213,7 @@ public class GogoAnime {
                 }
 
                 bufferedReader.close();
+
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -217,12 +221,14 @@ public class GogoAnime {
                     urlConnection.disconnect();
                 }
             }
+            episodeID_list = extractEpisodeIds(result);
             return result;
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+
             details_loading.setVisibility(View.GONE);
             anime_details.setVisibility(View.VISIBLE);
             episode_text.setVisibility(View.VISIBLE);
@@ -374,7 +380,6 @@ public class GogoAnime {
             }
         }
     }
-
     public static class Gogoanime_stream extends AsyncTask<Void, Void, String> {
         Activity activity;
 
@@ -385,6 +390,7 @@ public class GogoAnime {
         protected void onPreExecute() {
             super.onPreExecute();
             video_loading.bringToFront();
+            videoView.setVisibility(View.INVISIBLE);
             previous_eps.setVisibility(View.GONE);
             next_eps.setVisibility(View.GONE);
             Glide.with(activity)
@@ -393,15 +399,22 @@ public class GogoAnime {
                     .into(video_loading);
         }
 
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            if (player.isPlaying()) {
+                player.stop();
+                player.release();
+            }
+        }
 
-
-            @Override
+        @Override
         protected String doInBackground(Void... voids) {
             String result = "";
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://api.consumet.org/anime/gogoanime/watch/" + EpisodeID);
+                URL url = new URL("https://api.consumet.org/anime/gogoanime/watch/" + episodeID_list.get(Current));
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -429,9 +442,10 @@ public class GogoAnime {
             try {
                 if (player.isPlaying()) {
                     player.stop();
-                    player.release();
+
                 }
                 video_loading.setVisibility(View.GONE);
+                videoView.setVisibility(View.VISIBLE);
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray sources = jsonObject.getJSONArray("sources");
                 JSONObject source = sources.getJSONObject(0);

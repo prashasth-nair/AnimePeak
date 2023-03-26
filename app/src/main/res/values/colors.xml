@@ -13,7 +13,8 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="yellow">#ffd74a</color>
-
+    <color name="background_main">#231f40</color>
+    <color name="background_second">#2e2a52</color>
     <color name="media_player_controls">#ffffff</color>
     <color name="buffer_loading">#CCFFFFFF</color>
     <color name="media_player_controls_background">#80000000</color>

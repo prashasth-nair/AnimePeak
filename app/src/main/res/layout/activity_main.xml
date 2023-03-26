@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2e343b"
+    android:background="@color/background_main"
     tools:context=".Activity.MainActivity">
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,10 +15,12 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1f2326"
-
-        app:itemTextColor="@color/white"
+        android:background="@drawable/nav_background_curved"
         app:itemIconTint="@color/white"
+
+        android:theme="@style/BottomNavigationTheme"
+        app:labelVisibilityMode="selected"
+
         app:menu="@menu/bottom_navigation_menu"
         android:layout_alignParentBottom="true"
 

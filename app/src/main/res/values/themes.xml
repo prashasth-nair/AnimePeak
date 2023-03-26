@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.AnimePeak" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/background_main</item>
+        <item name="colorPrimaryVariant">@color/yellow</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,7 +12,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -26,5 +26,17 @@
     <style name="ThemeOverlay.AnimePeak.FullscreenContainer" parent="">
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+    <style name="BottomNavigationTheme" parent="Theme.AnimePeak">
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:colorForeground">@color/white</item>
+
+    </style>
+    <style name="changeBackgroundColor"  parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="colorSurface">@color/background_second</item>
+
     </style>
 </resources>

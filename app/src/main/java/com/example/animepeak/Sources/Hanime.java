@@ -11,8 +11,7 @@ import static com.example.animepeak.Activity.Anime_Details.episodes;
 import static com.example.animepeak.Activity.Anime_Details.expandableTextView;
 import static com.example.animepeak.Activity.Anime_Details.img;
 import static com.example.animepeak.Activity.Anime_Details.releasedDate;
-import static com.example.animepeak.Activity.Anime_Details.status;
-import static com.example.animepeak.Activity.VideoPlayer.EpisodeID;
+
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
@@ -229,6 +228,7 @@ public class Hanime {
                 HID = jsonObject.getInt("id");
 
 
+
                 Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
                 details_recyclerView.setAdapter(ani_details_adapter);
 
@@ -262,6 +262,7 @@ public class Hanime {
         protected void onPreExecute() {
             super.onPreExecute();
             video_loading.bringToFront();
+            videoView.setVisibility(View.INVISIBLE);
             previous_eps.setVisibility(View.GONE);
             next_eps.setVisibility(View.GONE);
             Glide.with(activity)
@@ -270,12 +271,20 @@ public class Hanime {
                     .into(video_loading);
         }
         @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            if (player.isPlaying()) {
+                player.stop();
+                player.release();
+            }
+        }
+        @Override
         protected String doInBackground(Void... voids) {
             String result = "";
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://hani.nsdev.ml/getVideo/" + EpisodeID);
+                URL url = new URL("https://hani.nsdev.ml/getVideo/" + Hanime_details.HID);
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -303,9 +312,9 @@ public class Hanime {
             try {
                 if (player.isPlaying()) {
                     player.stop();
-                    player.release();
                 }
                 video_loading.setVisibility(View.GONE);
+                videoView.setVisibility(View.VISIBLE);
                 JSONObject jsonObject = new JSONObject(result);
                 JSONArray sources = jsonObject.getJSONArray("streams");
                 JSONObject source = sources.getJSONObject(1);

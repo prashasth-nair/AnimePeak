@@ -1,6 +1,7 @@
 package com.example.animepeak.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -33,6 +34,11 @@ import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.github.glailton.expandabletextview.ExpandableTextView;
 
@@ -53,6 +59,8 @@ public class Anime_Details extends AppCompatActivity {
     public static String status;
     public static RecyclerView details_recyclerView;
     public static JSONArray episodes = new JSONArray();
+    public static List<String> streamingUrls;
+    public static List<String> episodeID_list = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -64,8 +72,9 @@ public class Anime_Details extends AppCompatActivity {
 
         Toolbar customToolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(customToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_arrow);
+
+
+        AppCompatTextView toolbar_title = findViewById(R.id.toolbar_title);
 
 
         Intent intent = getIntent();
@@ -77,7 +86,14 @@ public class Anime_Details extends AppCompatActivity {
         Ani_ID = intent.getStringExtra("ID");
         expandableTextView = findViewById(R.id.expand_txt);
         episode_text = findViewById(R.id.episode_text);
-        getSupportActionBar().setTitle(Title);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_arrow);
+            toolbar_title.setText(Title);
+            toolbar_title.setSelected(true);
+        }
 
         Anime_Image = findViewById(R.id.Anime_Image);
         details_recyclerView = findViewById(R.id.episode_list);
@@ -93,10 +109,24 @@ public class Anime_Details extends AppCompatActivity {
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
             load();
         }
-
-
     }
+    public static List<String> extractEpisodeIds(String json) {
+        List<String> episodeIds = new ArrayList<>();
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(json);
+            JSONArray episodesArray = jsonObject.getJSONArray("episodes");
+            for (int i = 0; i < episodesArray.length(); i++) {
+                JSONObject episodeObject = episodesArray.getJSONObject(i);
+                String episodeId = episodeObject.getString("id");
+                episodeIds.add(episodeId);
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
 
+        return episodeIds;
+    }
     public void load() {
         if (!isDestroyed() && episodes.length() == 0) {
             // Load the image using Glide or Picasso here
@@ -147,6 +177,8 @@ public class Anime_Details extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         episodes = new JSONArray();
+        episodeID_list.clear();
+
     }
 
     @Override
