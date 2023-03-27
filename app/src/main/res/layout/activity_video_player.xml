@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#2e343b"
     tools:context=".Activity.VideoPlayer">
+
     <ImageView
         android:id="@+id/video_loading"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        
+
         />
+
     <com.google.android.exoplayer2.ui.PlayerView
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        android:id="@+id/videoView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/videoView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
 
         android:layout_centerInParent="true"
-        android:scaleType="fitXY"
         android:layout_gravity="center"
-        app:use_controller="true"
+        android:scaleType="fitXY"
         app:controller_layout_id="@layout/player_custom_controls"
-        app:resize_mode="fit" />
+        app:resize_mode="fit"
+        app:use_controller="true" />
 
 
 </RelativeLayout>

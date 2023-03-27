@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity {
     HomeFragment homeFragment = new HomeFragment();
     SearchFragment searchFragment = new SearchFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container,  homeFragment, "HOME_FRAGMENT_TAG");
+                .replace(R.id.container, homeFragment, "HOME_FRAGMENT_TAG");
         tr.addToBackStack(null);
         tr.commit();
 
@@ -37,23 +38,23 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.home:
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container,  homeFragment, "HOME_FRAGMENT_TAG")
+                                .replace(R.id.container, homeFragment, "HOME_FRAGMENT_TAG")
                                 .commit();
 //                        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
                         return true;
                     case R.id.search:
                         FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container,  searchFragment, "SEARCH_FRAGMENT_TAG");
+                                .replace(R.id.container, searchFragment, "SEARCH_FRAGMENT_TAG");
                         tr.addToBackStack(null);
                         tr.commit();
 
 //                        getSupportFragmentManager().beginTransaction().replace(R.id.container,searchFragment).commit();
                         return true;
                     case R.id.settings:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,settingsFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
                         return true;
 
                 }

@@ -8,6 +8,7 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
     <style name="BottomNavItemStyle" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>

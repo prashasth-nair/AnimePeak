@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +64,7 @@ public class HomeFragment extends Fragment {
             recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape orientation
-            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
         }
 
         mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
@@ -80,7 +78,7 @@ public class HomeFragment extends Fragment {
             new GogoAnime.Gogoanime_popular(getActivity(), isAdded()).execute();
         } else if (Source.equals("Zoro")) {
             new Zoro.Zoro_popular(getActivity(), isAdded()).execute();
-        }else if (Source.equals("Hanime")) {
+        } else if (Source.equals("Hanime")) {
             new Hanime.Hanime_popular(getActivity(), isAdded()).execute();
         }
 
@@ -97,12 +95,10 @@ public class HomeFragment extends Fragment {
             String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
             if (Source.equals("GogoAnime")) {
-                Log.d("Item", "Gogo");
                 new GogoAnime.Gogoanime_popular(getActivity(), isAdded()).execute();
             } else if (Source.equals("Zoro")) {
-                Log.d("Item", "Zoro");
                 new Zoro.Zoro_popular(getActivity(), isAdded()).execute();
-            }else if (Source.equals("Hanime")) {
+            } else if (Source.equals("Hanime")) {
                 new Hanime.Hanime_popular(getActivity(), isAdded()).execute();
             }
         }
@@ -112,7 +108,7 @@ public class HomeFragment extends Fragment {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+            recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
             mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
             recyclerView.setAdapter(mainAdapter);
         } else {

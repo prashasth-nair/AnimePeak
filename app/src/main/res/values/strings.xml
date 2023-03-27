@@ -11,6 +11,9 @@
     <string name="sources">Sources</string>
     <string name="settings">Settings</string>
     <string name="zoro">Zoro</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="settings_str">Settings</string>
     <string-array name="source_list">
         <item>GogoAnime</item>
         <item>Zoro</item>

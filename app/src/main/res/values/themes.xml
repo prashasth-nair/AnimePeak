@@ -27,6 +27,7 @@
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
+
     <style name="BottomNavigationTheme" parent="Theme.AnimePeak">
         <item name="colorPrimary">@color/yellow</item>
         <item name="colorAccent">@color/white</item>
@@ -35,7 +36,8 @@
         <item name="android:colorForeground">@color/white</item>
 
     </style>
-    <style name="changeBackgroundColor"  parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+    <style name="changeBackgroundColor" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="colorSurface">@color/background_second</item>
 
     </style>

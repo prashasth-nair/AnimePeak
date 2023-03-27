@@ -42,7 +42,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.MediaController;
+
 
 import com.bumptech.glide.Glide;
 
@@ -61,11 +61,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+
 
 public class Zoro {
     public static class Zoro_popular extends AsyncTask<Void, Void, Void> {
@@ -129,7 +129,6 @@ public class Zoro {
                     JSONArray animeList = jsonObject.getJSONArray("results");
 
 
-//                        Log.d("Anime", String.valueOf(animeList));
                     for (int i = 0; i < animeList.length(); i++) {
                         JSONObject anime = animeList.getJSONObject(i);
                         String title = anime.getString("title");
@@ -138,10 +137,9 @@ public class Zoro {
 
 
                         String ani_id = anime.getString("id");
-//                        Log.d("Details:", "Title: " + title + " Rank: " + rank + " Score " + score + " Image: " + image);
-                        // Do something with the anime data...
+
                         if (!title.equals("") && !image.equals("") && !ani_id.equals("")) {
-                            Log.d("Here", "Here");
+
                             Home_TitleUrlList.add(title);
                             Home_imageUrlList.add(image);
                             Home_IDList.add(ani_id);
@@ -243,13 +241,13 @@ public class Zoro {
                 Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
                 details_recyclerView.setAdapter(ani_details_adapter);
 
-                Release.setText("Type: "+type);
-                Anime_Details.Status.setText("Total Episodes: "+totalEpisodes);
+                Release.setText("Type: " + type);
+                Anime_Details.Status.setText("Total Episodes: " + totalEpisodes);
 
                 Glide.with(activity)
                         .load(img)
                         .into(Anime_Image);
-                String desc= jsonObject.getString("description");
+                String desc = jsonObject.getString("description");
                 expandableTextView.setText(desc);
                 expandableTextView.setReadMoreText("More");
                 expandableTextView.setReadLessText("Less");
@@ -324,7 +322,6 @@ public class Zoro {
                 JSONArray animeList = jsonObject.getJSONArray("results");
 
 
-//                        Log.d("Anime", String.valueOf(animeList));
                 for (int i = 0; i < animeList.length(); i++) {
                     JSONObject anime = animeList.getJSONObject(i);
                     String title = anime.getString("title");
@@ -381,6 +378,7 @@ public class Zoro {
         public Zoro_stream(Activity activity) {
             this.activity = activity;
         }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

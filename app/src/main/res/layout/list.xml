@@ -4,10 +4,10 @@
     android:id="@+id/main_ani_item"
     android:layout_width="190dp"
     android:layout_height="330dp"
-    app:cardCornerRadius="10dp"
     android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/background_second"
 
-    app:cardBackgroundColor="@color/background_second">
+    app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,9 +36,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:padding="5dp"
-            android:maxLines="2"
             android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="5dp"
             android:text="@string/anime_name"
 
             android:textAlignment="center"

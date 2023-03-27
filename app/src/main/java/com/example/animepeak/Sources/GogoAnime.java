@@ -4,6 +4,7 @@ import static com.example.animepeak.Activity.Anime_Details.Ani_ID;
 import static com.example.animepeak.Activity.Anime_Details.Anime_Image;
 import static com.example.animepeak.Activity.Anime_Details.Release;
 import static com.example.animepeak.Activity.Anime_Details.anime_details;
+import static com.example.animepeak.Activity.Anime_Details.desc;
 import static com.example.animepeak.Activity.Anime_Details.details_loading;
 import static com.example.animepeak.Activity.Anime_Details.details_recyclerView;
 import static com.example.animepeak.Activity.Anime_Details.episodeID_list;
@@ -249,12 +250,12 @@ public class GogoAnime {
                 Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
                 details_recyclerView.setAdapter(ani_details_adapter);
 
-                Release.setText("Release Date: "+releasedDate);
-                Anime_Details.Status.setText("Status: "+status);
+                Release.setText("Release Date: " + releasedDate);
+                Anime_Details.Status.setText("Status: " + status);
                 Glide.with(activity)
                         .load(img)
                         .into(Anime_Image);
-                String desc= jsonObject.getString("description");
+                desc = jsonObject.getString("description");
                 expandableTextView.setText(desc);
                 expandableTextView.setReadMoreText("More");
                 expandableTextView.setReadLessText("Less");
@@ -328,8 +329,6 @@ public class GogoAnime {
                 JSONObject jsonObject = new JSONObject(String.valueOf(response));
                 JSONArray animeList = jsonObject.getJSONArray("results");
 
-
-//                        Log.d("Anime", String.valueOf(animeList));
                 for (int i = 0; i < animeList.length(); i++) {
                     JSONObject anime = animeList.getJSONObject(i);
                     String title = anime.getString("title");
@@ -380,12 +379,14 @@ public class GogoAnime {
             }
         }
     }
+
     public static class Gogoanime_stream extends AsyncTask<Void, Void, String> {
         Activity activity;
 
         public Gogoanime_stream(Activity activity) {
             this.activity = activity;
         }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

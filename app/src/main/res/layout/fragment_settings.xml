@@ -1,93 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_main"
     tools:context=".Fragments.SettingsFragment">
+
     <TextView
         android:id="@+id/Settings_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="28sp"
-        android:textStyle="italic"
-        android:textAlignment="center"
-        />
+        android:textStyle="italic" />
+
     <LinearLayout
+        android:id="@+id/setting_anime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Settings_Title"
         android:orientation="vertical">
+
         <TextView
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:text="Anime"
             android:textColor="@color/yellow"
-            android:textSize="20sp"
-            android:layout_marginStart="10dp"
+            android:textSize="16sp"
             android:textStyle="italic"
 
             />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
 
-        android:gravity="center"
-        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Source:"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+
+                />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/changeBackgroundColor"
+
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="end|center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:boxBackgroundColor="@color/background_second"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+
+                app:boxCornerRadiusTopStart="10dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:dropDownSelector="@color/background_second"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+
+                    tools:ignore="LabelFor" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/update_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setting_anime"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Update"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Source:"
+            android:layout_marginTop="10dp"
 
             android:gravity="center"
-
-            android:padding="20dp"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:text="Check for Updates"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
 
             />
-        <Space
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/changeBackgroundColor"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
 
-            android:layout_width="200dp"
-            android:layout_height="60dp"
+            android:paddingStart="20dp"
+            android:text="Check for newer version of the app"
+            android:textColor="@color/white"
+            android:textSize="14sp"
 
-            android:layout_gravity="end|center"
-            android:layout_marginStart="10dp"
+            />
 
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            app:boxBackgroundColor="@color/background_second"
-            app:boxCornerRadiusBottomEnd="10dp"
-            app:boxCornerRadiusBottomStart="10dp"
-            app:boxCornerRadiusTopEnd="10dp"
-
-            app:boxCornerRadiusTopStart="10dp">
-
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/white"
-                android:dropDownSelector="@color/background_second"
-                android:layout_weight="1"
-                android:inputType="none"
-
-                tools:ignore="LabelFor" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
 </RelativeLayout>

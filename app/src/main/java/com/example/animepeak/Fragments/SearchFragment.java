@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,9 +41,9 @@ public class SearchFragment extends Fragment {
     public static RecyclerView searchView;
     public static SearchAdapter searchAdapter;
     public static ImageView Search_loading;
-    public static  List<String> Search_TitleUrlList = new ArrayList<>();
-    public static  List<String> Search_imageUrlList = new ArrayList<>();
-    public static  List<String> Search_IDList = new ArrayList<>();
+    public static List<String> Search_TitleUrlList = new ArrayList<>();
+    public static List<String> Search_imageUrlList = new ArrayList<>();
+    public static List<String> Search_IDList = new ArrayList<>();
 
 
     public SearchFragment() {
@@ -77,12 +75,12 @@ public class SearchFragment extends Fragment {
                     String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
 
-                    if (Source.equals("GogoAnime")){
-                        new GogoAnime.GogoAnime_search(getActivity(),isAdded()).execute();
+                    if (Source.equals("GogoAnime")) {
+                        new GogoAnime.GogoAnime_search(getActivity(), isAdded()).execute();
                     } else if (Source.equals("Zoro")) {
-                        new Zoro.Zoro_search(getActivity(),isAdded()).execute();
-                    }else if (Source.equals("Hanime")) {
-                        new Hanime.Hanime_search(getActivity(),isAdded()).execute();
+                        new Zoro.Zoro_search(getActivity(), isAdded()).execute();
+                    } else if (Source.equals("Hanime")) {
+                        new Hanime.Hanime_search(getActivity(), isAdded()).execute();
                     }
 //
 
@@ -104,9 +102,9 @@ public class SearchFragment extends Fragment {
             searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape orientation
-            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
         }
-        searchAdapter= new SearchAdapter(getActivity(), Search_TitleUrlList, Search_imageUrlList, Search_IDList);
+        searchAdapter = new SearchAdapter(getActivity(), Search_TitleUrlList, Search_imageUrlList, Search_IDList);
         // notify the adapter that the data has changed
         searchAdapter.notifyDataSetChanged();
         searchView.setAdapter(searchAdapter);
@@ -120,12 +118,12 @@ public class SearchFragment extends Fragment {
                 String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
 
-                if (Source.equals("GogoAnime")){
-                    new GogoAnime.GogoAnime_search(getActivity(),isAdded()).execute();
+                if (Source.equals("GogoAnime")) {
+                    new GogoAnime.GogoAnime_search(getActivity(), isAdded()).execute();
                 } else if (Source.equals("Zoro")) {
-                    new Zoro.Zoro_search(getActivity(),isAdded()).execute();
-                }else if (Source.equals("Hanime")) {
-                    new Hanime.Hanime_search(getActivity(),isAdded()).execute();
+                    new Zoro.Zoro_search(getActivity(), isAdded()).execute();
+                } else if (Source.equals("Hanime")) {
+                    new Hanime.Hanime_search(getActivity(), isAdded()).execute();
                 }
             }
         });
@@ -136,7 +134,7 @@ public class SearchFragment extends Fragment {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 3));
+            searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
 
         } else {
             searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));

@@ -92,50 +92,50 @@ public class Hanime {
                 if (Home_TitleUrlList.size() == 0) {
 
 
-                        // Create a URL object for the API endpoint with the current page number
+                    // Create a URL object for the API endpoint with the current page number
 
-                        URL url = new URL(API_ENDPOINT );
+                    URL url = new URL(API_ENDPOINT);
 
-                        // Open an HTTP connection to the URL
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    // Open an HTTP connection to the URL
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-                        // Set the request method and headers
-                        conn.setRequestMethod("GET");
-                        conn.setRequestProperty("Content-Type", "application/json");
+                    // Set the request method and headers
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Content-Type", "application/json");
 
-                        // Read the response body from the input stream
-                        InputStream in = conn.getInputStream();
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-                        StringBuilder response = new StringBuilder();
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            response.append(line);
+                    // Read the response body from the input stream
+                    InputStream in = conn.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                    reader.close();
+                    conn.disconnect();
+
+                    // Parse the JSON response into a list of anime objects
+                    JSONObject jsonObject = new JSONObject(String.valueOf(response));
+
+                    JSONArray animeList = jsonObject.getJSONArray("results");
+
+
+                    for (int i = 0; i < animeList.length(); i++) {
+                        JSONObject anime = animeList.getJSONObject(i);
+                        String title = anime.getString("name");
+
+                        String image = anime.getString("cover_url");
+
+
+                        String ani_id = anime.getString("id");
+
+                        if (!title.equals("") && !image.equals("") && !ani_id.equals("")) {
+                            Home_TitleUrlList.add(title);
+                            Home_imageUrlList.add(image);
+                            Home_IDList.add(ani_id);
+
                         }
-                        reader.close();
-                        conn.disconnect();
-
-                        // Parse the JSON response into a list of anime objects
-                        JSONObject jsonObject = new JSONObject(String.valueOf(response));
-
-                        JSONArray animeList = jsonObject.getJSONArray("results");
-
-
-                        for (int i = 0; i < animeList.length(); i++) {
-                            JSONObject anime = animeList.getJSONObject(i);
-                            String title = anime.getString("name");
-
-                            String image = anime.getString("cover_url");
-
-
-                            String ani_id = anime.getString("id");
-
-                            if (!title.equals("") && !image.equals("") && !ani_id.equals("")) {
-                                Home_TitleUrlList.add(title);
-                                Home_imageUrlList.add(image);
-                                Home_IDList.add(ani_id);
-
-                            }
-                        }
+                    }
 
                 }
 
@@ -157,6 +157,7 @@ public class Hanime {
             }
         }
     }
+
     public static class Hanime_details extends AsyncTask<Void, Void, String> {
         Activity activity;
         int originalOrientation;
@@ -228,16 +229,15 @@ public class Hanime {
                 HID = jsonObject.getInt("id");
 
 
-
                 Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
                 details_recyclerView.setAdapter(ani_details_adapter);
 
-                Release.setText("Release: "+releasedDate);
-                Anime_Details.Status.setText("Censor: "+censor);
+                Release.setText("Release: " + releasedDate);
+                Anime_Details.Status.setText("Censor: " + censor);
                 Glide.with(activity)
                         .load(img)
                         .into(Anime_Image);
-                String desc= jsonObject.getString("description");
+                String desc = jsonObject.getString("description");
                 expandableTextView.setText(desc);
                 expandableTextView.setReadMoreText("More");
                 expandableTextView.setReadLessText("Less");
@@ -252,12 +252,14 @@ public class Hanime {
             }
         }
     }
+
     public static class Hanime_stream extends AsyncTask<Void, Void, String> {
         Activity activity;
 
         public Hanime_stream(Activity activity) {
             this.activity = activity;
         }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -270,6 +272,7 @@ public class Hanime {
                     .load(R.raw.loading_animation)
                     .into(video_loading);
         }
+
         @Override
         protected void onCancelled() {
             super.onCancelled();
@@ -278,6 +281,7 @@ public class Hanime {
                 player.release();
             }
         }
+
         @Override
         protected String doInBackground(Void... voids) {
             String result = "";
@@ -338,6 +342,7 @@ public class Hanime {
             }
         }
     }
+
     public static class Hanime_search extends AsyncTask<Void, Void, Void> {
         private static final String TAG = "Search";
 
@@ -345,7 +350,7 @@ public class Hanime {
         Activity activity;
         boolean is_added;
 
-        public  Hanime_search(Activity activity, boolean is_added) {
+        public Hanime_search(Activity activity, boolean is_added) {
             this.activity = activity;
             this.is_added = is_added;
         }
@@ -395,7 +400,6 @@ public class Hanime {
                 JSONArray animeList = jsonObject.getJSONArray("results");
 
 
-//                        Log.d("Anime", String.valueOf(animeList));
                 for (int i = 0; i < animeList.length(); i++) {
                     JSONObject anime = animeList.getJSONObject(i);
                     String title = anime.getJSONArray("titles").getString(0);

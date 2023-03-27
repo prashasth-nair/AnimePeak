@@ -8,6 +8,7 @@ import static com.example.animepeak.Fragments.SearchFragment.Search_IDList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_imageUrlList;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,10 +16,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +24,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.example.animepeak.Functions.UpdateApp;
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.GogoAnime;
-import com.example.animepeak.Sources.Zoro;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.List;
 
 
 public class SettingsFragment extends Fragment {
     AutoCompleteTextView autoCompleteTextView;
+    LinearLayout Update;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -50,6 +59,32 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         autoCompleteTextView = getView().findViewById(R.id.autoCompleteTextView);
+        Update = getView().findViewById(R.id.update_button);
+        Update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Check for permissions when starting for first time
+
+                Dexter.withContext(getActivity())
+                        .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .withListener(new MultiplePermissionsListener() {
+                            @Override
+                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                if (report.areAllPermissionsGranted()) {
+                                    new UpdateApp.update_app(getActivity()).execute();
+                                } else {
+                                    Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                token.continuePermissionRequest();
+                            }
+                        }).check();
+            }
+        });
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String Current_Source = sharedpreferences.getString("Source_Name", "GogoAnime");
@@ -94,8 +129,6 @@ public class SettingsFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().detach(getActivity().getSupportFragmentManager().findFragmentByTag("SEARCH_FRAGMENT_TAG")).attach(getActivity().getSupportFragmentManager().findFragmentByTag("SEARCH_FRAGMENT_TAG")).commit();
                 }
                 getActivity().recreate();
-
-
             }
         });
     }
@@ -106,8 +139,5 @@ public class SettingsFragment extends Fragment {
         String[] source_lists = getResources().getStringArray(R.array.source_list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, source_lists);
         autoCompleteTextView.setAdapter(arrayAdapter);
-
-
-
     }
 }

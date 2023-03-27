@@ -22,13 +22,13 @@ import com.example.animepeak.R;
 
 import java.util.List;
 
-public class MainAdapter extends  RecyclerView.Adapter<MainAdapter.ViewHolder> {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     Activity activity;
     private List<String> TitleUrlList;
     private List<String> imageUrlList;
     private List<String> IDList;
 
-    public MainAdapter(Activity activity, List<String> TitleUrlList,List<String> imageUrlList,List<String> IDList) {
+    public MainAdapter(Activity activity, List<String> TitleUrlList, List<String> imageUrlList, List<String> IDList) {
         this.activity = activity;
         this.TitleUrlList = TitleUrlList;
         this.imageUrlList = imageUrlList;
@@ -74,7 +74,6 @@ public class MainAdapter extends  RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
 
-
     @Override
     public int getItemCount() {
         return TitleUrlList.size();
@@ -85,6 +84,7 @@ public class MainAdapter extends  RecyclerView.Adapter<MainAdapter.ViewHolder> {
         ImageView ani_image;
         TextView ani_title;
         CardView main_ani_item;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ani_image = itemView.findViewById(R.id.ani_img);

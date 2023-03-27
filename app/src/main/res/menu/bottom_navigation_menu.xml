@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/home"
-        android:title="Home"
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="@string/home"
         app:itemIconTint="@null"
-        app:itemTextAppearance="@null"
-        android:icon="@drawable/baseline_home_24" />
-    <item android:id="@+id/search"
-        android:title="Search"
+        app:itemTextAppearance="@null" />
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/baseline_search_24"
+        android:title="@string/search"
         app:itemIconTint="@null"
-        app:itemTextAppearance="@null"
-        android:icon="@drawable/baseline_search_24" />
-    <item android:id="@+id/settings"
-        android:title="Settings"
+        app:itemTextAppearance="@null" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/settings_str"
         app:itemIconTint="@null"
-        app:itemTextAppearance="@null"
-        android:icon="@drawable/baseline_settings_24" />
+        app:itemTextAppearance="@null" />
 
 </menu>

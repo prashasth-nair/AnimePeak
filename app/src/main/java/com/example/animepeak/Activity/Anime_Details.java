@@ -17,9 +17,8 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,7 +58,7 @@ public class Anime_Details extends AppCompatActivity {
     public static String status;
     public static RecyclerView details_recyclerView;
     public static JSONArray episodes = new JSONArray();
-    public static List<String> streamingUrls;
+    public static String desc;
     public static List<String> episodeID_list = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
@@ -110,6 +109,7 @@ public class Anime_Details extends AppCompatActivity {
             load();
         }
     }
+
     public static List<String> extractEpisodeIds(String json) {
         List<String> episodeIds = new ArrayList<>();
         JSONObject jsonObject = null;
@@ -127,6 +127,7 @@ public class Anime_Details extends AppCompatActivity {
 
         return episodeIds;
     }
+
     public void load() {
         if (!isDestroyed() && episodes.length() == 0) {
             // Load the image using Glide or Picasso here
@@ -149,7 +150,7 @@ public class Anime_Details extends AppCompatActivity {
 
                     zoro_details.execute();
                 }
-            }else if (Source.equals("Hanime")) {
+            } else if (Source.equals("Hanime")) {
                 Hanime.Hanime_details hanime_details = new Hanime.Hanime_details(this);
                 if (hanime_details.getStatus() != AsyncTask.Status.RUNNING) {
 
@@ -161,8 +162,13 @@ public class Anime_Details extends AppCompatActivity {
         } else if (episodes.length() != 0) {
             Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, Anime_Details.this);
             details_recyclerView.setAdapter(ani_details_adapter);
-            Release.setText(releasedDate);
-            Anime_Details.Status.setText(status);
+            Release.setText("Release Date: " + releasedDate);
+            Anime_Details.Status.setText("Status: " + status);
+            expandableTextView.setText(desc);
+            expandableTextView.setReadMoreText("More");
+            expandableTextView.setReadLessText("Less");
+//
+            expandableTextView.setAnimationDuration(500);
             Glide.with(this)
                     .load(img)
                     .into(Anime_Image);
@@ -189,10 +195,12 @@ public class Anime_Details extends AppCompatActivity {
             Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, Anime_Details.this);
             details_recyclerView.setAdapter(ani_details_adapter);
 
+
         } else {
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
             Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, Anime_Details.this);
             details_recyclerView.setAdapter(ani_details_adapter);
+
 
         }
     }
@@ -207,6 +215,7 @@ public class Anime_Details extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                episodes = new JSONArray();
                 finish();
                 return true;
             default:
