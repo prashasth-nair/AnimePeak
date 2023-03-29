@@ -90,6 +90,8 @@ public class UpdateApp {
 
                 if (!isUpdateAvailable(currentVersionName, version)) {
                     checkForUpdates(download);
+                }else {
+                    Toast.makeText(activity, "No Update Available", Toast.LENGTH_LONG).show();
                 }
 
             } catch (JSONException e) {

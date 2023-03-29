@@ -1,5 +1,7 @@
 package com.example.animepeak.Fragments;
 
+import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -49,6 +52,12 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -58,6 +67,7 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
         home_loading = (ImageView) getView().findViewById(R.id.loading);
         int orientation = getResources().getConfiguration().orientation;
+
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             // Portrait orientation

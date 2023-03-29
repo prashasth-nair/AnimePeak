@@ -18,7 +18,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+    public static BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
     SearchFragment searchFragment = new SearchFragment();
     SettingsFragment settingsFragment = new SettingsFragment();

@@ -1,6 +1,7 @@
 package com.example.animepeak.Fragments;
 
 
+import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
@@ -123,6 +124,7 @@ public class SettingsFragment extends Fragment {
                 Search_TitleUrlList.clear();
                 Search_imageUrlList.clear();
                 Search_IDList.clear();
+                bottomNavigationView.getMenu().getItem(0).setChecked(true);
 
                 getActivity().getSupportFragmentManager().beginTransaction().detach(getActivity().getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT_TAG")).attach(getActivity().getSupportFragmentManager().findFragmentByTag("HOME_FRAGMENT_TAG")).commit();
                 if (getActivity().getSupportFragmentManager().findFragmentByTag("SEARCH_FRAGMENT_TAG") != null) {

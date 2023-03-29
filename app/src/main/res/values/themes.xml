@@ -37,8 +37,22 @@
 
     </style>
 
-    <style name="changeBackgroundColor" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <item name="colorSurface">@color/background_second</item>
+    <style name="Widget.AnimePeak.Spinner" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <!-- Color of box ONLY, not dropdown -->
+        <item name="boxBackgroundColor">@color/background_second</item>
+        <item name="boxStrokeColor">@android:color/transparent</item>
 
+
+
+        <item name="materialThemeOverlay">@style/Overlay</item>
+    </style>
+
+     -->
+    <style name="Overlay" parent="" >
+
+        <item name="colorSurface">@color/background_second</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="android:dropDownVerticalOffset">10dp</item>
     </style>
 </resources>
