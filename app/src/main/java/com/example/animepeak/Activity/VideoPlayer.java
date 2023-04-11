@@ -10,10 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,14 +27,35 @@ import android.widget.LinearLayout;
 
 import android.widget.TextView;
 
+
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
 import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.common.collect.ImmutableList;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class VideoPlayer extends AppCompatActivity {
@@ -42,6 +66,7 @@ public class VideoPlayer extends AppCompatActivity {
     public static LinearLayout previous_eps;
     public static LinearLayout next_eps;
     public static LinearLayout exo_track_selection_view;
+    public static LinearLayout exo_subtitle_selection_view;
     TextView AnimeName;
     TextView EpisodeName;
 
@@ -49,7 +74,13 @@ public class VideoPlayer extends AppCompatActivity {
     private GogoAnime.Gogoanime_stream gogoanime_stream;
     private  Zoro.Zoro_stream zoro_stream;
     private Hanime.Hanime_stream hanime_stream;
-
+    public static int video_quality_num=0;
+    public static int video_SUBTITLE_num=0;
+    public static List<String> video_quality=new ArrayList<>();
+    public static List<String> video_subtitles=new ArrayList<>();
+    public static JSONArray sources;
+    public static JSONArray subtitles;
+    public static Uri videoUri;
 
 
     @SuppressLint("MissingInflatedId")
@@ -77,10 +108,150 @@ public class VideoPlayer extends AppCompatActivity {
         previous_eps = findViewById(R.id.previousEpisode);
         next_eps = findViewById(R.id.nextEpisode);
         exo_track_selection_view = findViewById(R.id.exo_track_selection_view);
+        exo_subtitle_selection_view = findViewById(R.id.exo_subtitle_selection_view);
 
+        if (subtitles!=null) {
+            exo_subtitle_selection_view.setEnabled(true);
+            exo_subtitle_selection_view.setAlpha(1.0f);
+            video_subtitles.add("Off");
+        }else{
+            exo_subtitle_selection_view.setEnabled(false);
+            exo_subtitle_selection_view.setAlpha(0.5f);
+        }
         AnimeName.setText(AnimeTitle);
         int Episode = Current+1;
         EpisodeName.setText("Episode: "+Episode);
+        player.addListener(new Player.Listener() {
+            @Override
+            public void onPlaybackStateChanged(int playbackState) {
+                Player.Listener.super.onPlaybackStateChanged(playbackState);
+                if (playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED ||
+                        !player.getPlayWhenReady()) {
+
+                    videoView.setKeepScreenOn(false);
+                } else { // STATE_READY, STATE_BUFFERING
+                    // This prevents the screen from getting dim/lock
+                    videoView.setKeepScreenOn(true);
+                }
+            }
+        });
+
+        exo_subtitle_selection_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (video_subtitles!=null&&video_subtitles.size()>0) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(VideoPlayer.this, R.style.MyDialogTheme);
+                    alertDialog.setTitle("Video Subtitles");
+
+                    int checkedItem = video_SUBTITLE_num;
+                    String[] video_subtitles_items = video_subtitles.toArray(new String[0]);
+                    alertDialog.setSingleChoiceItems( video_subtitles_items, checkedItem, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            try {
+                                long LastPosition = player.getCurrentPosition();
+                                video_SUBTITLE_num = which;
+                                if (which==0){
+                                    // Set the media item to be played.
+                                    player.setMediaItem(MediaItem.fromUri(videoUri));
+
+                                    player.prepare();
+                                    player.seekTo(LastPosition);
+
+                                    videoView.setPlayer(player);
+                                    player.setPlayWhenReady(true);
+                                }else {
+                                    JSONObject subtitleobj = subtitles.getJSONObject(which-1);
+                                    String subtitleUri = subtitleobj.getString("url");
+                                    MediaItem.SubtitleConfiguration subtitle =
+                                            new MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleUri))
+                                                    .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
+                                                    .setLanguage("en") // MUST, The subtitle language (optional).
+                                                    .setSelectionFlags(C.SELECTION_FLAG_DEFAULT) //MUST,  Selection flags for the track (optional).
+                                                    .build();
+                                    MediaItem mediaItem =
+                                            new MediaItem.Builder()
+                                                    .setUri(videoUri)
+                                                    .setSubtitleConfigurations(ImmutableList.of(subtitle))
+
+                                                    .build();
+
+                                    player.setMediaItem(mediaItem);
+                                    player.setPlayWhenReady(true);
+                                    player.prepare();
+                                    player.seekTo(LastPosition);
+                                    player.play();
+                                }
+                                dialog.dismiss();
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                        }
+                    });
+
+                    AlertDialog alert = alertDialog.create();
+
+                    alert.setCanceledOnTouchOutside(true);
+                    alert.getWindow().setLayout(500, 400);
+                    alert.show();
+                }else {
+                    Log.d("Here", String.valueOf(video_quality));
+                }
+
+            }
+        });
+        exo_track_selection_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (video_quality!=null&&video_quality.size()>0) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(VideoPlayer.this, R.style.MyDialogTheme);
+                    alertDialog.setTitle("Video Quality");
+
+                    int checkedItem = video_quality_num;
+                    String[] video_quality_items = video_quality.toArray(new String[0]);
+                    alertDialog.setSingleChoiceItems( video_quality_items, checkedItem, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Store off the last position our player was in before we paused it.
+                            long LastPosition = player.getCurrentPosition();
+                            video_quality_num = which;
+                            player.stop();
+
+                            try {
+                                JSONObject source = sources.getJSONObject(which);
+                                String Link = source.getString("url");
+
+// Create a MediaSource from the URL.
+                                Uri videoUri = Uri.parse(Link);
+
+// Set the media item to be played.
+                                player.setMediaItem(MediaItem.fromUri(videoUri));
+
+                                player.prepare();
+                                player.seekTo(LastPosition);
+
+                                videoView.setPlayer(player);
+                                player.setPlayWhenReady(true);
+                                dialog.dismiss();
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                        }
+                    });
+
+                    AlertDialog alert = alertDialog.create();
+
+                    alert.setCanceledOnTouchOutside(true);
+                    alert.getWindow().setLayout(500, 400);
+                    alert.show();
+                }else {
+                    Log.d("Here", String.valueOf(video_quality));
+                }
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -183,24 +354,23 @@ public class VideoPlayer extends AppCompatActivity {
         super.onPause();
         if (player != null) {
             if (player.isPlaying()) {
-
                 player.stop();
-
-
             }
-
         }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        video_quality.clear();
+        video_subtitles.clear();
         finish();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+
         if (gogoanime_stream!=null) {
             gogoanime_stream.cancel(true);
         } if (zoro_stream!=null){
@@ -222,6 +392,8 @@ public class VideoPlayer extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        video_quality.clear();
+        video_subtitles.clear();
         if (gogoanime_stream!=null) {
             gogoanime_stream.cancel(true);
         } if (zoro_stream!=null){

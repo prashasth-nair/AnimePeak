@@ -15,8 +15,11 @@ import static com.example.animepeak.Activity.Anime_Details.releasedDate;
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
+import static com.example.animepeak.Activity.VideoPlayer.sources;
 import static com.example.animepeak.Activity.VideoPlayer.videoView;
 import static com.example.animepeak.Activity.VideoPlayer.video_loading;
+import static com.example.animepeak.Activity.VideoPlayer.video_quality;
+import static com.example.animepeak.Activity.VideoPlayer.video_quality_num;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
@@ -317,12 +320,33 @@ public class Hanime {
                 if (player.isPlaying()) {
                     player.stop();
                 }
-                video_loading.setVisibility(View.GONE);
-                videoView.setVisibility(View.VISIBLE);
+
                 JSONObject jsonObject = new JSONObject(result);
-                JSONArray sources = jsonObject.getJSONArray("streams");
-                JSONObject source = sources.getJSONObject(1);
+                sources = jsonObject.getJSONArray("streams");
+                for (int i=0;i<sources.length();i++){
+                    JSONObject source = sources.getJSONObject(i);
+                    String quality = source.getString("height");
+                    String link = source.getString("url");
+                    Log.d("Link",source.getString("height"));
+                    if (!link.equals("")) {
+                        video_quality.add(quality);
+                    }
+                }
+
+                JSONObject source = sources.getJSONObject(video_quality_num);
                 String Link = source.getString("url");
+                if (Link.equals("")){
+                    try {
+                        video_quality_num = video_quality_num+1;
+                        source = sources.getJSONObject(video_quality_num);
+                        Link = source.getString("url");
+                    }catch (IndexOutOfBoundsException e){
+                        video_quality_num = video_quality_num-1;
+                        source = sources.getJSONObject(video_quality_num);
+                        Link = source.getString("url");
+                    }
+                }
+
 
 // Create a MediaSource from the URL.
                 Uri videoUri = Uri.parse(Link);
@@ -333,6 +357,8 @@ public class Hanime {
 
                 videoView.setPlayer(player);
                 player.setPlayWhenReady(true);
+                video_loading.setVisibility(View.GONE);
+                videoView.setVisibility(View.VISIBLE);
                 previous_eps.setVisibility(View.VISIBLE);
                 next_eps.setVisibility(View.VISIBLE);
 

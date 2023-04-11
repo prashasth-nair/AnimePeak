@@ -21,8 +21,11 @@ import static com.example.animepeak.Activity.VideoPlayer.Current;
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
+import static com.example.animepeak.Activity.VideoPlayer.sources;
 import static com.example.animepeak.Activity.VideoPlayer.videoView;
 import static com.example.animepeak.Activity.VideoPlayer.video_loading;
+import static com.example.animepeak.Activity.VideoPlayer.video_quality;
+import static com.example.animepeak.Activity.VideoPlayer.video_quality_num;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
@@ -443,13 +446,19 @@ public class GogoAnime {
             try {
                 if (player.isPlaying()) {
                     player.stop();
-
                 }
-                video_loading.setVisibility(View.GONE);
-                videoView.setVisibility(View.VISIBLE);
+
                 JSONObject jsonObject = new JSONObject(result);
-                JSONArray sources = jsonObject.getJSONArray("sources");
-                JSONObject source = sources.getJSONObject(0);
+                sources = jsonObject.getJSONArray("sources");
+                for (int i=0;i<sources.length();i++){
+                    JSONObject source = sources.getJSONObject(i);
+                    String quality = source.getString("quality");
+                    if (!quality.equals("backup") && !quality.equals("default")) {
+                        video_quality.add(quality);
+                    }
+                }
+
+                JSONObject source = sources.getJSONObject(video_quality_num);
                 String Link = source.getString("url");
 
 // Create a MediaSource from the URL.
@@ -463,6 +472,8 @@ public class GogoAnime {
                 videoView.setPlayer(player);
                 player.setPlayWhenReady(true);
 
+                video_loading.setVisibility(View.GONE);
+                videoView.setVisibility(View.VISIBLE);
                 previous_eps.setVisibility(View.VISIBLE);
                 next_eps.setVisibility(View.VISIBLE);
 

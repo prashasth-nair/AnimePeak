@@ -19,8 +19,14 @@ import static com.example.animepeak.Activity.VideoPlayer.Current;
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
+import static com.example.animepeak.Activity.VideoPlayer.sources;
+import static com.example.animepeak.Activity.VideoPlayer.subtitles;
+import static com.example.animepeak.Activity.VideoPlayer.videoUri;
 import static com.example.animepeak.Activity.VideoPlayer.videoView;
 import static com.example.animepeak.Activity.VideoPlayer.video_loading;
+import static com.example.animepeak.Activity.VideoPlayer.video_quality;
+import static com.example.animepeak.Activity.VideoPlayer.video_quality_num;
+import static com.example.animepeak.Activity.VideoPlayer.video_subtitles;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
@@ -436,16 +442,30 @@ public class Zoro {
             try {
                 if (player.isPlaying()) {
                     player.stop();
-                    player.release();
                 }
-                video_loading.setVisibility(View.GONE);
-                videoView.setVisibility(View.VISIBLE);
+
                 JSONObject jsonObject = new JSONObject(result);
-                JSONArray sources = jsonObject.getJSONArray("sources");
-                JSONObject source = sources.getJSONObject(0);
+                sources = jsonObject.getJSONArray("sources");
+                for (int i=0;i<sources.length();i++){
+                    JSONObject source = sources.getJSONObject(i);
+                    String quality = source.getString("quality");
+                    if (!quality.equals("backup") && !quality.equals("default")) {
+                        video_quality.add(quality);
+                    }
+                }
+                subtitles = jsonObject.getJSONArray("subtitles");
+                for (int i=0;i<subtitles.length();i++){
+                    JSONObject subtitle = subtitles.getJSONObject(i);
+                    String lang = subtitle.getString("lang");
+                    if (!lang.equals("Thumbnails") && !lang.equals("default")) {
+                        video_subtitles.add(lang);
+                    }
+                }
+
+                JSONObject source = sources.getJSONObject(video_quality_num);
                 String Link = source.getString("url");
                 // Create a MediaSource from the URL.
-                Uri videoUri = Uri.parse(Link);
+                videoUri = Uri.parse(Link);
 // Set the media item to be played.
                 player.setMediaItem(MediaItem.fromUri(videoUri));
 
@@ -454,6 +474,8 @@ public class Zoro {
                 videoView.setPlayer(player);
                 player.setPlayWhenReady(true);
 
+                video_loading.setVisibility(View.GONE);
+                videoView.setVisibility(View.VISIBLE);
                 previous_eps.setVisibility(View.VISIBLE);
                 next_eps.setVisibility(View.VISIBLE);
             } catch (JSONException e) {
