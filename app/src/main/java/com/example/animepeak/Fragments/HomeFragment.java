@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.example.animepeak.Adapters.MainAdapter;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
     public static MainAdapter mainAdapter;
     public static RecyclerView recyclerView;
     public static ImageView home_loading;
+    public static TextView network_error;
     public static List<String> Home_TitleUrlList = new ArrayList<>();
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
@@ -66,6 +68,8 @@ public class HomeFragment extends Fragment {
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
         home_loading = (ImageView) getView().findViewById(R.id.loading);
+        network_error = (TextView) getView().findViewById(R.id.net_error);
+
         int orientation = getResources().getConfiguration().orientation;
 
 

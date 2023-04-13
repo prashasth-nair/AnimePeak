@@ -8,6 +8,21 @@
 
     tools:context=".Fragments.HomeFragment">
 
+    <TextView
+        android:id="@+id/net_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Something went wrong. Please Check your network connection"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:background="@drawable/network_error_background"
+
+        />
+
     <ImageView
         android:id="@+id/loading"
         android:layout_width="100dp"

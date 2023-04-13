@@ -16,6 +16,7 @@ import static com.example.animepeak.Activity.Anime_Details.img;
 
 import static com.example.animepeak.Activity.VideoPlayer.Current;
 
+import static com.example.animepeak.Activity.VideoPlayer.exo_subtitle_selection_view;
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
@@ -31,6 +32,7 @@ import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.home_loading;
+import static com.example.animepeak.Fragments.HomeFragment.network_error;
 import static com.example.animepeak.Fragments.HomeFragment.recyclerView;
 import static com.example.animepeak.Fragments.SearchFragment.Search_IDList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList;
@@ -154,10 +156,10 @@ public class Zoro {
 
                     }
                 }
-
+                network_error.setVisibility(View.GONE);
                 return null;
             } catch (IOException | JSONException e) {
-
+                network_error.setVisibility(View.VISIBLE);
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
                 return null;
             }
@@ -396,6 +398,7 @@ public class Zoro {
                     .asGif()
                     .load(R.raw.loading_animation)
                     .into(video_loading);
+
         }
 
         @Override
@@ -453,6 +456,7 @@ public class Zoro {
                         video_quality.add(quality);
                     }
                 }
+                video_subtitles.add("Off");
                 subtitles = jsonObject.getJSONArray("subtitles");
                 for (int i=0;i<subtitles.length();i++){
                     JSONObject subtitle = subtitles.getJSONObject(i);
@@ -478,6 +482,10 @@ public class Zoro {
                 videoView.setVisibility(View.VISIBLE);
                 previous_eps.setVisibility(View.VISIBLE);
                 next_eps.setVisibility(View.VISIBLE);
+
+                exo_subtitle_selection_view.setEnabled(true);
+                exo_subtitle_selection_view.setAlpha(1.0f);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

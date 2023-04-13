@@ -24,6 +24,7 @@ import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.home_loading;
+import static com.example.animepeak.Fragments.HomeFragment.network_error;
 import static com.example.animepeak.Fragments.HomeFragment.recyclerView;
 import static com.example.animepeak.Fragments.SearchFragment.Search_IDList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList;
@@ -141,10 +142,10 @@ public class Hanime {
                     }
 
                 }
-
+                network_error.setVisibility(View.GONE);
                 return null;
             } catch (IOException | JSONException e) {
-
+                network_error.setVisibility(View.VISIBLE);
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
                 return null;
             }

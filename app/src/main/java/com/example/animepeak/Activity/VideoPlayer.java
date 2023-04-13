@@ -56,6 +56,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class VideoPlayer extends AppCompatActivity {
@@ -69,15 +70,16 @@ public class VideoPlayer extends AppCompatActivity {
     public static LinearLayout exo_subtitle_selection_view;
     TextView AnimeName;
     TextView EpisodeName;
+    TextView exo_quality_txt;
 
     public static ExoPlayer player;
     private GogoAnime.Gogoanime_stream gogoanime_stream;
-    private  Zoro.Zoro_stream zoro_stream;
+    private Zoro.Zoro_stream zoro_stream;
     private Hanime.Hanime_stream hanime_stream;
-    public static int video_quality_num=0;
-    public static int video_SUBTITLE_num=0;
-    public static List<String> video_quality=new ArrayList<>();
-    public static List<String> video_subtitles=new ArrayList<>();
+    public static int video_quality_num = 0;
+    public static int video_SUBTITLE_num = 0;
+    public static List<String> video_quality = new ArrayList<>();
+    public static List<String> video_subtitles = new ArrayList<>();
     public static JSONArray sources;
     public static JSONArray subtitles;
     public static Uri videoUri;
@@ -109,18 +111,15 @@ public class VideoPlayer extends AppCompatActivity {
         next_eps = findViewById(R.id.nextEpisode);
         exo_track_selection_view = findViewById(R.id.exo_track_selection_view);
         exo_subtitle_selection_view = findViewById(R.id.exo_subtitle_selection_view);
+        exo_quality_txt = findViewById(R.id.exoQuality);
 
-        if (subtitles!=null) {
-            exo_subtitle_selection_view.setEnabled(true);
-            exo_subtitle_selection_view.setAlpha(1.0f);
-            video_subtitles.add("Off");
-        }else{
-            exo_subtitle_selection_view.setEnabled(false);
-            exo_subtitle_selection_view.setAlpha(0.5f);
-        }
+
+        exo_subtitle_selection_view.setEnabled(false);
+        exo_subtitle_selection_view.setAlpha(0.5f);
+
         AnimeName.setText(AnimeTitle);
-        int Episode = Current+1;
-        EpisodeName.setText("Episode: "+Episode);
+        int Episode = Current + 1;
+        EpisodeName.setText("Episode: " + Episode);
         player.addListener(new Player.Listener() {
             @Override
             public void onPlaybackStateChanged(int playbackState) {
@@ -139,20 +138,20 @@ public class VideoPlayer extends AppCompatActivity {
         exo_subtitle_selection_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (video_subtitles!=null&&video_subtitles.size()>0) {
+                if (video_subtitles != null && video_subtitles.size() > 0) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(VideoPlayer.this, R.style.MyDialogTheme);
                     alertDialog.setTitle("Video Subtitles");
 
                     int checkedItem = video_SUBTITLE_num;
                     String[] video_subtitles_items = video_subtitles.toArray(new String[0]);
-                    alertDialog.setSingleChoiceItems( video_subtitles_items, checkedItem, new DialogInterface.OnClickListener() {
+                    alertDialog.setSingleChoiceItems(video_subtitles_items, checkedItem, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
                             try {
                                 long LastPosition = player.getCurrentPosition();
                                 video_SUBTITLE_num = which;
-                                if (which==0){
+                                if (which == 0) {
                                     // Set the media item to be played.
                                     player.setMediaItem(MediaItem.fromUri(videoUri));
 
@@ -161,8 +160,8 @@ public class VideoPlayer extends AppCompatActivity {
 
                                     videoView.setPlayer(player);
                                     player.setPlayWhenReady(true);
-                                }else {
-                                    JSONObject subtitleobj = subtitles.getJSONObject(which-1);
+                                } else {
+                                    JSONObject subtitleobj = subtitles.getJSONObject(which - 1);
                                     String subtitleUri = subtitleobj.getString("url");
                                     MediaItem.SubtitleConfiguration subtitle =
                                             new MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleUri))
@@ -196,7 +195,7 @@ public class VideoPlayer extends AppCompatActivity {
                     alert.setCanceledOnTouchOutside(true);
                     alert.getWindow().setLayout(500, 400);
                     alert.show();
-                }else {
+                } else {
                     Log.d("Here", String.valueOf(video_quality));
                 }
 
@@ -205,13 +204,13 @@ public class VideoPlayer extends AppCompatActivity {
         exo_track_selection_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (video_quality!=null&&video_quality.size()>0) {
+                if (video_quality != null && video_quality.size() > 0) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(VideoPlayer.this, R.style.MyDialogTheme);
                     alertDialog.setTitle("Video Quality");
 
                     int checkedItem = video_quality_num;
                     String[] video_quality_items = video_quality.toArray(new String[0]);
-                    alertDialog.setSingleChoiceItems( video_quality_items, checkedItem, new DialogInterface.OnClickListener() {
+                    alertDialog.setSingleChoiceItems(video_quality_items, checkedItem, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // Store off the last position our player was in before we paused it.
@@ -222,6 +221,8 @@ public class VideoPlayer extends AppCompatActivity {
                             try {
                                 JSONObject source = sources.getJSONObject(which);
                                 String Link = source.getString("url");
+                                String quality = source.getString("quality");
+
 
 // Create a MediaSource from the URL.
                                 Uri videoUri = Uri.parse(Link);
@@ -234,6 +235,7 @@ public class VideoPlayer extends AppCompatActivity {
 
                                 videoView.setPlayer(player);
                                 player.setPlayWhenReady(true);
+                                exo_quality_txt.setText(quality);
                                 dialog.dismiss();
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
@@ -247,7 +249,7 @@ public class VideoPlayer extends AppCompatActivity {
                     alert.setCanceledOnTouchOutside(true);
                     alert.getWindow().setLayout(500, 400);
                     alert.show();
-                }else {
+                } else {
                     Log.d("Here", String.valueOf(video_quality));
                 }
             }
@@ -258,56 +260,71 @@ public class VideoPlayer extends AppCompatActivity {
                 finish();
             }
         });
+        checkPrevious();
         previous_eps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if ((Current - 1) >= 0) {
                     Current = Current - 1;
-                    int Episode = Current+1;
-                    EpisodeName.setText("Episode: "+Episode);
-                        if (gogoanime_stream!=null){
-                            gogoanime_stream.cancel(true);
-                        } if (zoro_stream!=null){
-                            zoro_stream.cancel(true);
-                        } if (hanime_stream!=null){
-                            hanime_stream.cancel(true);
-                        }
-                        if (player != null) {
-                            player.stop();
-                        }
-                        if (Source.equals("GogoAnime")) {
 
-                            gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
-                            gogoanime_stream.execute();
-                        } else if (Source.equals("Zoro")) {
+                    int Episode = Current + 1;
+                    EpisodeName.setText("Episode: " + Episode);
+                    if (gogoanime_stream != null) {
+                        gogoanime_stream.cancel(true);
+                    }
+                    if (zoro_stream != null) {
+                        zoro_stream.cancel(true);
+                    }
+                    if (hanime_stream != null) {
+                        hanime_stream.cancel(true);
+                    }
+                    if (player != null) {
+                        player.stop();
+                    }
+                    if (Source.equals("GogoAnime")) {
 
-                            zoro_stream = new Zoro.Zoro_stream(VideoPlayer.this);
-                            zoro_stream.execute();
-                        } else if (Source.equals("Hanime")) {
-                            hanime_stream = new Hanime.Hanime_stream(VideoPlayer.this);
-                            hanime_stream.execute();
+                        gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
+                        gogoanime_stream.execute();
+                    } else if (Source.equals("Zoro")) {
+
+                        zoro_stream = new Zoro.Zoro_stream(VideoPlayer.this);
+                        try {
+                            zoro_stream.execute().get();
+                        } catch (ExecutionException e) {
+                            throw new RuntimeException(e);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
                         }
+                    } else if (Source.equals("Hanime")) {
+                        hanime_stream = new Hanime.Hanime_stream(VideoPlayer.this);
+                        hanime_stream.execute();
+                    }
+
 
                 }
+                video_quality.clear();
+                video_subtitles.clear();
+                checkPrevious();
+                checkNext();
             }
         });
-
+        checkNext();
         next_eps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int next_int = Current + 1;
-                int Episode = next_int+1;
-                EpisodeName.setText("Episode: "+Episode);
+                int Episode = next_int + 1;
+                EpisodeName.setText("Episode: " + Episode);
                 if (next_int < episodeID_list.size()) {
                     Current = next_int;
-                    if (gogoanime_stream!=null){
+                    if (gogoanime_stream != null) {
                         gogoanime_stream.cancel(true);
                     }
-                    if (zoro_stream!=null){
+                    if (zoro_stream != null) {
                         zoro_stream.cancel(true);
                     }
-                    if (hanime_stream!=null){
+                    if (hanime_stream != null) {
                         hanime_stream.cancel(true);
                     }
                     if (player != null) {
@@ -326,6 +343,10 @@ public class VideoPlayer extends AppCompatActivity {
                         hanime_stream.execute();
                     }
                 }
+                video_quality.clear();
+                video_subtitles.clear();
+                checkPrevious();
+                checkNext();
             }
         });
 
@@ -340,6 +361,28 @@ public class VideoPlayer extends AppCompatActivity {
         } else if (Source.equals("Hanime")) {
             hanime_stream = new Hanime.Hanime_stream(this);
             hanime_stream.execute();
+        }
+    }
+
+    public void checkPrevious() {
+        if ((Current - 1) >= 0) {
+
+            previous_eps.setEnabled(true);
+            previous_eps.setAlpha(1.0f);
+        } else {
+            previous_eps.setEnabled(false);
+            previous_eps.setAlpha(0.5f);
+        }
+    }
+
+    public void checkNext() {
+        if ((Current + 1) < episodeID_list.size()) {
+
+            next_eps.setEnabled(true);
+            next_eps.setAlpha(1.0f);
+        } else {
+            next_eps.setEnabled(false);
+            next_eps.setAlpha(0.5f);
         }
     }
 
@@ -371,11 +414,13 @@ public class VideoPlayer extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        if (gogoanime_stream!=null) {
+        if (gogoanime_stream != null) {
             gogoanime_stream.cancel(true);
-        } if (zoro_stream!=null){
+        }
+        if (zoro_stream != null) {
             zoro_stream.cancel(true);
-        } if (hanime_stream!=null){
+        }
+        if (hanime_stream != null) {
             hanime_stream.cancel(true);
         }
         if (player != null) {
@@ -394,11 +439,13 @@ public class VideoPlayer extends AppCompatActivity {
         super.onDestroy();
         video_quality.clear();
         video_subtitles.clear();
-        if (gogoanime_stream!=null) {
+        if (gogoanime_stream != null) {
             gogoanime_stream.cancel(true);
-        } if (zoro_stream!=null){
+        }
+        if (zoro_stream != null) {
             zoro_stream.cancel(true);
-        } if (hanime_stream!=null){
+        }
+        if (hanime_stream != null) {
             hanime_stream.cancel(true);
         }
 

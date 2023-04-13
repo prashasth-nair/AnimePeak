@@ -13,6 +13,7 @@ import static com.example.animepeak.Activity.Anime_Details.episodes;
 import static com.example.animepeak.Activity.Anime_Details.expandableTextView;
 import static com.example.animepeak.Activity.Anime_Details.extractEpisodeIds;
 import static com.example.animepeak.Activity.Anime_Details.img;
+import static com.example.animepeak.Activity.Anime_Details.net_error_ani_details;
 import static com.example.animepeak.Activity.Anime_Details.releasedDate;
 import static com.example.animepeak.Activity.Anime_Details.status;
 
@@ -30,6 +31,7 @@ import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.home_loading;
+import static com.example.animepeak.Fragments.HomeFragment.network_error;
 import static com.example.animepeak.Fragments.HomeFragment.recyclerView;
 import static com.example.animepeak.Fragments.SearchFragment.Search_IDList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList;
@@ -153,11 +155,12 @@ public class GogoAnime {
                         }
                     }
                 }
-
+                network_error.setVisibility(View.GONE);
                 return null;
             } catch (IOException | JSONException e) {
 
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
+                network_error.setVisibility(View.VISIBLE);
                 return null;
             }
         }
@@ -217,15 +220,18 @@ public class GogoAnime {
                 }
 
                 bufferedReader.close();
+                episodeID_list = extractEpisodeIds(result);
 
             } catch (IOException e) {
+                Anime_Details.Error = 1;
+
                 e.printStackTrace();
             } finally {
                 if (urlConnection != null) {
                     urlConnection.disconnect();
                 }
             }
-            episodeID_list = extractEpisodeIds(result);
+
             return result;
         }
 
@@ -234,43 +240,48 @@ public class GogoAnime {
             super.onPostExecute(result);
 
             details_loading.setVisibility(View.GONE);
-            anime_details.setVisibility(View.VISIBLE);
-            episode_text.setVisibility(View.VISIBLE);
+            if (Anime_Details.Error==0) {
+                net_error_ani_details.setVisibility(View.GONE);
+                anime_details.setVisibility(View.VISIBLE);
+                episode_text.setVisibility(View.VISIBLE);
 
-            try {
+                try {
 
-                JSONObject jsonObject = new JSONObject(result);
-                img = jsonObject.getString("image");
-                releasedDate = jsonObject.getString("releaseDate");
-                status = jsonObject.getString("status");
+                    JSONObject jsonObject = new JSONObject(result);
+                    img = jsonObject.getString("image");
+                    releasedDate = jsonObject.getString("releaseDate");
+                    status = jsonObject.getString("status");
 
-                if (episodes.length() == 0) {
+                    if (episodes.length() == 0) {
 
-                    episodes = jsonObject.getJSONArray("episodes");
+                        episodes = jsonObject.getJSONArray("episodes");
 
 
-                }
-                Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
-                details_recyclerView.setAdapter(ani_details_adapter);
+                    }
+                    Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
+                    details_recyclerView.setAdapter(ani_details_adapter);
 
-                Release.setText("Release Date: " + releasedDate);
-                Anime_Details.Status.setText("Status: " + status);
-                Glide.with(activity)
-                        .load(img)
-                        .into(Anime_Image);
-                desc = jsonObject.getString("description");
-                expandableTextView.setText(desc);
-                expandableTextView.setReadMoreText("More");
-                expandableTextView.setReadLessText("Less");
+                    Release.setText("Release Date: " + releasedDate);
+                    Anime_Details.Status.setText("Status: " + status);
+                    Glide.with(activity)
+                            .load(img)
+                            .into(Anime_Image);
+                    desc = jsonObject.getString("description");
+                    expandableTextView.setText(desc);
+                    expandableTextView.setReadMoreText("More");
+                    expandableTextView.setReadLessText("Less");
 //
-                expandableTextView.setAnimationDuration(500);
+                    expandableTextView.setAnimationDuration(500);
 
-                // Reset the orientation to the original orientation.
-                activity.setRequestedOrientation(originalOrientation);
+                    // Reset the orientation to the original orientation.
+                    activity.setRequestedOrientation(originalOrientation);
 
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                net_error_ani_details.setVisibility(View.VISIBLE);
             }
         }
     }

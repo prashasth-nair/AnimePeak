@@ -46,6 +46,7 @@ public class Anime_Details extends AppCompatActivity {
     public static ImageView Anime_Image;
     public static TextView Release;
     public static TextView Status;
+    public static TextView net_error_ani_details;
     public static CardView anime_details;
     public static RelativeLayout episode_text;
 
@@ -59,6 +60,7 @@ public class Anime_Details extends AppCompatActivity {
     public static RecyclerView details_recyclerView;
     public static JSONArray episodes = new JSONArray();
     public static String desc;
+    public static int Error = 0;
     public static List<String> episodeID_list = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
@@ -85,6 +87,7 @@ public class Anime_Details extends AppCompatActivity {
         Ani_ID = intent.getStringExtra("ID");
         expandableTextView = findViewById(R.id.expand_txt);
         episode_text = findViewById(R.id.episode_text);
+        net_error_ani_details = findViewById(R.id.net_error_ani_details);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
