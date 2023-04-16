@@ -14,6 +14,12 @@
         app:itemIconTint="@null"
         app:itemTextAppearance="@null" />
     <item
+        android:id="@+id/fav"
+        android:icon="@drawable/baseline_favorite_unselected"
+        android:title="@string/favourite"
+        app:itemIconTint="@null"
+        app:itemTextAppearance="@null" />
+    <item
         android:id="@+id/settings"
         android:icon="@drawable/baseline_settings_24"
         android:title="@string/settings_str"

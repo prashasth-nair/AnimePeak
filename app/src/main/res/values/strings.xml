@@ -14,6 +14,9 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="settings_str">Settings</string>
+    <string name="favourite">Favourite</string>
+    <string name="your_favorites_will_show_here">Your Favorites will show here</string>
+    <string name="something_went_wrong_please_check_your_network_connection">Something went wrong. Please Check your network connection</string>
     <string-array name="source_list">
         <item>GogoAnime</item>
         <item>Zoro</item>

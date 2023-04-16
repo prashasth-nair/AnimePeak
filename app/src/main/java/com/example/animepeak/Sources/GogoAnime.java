@@ -4,6 +4,7 @@ import static com.example.animepeak.Activity.Anime_Details.Ani_ID;
 import static com.example.animepeak.Activity.Anime_Details.Anime_Image;
 import static com.example.animepeak.Activity.Anime_Details.Release;
 import static com.example.animepeak.Activity.Anime_Details.anime_details;
+import static com.example.animepeak.Activity.Anime_Details.anime_details_main;
 import static com.example.animepeak.Activity.Anime_Details.desc;
 import static com.example.animepeak.Activity.Anime_Details.details_loading;
 import static com.example.animepeak.Activity.Anime_Details.details_recyclerView;
@@ -44,6 +45,12 @@ import static com.example.animepeak.Fragments.SearchFragment.search_Box;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -72,8 +79,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+
+
 
 public class GogoAnime {
     //    GogoAnime
@@ -179,6 +189,7 @@ public class GogoAnime {
     public static class Gogoanime_details extends AsyncTask<Void, Void, String> {
         Activity activity;
         int originalOrientation;
+        Drawable image;
 
 
         public Gogoanime_details(Activity activity) {
@@ -266,6 +277,10 @@ public class GogoAnime {
                     Glide.with(activity)
                             .load(img)
                             .into(Anime_Image);
+
+
+
+
                     desc = jsonObject.getString("description");
                     expandableTextView.setText(desc);
                     expandableTextView.setReadMoreText("More");

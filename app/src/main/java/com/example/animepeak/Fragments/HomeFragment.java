@@ -28,6 +28,7 @@ import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
 import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 import java.util.ArrayList;
@@ -55,16 +56,16 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
+    public void onResume() {
+        super.onResume();
+        bottomNavigationView.setSelectedItemId(R.id.home);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        bottomNavigationView.setSelectedItemId(R.id.home);
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
         home_loading = (ImageView) getView().findViewById(R.id.loading);

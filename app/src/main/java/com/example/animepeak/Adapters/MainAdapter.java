@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,6 +60,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         Glide.with(activity)
                 .load(imageUrl)
                 .into(holder.ani_image);
+
+
+        // Set the animation on the item view
+        Animation animation = AnimationUtils.loadAnimation(activity, R.anim.fade_in_recycler);
+        holder.itemView.startAnimation(animation);
 
         holder.main_ani_item.setOnClickListener(new View.OnClickListener() {
             @Override

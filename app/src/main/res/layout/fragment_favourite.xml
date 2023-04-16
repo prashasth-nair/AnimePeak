@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.FavouriteFragment"
+    android:background="@color/background_main"
+    >
+
+    <TextView
+        android:id="@+id/no_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_favorites_will_show_here"
+        android:background="@drawable/network_error_background"
+        android:textColor="@color/white"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:layout_centerInParent="true"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fav_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
