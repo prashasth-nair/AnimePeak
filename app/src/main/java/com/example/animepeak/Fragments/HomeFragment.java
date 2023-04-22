@@ -43,6 +43,10 @@ public class HomeFragment extends Fragment {
     public static List<String> Home_TitleUrlList = new ArrayList<>();
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
+    private GogoAnime.Gogoanime_popular gogoanime_popular;
+    private Zoro.Zoro_popular zoro_popular;
+    private Hanime.Hanime_popular hanime_popular;
+    String Source;
 
 
     public HomeFragment() {
@@ -60,6 +64,8 @@ public class HomeFragment extends Fragment {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.home);
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -86,15 +92,18 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(mainAdapter);
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+        Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
 
         if (Source.equals("GogoAnime")) {
-            new GogoAnime.Gogoanime_popular(getActivity(), isAdded()).execute();
+           gogoanime_popular = new GogoAnime.Gogoanime_popular(getActivity(), isAdded());
+           gogoanime_popular.execute();
         } else if (Source.equals("Zoro")) {
-            new Zoro.Zoro_popular(getActivity(), isAdded()).execute();
+            zoro_popular = new Zoro.Zoro_popular(getActivity(), isAdded());
+            zoro_popular.execute();
         } else if (Source.equals("Hanime")) {
-            new Hanime.Hanime_popular(getActivity(), isAdded()).execute();
+            hanime_popular = new Hanime.Hanime_popular(getActivity(), isAdded());
+            hanime_popular.execute();
         }
 
     }
@@ -107,15 +116,49 @@ public class HomeFragment extends Fragment {
 
             // call the async function here to refresh the data
             SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-            String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+            Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
             if (Source.equals("GogoAnime")) {
-                new GogoAnime.Gogoanime_popular(getActivity(), isAdded()).execute();
+                gogoanime_popular = new GogoAnime.Gogoanime_popular(getActivity(), isAdded());
+                gogoanime_popular.execute();
             } else if (Source.equals("Zoro")) {
-                new Zoro.Zoro_popular(getActivity(), isAdded()).execute();
+                zoro_popular = new Zoro.Zoro_popular(getActivity(), isAdded());
+                zoro_popular.execute();
             } else if (Source.equals("Hanime")) {
-                new Hanime.Hanime_popular(getActivity(), isAdded()).execute();
+                hanime_popular = new Hanime.Hanime_popular(getActivity(), isAdded());
+                hanime_popular.execute();
             }
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Home_TitleUrlList.clear();
+        if (gogoanime_popular != null) {
+            gogoanime_popular.cancel(true);
+        }
+        if (zoro_popular != null) {
+            zoro_popular.cancel(true);
+        }
+        if (hanime_popular != null) {
+            hanime_popular.cancel(true);
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Home_TitleUrlList.clear();
+        if (gogoanime_popular != null) {
+            gogoanime_popular.cancel(true);
+        }
+        if (zoro_popular != null) {
+            zoro_popular.cancel(true);
+        }
+        if (hanime_popular != null) {
+            hanime_popular.cancel(true);
         }
     }
 

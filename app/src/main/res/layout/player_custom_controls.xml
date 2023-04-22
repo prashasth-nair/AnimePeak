@@ -175,6 +175,7 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        tools:text="22:04" />-->
 
+
     <com.google.android.exoplayer2.ui.DefaultTimeBar
         android:id="@+id/exo_progress"
         android:layout_width="0dp"
@@ -184,8 +185,9 @@
         app:layout_constraintBottom_toTopOf="@id/extraControls"
         app:layout_constraintEnd_toStartOf="@id/exo_remaining_time"
         app:layout_constraintStart_toStartOf="@id/startGuideLine"
-        app:played_color="@color/media_player_controls"
-        app:scrubber_color="@color/media_player_controls"
+        app:played_color="@color/yellow"
+
+        app:scrubber_color="@color/yellow"
         app:scrubber_dragged_size="28dp"
         app:scrubber_enabled_size="20dp" />
 

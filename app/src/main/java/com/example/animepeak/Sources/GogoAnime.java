@@ -25,7 +25,7 @@ import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
 import static com.example.animepeak.Activity.VideoPlayer.sources;
 import static com.example.animepeak.Activity.VideoPlayer.videoView;
-import static com.example.animepeak.Activity.VideoPlayer.video_loading;
+
 import static com.example.animepeak.Activity.VideoPlayer.video_quality;
 import static com.example.animepeak.Activity.VideoPlayer.video_quality_num;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
@@ -419,14 +419,11 @@ public class GogoAnime {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            video_loading.bringToFront();
+
             videoView.setVisibility(View.INVISIBLE);
             previous_eps.setVisibility(View.GONE);
             next_eps.setVisibility(View.GONE);
-            Glide.with(activity)
-                    .asGif()
-                    .load(R.raw.loading_animation)
-                    .into(video_loading);
+
         }
 
         @Override
@@ -498,7 +495,6 @@ public class GogoAnime {
                 videoView.setPlayer(player);
                 player.setPlayWhenReady(true);
 
-                video_loading.setVisibility(View.GONE);
                 videoView.setVisibility(View.VISIBLE);
                 previous_eps.setVisibility(View.VISIBLE);
                 next_eps.setVisibility(View.VISIBLE);

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,13 +20,18 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.animepeak.R;
@@ -41,6 +47,7 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.SingleSampleMediaSource;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
@@ -60,10 +67,10 @@ import java.util.concurrent.ExecutionException;
 
 
 public class VideoPlayer extends AppCompatActivity {
-
+    private ScaleGestureDetector scaleGestureDetector;
+    private GestureDetector gestureDetector;
     public static int Current;
     public static PlayerView videoView;
-    public static ImageView video_loading;
     public static LinearLayout previous_eps;
     public static LinearLayout next_eps;
     public static LinearLayout exo_track_selection_view;
@@ -83,6 +90,7 @@ public class VideoPlayer extends AppCompatActivity {
     public static JSONArray sources;
     public static JSONArray subtitles;
     public static Uri videoUri;
+//    ProgressBar loading;
 
 
     @SuppressLint("MissingInflatedId")
@@ -94,7 +102,7 @@ public class VideoPlayer extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         videoView = findViewById(R.id.videoView);
-        video_loading = findViewById(R.id.video_loading);
+
 
         Intent intent = getIntent();
         Current = intent.getIntExtra("current_episode", 0);
@@ -102,6 +110,24 @@ public class VideoPlayer extends AppCompatActivity {
 
         SharedPreferences sharedpreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+
+        if (gestureDetector == null) {
+            gestureDetector = new GestureDetector(this, new GestureListener());
+        }
+        if (scaleGestureDetector == null) {
+            scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener(this,videoView));
+        }
+
+
+        if (player != null) {
+            if (player.isPlaying()) {
+
+                player.stop();
+                player.release();
+                player = null;
+            }
+
+        }
 
         player = new ExoPlayer.Builder(this).build();
         AnimeName = findViewById(R.id.animeName);
@@ -112,6 +138,7 @@ public class VideoPlayer extends AppCompatActivity {
         exo_track_selection_view = findViewById(R.id.exo_track_selection_view);
         exo_subtitle_selection_view = findViewById(R.id.exo_subtitle_selection_view);
         exo_quality_txt = findViewById(R.id.exoQuality);
+//        loading = findViewById(R.id.exo_buffering);
 
 
         exo_subtitle_selection_view.setEnabled(false);
@@ -120,10 +147,27 @@ public class VideoPlayer extends AppCompatActivity {
         AnimeName.setText(AnimeTitle);
         int Episode = Current + 1;
         EpisodeName.setText("Episode: " + Episode);
+        videoView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+
+                gestureDetector.onTouchEvent(event);
+                scaleGestureDetector.onTouchEvent(event);
+                return true;
+            }
+        });
+
         player.addListener(new Player.Listener() {
             @Override
             public void onPlaybackStateChanged(int playbackState) {
                 Player.Listener.super.onPlaybackStateChanged(playbackState);
+//                if (playbackState == Player.STATE_BUFFERING) {
+//                    loading.setVisibility(View.VISIBLE);
+//                }
+//                if (playbackState == Player.STATE_READY) {
+//                    loading.setVisibility(View.GONE);
+//                }
                 if (playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED ||
                         !player.getPlayWhenReady()) {
 
@@ -260,6 +304,7 @@ public class VideoPlayer extends AppCompatActivity {
                 finish();
             }
         });
+
         checkPrevious();
         previous_eps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -386,6 +431,7 @@ public class VideoPlayer extends AppCompatActivity {
         }
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -407,6 +453,15 @@ public class VideoPlayer extends AppCompatActivity {
         super.onBackPressed();
         video_quality.clear();
         video_subtitles.clear();
+        if (player != null) {
+
+
+            player.stop();
+            player.release();
+            player = null;
+
+
+        }
         finish();
     }
 
@@ -424,12 +479,12 @@ public class VideoPlayer extends AppCompatActivity {
             hanime_stream.cancel(true);
         }
         if (player != null) {
-            if (player.isPlaying()) {
 
-                player.stop();
-                player.release();
-                player = null;
-            }
+
+            player.stop();
+            player.release();
+            player = null;
+
 
         }
     }
@@ -459,5 +514,44 @@ public class VideoPlayer extends AppCompatActivity {
 
         }
 
+    }
+    private static class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        Activity activity;
+        private PlayerView playerView;
+        private float scaleFactor = 1f;
+
+        public ScaleListener(Activity activity,PlayerView playerView) {
+            this.playerView = playerView;
+            this.activity = activity;
+        }
+
+
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            // Get the scale factor from the detector
+            float scaleFactor = detector.getScaleFactor();
+            if (scaleFactor > 1f) {
+                playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
+            }else {
+                // Zoom out
+                playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+            }
+            // Handle the zoom action
+            // For example, you can change the size of a view based on the scale factor
+            // or update a zoom level variable to be used in your drawing code
+            return true;
+        }
+    }
+    private static class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            // Handle single tap here
+            if (videoView.isControllerVisible()){
+                videoView.hideController();
+            }else {
+                videoView.showController();
+            }
+            return super.onSingleTapConfirmed(e);
+        }
     }
 }

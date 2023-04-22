@@ -4,16 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2e343b"
+    android:background="@color/black"
     tools:context=".Activity.VideoPlayer">
-
-    <ImageView
-        android:id="@+id/video_loading"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-
-        />
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/videoView"
@@ -29,7 +21,23 @@
         android:scaleType="fitXY"
         app:controller_layout_id="@layout/player_custom_controls"
         app:resize_mode="fit"
+        app:show_buffering="when_playing"
+
         app:use_controller="true" />
+<!--    <ProgressBar-->
+<!--        android:id="@+id/exo_buffering"-->
+<!--        style="?android:attr/progressBarStyleLarge"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:indeterminate="true"-->
+<!--        android:visibility="gone"-->
+<!--        android:indeterminateTint="@color/yellow"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        />-->
 
 
 </RelativeLayout>
