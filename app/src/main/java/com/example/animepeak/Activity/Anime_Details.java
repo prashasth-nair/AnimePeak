@@ -1,8 +1,7 @@
 package com.example.animepeak.Activity;
 
 import static com.example.animepeak.Activity.MainActivity.fav_list;
-import static com.example.animepeak.Adapters.FavAdapter.fav_activity;
-import static com.example.animepeak.Fragments.FavouriteFragment.fav_recycler;
+
 import static com.example.animepeak.Functions.Fav_object.removeFavByID;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +34,6 @@ import com.bumptech.glide.Glide;
 import com.example.animepeak.Adapters.Ani_Details_Adapter;
 
 
-import com.example.animepeak.Adapters.FavAdapter;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
@@ -105,12 +103,14 @@ public class Anime_Details extends AppCompatActivity {
         anime_details_main = findViewById(R.id.anime_details_main);
         net_error_ani_details = findViewById(R.id.net_error_ani_details);
         favoriteButton = findViewById(R.id.fav_button);
-        for (Fav_object favObject : fav_list) {
-            if (favObject.getID().contains(Ani_ID)) {
-                is_fav = true;
-                favoriteButton.setColorFilter(Color.RED);
-                favoriteButton.setImageResource(R.drawable.baseline_favorite_24_selected);
-                break;
+        if (fav_list!=null) {
+            for (Fav_object favObject : fav_list) {
+                if (favObject.getID().contains(Ani_ID)) {
+                    is_fav = true;
+                    favoriteButton.setColorFilter(Color.RED);
+                    favoriteButton.setImageResource(R.drawable.baseline_favorite_24_selected);
+                    break;
+                }
             }
         }
 

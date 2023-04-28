@@ -4,7 +4,6 @@ import static com.example.animepeak.Activity.Anime_Details.Ani_ID;
 import static com.example.animepeak.Activity.Anime_Details.Anime_Image;
 import static com.example.animepeak.Activity.Anime_Details.Release;
 import static com.example.animepeak.Activity.Anime_Details.anime_details;
-import static com.example.animepeak.Activity.Anime_Details.anime_details_main;
 import static com.example.animepeak.Activity.Anime_Details.desc;
 import static com.example.animepeak.Activity.Anime_Details.details_loading;
 import static com.example.animepeak.Activity.Anime_Details.details_recyclerView;
@@ -20,6 +19,7 @@ import static com.example.animepeak.Activity.Anime_Details.status;
 
 import static com.example.animepeak.Activity.VideoPlayer.Current;
 
+import static com.example.animepeak.Activity.VideoPlayer.exo_quality_txt;
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
@@ -39,17 +39,14 @@ import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList
 import static com.example.animepeak.Fragments.SearchFragment.Search_imageUrlList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_loading;
 import static com.example.animepeak.Fragments.SearchFragment.not_found;
+import static com.example.animepeak.Fragments.SearchFragment.searchBar;
 import static com.example.animepeak.Fragments.SearchFragment.searchView;
-import static com.example.animepeak.Fragments.SearchFragment.search_Box;
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.BitmapDrawable;
+
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -79,7 +76,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -307,23 +303,25 @@ public class GogoAnime {
         private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/";
         Activity activity;
         boolean is_added;
+        String text;
 
-        public GogoAnime_search(Activity activity, boolean is_added) {
+        public GogoAnime_search(Activity activity, boolean is_added,String text) {
             this.activity = activity;
             this.is_added = is_added;
+            this.text = text;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            Search_loading.setVisibility(View.VISIBLE);
             Glide.with(activity)
                     .asGif()
                     .load(R.raw.loading_animation)
                     .into(Search_loading);
-            search_Box.clearFocus();
+//            search_Box.clearFocus();
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(search_Box.getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(searchBar.getWindowToken(), 0);
         }
 
         @Override
@@ -332,9 +330,9 @@ public class GogoAnime {
             try {
 
 
-                String query = search_Box.getText().toString();
-                query = query.replace(" ", "-");
-                URL url = new URL(API_ENDPOINT + query);
+//                String query = search_Box.getText().toString();
+                text = text.replace(" ", "-");
+                URL url = new URL(API_ENDPOINT + text);
 
                 // Open an HTTP connection to the URL
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -399,9 +397,10 @@ public class GogoAnime {
                 searchView.setAdapter(searchAdapter);
             }
             if (Search_TitleUrlList.size() == 0) {
-                String query = search_Box.getText().toString();
+//                String query = search_Box.getText().toString();
 
-                not_found.setText("Cannot Find Anime \'" + query + "\'");
+//                not_found.setText("Cannot Find Anime \'" + query + "\'");
+                not_found.setText("Cannot Find the Anime ");
                 not_found.setVisibility(View.VISIBLE);
             } else {
                 not_found.setVisibility(View.GONE);
@@ -462,6 +461,7 @@ public class GogoAnime {
             return result;
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
@@ -480,6 +480,7 @@ public class GogoAnime {
                         video_quality.add(quality);
                     }
                 }
+                exo_quality_txt.setText("Quality("+video_quality.get(0)+")");
 
                 JSONObject source = sources.getJSONObject(video_quality_num);
                 String Link = source.getString("url");

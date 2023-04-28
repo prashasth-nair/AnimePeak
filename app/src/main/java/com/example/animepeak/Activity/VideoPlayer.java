@@ -77,7 +77,7 @@ public class VideoPlayer extends AppCompatActivity {
     public static LinearLayout exo_subtitle_selection_view;
     TextView AnimeName;
     TextView EpisodeName;
-    TextView exo_quality_txt;
+    public static TextView exo_quality_txt;
 
     public static ExoPlayer player;
     private GogoAnime.Gogoanime_stream gogoanime_stream;
@@ -90,8 +90,6 @@ public class VideoPlayer extends AppCompatActivity {
     public static JSONArray sources;
     public static JSONArray subtitles;
     public static Uri videoUri;
-//    ProgressBar loading;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -138,7 +136,6 @@ public class VideoPlayer extends AppCompatActivity {
         exo_track_selection_view = findViewById(R.id.exo_track_selection_view);
         exo_subtitle_selection_view = findViewById(R.id.exo_subtitle_selection_view);
         exo_quality_txt = findViewById(R.id.exoQuality);
-//        loading = findViewById(R.id.exo_buffering);
 
 
         exo_subtitle_selection_view.setEnabled(false);
@@ -146,6 +143,7 @@ public class VideoPlayer extends AppCompatActivity {
 
         AnimeName.setText(AnimeTitle);
         int Episode = Current + 1;
+
         EpisodeName.setText("Episode: " + Episode);
         videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -162,12 +160,7 @@ public class VideoPlayer extends AppCompatActivity {
             @Override
             public void onPlaybackStateChanged(int playbackState) {
                 Player.Listener.super.onPlaybackStateChanged(playbackState);
-//                if (playbackState == Player.STATE_BUFFERING) {
-//                    loading.setVisibility(View.VISIBLE);
-//                }
-//                if (playbackState == Player.STATE_READY) {
-//                    loading.setVisibility(View.GONE);
-//                }
+
                 if (playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED ||
                         !player.getPlayWhenReady()) {
 
@@ -266,8 +259,6 @@ public class VideoPlayer extends AppCompatActivity {
                                 JSONObject source = sources.getJSONObject(which);
                                 String Link = source.getString("url");
                                 String quality = source.getString("quality");
-
-
 // Create a MediaSource from the URL.
                                 Uri videoUri = Uri.parse(Link);
 
@@ -279,7 +270,7 @@ public class VideoPlayer extends AppCompatActivity {
 
                                 videoView.setPlayer(player);
                                 player.setPlayWhenReady(true);
-                                exo_quality_txt.setText(quality);
+                                exo_quality_txt.setText("Quality("+quality+")");
                                 dialog.dismiss();
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
@@ -465,29 +456,29 @@ public class VideoPlayer extends AppCompatActivity {
         finish();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (gogoanime_stream != null) {
-            gogoanime_stream.cancel(true);
-        }
-        if (zoro_stream != null) {
-            zoro_stream.cancel(true);
-        }
-        if (hanime_stream != null) {
-            hanime_stream.cancel(true);
-        }
-        if (player != null) {
-
-
-            player.stop();
-            player.release();
-            player = null;
-
-
-        }
-    }
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//
+//        if (gogoanime_stream != null) {
+//            gogoanime_stream.cancel(true);
+//        }
+//        if (zoro_stream != null) {
+//            zoro_stream.cancel(true);
+//        }
+//        if (hanime_stream != null) {
+//            hanime_stream.cancel(true);
+//        }
+//        if (player != null) {
+//
+//
+//            player.setPlayWhenReady(false);
+//            player.release();
+//
+//
+//
+//        }
+//    }
 
     @Override
     protected void onDestroy() {

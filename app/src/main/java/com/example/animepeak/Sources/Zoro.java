@@ -38,8 +38,9 @@ import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList
 import static com.example.animepeak.Fragments.SearchFragment.Search_imageUrlList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_loading;
 import static com.example.animepeak.Fragments.SearchFragment.not_found;
+import static com.example.animepeak.Fragments.SearchFragment.searchBar;
 import static com.example.animepeak.Fragments.SearchFragment.searchView;
-import static com.example.animepeak.Fragments.SearchFragment.search_Box;
+
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -277,22 +278,25 @@ public class Zoro {
         private static final String API_ENDPOINT = "https://api.consumet.org/anime/zoro/";
         Activity activity;
         boolean is_added;
+        String text;
 
-        public Zoro_search(Activity activity, boolean is_added) {
+        public Zoro_search(Activity activity, boolean is_added,String text) {
             this.activity = activity;
             this.is_added = is_added;
+            this.text = text;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            Search_loading.setVisibility(View.VISIBLE);
             Glide.with(activity)
                     .asGif()
                     .load(R.raw.loading_animation)
                     .into(Search_loading);
-            search_Box.clearFocus();
+//            search_Box.clearFocus();
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(search_Box.getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(searchBar.getWindowToken(), 0);
         }
 
         @Override
@@ -301,7 +305,8 @@ public class Zoro {
             try {
 
 
-                String query = search_Box.getText().toString();
+//                String query = search_Box.getText().toString();
+                String query = text;
                 query = query.replace(" ", "-");
                 URL url = new URL(API_ENDPOINT + query);
 
@@ -369,9 +374,10 @@ public class Zoro {
                 searchView.setAdapter(searchAdapter);
             }
             if (Search_TitleUrlList.size() == 0) {
-                String query = search_Box.getText().toString();
+                //                String query = search_Box.getText().toString();
 
-                not_found.setText("Cannot Find Anime \'" + query + "\'");
+//                not_found.setText("Cannot Find Anime \'" + query + "\'");
+                not_found.setText("Cannot Find the Anime ");
                 not_found.setVisibility(View.VISIBLE);
             } else {
                 not_found.setVisibility(View.GONE);

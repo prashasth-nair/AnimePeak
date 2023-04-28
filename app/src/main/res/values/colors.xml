@@ -16,6 +16,7 @@
     <color name="background_main">#231f40</color>
     <color name="background_second">#2e2a52</color>
     <color name="media_player_controls">#ffffff</color>
+    <color name="gray">#AFAFAF</color>
     <color name="buffer_loading">#CCFFFFFF</color>
     <color name="media_player_controls_background">#80000000</color>
 </resources>

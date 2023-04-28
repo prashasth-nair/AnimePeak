@@ -17,14 +17,13 @@ import com.example.animepeak.Fragments.SearchFragment;
 import com.example.animepeak.Fragments.SettingsFragment;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -95,8 +94,7 @@ public class MainActivity extends AppCompatActivity {
 // Convert the JSON string to an ArrayList
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Fav_object>>() {}.getType();
-        ArrayList<Fav_object> favList = gson.fromJson(favListJson, type);
-        return favList;
+        return gson.fromJson(favListJson, type);
 
     }
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_main"
     tools:context=".Fragments.SearchFragment">
 
@@ -23,43 +24,36 @@
         android:textSize="18dp"
         android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/searchbar"
+    <com.mancj.materialsearchbar.MaterialSearchBar
+        android:id="@+id/searchBar"
+        style="@style/MaterialSearchBarLight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/searchEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/search_box_background"
-            android:hint="Search"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:padding="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="#A0A0A0"
-            android:textSize="16sp" />
-
-        <ImageButton
-            android:id="@+id/searchButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:background="@android:color/transparent"
-            android:padding="8dp"
-            android:src="@drawable/baseline_search_24" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:mt_backIconTint="@color/white"
 
 
-    </LinearLayout>
+        app:mt_borderlessRippleEnabled="true"
+        app:mt_clearIconTint="@color/white"
+        app:mt_hint="Search Anime"
+        app:mt_hintColor="@color/gray"
+        app:mt_maxSuggestionsCount="0"
+        app:mt_placeholder="Search Anime"
+        app:mt_placeholderColor="@color/gray"
+        app:mt_roundedSearchBarEnabled="true"
+        app:mt_searchBarColor="@color/background_second"
+        app:mt_searchIconTint="@color/white"
+        app:mt_speechMode="false"
+        app:mt_textColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/searchbar" />
+
+        android:layout_below="@+id/searchBar" />
 
 </RelativeLayout>
