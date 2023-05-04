@@ -17,8 +17,11 @@ AnimePeak will be available in fdroid soon.
 
 ## TODO
 - Add Support for external video player
-- Add Favourite/Watch List feature
+- ~~Add Favourite/Watch List feature~~
 - Add Chromecast Support
+
+## Support Me
+Github Sponsor: <a href=https://github.com/sponsors/prashasth-nair> Sponsor Me </a>
 
 
 
