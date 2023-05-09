@@ -14,6 +14,7 @@ import static com.example.animepeak.Activity.Anime_Details.expandableTextView;
 import static com.example.animepeak.Activity.Anime_Details.extractEpisodeIds;
 import static com.example.animepeak.Activity.Anime_Details.img;
 
+import static com.example.animepeak.Activity.Anime_Details.net_error_ani_details;
 import static com.example.animepeak.Activity.VideoPlayer.Current;
 
 import static com.example.animepeak.Activity.VideoPlayer.exo_subtitle_selection_view;
@@ -93,9 +94,6 @@ public class Zoro {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            Home_TitleUrlList.clear();
-//            Home_imageUrlList.clear();
-//            Home_IDList.clear();
             Glide.with(activity)
                     .asGif()
                     .load(R.raw.loading_animation)
@@ -179,6 +177,7 @@ public class Zoro {
     public static class Zoro_details extends AsyncTask<Void, Void, String> {
         Activity activity;
         int originalOrientation;
+        int Error;
 
         public Zoro_details(Activity activity) {
             this.activity = activity;
@@ -219,6 +218,7 @@ public class Zoro {
 
                 bufferedReader.close();
             } catch (IOException e) {
+                Error = 1;
                 e.printStackTrace();
             } finally {
                 if (urlConnection != null) {
@@ -233,41 +233,45 @@ public class Zoro {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             details_loading.setVisibility(View.GONE);
-            anime_details.setVisibility(View.VISIBLE);
-            episode_text.setVisibility(View.VISIBLE);
+            if (Error == 0) {
+                anime_details.setVisibility(View.VISIBLE);
+                episode_text.setVisibility(View.VISIBLE);
 
-            try {
-                JSONObject jsonObject = new JSONObject(result);
-                img = jsonObject.getString("image");
-                String type = jsonObject.getString("type");
-                String totalEpisodes = jsonObject.getString("totalEpisodes");
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    img = jsonObject.getString("image");
+                    String type = jsonObject.getString("type");
+                    String totalEpisodes = jsonObject.getString("totalEpisodes");
 
-                if (episodes.length() == 0) {
-                    episodes = jsonObject.getJSONArray("episodes");
-                }
+                    if (episodes.length() == 0) {
+                        episodes = jsonObject.getJSONArray("episodes");
+                    }
 
-                Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
-                details_recyclerView.setAdapter(ani_details_adapter);
+                    Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
+                    details_recyclerView.setAdapter(ani_details_adapter);
 
-                Release.setText("Type: " + type);
-                Anime_Details.Status.setText("Total Episodes: " + totalEpisodes);
+                    Release.setText("Type: " + type);
+                    Anime_Details.Status.setText("Total Episodes: " + totalEpisodes);
 
-                Glide.with(activity)
-                        .load(img)
-                        .into(Anime_Image);
-                String desc = jsonObject.getString("description");
-                expandableTextView.setText(desc);
-                expandableTextView.setReadMoreText("More");
-                expandableTextView.setReadLessText("Less");
+                    Glide.with(activity)
+                            .load(img)
+                            .into(Anime_Image);
+                    String desc = jsonObject.getString("description");
+                    expandableTextView.setText(desc);
+                    expandableTextView.setReadMoreText("More");
+                    expandableTextView.setReadLessText("Less");
 //                expandableTextView.setCollapsedLines(2);
-                expandableTextView.setAnimationDuration(500);
+                    expandableTextView.setAnimationDuration(500);
 
-                // Reset the orientation to the original orientation.
-                activity.setRequestedOrientation(originalOrientation);
+                    // Reset the orientation to the original orientation.
+                    activity.setRequestedOrientation(originalOrientation);
 
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                net_error_ani_details.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -280,7 +284,7 @@ public class Zoro {
         boolean is_added;
         String text;
 
-        public Zoro_search(Activity activity, boolean is_added,String text) {
+        public Zoro_search(Activity activity, boolean is_added, String text) {
             this.activity = activity;
             this.is_added = is_added;
             this.text = text;
@@ -451,7 +455,7 @@ public class Zoro {
 
                 JSONObject jsonObject = new JSONObject(result);
                 sources = jsonObject.getJSONArray("sources");
-                for (int i=0;i<sources.length();i++){
+                for (int i = 0; i < sources.length(); i++) {
                     JSONObject source = sources.getJSONObject(i);
                     String quality = source.getString("quality");
                     if (!quality.equals("backup") && !quality.equals("default")) {
@@ -460,7 +464,7 @@ public class Zoro {
                 }
                 video_subtitles.add("Off");
                 subtitles = jsonObject.getJSONArray("subtitles");
-                for (int i=0;i<subtitles.length();i++){
+                for (int i = 0; i < subtitles.length(); i++) {
                     JSONObject subtitle = subtitles.getJSONObject(i);
                     String lang = subtitle.getString("lang");
                     if (!lang.equals("Thumbnails") && !lang.equals("default")) {

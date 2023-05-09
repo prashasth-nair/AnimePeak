@@ -1,14 +1,10 @@
 package com.example.animepeak.Fragments;
 
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +14,10 @@ import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,20 +26,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.animepeak.Adapters.SearchAdapter;
-import com.example.animepeak.Functions.suggest_object;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
 import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
 import com.mancj.materialsearchbar.MaterialSearchBar;
-import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class SearchFragment extends Fragment implements MaterialSearchBar.OnSearchActionListener {
+public class SearchFragment extends Fragment {
     public  static MaterialSearchBar searchBar;
     public static TextView not_found;
     public static RecyclerView searchView;
@@ -53,13 +50,6 @@ public class SearchFragment extends Fragment implements MaterialSearchBar.OnSear
     Zoro.Zoro_search zoro_search;
     Hanime.Hanime_search hanime_search;
 
-
-
-    public SearchFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,7 +57,7 @@ public class SearchFragment extends Fragment implements MaterialSearchBar.OnSear
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint({"NotifyDataSetChanged", "ClickableViewAccessibility"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -75,8 +65,62 @@ public class SearchFragment extends Fragment implements MaterialSearchBar.OnSear
 
 
         //enable searchbar callbacks
+        searchBar.setOnTouchListener(new View.OnTouchListener() {
 
-        searchBar.setOnSearchActionListener(this);
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                searchBar.setNavButtonEnabled(true);
+                searchBar.openSearch();
+                return true;
+            }
+        });
+        searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
+            @Override
+            public void onSearchStateChanged(boolean enabled) {
+
+            }
+
+            @Override
+            public void onSearchConfirmed(CharSequence text) {
+                Search_TitleUrlList.clear();
+                Search_imageUrlList.clear();
+                Search_IDList.clear();
+
+
+                SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+                String query = searchBar.getText();
+
+
+
+                if (Source.equals("GogoAnime")) {
+                    gogoAnime_search = new GogoAnime.GogoAnime_search(getActivity(), isAdded(),query);
+                    gogoAnime_search.execute();
+                } else if (Source.equals("Zoro")) {
+                    zoro_search = new Zoro.Zoro_search(getActivity(), isAdded(),query);
+                    zoro_search.execute();
+                } else if (Source.equals("Hanime")) {
+                    hanime_search = new Hanime.Hanime_search(getActivity(), isAdded(),query);
+                    hanime_search.execute();
+                }
+            }
+
+            @Override
+            public void onButtonClicked(int buttonCode) {
+
+                if (buttonCode == MaterialSearchBar.BUTTON_BACK) {
+
+                    Search_TitleUrlList.clear();
+                    Search_imageUrlList.clear();
+                    Search_IDList.clear();
+                    SearchAdapter searchAdapter = new SearchAdapter(getActivity(), Search_TitleUrlList, Search_imageUrlList, Search_IDList);
+                    // notify the adapter that the data has changed
+                    searchAdapter.notifyDataSetChanged();
+                    searchView.setAdapter(searchAdapter);
+                    searchBar.setNavButtonEnabled(false);
+                }
+            }
+        });
 
         not_found = getView().findViewById(R.id.not_found);
 
@@ -99,50 +143,6 @@ public class SearchFragment extends Fragment implements MaterialSearchBar.OnSear
 
 
     @Override
-    public void onSearchStateChanged(boolean enabled) {
-
-    }
-
-    @Override
-    public void onSearchConfirmed(CharSequence text) {
-        Search_TitleUrlList.clear();
-        Search_imageUrlList.clear();
-        Search_IDList.clear();
-
-
-        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
-        String query = searchBar.getText();
-
-
-
-        if (Source.equals("GogoAnime")) {
-            gogoAnime_search = new GogoAnime.GogoAnime_search(getActivity(), isAdded(),query);
-            gogoAnime_search.execute();
-        } else if (Source.equals("Zoro")) {
-            zoro_search = new Zoro.Zoro_search(getActivity(), isAdded(),query);
-            zoro_search.execute();
-        } else if (Source.equals("Hanime")) {
-            hanime_search = new Hanime.Hanime_search(getActivity(), isAdded(),query);
-            hanime_search.execute();
-        }
-    }
-
-    @Override
-    public void onButtonClicked(int buttonCode) {
-        Toast.makeText(getActivity(), "here", Toast.LENGTH_SHORT).show();
-        if (buttonCode == MaterialSearchBar.BUTTON_BACK) {
-            Toast.makeText(getActivity(), "Back", Toast.LENGTH_SHORT).show();
-            Search_TitleUrlList.clear();
-            Search_imageUrlList.clear();
-            Search_IDList.clear();
-            SearchAdapter searchAdapter = new SearchAdapter(getActivity(), Search_TitleUrlList, Search_imageUrlList, Search_IDList);
-            // notify the adapter that the data has changed
-            searchAdapter.notifyDataSetChanged();
-            searchView.setAdapter(searchAdapter);
-        }
-    }
-    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -160,8 +160,6 @@ public class SearchFragment extends Fragment implements MaterialSearchBar.OnSear
         Search_TitleUrlList.clear();
         Search_imageUrlList.clear();
         Search_IDList.clear();
-
-
 
         if (gogoAnime_search != null) {
             gogoAnime_search.cancel(true);

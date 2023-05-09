@@ -4,6 +4,7 @@ import static com.example.animepeak.Activity.MainActivity.fav_list;
 
 import static com.example.animepeak.Functions.Fav_object.removeFavByID;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
@@ -21,6 +22,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 
 import android.view.MenuItem;
 
@@ -49,10 +51,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.glailton.expandabletextview.ExpandableTextView;
-
+@SuppressLint("StaticFieldLeak")
 public class Anime_Details extends AppCompatActivity {
-    @SuppressLint("StaticFieldLeak")
+
     public static ImageView Anime_Image;
+
     public static ImageButton favoriteButton;
     public static TextView Release;
     public static TextView Status;
@@ -71,9 +74,12 @@ public class Anime_Details extends AppCompatActivity {
     public static RecyclerView details_recyclerView;
     public static JSONArray episodes = new JSONArray();
     public static String desc;
-    public static int Error = 0;
+
     boolean is_fav = false;
     public static List<String> episodeID_list = new ArrayList<>();
+    GogoAnime.Gogoanime_details gogoanime_details;
+    Zoro.Zoro_details zoro_details;
+    Hanime.Hanime_details hanime_details;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -191,6 +197,7 @@ public class Anime_Details extends AppCompatActivity {
         return episodeIds;
     }
 
+    @SuppressLint("SetTextI18n")
     public void load() {
         if (!isDestroyed() && episodes.length() == 0) {
             // Load the image using Glide or Picasso here
@@ -200,25 +207,29 @@ public class Anime_Details extends AppCompatActivity {
             String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
 
-            if (Source.equals("GogoAnime")) {
-                GogoAnime.Gogoanime_details gogoanime_details = new GogoAnime.Gogoanime_details(this);
-                if (gogoanime_details.getStatus() != AsyncTask.Status.RUNNING) {
+            switch (Source) {
+                case "GogoAnime":
+                    gogoanime_details = new GogoAnime.Gogoanime_details(this);
+                    if (gogoanime_details.getStatus() != AsyncTask.Status.RUNNING) {
 
-                    gogoanime_details.execute();
-                }
+                        gogoanime_details.execute();
+                    }
 
-            } else if (Source.equals("Zoro")) {
-                Zoro.Zoro_details zoro_details = new Zoro.Zoro_details(this);
-                if (zoro_details.getStatus() != AsyncTask.Status.RUNNING) {
+                    break;
+                case "Zoro":
+                    zoro_details = new Zoro.Zoro_details(this);
+                    if (zoro_details.getStatus() != AsyncTask.Status.RUNNING) {
 
-                    zoro_details.execute();
-                }
-            } else if (Source.equals("Hanime")) {
-                Hanime.Hanime_details hanime_details = new Hanime.Hanime_details(this);
-                if (hanime_details.getStatus() != AsyncTask.Status.RUNNING) {
+                        zoro_details.execute();
+                    }
+                    break;
+                case "Hanime":
+                    hanime_details = new Hanime.Hanime_details(this);
+                    if (hanime_details.getStatus() != AsyncTask.Status.RUNNING) {
 
-                    hanime_details.execute();
-                }
+                        hanime_details.execute();
+                    }
+                    break;
             }
 
 
@@ -248,10 +259,23 @@ public class Anime_Details extends AppCompatActivity {
         episodes = new JSONArray();
         episodeID_list.clear();
 
+        if (gogoanime_details != null) {
+            gogoanime_details.cancel(true);
+            gogoanime_details = null;
+        }
+        if (zoro_details != null) {
+            zoro_details.cancel(true);
+            zoro_details=null;
+        }
+        if (hanime_details != null) {
+            hanime_details.cancel(true);
+            hanime_details =null;
+        }
+
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
@@ -271,19 +295,32 @@ public class Anime_Details extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        episodes = new JSONArray();
+        episodeID_list.clear();
+
+        if (gogoanime_details != null) {
+            gogoanime_details.cancel(true);
+            gogoanime_details=null;
+        }
+        if (zoro_details != null) {
+            zoro_details.cancel(true);
+            zoro_details =null;
+        }
+        if (hanime_details != null) {
+            hanime_details.cancel(true);
+            hanime_details =null;
+        }
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                episodes = new JSONArray();
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            episodes = new JSONArray();
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 

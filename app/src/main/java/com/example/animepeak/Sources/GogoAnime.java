@@ -47,6 +47,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -78,7 +79,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-
 
 
 public class GogoAnime {
@@ -185,8 +185,7 @@ public class GogoAnime {
     public static class Gogoanime_details extends AsyncTask<Void, Void, String> {
         Activity activity;
         int originalOrientation;
-        Drawable image;
-
+        int Error;
 
         public Gogoanime_details(Activity activity) {
             this.activity = activity;
@@ -209,7 +208,7 @@ public class GogoAnime {
                     .into(details_loading);
         }
 
-        @SuppressLint("WrongThread")
+
         @Override
         protected String doInBackground(Void... voids) {
             String result = "";
@@ -230,7 +229,8 @@ public class GogoAnime {
                 episodeID_list = extractEpisodeIds(result);
 
             } catch (IOException e) {
-                Anime_Details.Error = 1;
+
+                Error = 1;
 
                 e.printStackTrace();
             } finally {
@@ -247,7 +247,7 @@ public class GogoAnime {
             super.onPostExecute(result);
 
             details_loading.setVisibility(View.GONE);
-            if (Anime_Details.Error==0) {
+            if (Error == 0) {
                 net_error_ani_details.setVisibility(View.GONE);
                 anime_details.setVisibility(View.VISIBLE);
                 episode_text.setVisibility(View.VISIBLE);
@@ -275,8 +275,6 @@ public class GogoAnime {
                             .into(Anime_Image);
 
 
-
-
                     desc = jsonObject.getString("description");
                     expandableTextView.setText(desc);
                     expandableTextView.setReadMoreText("More");
@@ -291,7 +289,7 @@ public class GogoAnime {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }else{
+            } else {
                 net_error_ani_details.setVisibility(View.VISIBLE);
             }
         }
@@ -305,7 +303,7 @@ public class GogoAnime {
         boolean is_added;
         String text;
 
-        public GogoAnime_search(Activity activity, boolean is_added,String text) {
+        public GogoAnime_search(Activity activity, boolean is_added, String text) {
             this.activity = activity;
             this.is_added = is_added;
             this.text = text;
@@ -410,6 +408,7 @@ public class GogoAnime {
 
     public static class Gogoanime_stream extends AsyncTask<Void, Void, String> {
         Activity activity;
+        JSONObject source;
 
         public Gogoanime_stream(Activity activity) {
             this.activity = activity;
@@ -473,17 +472,29 @@ public class GogoAnime {
 
                 JSONObject jsonObject = new JSONObject(result);
                 sources = jsonObject.getJSONArray("sources");
-                for (int i=0;i<sources.length();i++){
+                for (int i = 0; i < sources.length(); i++) {
                     JSONObject source = sources.getJSONObject(i);
                     String quality = source.getString("quality");
                     if (!quality.equals("backup") && !quality.equals("default")) {
                         video_quality.add(quality);
                     }
                 }
-                exo_quality_txt.setText("Quality("+video_quality.get(0)+")");
 
-                JSONObject source = sources.getJSONObject(video_quality_num);
+
+                SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
+                video_quality_num = video_quality.indexOf(Current_Quality);
+                if (video_quality_num == -1) {
+                    exo_quality_txt.setText("Quality(" + video_quality.get(0) + ")");
+
+                    source = sources.getJSONObject(0);
+                } else {
+
+                    exo_quality_txt.setText("Quality(" + video_quality.get(video_quality_num) + ")");
+                    source = sources.getJSONObject(video_quality_num);
+                }
                 String Link = source.getString("url");
+
 
 // Create a MediaSource from the URL.
                 Uri videoUri = Uri.parse(Link);

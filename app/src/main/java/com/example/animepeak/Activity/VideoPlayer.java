@@ -39,6 +39,7 @@ import com.example.animepeak.Sources.GogoAnime;
 import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayer;
 
 import com.google.android.exoplayer2.Format;
@@ -50,6 +51,7 @@ import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.common.collect.ImmutableList;
@@ -145,6 +147,8 @@ public class VideoPlayer extends AppCompatActivity {
         int Episode = Current + 1;
 
         EpisodeName.setText("Episode: " + Episode);
+
+
         videoView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -456,30 +460,6 @@ public class VideoPlayer extends AppCompatActivity {
         finish();
     }
 
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//
-//        if (gogoanime_stream != null) {
-//            gogoanime_stream.cancel(true);
-//        }
-//        if (zoro_stream != null) {
-//            zoro_stream.cancel(true);
-//        }
-//        if (hanime_stream != null) {
-//            hanime_stream.cancel(true);
-//        }
-//        if (player != null) {
-//
-//
-//            player.setPlayWhenReady(false);
-//            player.release();
-//
-//
-//
-//        }
-//    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -497,7 +477,6 @@ public class VideoPlayer extends AppCompatActivity {
 
         if (player != null) {
             if (player.isPlaying()) {
-                Log.d("Debug", "ExoPlayer is still playing!");
                 player.stop();
                 player.release();
                 player = null;

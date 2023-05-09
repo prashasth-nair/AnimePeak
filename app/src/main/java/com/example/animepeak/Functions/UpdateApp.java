@@ -16,10 +16,12 @@ import android.os.AsyncTask;
 
 import android.os.Environment;
 
+import android.util.Log;
 import android.widget.Toast;
 
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.FileProvider;
 
 import com.example.animepeak.BuildConfig;
 
@@ -28,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 
+import java.io.File;
 import java.io.IOException;
 
 import java.io.InputStreamReader;
@@ -106,6 +109,7 @@ public class UpdateApp {
             new AlertDialog.Builder(activity)
                     .setTitle("New Update Available")
                     .setMessage("A new version of the app is available. Do you want to update?")
+
                     .setPositiveButton("Update", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -129,7 +133,7 @@ public class UpdateApp {
             DownloadManager downloadManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-            request.setTitle("App Update");
+            request.setTitle("AnimePeak Update");
             request.setDescription("Downloading update...");
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "AnimePeak.apk");
             downloadId = downloadManager.enqueue(request);
@@ -141,27 +145,26 @@ public class UpdateApp {
                     if (referenceId == downloadId) {
                         // Download completed, initiate the installation process
                         Toast.makeText(ctxt, "Download complete install update by clicking on the notification.", Toast.LENGTH_LONG).show();
-//                        installApk(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/AnimePeak.apk"));
+                        installApk(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/AnimePeak.apk"));
                     }
                 }
             };
             activity.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
 
-//        private static void installApk(File apkFile) {
-//            // Get the Uri of the downloaded APK file using FileProvider
-//            Uri apkUri = FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + ".provider", apkFile);
-//
-//            // Create the intent to install the APK
-//            Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-//            intent.setData(apkUri);
-//            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
-//            intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
-//            intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
-//
-//            // Launch the intent to install the APK
-//            activity.startActivityForResult(intent, 100);
-//        }
+        private static void installApk(File apkFile) {
+            // Get the Uri of the downloaded APK file using FileProvider
+            Uri apkUri = FileProvider.getUriForFile(activity, activity.getApplicationContext().getPackageName() + ".provider", apkFile);
+            // Create the intent to install the APK
+            Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+            intent.setData(apkUri);
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
+            intent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+
+            // Launch the intent to install the APK
+            activity.startActivityForResult(intent, 100);
+        }
 
 
     }

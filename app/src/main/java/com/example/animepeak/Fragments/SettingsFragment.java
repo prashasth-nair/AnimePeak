@@ -42,6 +42,7 @@ import java.util.List;
 
 public class SettingsFragment extends Fragment {
     AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteTextView videoautoCompleteTextView;
     LinearLayout Update;
 
     public SettingsFragment() {
@@ -60,6 +61,7 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         autoCompleteTextView = getView().findViewById(R.id.autoCompleteTextView);
+        videoautoCompleteTextView = getView().findViewById(R.id.videoautoCompleteTextView);
         Update = getView().findViewById(R.id.update_button);
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +91,7 @@ public class SettingsFragment extends Fragment {
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String Current_Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+        String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
         if (Current_Source.equals("GogoAnime")) {
 
             autoCompleteTextView.setText("GogoAnime");
@@ -99,6 +102,22 @@ public class SettingsFragment extends Fragment {
         } else if (Current_Source.equals("Hanime")) {
 
             autoCompleteTextView.setText("Hanime");
+
+        }
+        if (Current_Quality.equals("360p")) {
+
+            videoautoCompleteTextView.setText("360p");
+        } else if (Current_Quality.equals("480p")) {
+
+            videoautoCompleteTextView.setText("480p");
+
+        } else if (Current_Quality.equals("720p")) {
+
+            videoautoCompleteTextView.setText("720p");
+
+        } else if (Current_Quality.equals("1080p")) {
+
+            videoautoCompleteTextView.setText("1080p");
 
         }
 
@@ -133,6 +152,23 @@ public class SettingsFragment extends Fragment {
                 getActivity().recreate();
             }
         });
+        videoautoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapterView.getItemAtPosition(i).toString().equals("360p")) {
+                    editor.putString("Video_Quality", "360p");
+                } else if (adapterView.getItemAtPosition(i).toString().equals("480p")) {
+                    editor.putString("Video_Quality", "480p");
+
+                } else if (adapterView.getItemAtPosition(i).toString().equals("720p")) {
+                    editor.putString("Video_Quality", "720p");
+                }else if (adapterView.getItemAtPosition(i).toString().equals("1080p")) {
+                    editor.putString("Video_Quality", "1080p");
+                }
+
+                editor.commit();
+            }
+        });
     }
 
     @Override
@@ -141,5 +177,8 @@ public class SettingsFragment extends Fragment {
         String[] source_lists = getResources().getStringArray(R.array.source_list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, source_lists);
         autoCompleteTextView.setAdapter(arrayAdapter);
+        String[] quality_lists = getResources().getStringArray(R.array.quality_list);
+        ArrayAdapter videoarrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, quality_lists);
+        videoautoCompleteTextView.setAdapter(videoarrayAdapter);
     }
 }

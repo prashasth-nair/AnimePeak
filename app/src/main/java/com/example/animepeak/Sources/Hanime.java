@@ -10,8 +10,10 @@ import static com.example.animepeak.Activity.Anime_Details.episode_text;
 import static com.example.animepeak.Activity.Anime_Details.episodes;
 import static com.example.animepeak.Activity.Anime_Details.expandableTextView;
 import static com.example.animepeak.Activity.Anime_Details.img;
+import static com.example.animepeak.Activity.Anime_Details.net_error_ani_details;
 import static com.example.animepeak.Activity.Anime_Details.releasedDate;
 
+import static com.example.animepeak.Activity.VideoPlayer.exo_quality_txt;
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
@@ -38,6 +40,7 @@ import static com.example.animepeak.Fragments.SearchFragment.searchView;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -143,10 +146,21 @@ public class Hanime {
                     }
 
                 }
-                network_error.setVisibility(View.GONE);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        network_error.setVisibility(View.GONE);
+                    }
+                });
                 return null;
             } catch (IOException | JSONException e) {
-                network_error.setVisibility(View.VISIBLE);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        network_error.setVisibility(View.VISIBLE);
+                    }
+                });
+
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
                 return null;
             }
@@ -167,7 +181,7 @@ public class Hanime {
         Activity activity;
         int originalOrientation;
         public static int HID;
-
+        int Error;
 
         public Hanime_details(Activity activity) {
             this.activity = activity;
@@ -208,6 +222,7 @@ public class Hanime {
 
                 bufferedReader.close();
             } catch (IOException e) {
+                Error = 1;
                 e.printStackTrace();
             } finally {
                 if (urlConnection != null) {
@@ -221,45 +236,50 @@ public class Hanime {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             details_loading.setVisibility(View.GONE);
-            anime_details.setVisibility(View.VISIBLE);
-            episode_text.setVisibility(View.VISIBLE);
+            if (Error == 0) {
+                anime_details.setVisibility(View.VISIBLE);
+                episode_text.setVisibility(View.VISIBLE);
 
-            try {
+                try {
 
-                JSONObject jsonObject = new JSONObject(result);
-                JSONObject info = jsonObject.getJSONObject("info");
-                img = jsonObject.getString("poster");
-                String censor = info.getString("censored");
-                releasedDate = info.getString("released_date");
-                HID = jsonObject.getInt("id");
-
-
-                Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
-                details_recyclerView.setAdapter(ani_details_adapter);
-
-                Release.setText("Release: " + releasedDate);
-                Anime_Details.Status.setText("Censor: " + censor);
-                Glide.with(activity)
-                        .load(img)
-                        .into(Anime_Image);
-                String desc = jsonObject.getString("description");
-                expandableTextView.setText(desc);
-                expandableTextView.setReadMoreText("More");
-                expandableTextView.setReadLessText("Less");
-
-                expandableTextView.setAnimationDuration(500);
-                // Reset the orientation to the original orientation.
-                activity.setRequestedOrientation(originalOrientation);
+                    JSONObject jsonObject = new JSONObject(result);
+                    JSONObject info = jsonObject.getJSONObject("info");
+                    img = jsonObject.getString("poster");
+                    String censor = info.getString("censored");
+                    releasedDate = info.getString("released_date");
+                    HID = jsonObject.getInt("id");
 
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                    Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
+                    details_recyclerView.setAdapter(ani_details_adapter);
+
+                    Release.setText("Release: " + releasedDate);
+                    Anime_Details.Status.setText("Censor: " + censor);
+                    Glide.with(activity)
+                            .load(img)
+                            .into(Anime_Image);
+                    String desc = jsonObject.getString("description");
+                    expandableTextView.setText(desc);
+                    expandableTextView.setReadMoreText("More");
+                    expandableTextView.setReadLessText("Less");
+
+                    expandableTextView.setAnimationDuration(500);
+                    // Reset the orientation to the original orientation.
+                    activity.setRequestedOrientation(originalOrientation);
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                net_error_ani_details.setVisibility(View.VISIBLE);
             }
         }
     }
 
     public static class Hanime_stream extends AsyncTask<Void, Void, String> {
         Activity activity;
+        JSONObject source;
 
         public Hanime_stream(Activity activity) {
             this.activity = activity;
@@ -321,25 +341,37 @@ public class Hanime {
 
                 JSONObject jsonObject = new JSONObject(result);
                 sources = jsonObject.getJSONArray("streams");
-                for (int i=0;i<sources.length();i++){
+                for (int i = 0; i < sources.length(); i++) {
                     JSONObject source = sources.getJSONObject(i);
                     String quality = source.getString("height");
                     String link = source.getString("url");
-                    Log.d("Link",source.getString("height"));
+                    Log.d("Link", source.getString("height"));
                     if (!link.equals("")) {
                         video_quality.add(quality);
                     }
                 }
 
-                JSONObject source = sources.getJSONObject(video_quality_num);
+                SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
+                video_quality_num = video_quality.indexOf(Current_Quality);
+                if (video_quality_num == -1) {
+                    exo_quality_txt.setText("Quality(" + video_quality.get(1) + ")");
+
+                    source = sources.getJSONObject(1);
+                } else {
+                    exo_quality_txt.setText("Quality(" + video_quality.get(video_quality_num) + ")");
+
+                    source = sources.getJSONObject(video_quality_num);
+                }
+
                 String Link = source.getString("url");
-                if (Link.equals("")){
+                if (Link.equals("")) {
                     try {
-                        video_quality_num = video_quality_num+1;
+                        video_quality_num = video_quality_num + 1;
                         source = sources.getJSONObject(video_quality_num);
                         Link = source.getString("url");
-                    }catch (IndexOutOfBoundsException e){
-                        video_quality_num = video_quality_num-1;
+                    } catch (IndexOutOfBoundsException e) {
+                        video_quality_num = video_quality_num - 1;
                         source = sources.getJSONObject(video_quality_num);
                         Link = source.getString("url");
                     }
@@ -375,7 +407,7 @@ public class Hanime {
         boolean is_added;
         String text;
 
-        public Hanime_search(Activity activity, boolean is_added,String text) {
+        public Hanime_search(Activity activity, boolean is_added, String text) {
             this.activity = activity;
             this.is_added = is_added;
             this.text = text;

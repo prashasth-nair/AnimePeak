@@ -33,9 +33,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+
+
+        app:mt_navIconTint="@color/white"
         app:mt_backIconTint="@color/white"
-
-
         app:mt_borderlessRippleEnabled="true"
         app:mt_clearIconTint="@color/white"
         app:mt_hint="Search Anime"
@@ -46,6 +47,7 @@
         app:mt_roundedSearchBarEnabled="true"
         app:mt_searchBarColor="@color/background_second"
         app:mt_searchIconTint="@color/white"
+
         app:mt_speechMode="false"
         app:mt_textColor="@color/white" />
 

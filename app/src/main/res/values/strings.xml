@@ -23,4 +23,11 @@
         <item>Hanime</item>
 
     </string-array>
+    <string-array name="quality_list">
+        <item>360p</item>
+        <item>480p</item>
+        <item>720p</item>
+        <item>1080p</item>
+
+    </string-array>
 </resources>

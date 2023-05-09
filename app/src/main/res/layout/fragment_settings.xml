@@ -14,6 +14,7 @@
         android:text="@string/settings"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:padding="10dp"
         android:textSize="28sp"
         android:textStyle="italic" />
 
@@ -31,7 +32,7 @@
             android:layout_marginStart="20dp"
             android:text="Anime"
             android:textColor="@color/yellow"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="italic"
 
             />
@@ -50,9 +51,9 @@
 
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Source:"
+                android:text="Source"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
 
                 />
 
@@ -63,7 +64,7 @@
                 style="@style/Widget.AnimePeak.Spinner"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-
+                app:endIconTint="@color/white"
                 android:layout_alignParentEnd="true"
 
                 android:layout_marginStart="10dp"
@@ -99,12 +100,95 @@
             android:layout_width="match_parent"
             android:layout_height="3dp" />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/setting_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setting_anime"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Video"
+            android:textColor="@color/yellow"
+            android:textSize="17sp"
+            android:textStyle="italic"
+
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Default Qaulity"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+
+                />
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/Widget.AnimePeak.Spinner"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                app:endIconTint="@color/white"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginStart="10dp"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                app:boxStrokeWidth="0dp"
+
+                >
+
+                <AutoCompleteTextView
+
+                    android:id="@+id/videoautoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:dropDownSelector="@color/background_second"
+                    android:inputType="none"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:textAlignment="center"
+
+                    tools:ignore="LabelFor" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="3dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/update_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setting_anime"
+        android:layout_below="@+id/setting_video"
         android:orientation="vertical"
         android:paddingTop="10dp">
 

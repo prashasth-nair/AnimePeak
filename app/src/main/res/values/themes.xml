@@ -6,10 +6,10 @@
         <item name="colorPrimaryVariant">@color/yellow</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondary">@color/yellow</item>
         <item name="android:textColorSecondary">@color/white</item>
 
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondaryVariant">@color/yellow</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
@@ -24,8 +24,8 @@
     </style>
 
     <style name="ThemeOverlay.AnimePeak.FullscreenContainer" parent="">
-        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
-        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+        <item name="fullscreenBackgroundColor">@color/yellow</item>
+        <item name="fullscreenTextColor">@color/yellow</item>
     </style>
 
     <style name="BottomNavigationTheme" parent="Theme.AnimePeak">
@@ -51,7 +51,8 @@
     <style name="Overlay" parent="" >
 
         <item name="colorSurface">@color/background_second</item>
-        <item name="colorOnSurface">@color/white</item>
+
+
         <item name="boxStrokeWidth">0dp</item>
         <item name="android:dropDownVerticalOffset">10dp</item>
     </style>

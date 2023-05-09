@@ -52,6 +52,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.ani_title.setText(TitleUrlList.get(position)); // Setting title of the anime
+
+
         String imageUrl = imageUrlList.get(position);
 
 
@@ -59,6 +61,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.ani_image.setImageResource(R.drawable.baseline_home_24);
         Glide.with(activity)
                 .load(imageUrl)
+
                 .into(holder.ani_image);
 
 
