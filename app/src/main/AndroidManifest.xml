@@ -47,6 +47,7 @@
         <activity
             android:name=".Activity.MainActivity"
             android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.AnimePeak.MySplash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

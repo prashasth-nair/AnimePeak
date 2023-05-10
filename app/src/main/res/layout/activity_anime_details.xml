@@ -80,7 +80,7 @@
                 <RelativeLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="270dp"
                     android:padding="10dp">
 
                     <androidx.cardview.widget.CardView
@@ -122,14 +122,15 @@
 
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_toEndOf="@id/Anime_Image_card"
+                        android:layout_above="@+id/expand_txt"
                         android:padding="10dp">
 
                         <LinearLayout
                             android:id="@+id/release_date"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
@@ -152,6 +153,12 @@
 
                                 android:textSize="18sp"
                                 tools:text="Status: Completed" />
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/genre_recycler"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+
+                                />
                         </LinearLayout>
                     </RelativeLayout>
 

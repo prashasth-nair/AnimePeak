@@ -1,6 +1,8 @@
 package com.example.animepeak.Functions;
 
 
+import static com.example.animepeak.Activity.MainActivity.is_home;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -94,7 +96,9 @@ public class UpdateApp {
                 if (!isUpdateAvailable(currentVersionName, version)) {
                     checkForUpdates(download);
                 }else {
-                    Toast.makeText(activity, "No Update Available", Toast.LENGTH_LONG).show();
+                    if (!is_home) {
+                        Toast.makeText(activity, "No Update Available", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             } catch (JSONException e) {

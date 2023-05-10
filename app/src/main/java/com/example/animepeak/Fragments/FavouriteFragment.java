@@ -3,6 +3,7 @@ package com.example.animepeak.Fragments;
 import static com.example.animepeak.Activity.MainActivity.fav_list;
 import static com.example.animepeak.Adapters.FavAdapter.fav_activity;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +27,12 @@ import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class FavouriteFragment extends Fragment {
     public static RecyclerView fav_recycler;
     public static TextView no_fav;
+    TextView FavTitle;
     String Source;
 
     @Override
@@ -42,6 +47,27 @@ public class FavouriteFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         fav_recycler = getView().findViewById(R.id.fav_recycler);
         no_fav = getView().findViewById(R.id.no_fav);
+        FavTitle = getView().findViewById(R.id.fav_title);
+
+        fav_recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int topVisiblePosition = ((GridLayoutManager) Objects.requireNonNull(recyclerView.getLayoutManager()))
+                        .findFirstVisibleItemPosition();
+                if (dy > 0) {
+                    // The user has scrolled down, so shrink the title text
+                    animateTextSizeChange(FavTitle, 20);
+                }
+
+
+                if (topVisiblePosition == 0) {
+                    // The user has scrolled to the top, so expand the title text
+                    animateTextSizeChange(FavTitle, 30);
+                }
+            }
+        });
+
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         Source = sharedpreferences.getString("Source_Name", "GogoAnime");
         fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
@@ -52,6 +78,22 @@ public class FavouriteFragment extends Fragment {
         }
         countSource();
 
+    }
+    private void animateTextSizeChange(final TextView textView, final int newSize) {
+
+        ValueAnimator animator = ValueAnimator.ofFloat(textView.getTextSize(), convertDpToPixel(newSize, requireActivity()));
+        animator.setDuration(200);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float animatedValue = (float) animation.getAnimatedValue();
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, animatedValue);
+            }
+        });
+        animator.start();
+    }
+    public static float convertDpToPixel(float dp, Context context){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
     public ArrayList<Fav_object> temp_fav_list(){

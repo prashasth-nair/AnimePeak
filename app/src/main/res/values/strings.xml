@@ -17,6 +17,7 @@
     <string name="favourite">Favourite</string>
     <string name="your_favorites_will_show_here">Your Favorites will show here</string>
     <string name="something_went_wrong_please_check_your_network_connection">Something went wrong. Please Check your network connection</string>
+    <string name="auto_search_for_updates">Auto-search for updates</string>
     <string-array name="source_list">
         <item>GogoAnime</item>
         <item>Zoro</item>

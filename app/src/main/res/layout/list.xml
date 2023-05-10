@@ -2,8 +2,8 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_ani_item"
-    android:layout_width="190dp"
-    android:layout_height="330dp"
+    android:layout_width="170dp"
+    android:layout_height="290dp"
     android:layout_margin="5dp"
     app:cardBackgroundColor="@android:color/transparent"
 

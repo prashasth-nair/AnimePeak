@@ -19,6 +19,7 @@ import android.content.SharedPreferences;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -54,6 +55,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.Util;
 import com.google.common.collect.ImmutableList;
 
 
@@ -65,7 +67,9 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 
 public class VideoPlayer extends AppCompatActivity {
@@ -80,6 +84,7 @@ public class VideoPlayer extends AppCompatActivity {
     TextView AnimeName;
     TextView EpisodeName;
     public static TextView exo_quality_txt;
+    public static TextView exo_remaining_time;
 
     public static ExoPlayer player;
     private GogoAnime.Gogoanime_stream gogoanime_stream;
@@ -115,7 +120,7 @@ public class VideoPlayer extends AppCompatActivity {
             gestureDetector = new GestureDetector(this, new GestureListener());
         }
         if (scaleGestureDetector == null) {
-            scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener(this,videoView));
+            scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener(this, videoView));
         }
 
 
@@ -138,6 +143,7 @@ public class VideoPlayer extends AppCompatActivity {
         exo_track_selection_view = findViewById(R.id.exo_track_selection_view);
         exo_subtitle_selection_view = findViewById(R.id.exo_subtitle_selection_view);
         exo_quality_txt = findViewById(R.id.exoQuality);
+        exo_remaining_time = findViewById(R.id.exo_remaining_time);
 
 
         exo_subtitle_selection_view.setEnabled(false);
@@ -172,6 +178,7 @@ public class VideoPlayer extends AppCompatActivity {
                 } else { // STATE_READY, STATE_BUFFERING
                     // This prevents the screen from getting dim/lock
                     videoView.setKeepScreenOn(true);
+
                 }
             }
         });
@@ -274,7 +281,7 @@ public class VideoPlayer extends AppCompatActivity {
 
                                 videoView.setPlayer(player);
                                 player.setPlayWhenReady(true);
-                                exo_quality_txt.setText("Quality("+quality+")");
+                                exo_quality_txt.setText("Quality(" + quality + ")");
                                 dialog.dismiss();
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
@@ -390,6 +397,7 @@ public class VideoPlayer extends AppCompatActivity {
             }
         });
 
+
         if (Source.equals("GogoAnime")) {
 
             gogoanime_stream = new GogoAnime.Gogoanime_stream(this);
@@ -402,6 +410,30 @@ public class VideoPlayer extends AppCompatActivity {
             hanime_stream = new Hanime.Hanime_stream(this);
             hanime_stream.execute();
         }
+        // Add a Player.EventListener to the player
+        // Create a handler and a runnable to update the remaining time TextView on each player tick
+        Handler handler = new Handler();
+        Runnable updateRemainingTimeRunnable = new Runnable() {
+            @Override
+            public void run() {
+                updateRemainingTime();
+                handler.postDelayed(this, 1000);
+            }
+        };
+        player.addListener(new Player.Listener() {
+            @Override
+            public void onPlaybackStateChanged(int playbackState) {
+                Player.Listener.super.onPlaybackStateChanged(playbackState);
+                if (playbackState == Player.STATE_READY && player.isPlaying()) {
+                    // Start updating the remaining time TextView on each player tick
+                    handler.post(updateRemainingTimeRunnable);
+                } else {
+                    // Stop updating the remaining time TextView when the player is not playing
+                    handler.removeCallbacks(updateRemainingTimeRunnable);
+                }
+            }
+        });
+
     }
 
     public void checkPrevious() {
@@ -424,6 +456,38 @@ public class VideoPlayer extends AppCompatActivity {
             next_eps.setEnabled(false);
             next_eps.setAlpha(0.5f);
         }
+    }
+
+    // Define a method to update the remaining time TextView
+    private void updateRemainingTime() {
+
+        // Get the total duration of the media
+        long durationMs = player.getDuration();
+        Log.d("Here", "Here");
+
+        // Get the current playback position of the media
+        long currentPositionMs = player.getCurrentPosition();
+
+        // Calculate the remaining time in milliseconds
+        long remainingTimeMs = durationMs - currentPositionMs;
+
+        // Format the remaining time in the desired format (e.g. HH:mm:ss)
+        StringBuilder builder = new StringBuilder();
+        long remainingTimeSec = Math.abs(remainingTimeMs) / 1000;
+        long hours = TimeUnit.SECONDS.toHours(remainingTimeSec);
+        long minutes = TimeUnit.SECONDS.toMinutes(remainingTimeSec) - TimeUnit.HOURS.toMinutes(hours);
+        long seconds = remainingTimeSec - TimeUnit.HOURS.toSeconds(hours) - TimeUnit.MINUTES.toSeconds(minutes);
+        if (hours==0){
+            builder.append(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+        }else {
+
+            builder.append(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
+        }
+        String remainingTimeString = builder.toString();
+
+        // Update the TextView with the formatted remaining time
+        exo_remaining_time.setText(remainingTimeString);
+
     }
 
 
@@ -485,12 +549,13 @@ public class VideoPlayer extends AppCompatActivity {
         }
 
     }
+
     private static class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         Activity activity;
         private PlayerView playerView;
         private float scaleFactor = 1f;
 
-        public ScaleListener(Activity activity,PlayerView playerView) {
+        public ScaleListener(Activity activity, PlayerView playerView) {
             this.playerView = playerView;
             this.activity = activity;
         }
@@ -502,7 +567,7 @@ public class VideoPlayer extends AppCompatActivity {
             float scaleFactor = detector.getScaleFactor();
             if (scaleFactor > 1f) {
                 playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_ZOOM);
-            }else {
+            } else {
                 // Zoom out
                 playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
             }
@@ -512,13 +577,14 @@ public class VideoPlayer extends AppCompatActivity {
             return true;
         }
     }
+
     private static class GestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             // Handle single tap here
-            if (videoView.isControllerVisible()){
+            if (videoView.isControllerVisible()) {
                 videoView.hideController();
-            }else {
+            } else {
                 videoView.showController();
             }
             return super.onSingleTapConfirmed(e);

@@ -2,6 +2,7 @@ package com.example.animepeak.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
@@ -16,6 +17,7 @@ import com.example.animepeak.Fragments.HomeFragment;
 import com.example.animepeak.Fragments.SearchFragment;
 import com.example.animepeak.Fragments.SettingsFragment;
 import com.example.animepeak.Functions.Fav_object;
+import com.example.animepeak.Functions.UpdateApp;
 import com.example.animepeak.R;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,11 +37,15 @@ public class MainActivity extends AppCompatActivity {
     FavouriteFragment favouriteFragment = new FavouriteFragment();
     SearchFragment searchFragment = new SearchFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
+    public static boolean is_auto_update = false;
+    public static boolean is_home = false;
     public static ArrayList<Fav_object> fav_list ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SplashScreen.installSplashScreen(this);
         setContentView(R.layout.activity_main);
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, homeFragment, "HOME_FRAGMENT_TAG");
@@ -47,8 +53,15 @@ public class MainActivity extends AppCompatActivity {
         tr.commit();
 
         fav_list = get_fav_list();
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         if (fav_list==null){
             fav_list = new ArrayList<>();
+        }
+        is_auto_update = sharedPreferences.getBoolean("is_auto_update",false);
+        if (is_auto_update){
+            is_home = true;
+            new UpdateApp.update_app(this).execute();
+
         }
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint({"NonConstantResourceId", "RestrictedApi"})

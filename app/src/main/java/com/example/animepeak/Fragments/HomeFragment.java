@@ -2,6 +2,7 @@ package com.example.animepeak.Fragments;
 
 import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -12,8 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +37,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -40,6 +45,7 @@ public class HomeFragment extends Fragment {
     public static RecyclerView recyclerView;
     public static ImageView home_loading;
     public static TextView network_error;
+    TextView titleText;
     public static List<String> Home_TitleUrlList = new ArrayList<>();
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
@@ -76,6 +82,25 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
         home_loading = (ImageView) getView().findViewById(R.id.loading);
         network_error = (TextView) getView().findViewById(R.id.net_error);
+        titleText = (TextView) getView().findViewById(R.id.home_title);
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int topVisiblePosition = ((GridLayoutManager) Objects.requireNonNull(recyclerView.getLayoutManager()))
+                        .findFirstVisibleItemPosition();
+                if (dy > 0) {
+                    // The user has scrolled down, so shrink the title text
+                    animateTextSizeChange(titleText, 20);
+                }
+
+
+                if (topVisiblePosition == 0) {
+                    // The user has scrolled to the top, so expand the title text
+                    animateTextSizeChange(titleText, 30);
+                }
+            }
+        });
 
         int orientation = getResources().getConfiguration().orientation;
 
@@ -146,7 +171,22 @@ public class HomeFragment extends Fragment {
         }
 
     }
+    private void animateTextSizeChange(final TextView textView, final int newSize) {
 
+        ValueAnimator animator = ValueAnimator.ofFloat(textView.getTextSize(), convertDpToPixel(newSize, requireActivity()));
+        animator.setDuration(200);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float animatedValue = (float) animation.getAnimatedValue();
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, animatedValue);
+            }
+        });
+        animator.start();
+    }
+    public static float convertDpToPixel(float dp, Context context){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
     @Override
     public void onDetach() {
         super.onDetach();

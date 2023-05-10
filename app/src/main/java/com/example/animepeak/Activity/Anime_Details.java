@@ -36,6 +36,7 @@ import com.bumptech.glide.Glide;
 import com.example.animepeak.Adapters.Ani_Details_Adapter;
 
 
+import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
@@ -72,7 +73,9 @@ public class Anime_Details extends AppCompatActivity {
     public static ExpandableTextView expandableTextView;
     public static String status;
     public static RecyclerView details_recyclerView;
+    public static RecyclerView genre_recyclerView;
     public static JSONArray episodes = new JSONArray();
+    public static JSONArray genres = new JSONArray();
     public static String desc;
 
     boolean is_fav = false;
@@ -109,6 +112,10 @@ public class Anime_Details extends AppCompatActivity {
         anime_details_main = findViewById(R.id.anime_details_main);
         net_error_ani_details = findViewById(R.id.net_error_ani_details);
         favoriteButton = findViewById(R.id.fav_button);
+        genre_recyclerView = findViewById(R.id.genre_recycler);
+
+        genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
         if (fav_list!=null) {
             for (Fav_object favObject : fav_list) {
                 if (favObject.getID().contains(Ani_ID)) {
@@ -236,6 +243,10 @@ public class Anime_Details extends AppCompatActivity {
         } else if (episodes.length() != 0) {
             Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, Anime_Details.this);
             details_recyclerView.setAdapter(ani_details_adapter);
+
+            Ani_Details_Genre_Adapter ani_details_genre_adapter = new Ani_Details_Genre_Adapter(Anime_Details.this, genres);
+            genre_recyclerView.setAdapter(ani_details_genre_adapter);
+
             Release.setText("Release Date: " + releasedDate);
             Anime_Details.Status.setText("Status: " + status);
             expandableTextView.setText(desc);
@@ -257,6 +268,7 @@ public class Anime_Details extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         episodes = new JSONArray();
+        genres = new JSONArray();
         episodeID_list.clear();
 
         if (gogoanime_details != null) {
@@ -296,6 +308,7 @@ public class Anime_Details extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         episodes = new JSONArray();
+        genres = new JSONArray();
         episodeID_list.clear();
 
         if (gogoanime_details != null) {

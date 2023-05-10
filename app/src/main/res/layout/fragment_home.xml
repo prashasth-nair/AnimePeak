@@ -13,13 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Something went wrong. Please Check your network connection"
-        android:textColor="@color/white"
         android:layout_margin="10dp"
-        android:textAlignment="center"
-        android:padding="10dp"
-        android:visibility="gone"
         android:background="@drawable/network_error_background"
+        android:padding="10dp"
+        android:text="Something went wrong. Please Check your network connection"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:visibility="gone"
 
         />
 
@@ -29,12 +29,24 @@
         android:layout_height="100dp"
         android:layout_centerInParent="true" />
 
+    <TextView
+        android:id="@+id/home_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
+        android:padding="5dp"
+        android:paddingStart="10dp"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        />
+        android:layout_below="@+id/home_title"
+        android:padding="10dp" />
 
 
 </RelativeLayout>

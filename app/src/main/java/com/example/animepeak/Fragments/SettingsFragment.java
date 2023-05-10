@@ -2,6 +2,7 @@ package com.example.animepeak.Fragments;
 
 
 import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
+import static com.example.animepeak.Activity.MainActivity.is_auto_update;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
@@ -25,7 +26,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.animepeak.Functions.UpdateApp;
@@ -44,6 +47,7 @@ public class SettingsFragment extends Fragment {
     AutoCompleteTextView autoCompleteTextView;
     AutoCompleteTextView videoautoCompleteTextView;
     LinearLayout Update;
+    Switch auto_update;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -60,9 +64,52 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
         autoCompleteTextView = getView().findViewById(R.id.autoCompleteTextView);
         videoautoCompleteTextView = getView().findViewById(R.id.videoautoCompleteTextView);
         Update = getView().findViewById(R.id.update_button);
+        auto_update = getView().findViewById(R.id.auto_update);
+
+        is_auto_update = sharedpreferences.getBoolean("is_auto_update",false);
+        if (is_auto_update){
+            auto_update.setChecked(true);
+        }else{
+            auto_update.setChecked(false);
+        }
+        auto_update.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Dexter.withContext(getActivity())
+                        .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .withListener(new MultiplePermissionsListener() {
+                            @Override
+                            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                                if (report.areAllPermissionsGranted()) {
+                                    if (b){
+                                        is_auto_update = true;
+
+                                    }else{
+                                        is_auto_update = false;
+                                    }
+                                    editor.putBoolean("is_auto_update", is_auto_update);
+                                    editor.apply();
+                                } else {
+                                    Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                                token.continuePermissionRequest();
+                            }
+                        }).check();
+
+            }
+        });
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +136,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+
         String Current_Source = sharedpreferences.getString("Source_Name", "GogoAnime");
         String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
         if (Current_Source.equals("GogoAnime")) {
@@ -121,7 +168,7 @@ public class SettingsFragment extends Fragment {
 
         }
 
-        SharedPreferences.Editor editor = sharedpreferences.edit();
+
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -162,7 +209,7 @@ public class SettingsFragment extends Fragment {
 
                 } else if (adapterView.getItemAtPosition(i).toString().equals("720p")) {
                     editor.putString("Video_Quality", "720p");
-                }else if (adapterView.getItemAtPosition(i).toString().equals("1080p")) {
+                } else if (adapterView.getItemAtPosition(i).toString().equals("1080p")) {
                     editor.putString("Video_Quality", "1080p");
                 }
 

@@ -12,6 +12,8 @@ import static com.example.animepeak.Activity.Anime_Details.episode_text;
 import static com.example.animepeak.Activity.Anime_Details.episodes;
 import static com.example.animepeak.Activity.Anime_Details.expandableTextView;
 import static com.example.animepeak.Activity.Anime_Details.extractEpisodeIds;
+import static com.example.animepeak.Activity.Anime_Details.genre_recyclerView;
+import static com.example.animepeak.Activity.Anime_Details.genres;
 import static com.example.animepeak.Activity.Anime_Details.img;
 import static com.example.animepeak.Activity.Anime_Details.net_error_ani_details;
 import static com.example.animepeak.Activity.Anime_Details.releasedDate;
@@ -20,6 +22,7 @@ import static com.example.animepeak.Activity.Anime_Details.status;
 import static com.example.animepeak.Activity.VideoPlayer.Current;
 
 import static com.example.animepeak.Activity.VideoPlayer.exo_quality_txt;
+import static com.example.animepeak.Activity.VideoPlayer.exo_remaining_time;
 import static com.example.animepeak.Activity.VideoPlayer.next_eps;
 import static com.example.animepeak.Activity.VideoPlayer.player;
 import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
@@ -60,11 +63,13 @@ import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.Anime_Details;
 
 import com.example.animepeak.Adapters.Ani_Details_Adapter;
+import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
 import com.example.animepeak.Adapters.MainAdapter;
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
 
 import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.util.Util;
 
 
 import org.json.JSONArray;
@@ -79,6 +84,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 
 public class GogoAnime {
@@ -265,8 +272,21 @@ public class GogoAnime {
 
 
                     }
+
                     Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
                     details_recyclerView.setAdapter(ani_details_adapter);
+
+                    genres = jsonObject.getJSONArray("genres");
+                    if (genres.length()>4){
+                        JSONArray firstThreeItems = new JSONArray();
+                        for (int i = 0; i < 4 && i < genres.length(); i++) {
+                            firstThreeItems.put(genres.getString(i));
+
+                        }
+                        genres = firstThreeItems;
+                    }
+                    Ani_Details_Genre_Adapter ani_details_genre_adapter = new Ani_Details_Genre_Adapter(activity, genres);
+                    genre_recyclerView.setAdapter(ani_details_genre_adapter);
 
                     Release.setText("Release Date: " + releasedDate);
                     Anime_Details.Status.setText("Status: " + status);
