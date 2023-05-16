@@ -132,48 +132,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/exo_forward_text"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="10"-->
-        <!--            android:textColor="@color/media_player_controls"-->
-        <!--            android:textSize="12sp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="@id/exo_ffwd"-->
-        <!--            app:layout_constraintEnd_toEndOf="@id/exo_ffwd"-->
-        <!--            app:layout_constraintStart_toStartOf="@id/exo_ffwd"-->
-        <!--            app:layout_constraintTop_toTopOf="@id/exo_ffwd"-->
-        <!--            app:layout_constraintVertical_bias="0.55" />-->
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/exo_forward_plus"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="+"-->
-        <!--            android:textColor="@color/media_player_controls"-->
-        <!--            android:textSize="12sp"-->
-        <!--            android:visibility="invisible"-->
-        <!--            app:layout_constraintBottom_toBottomOf="@id/exo_ffwd"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="@id/exo_ffwd"-->
-        <!--            app:layout_constraintVertical_bias="0.55" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/exo_position"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="24dp"-->
-    <!--        android:layout_marginEnd="16dp"-->
-    <!--        android:layout_marginBottom="24dp"-->
-    <!--        android:textColor="@color/media_player_controls"-->
-    <!--        android:textSize="14sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toStartOf="@id/exo_progress_placeholder"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        tools:text="22:04" />-->
 
 
     <com.google.android.exoplayer2.ui.DefaultTimeBar

@@ -1,14 +1,20 @@
 package com.example.animepeak.Activity;
 
 
+import static androidx.core.view.ViewCompat.animate;
 import static com.example.animepeak.Activity.Anime_Details.episodeID_list;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +23,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -81,6 +89,9 @@ public class VideoPlayer extends AppCompatActivity {
     public static LinearLayout next_eps;
     public static LinearLayout exo_track_selection_view;
     public static LinearLayout exo_subtitle_selection_view;
+    ImageButton temp_ffwd;
+    ImageButton temp_rewind;
+
     TextView AnimeName;
     TextView EpisodeName;
     public static TextView exo_quality_txt;
@@ -211,6 +222,7 @@ public class VideoPlayer extends AppCompatActivity {
                                 } else {
                                     JSONObject subtitleobj = subtitles.getJSONObject(which - 1);
                                     String subtitleUri = subtitleobj.getString("url");
+
                                     MediaItem.SubtitleConfiguration subtitle =
                                             new MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleUri))
                                                     .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
@@ -436,6 +448,19 @@ public class VideoPlayer extends AppCompatActivity {
 
     }
 
+    private void animateButtons(boolean button) {
+        if (button) {
+
+            ObjectAnimator rewindAnimator = ObjectAnimator.ofFloat(temp_rewind, "alpha", 1f, 0f, 1f);
+            rewindAnimator.setDuration(500);
+            rewindAnimator.start();
+        } else {
+            ObjectAnimator fastForwardAnimator = ObjectAnimator.ofFloat(temp_ffwd, "alpha", 1f, 0f, 1f);
+            fastForwardAnimator.setDuration(500);
+            fastForwardAnimator.start();
+        }
+    }
+
     public void checkPrevious() {
         if ((Current - 1) >= 0) {
 
@@ -463,7 +488,6 @@ public class VideoPlayer extends AppCompatActivity {
 
         // Get the total duration of the media
         long durationMs = player.getDuration();
-        Log.d("Here", "Here");
 
         // Get the current playback position of the media
         long currentPositionMs = player.getCurrentPosition();
@@ -477,9 +501,9 @@ public class VideoPlayer extends AppCompatActivity {
         long hours = TimeUnit.SECONDS.toHours(remainingTimeSec);
         long minutes = TimeUnit.SECONDS.toMinutes(remainingTimeSec) - TimeUnit.HOURS.toMinutes(hours);
         long seconds = remainingTimeSec - TimeUnit.HOURS.toSeconds(hours) - TimeUnit.MINUTES.toSeconds(minutes);
-        if (hours==0){
+        if (hours == 0) {
             builder.append(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
-        }else {
+        } else {
 
             builder.append(String.format(Locale.getDefault(), "%02d:%02d:%02d", hours, minutes, seconds));
         }
@@ -550,6 +574,7 @@ public class VideoPlayer extends AppCompatActivity {
 
     }
 
+    //Gensture Controls
     private static class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         Activity activity;
         private PlayerView playerView;
@@ -578,7 +603,7 @@ public class VideoPlayer extends AppCompatActivity {
         }
     }
 
-    private static class GestureListener extends GestureDetector.SimpleOnGestureListener {
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             // Handle single tap here
@@ -588,6 +613,44 @@ public class VideoPlayer extends AppCompatActivity {
                 videoView.showController();
             }
             return super.onSingleTapConfirmed(e);
+        }
+
+        @Override
+        public boolean onDoubleTap(@NonNull MotionEvent e) {
+            long seekPosition = e.getX() < videoView.getWidth() / 2 ?
+                    player.getCurrentPosition() - 10000L : // seek 10 seconds backward
+                    player.getCurrentPosition() + 10000L; // seek 10 seconds forward
+            // seek the player to the new position
+            player.seekTo(seekPosition);
+            if (!videoView.isControllerVisible()) {
+
+
+                // show the button with an animation
+                float x = e.getX();
+                float halfScreenWidth = videoView.getWidth() / 2.0f;
+
+                int buttonId = x < halfScreenWidth ? R.id.temp_rewind : R.id.temp_fast_forward;
+                ImageView doubleTapButton = VideoPlayer.this.findViewById(buttonId);
+                doubleTapButton.setVisibility(View.VISIBLE);
+                doubleTapButton.setScaleX(0.0f);
+                doubleTapButton.setScaleY(0.0f);
+                doubleTapButton.animate()
+                        .scaleX(1.0f)
+                        .scaleY(1.0f)
+                        .setDuration(500)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                doubleTapButton.setVisibility(View.GONE);
+                            }
+                        })
+                        .start();
+            }
+
+
+            return super.onDoubleTap(e);
+
         }
     }
 }

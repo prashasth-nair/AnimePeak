@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
                 super.onScrolled(recyclerView, dx, dy);
                 int topVisiblePosition = ((GridLayoutManager) Objects.requireNonNull(recyclerView.getLayoutManager()))
                         .findFirstVisibleItemPosition();
+                recyclerView.setHasFixedSize(true);
                 if (dy > 0) {
                     // The user has scrolled down, so shrink the title text
                     animateTextSizeChange(titleText, 20);
@@ -97,7 +98,8 @@ public class HomeFragment extends Fragment {
 
                 if (topVisiblePosition == 0) {
                     // The user has scrolled to the top, so expand the title text
-                    animateTextSizeChange(titleText, 30);
+
+                    animateTextSizeChange(titleText, 34);
                 }
             }
         });
@@ -156,10 +158,13 @@ public class HomeFragment extends Fragment {
         }
     }
 
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         Home_TitleUrlList.clear();
+        Home_imageUrlList.clear();
+        Home_IDList.clear();
         if (gogoanime_popular != null) {
             gogoanime_popular.cancel(true);
         }
@@ -171,6 +176,8 @@ public class HomeFragment extends Fragment {
         }
 
     }
+
+
     private void animateTextSizeChange(final TextView textView, final int newSize) {
 
         ValueAnimator animator = ValueAnimator.ofFloat(textView.getTextSize(), convertDpToPixel(newSize, requireActivity()));
@@ -183,6 +190,7 @@ public class HomeFragment extends Fragment {
             }
         });
         animator.start();
+
     }
     public static float convertDpToPixel(float dp, Context context){
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
@@ -191,6 +199,8 @@ public class HomeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         Home_TitleUrlList.clear();
+        Home_imageUrlList.clear();
+        Home_IDList.clear();
         if (gogoanime_popular != null) {
             gogoanime_popular.cancel(true);
         }

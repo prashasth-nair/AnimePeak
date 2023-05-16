@@ -80,7 +80,7 @@
                 <RelativeLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="270dp"
+                    android:layout_height="wrap_content"
                     android:padding="10dp">
 
                     <androidx.cardview.widget.CardView
@@ -156,7 +156,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/genre_recycler"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="140dp"
 
                                 />
                         </LinearLayout>

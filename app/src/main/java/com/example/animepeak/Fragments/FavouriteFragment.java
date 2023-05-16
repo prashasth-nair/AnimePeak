@@ -6,6 +6,7 @@ import static com.example.animepeak.Adapters.FavAdapter.fav_activity;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -63,14 +64,24 @@ public class FavouriteFragment extends Fragment {
 
                 if (topVisiblePosition == 0) {
                     // The user has scrolled to the top, so expand the title text
-                    animateTextSizeChange(FavTitle, 30);
+                    animateTextSizeChange(FavTitle, 34);
                 }
             }
         });
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         Source = sharedpreferences.getString("Source_Name", "GogoAnime");
-        fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+        int orientation = getResources().getConfiguration().orientation;
+
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // Portrait orientation
+            fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape orientation
+            fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
+        }
+
         if (fav_list.size()==0){
             no_fav.setVisibility(View.VISIBLE);
         }else {
@@ -112,6 +123,17 @@ public class FavouriteFragment extends Fragment {
             }
         }
         return tempArray;
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
+            countSource();
+        } else {
+            fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+            countSource();
+        }
     }
 
     @Override

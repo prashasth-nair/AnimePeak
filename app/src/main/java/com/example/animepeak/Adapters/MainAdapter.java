@@ -5,6 +5,7 @@ import android.app.Activity;
 
 
 import android.content.Intent;
+import android.media.metrics.Event;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.Anime_Details;
 import com.example.animepeak.R;
+import com.google.android.exoplayer2.util.ListenerSet;
 
 
 import java.util.List;
@@ -29,6 +33,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private List<String> TitleUrlList;
     private List<String> imageUrlList;
     private List<String> IDList;
+
 
     public MainAdapter(Activity activity, List<String> TitleUrlList, List<String> imageUrlList, List<String> IDList) {
         this.activity = activity;

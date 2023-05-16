@@ -23,11 +23,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font"
-        android:padding="5dp"
-        android:paddingStart="10dp"
-        android:text="Favourite"
+        android:paddingTop="5dp"
+        android:paddingBottom="2dp"
+        android:paddingStart="20dp"
+        android:text="Favourites"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="34dp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,6 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/fav_title"
-        android:padding="10dp" />
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        />
 
 </RelativeLayout>

@@ -114,8 +114,6 @@ public class Anime_Details extends AppCompatActivity {
         favoriteButton = findViewById(R.id.fav_button);
         genre_recyclerView = findViewById(R.id.genre_recycler);
 
-        genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-
         if (fav_list!=null) {
             for (Fav_object favObject : fav_list) {
                 if (favObject.getID().contains(Ani_ID)) {
@@ -165,11 +163,13 @@ public class Anime_Details extends AppCompatActivity {
             // Portrait orientation
 
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+            genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
             load();
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape orientation
 
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
+            genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 6));
             load();
         }
     }
