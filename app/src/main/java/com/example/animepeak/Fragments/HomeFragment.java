@@ -7,16 +7,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.databinding.adapters.ViewBindingAdapter;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -49,9 +54,10 @@ public class HomeFragment extends Fragment {
     public static List<String> Home_TitleUrlList = new ArrayList<>();
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
-    private GogoAnime.Gogoanime_popular gogoanime_popular;
-    private Zoro.Zoro_popular zoro_popular;
-    private Hanime.Hanime_popular hanime_popular;
+    public static GogoAnime.Gogoanime_popular gogoanime_popular;
+    public static Zoro.Zoro_popular zoro_popular;
+    public static Hanime.Hanime_popular hanime_popular;
+    CardView profile_card;
     String Source;
 
 
@@ -83,23 +89,35 @@ public class HomeFragment extends Fragment {
         home_loading = (ImageView) getView().findViewById(R.id.loading);
         network_error = (TextView) getView().findViewById(R.id.net_error);
         titleText = (TextView) getView().findViewById(R.id.home_title);
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        profile_card = (CardView) getView().findViewById(R.id.profile_card);
+
+
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+
             @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int topVisiblePosition = ((GridLayoutManager) Objects.requireNonNull(recyclerView.getLayoutManager()))
-                        .findFirstVisibleItemPosition();
-                recyclerView.setHasFixedSize(true);
-                if (dy > 0) {
-                    // The user has scrolled down, so shrink the title text
-                    animateTextSizeChange(titleText, 20);
-                }
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
 
 
-                if (topVisiblePosition == 0) {
-                    // The user has scrolled to the top, so expand the title text
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    if (!Home_TitleUrlList.isEmpty()) {
+                        // The user has started scrolling
+                        int topVisiblePosition = ((GridLayoutManager) Objects.requireNonNull(recyclerView.getLayoutManager()))
+                                .findFirstVisibleItemPosition();
+                        recyclerView.setHasFixedSize(true);
 
-                    animateTextSizeChange(titleText, 34);
+                        if (topVisiblePosition == 0) {
+
+                            animateTextSizeChange(titleText, 34);
+                            animateProfileSizeChange(profile_card, 85, 85);
+                        } else {
+
+                            animateTextSizeChange(titleText, 20);
+                            animateProfileSizeChange(profile_card, 65, 65);
+                        }
+                    }
                 }
             }
         });
@@ -136,6 +154,44 @@ public class HomeFragment extends Fragment {
     }
 
 
+    private void animateProfileSizeChange(View view, int newWidth, int newHeight) {
+        ValueAnimator widthAnimator = ValueAnimator.ofInt(view.getWidth(), newWidth);
+        widthAnimator.setDuration(300);
+        widthAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int width = (int) animation.getAnimatedValue();
+                view.getLayoutParams().width = width;
+                view.requestLayout();
+            }
+        });
+        widthAnimator.start();
+
+        ValueAnimator heightAnimator = ValueAnimator.ofInt(view.getHeight(), newHeight);
+        heightAnimator.setDuration(300);
+        heightAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                int height = (int) animation.getAnimatedValue();
+                view.getLayoutParams().height = height;
+                view.requestLayout();
+            }
+        });
+        heightAnimator.start();
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if (isVisibleToUser) {
+            // Fragment is currently visible
+            // Perform actions or update UI accordingly
+        } else {
+            // Fragment is not currently visible
+            // Perform actions or update UI accordingly
+            Log.d("visible","false");
+        }
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -158,6 +214,31 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            // Fragment is not currently visible
+            // Perform actions or update UI accordingly
+            Home_TitleUrlList.clear();
+            Home_imageUrlList.clear();
+            Home_IDList.clear();
+            Log.d("Here","null");
+            if (gogoanime_popular != null  ) {
+
+                gogoanime_popular.cancel(true);
+                gogoanime_popular = null;
+            }
+            if (zoro_popular != null ) {
+                zoro_popular.cancel(true);
+                zoro_popular = null;
+            }
+            if (hanime_popular != null ) {
+                hanime_popular.cancel(true);
+                hanime_popular = null;
+            }
+        }
+    }
 
     @Override
     public void onDestroy() {
@@ -165,14 +246,18 @@ public class HomeFragment extends Fragment {
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
-        if (gogoanime_popular != null) {
+        if (gogoanime_popular != null  ) {
+            Log.d("Here","null");
             gogoanime_popular.cancel(true);
+            gogoanime_popular = null;
         }
-        if (zoro_popular != null) {
+        if (zoro_popular != null ) {
             zoro_popular.cancel(true);
+            zoro_popular = null;
         }
-        if (hanime_popular != null) {
+        if (hanime_popular != null ) {
             hanime_popular.cancel(true);
+            hanime_popular = null;
         }
 
     }
@@ -201,16 +286,21 @@ public class HomeFragment extends Fragment {
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
-        if (gogoanime_popular != null) {
+        if (gogoanime_popular != null  ) {
+            Log.d("Here","null");
             gogoanime_popular.cancel(true);
+            gogoanime_popular = null;
         }
-        if (zoro_popular != null) {
+        if (zoro_popular != null ) {
             zoro_popular.cancel(true);
+            zoro_popular = null;
         }
-        if (hanime_popular != null) {
+        if (hanime_popular != null ) {
             hanime_popular.cancel(true);
+            hanime_popular = null;
         }
     }
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

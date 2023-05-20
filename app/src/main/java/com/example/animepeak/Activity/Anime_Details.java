@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 
+import android.util.Log;
 import android.view.MenuItem;
 
 import android.view.View;
@@ -198,7 +199,8 @@ public class Anime_Details extends AppCompatActivity {
                 episodeIds.add(episodeId);
             }
         } catch (JSONException e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            Log.d("Error",e.toString());
         }
 
         return episodeIds;

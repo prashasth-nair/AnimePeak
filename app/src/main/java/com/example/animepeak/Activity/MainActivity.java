@@ -1,5 +1,12 @@
 package com.example.animepeak.Activity;
 
+import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
+import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
+import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
+import static com.example.animepeak.Fragments.HomeFragment.gogoanime_popular;
+import static com.example.animepeak.Fragments.HomeFragment.hanime_popular;
+import static com.example.animepeak.Fragments.HomeFragment.zoro_popular;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
@@ -10,6 +17,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.animepeak.Fragments.FavouriteFragment;
@@ -63,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             new UpdateApp.update_app(this).execute();
 
         }
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint({"NonConstantResourceId", "RestrictedApi"})
             @Override
@@ -82,15 +91,63 @@ public class MainActivity extends AppCompatActivity {
                                 .replace(R.id.container, searchFragment, "SEARCH_FRAGMENT_TAG");
                         tr.addToBackStack(null);
                         tr.commit();
+                        Home_TitleUrlList.clear();
+                        Home_imageUrlList.clear();
+                        Home_IDList.clear();
+                        if (gogoanime_popular != null  ) {
+                            Log.d("Here","null");
+                            gogoanime_popular.cancel(true);
+                            gogoanime_popular = null;
+                        }
+                        if (zoro_popular != null ) {
+                            zoro_popular.cancel(true);
+                            zoro_popular = null;
+                        }
+                        if (hanime_popular != null ) {
+                            hanime_popular.cancel(true);
+                            hanime_popular = null;
+                        }
                         return true;
                     case R.id.fav:
                         item.setIcon(R.drawable.baseline_favorite_24_selected);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, favouriteFragment, "FAV_FRAGMENT_TAG")
                                 .commit();
+                        Home_TitleUrlList.clear();
+                        Home_imageUrlList.clear();
+                        Home_IDList.clear();
+                        if (gogoanime_popular != null  ) {
+                            Log.d("Here","null");
+                            gogoanime_popular.cancel(true);
+                            gogoanime_popular = null;
+                        }
+                        if (zoro_popular != null ) {
+                            zoro_popular.cancel(true);
+                            zoro_popular = null;
+                        }
+                        if (hanime_popular != null ) {
+                            hanime_popular.cancel(true);
+                            hanime_popular = null;
+                        }
                         return true;
                     case R.id.settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
+                        Home_TitleUrlList.clear();
+                        Home_imageUrlList.clear();
+                        Home_IDList.clear();
+                        if (gogoanime_popular != null  ) {
+                            Log.d("Here","null");
+                            gogoanime_popular.cancel(true);
+                            gogoanime_popular = null;
+                        }
+                        if (zoro_popular != null ) {
+                            zoro_popular.cancel(true);
+                            zoro_popular = null;
+                        }
+                        if (hanime_popular != null ) {
+                            hanime_popular.cancel(true);
+                            hanime_popular = null;
+                        }
                         return true;
 
                 }

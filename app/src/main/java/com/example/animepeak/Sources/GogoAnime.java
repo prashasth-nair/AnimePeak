@@ -90,7 +90,7 @@ import java.util.concurrent.TimeUnit;
 
 public class GogoAnime {
     //    GogoAnime
-    public static class Gogoanime_popular extends AsyncTask<Void, Void, Void> {
+    public static class Gogoanime_popular extends AsyncTask<Void, Void, String> {
         @SuppressLint("StaticFieldLeak")
         Activity activity;
         boolean is_added;
@@ -102,12 +102,16 @@ public class GogoAnime {
 
         private static final String TAG = "Hello";
 
-        private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/top-airing?page=";
+        private static final String API_ENDPOINT = "https://consumet-rho.vercel.app/anime/gogoanime/top-airing?page=";
+        boolean isLoading;
+
+
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            isLoading = true;
+            // Display loading animation
             Glide.with(activity)
                     .asGif()
                     .load(R.raw.loading_animation)
@@ -115,78 +119,94 @@ public class GogoAnime {
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
-
+        protected String doInBackground(Void... voids) {
+            String response = "";
             try {
-
-                if (Home_TitleUrlList.size() == 0) {
-
+                if (Home_TitleUrlList.isEmpty()) {
                     for (int page = 1; page <= 4; page++) {
-                        // Create a URL object for the API endpoint with the current page number
+                        if (isCancelled()) {
+                            Log.d("Here", "Cancel");
+                            break; // Exit the loop if the task is canceled
+                        }
 
                         URL url = new URL(API_ENDPOINT + page);
-
-                        // Open an HTTP connection to the URL
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                        // Set the request method and headers
                         conn.setRequestMethod("GET");
                         conn.setRequestProperty("Content-Type", "application/json");
 
-                        // Read the response body from the input stream
                         InputStream in = conn.getInputStream();
                         BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-                        StringBuilder response = new StringBuilder();
+
                         String line;
                         while ((line = reader.readLine()) != null) {
-                            response.append(line);
+                            response += line;
                         }
                         reader.close();
                         conn.disconnect();
 
-                        // Parse the JSON response into a list of anime objects
-                        JSONObject jsonObject = new JSONObject(String.valueOf(response));
 
-                        JSONArray animeList = jsonObject.getJSONArray("results");
-
-
-                        for (int i = 0; i < animeList.length(); i++) {
-                            JSONObject anime = animeList.getJSONObject(i);
-                            String title = anime.getString("title");
-
-                            String image = anime.getString("image");
-
-
-                            String ani_id = anime.getString("id");
-
-                            if (!title.equals("") && !image.equals("") && !ani_id.equals("")) {
-                                Home_TitleUrlList.add(title);
-                                Home_imageUrlList.add(image);
-                                Home_IDList.add(ani_id);
-
-                            }
-                        }
                     }
                 }
-                network_error.setVisibility(View.GONE);
-                return null;
-            } catch (IOException | JSONException e) {
 
+//                activity.runOnUiThread(() -> network_error.setVisibility(View.GONE));
+                isLoading = false;
+
+                return response;
+            } catch (IOException e) {
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
-                network_error.setVisibility(View.VISIBLE);
+//                activity.runOnUiThread(() -> network_error.setVisibility(View.VISIBLE));
+                isLoading = false;
                 return null;
             }
         }
 
         @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
-            home_loading.setVisibility(View.GONE);
-            if (is_added) {
+        protected void onPostExecute(String response) {
+            super.onPostExecute(response);
+            if (is_added&&response!=null) {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response.toString());
+                    JSONArray animeList = jsonObject.getJSONArray("results");
+
+                    for (int i = 0; i < animeList.length(); i++) {
+                        if (isCancelled()) {
+                            Log.d("Here", "Cancel");
+                            break; // Exit the loop if the task is canceled
+                        }
+                        JSONObject anime = animeList.getJSONObject(i);
+                        String title = anime.getString("title");
+                        String image = anime.getString("image");
+                        String ani_id = anime.getString("id");
+
+                        if (!title.isEmpty() && !image.isEmpty() && !ani_id.isEmpty()) {
+                            Home_TitleUrlList.add(title);
+                            Home_imageUrlList.add(image);
+                            Home_IDList.add(ani_id);
+                        }
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
                 MainAdapter mainAdapter = new MainAdapter(activity, Home_TitleUrlList, Home_imageUrlList, Home_IDList);
                 recyclerView.setAdapter(mainAdapter);
             }
+
+            // Check if loading animation is still visible before hiding it
+            if (home_loading.getVisibility() == View.VISIBLE) {
+                home_loading.setVisibility(View.GONE);
+            }
+
+            // Show or hide the network error based on loading status and data availability
+            if (!isLoading && Home_TitleUrlList.isEmpty()) {
+                network_error.setVisibility(View.VISIBLE);
+            } else {
+                network_error.setVisibility(View.GONE);
+            }
         }
+
+
     }
 
     public static class Gogoanime_details extends AsyncTask<Void, Void, String> {
@@ -222,7 +242,7 @@ public class GogoAnime {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://api.consumet.org/anime/gogoanime/info/" + Ani_ID);
+                URL url = new URL("https://consumet-rho.vercel.app/anime/gogoanime/info/" + Ani_ID);
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -318,7 +338,7 @@ public class GogoAnime {
     public static class GogoAnime_search extends AsyncTask<Void, Void, Void> {
         private static final String TAG = "Search";
 
-        private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/";
+        private static final String API_ENDPOINT = "https://consumet-rho.vercel.app/anime/gogoanime/";
         Activity activity;
         boolean is_added;
         String text;
@@ -459,7 +479,7 @@ public class GogoAnime {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://api.consumet.org/anime/gogoanime/watch/" + episodeID_list.get(Current));
+                URL url = new URL("https://consumet-rho.vercel.app/anime/gogoanime/watch/" + episodeID_list.get(Current));
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
