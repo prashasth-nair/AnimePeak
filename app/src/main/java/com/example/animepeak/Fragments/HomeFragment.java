@@ -4,6 +4,7 @@ import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
@@ -31,6 +32,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.example.animepeak.Activity.Anime_Details;
+import com.example.animepeak.Activity.Profile;
 import com.example.animepeak.Adapters.MainAdapter;
 
 import com.example.animepeak.R;
@@ -40,6 +43,7 @@ import com.example.animepeak.Sources.Zoro;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -90,6 +94,14 @@ public class HomeFragment extends Fragment {
         network_error = (TextView) getView().findViewById(R.id.net_error);
         titleText = (TextView) getView().findViewById(R.id.home_title);
         profile_card = (CardView) getView().findViewById(R.id.profile_card);
+
+        profile_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Profile.class);
+                startActivity(intent);
+            }
+        });
 
 
 

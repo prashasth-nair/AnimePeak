@@ -9,11 +9,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.INSTALL_PACKAGES"
+    <uses-permission
+        android:name="android.permission.INSTALL_PACKAGES"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +26,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimePeak"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:ignore="Instantiatable">
+        <activity
+            android:name=".Activity.Profile"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -47,8 +54,8 @@
         <activity
             android:name=".Activity.MainActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/Theme.AnimePeak.MySplash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AnimePeak.MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

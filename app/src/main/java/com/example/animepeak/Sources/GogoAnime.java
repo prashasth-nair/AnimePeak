@@ -102,7 +102,7 @@ public class GogoAnime {
 
         private static final String TAG = "Hello";
 
-        private static final String API_ENDPOINT = "https://consumet-rho.vercel.app/anime/gogoanime/top-airing?page=";
+        private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/top-airing?page=";
         boolean isLoading;
 
 
@@ -120,7 +120,7 @@ public class GogoAnime {
 
         @Override
         protected String doInBackground(Void... voids) {
-            String response = "";
+            StringBuilder response = new StringBuilder();
             try {
                 if (Home_TitleUrlList.isEmpty()) {
                     for (int page = 1; page <= 4; page++) {
@@ -130,6 +130,7 @@ public class GogoAnime {
                         }
 
                         URL url = new URL(API_ENDPOINT + page);
+                        Log.d("Url",url.toString());
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                         conn.setRequestMethod("GET");
                         conn.setRequestProperty("Content-Type", "application/json");
@@ -139,7 +140,7 @@ public class GogoAnime {
 
                         String line;
                         while ((line = reader.readLine()) != null) {
-                            response += line;
+                            response.append(line);
                         }
                         reader.close();
                         conn.disconnect();
@@ -151,7 +152,7 @@ public class GogoAnime {
 //                activity.runOnUiThread(() -> network_error.setVisibility(View.GONE));
                 isLoading = false;
 
-                return response;
+                return response.toString();
             } catch (IOException e) {
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
 //                activity.runOnUiThread(() -> network_error.setVisibility(View.VISIBLE));
@@ -242,7 +243,7 @@ public class GogoAnime {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://consumet-rho.vercel.app/anime/gogoanime/info/" + Ani_ID);
+                URL url = new URL("https://api.consumet.org/anime/gogoanime/info/" + Ani_ID);
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -338,7 +339,7 @@ public class GogoAnime {
     public static class GogoAnime_search extends AsyncTask<Void, Void, Void> {
         private static final String TAG = "Search";
 
-        private static final String API_ENDPOINT = "https://consumet-rho.vercel.app/anime/gogoanime/";
+        private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/";
         Activity activity;
         boolean is_added;
         String text;
@@ -479,7 +480,7 @@ public class GogoAnime {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://consumet-rho.vercel.app/anime/gogoanime/watch/" + episodeID_list.get(Current));
+                URL url = new URL("https://api.consumet.org/anime/gogoanime/watch/" + episodeID_list.get(Current));
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));

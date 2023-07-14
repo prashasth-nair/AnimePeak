@@ -89,7 +89,7 @@ public class Zoro {
 
         private static final String TAG = "Hello";
         boolean isLoading;
-        private static final String API_ENDPOINT = "https://consumet-rho.vercel.app/anime/zoro/get-top-airing-anime";
+        private static final String API_ENDPOINT = "https://api.consumet.org/anime/zoro/get-top-airing-anime";
 
         @Override
         protected void onPreExecute() {
@@ -231,7 +231,7 @@ public class Zoro {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://consumet-rho.vercel.app/anime/zoro/info?id=" + Ani_ID);
+                URL url = new URL("https://api.consumet.org/anime/zoro/info?id=" + Ani_ID);
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -304,7 +304,7 @@ public class Zoro {
     public static class Zoro_search extends AsyncTask<Void, Void, Void> {
         private static final String TAG = "Search";
 
-        private static final String API_ENDPOINT = "https://consumet-rho.vercel.app/anime/zoro/";
+        private static final String API_ENDPOINT = "https://api.consumet.org/anime/zoro/";
         Activity activity;
         boolean is_added;
         String text;
@@ -448,7 +448,7 @@ public class Zoro {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://consumet-rho.vercel.app/anime/zoro/watch?episodeId=" + episodeID_list.get(Current));
+                URL url = new URL("https://api.consumet.org/anime/zoro/watch?episodeId=" + episodeID_list.get(Current));
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
