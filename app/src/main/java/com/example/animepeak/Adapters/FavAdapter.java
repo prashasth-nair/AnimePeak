@@ -64,7 +64,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         Fav_object item = fav_list.get(position);
 
         // Get the source string for this item
-        String source = item.getFavSource();
+        String source = item.fav_source;
+
         if (source.equals(Source)) {
             Log.d("Source",Source);
             holder.ani_title.setText(fav_list.get(position).getTitle());
@@ -92,8 +93,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
             size = gogoCount;
         }else if (Source.equals("Zoro")){
             size = zoroCount;
-        }if (Source.equals("Hanime")){
-            size = hanimeCount;
         }
         return size;
     }

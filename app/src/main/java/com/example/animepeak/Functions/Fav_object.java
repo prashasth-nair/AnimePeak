@@ -2,18 +2,27 @@ package com.example.animepeak.Functions;
 
 import static com.example.animepeak.Activity.MainActivity.fav_list;
 
-public class Fav_object {
+import android.util.Log;
 
-    private String title;
-    private String id;
-    private String img;
-    private String fav_source;
+import java.io.Serializable;
 
+public class Fav_object implements Serializable {
+
+    public String title;
+    public String id;
+    public String img;
+    public String fav_source;
+    // Default constructor (no-argument constructor)
+    public Fav_object() {
+        // Required for Firebase deserialization
+    }
     public Fav_object(String title, String id, String img, String fav_source) {
         this.title = title;
         this.id = id;
         this.img = img;
         this.fav_source = fav_source;
+
+
     }
 
     public String getTitle() {

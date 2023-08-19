@@ -2,10 +2,13 @@ package com.example.animepeak.Activity;
 
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
+
 import static com.example.animepeak.Activity.MainActivity.fav_list;
+import static com.example.animepeak.Activity.MainActivity.is_login;
+import static com.example.animepeak.Activity.MainActivity.storeArrayToFirebase;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -22,10 +25,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.animepeak.R;
 
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
-import com.google.android.gms.auth.api.identity.SignInCredential;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -34,9 +36,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 
-import com.google.android.gms.drive.Drive;
-import com.google.android.gms.drive.DriveFolder;
-import com.google.android.gms.drive.MetadataChangeSet;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +48,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 
 public class Profile extends AppCompatActivity  {
     ImageView back;
@@ -57,7 +55,7 @@ public class Profile extends AppCompatActivity  {
     ImageView profile_dp;
     SignInButton signInButton;
     Button logout;
-//    private BeginSignInRequest signInRequest;
+
     private FirebaseAuth mAuth;
     private SignInClient oneTapClient;
     private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
@@ -131,6 +129,7 @@ public class Profile extends AppCompatActivity  {
                     public void onComplete(@NonNull Task<Void> task) {
                         signInButton.setVisibility(View.VISIBLE);
                         logout.setVisibility(View.GONE);
+                        fav_list.clear();
                     }
                 });
             }
@@ -186,6 +185,7 @@ public class Profile extends AppCompatActivity  {
 
                         .into(profile_dp);
                 signInButton.setVisibility(View.GONE);
+                is_login = true;
 //                Toast.makeText(Profile.this, account.getId(), Toast.LENGTH_SHORT).show();
                 // Get the Google ID token and authenticate with Firebase
                 AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -196,8 +196,11 @@ public class Profile extends AppCompatActivity  {
                                 if (task.isSuccessful()) {
                                     // User is successfully authenticated with Firebase.
                                     // Store the array in the user's Firebase database.
-                                    storeArrayToFirebase();
+                                    if (fav_list.size()>0) {
+                                        storeArrayToFirebase();
+                                    }
 //                                    Toast.makeText(Profile.this, "Successful", Toast.LENGTH_SHORT).show();
+
                                 } else {
                                     // Handle authentication failure.
                                     Toast.makeText(Profile.this, "Firebase authentication failed", Toast.LENGTH_SHORT).show();
@@ -205,6 +208,7 @@ public class Profile extends AppCompatActivity  {
                             }
                         });
                 logout.setVisibility(View.VISIBLE);
+//                RetreiveArrayFromFirebase();
 
             }
 
@@ -217,33 +221,6 @@ public class Profile extends AppCompatActivity  {
 
         }
     }
-    private void storeArrayToFirebase() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            String userId = user.getUid();
-            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child(userId);
-            Log.d("Here","Here");
 
-            databaseRef.setValue(fav_list)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(Profile.this, "Array stored in Firebase", Toast.LENGTH_SHORT).show();
-                                Log.d("Here","SUCCESS");
-                            } else {
-                                Toast.makeText(Profile.this, "Failed to store array in Firebase", Toast.LENGTH_SHORT).show();
-                                Log.d("Here","Failed");
-                            }
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d("Error",e.toString());
-                        }
-                    });
-        }
-    }
 
 }

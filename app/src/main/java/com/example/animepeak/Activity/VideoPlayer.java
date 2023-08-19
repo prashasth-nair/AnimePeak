@@ -1,7 +1,6 @@
 package com.example.animepeak.Activity;
 
 
-import static androidx.core.view.ViewCompat.animate;
 import static com.example.animepeak.Activity.Anime_Details.episodeID_list;
 
 
@@ -9,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
 
 
 import android.animation.Animator;
@@ -23,8 +21,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,32 +34,20 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
-import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayer;
 
-import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.source.SingleSampleMediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultAllocator;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.google.android.exoplayer2.util.MimeTypes;
-import com.google.android.exoplayer2.util.Util;
 import com.google.common.collect.ImmutableList;
 
 
@@ -71,9 +55,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
@@ -100,7 +82,6 @@ public class VideoPlayer extends AppCompatActivity {
     public static ExoPlayer player;
     private GogoAnime.Gogoanime_stream gogoanime_stream;
     private Zoro.Zoro_stream zoro_stream;
-    private Hanime.Hanime_stream hanime_stream;
     public static int video_quality_num = 0;
     public static int video_SUBTITLE_num = 0;
     public static List<String> video_quality = new ArrayList<>();
@@ -335,9 +316,6 @@ public class VideoPlayer extends AppCompatActivity {
                     if (zoro_stream != null) {
                         zoro_stream.cancel(true);
                     }
-                    if (hanime_stream != null) {
-                        hanime_stream.cancel(true);
-                    }
                     if (player != null) {
                         player.stop();
                     }
@@ -355,9 +333,6 @@ public class VideoPlayer extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
-                    } else if (Source.equals("Hanime")) {
-                        hanime_stream = new Hanime.Hanime_stream(VideoPlayer.this);
-                        hanime_stream.execute();
                     }
 
 
@@ -383,9 +358,6 @@ public class VideoPlayer extends AppCompatActivity {
                     if (zoro_stream != null) {
                         zoro_stream.cancel(true);
                     }
-                    if (hanime_stream != null) {
-                        hanime_stream.cancel(true);
-                    }
                     if (player != null) {
                         player.stop();
                     }
@@ -397,9 +369,6 @@ public class VideoPlayer extends AppCompatActivity {
 
                         zoro_stream = new Zoro.Zoro_stream(VideoPlayer.this);
                         zoro_stream.execute();
-                    } else if (Source.equals("Hanime")) {
-                        hanime_stream = new Hanime.Hanime_stream(VideoPlayer.this);
-                        hanime_stream.execute();
                     }
                 }
                 video_quality.clear();
@@ -418,9 +387,6 @@ public class VideoPlayer extends AppCompatActivity {
 
             zoro_stream = new Zoro.Zoro_stream(this);
             zoro_stream.execute();
-        } else if (Source.equals("Hanime")) {
-            hanime_stream = new Hanime.Hanime_stream(this);
-            hanime_stream.execute();
         }
         // Add a Player.EventListener to the player
         // Create a handler and a runnable to update the remaining time TextView on each player tick
@@ -558,9 +524,6 @@ public class VideoPlayer extends AppCompatActivity {
         }
         if (zoro_stream != null) {
             zoro_stream.cancel(true);
-        }
-        if (hanime_stream != null) {
-            hanime_stream.cancel(true);
         }
 
         if (player != null) {

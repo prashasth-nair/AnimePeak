@@ -8,42 +8,33 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.databinding.adapters.ViewBindingAdapter;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.example.animepeak.Activity.Anime_Details;
 import com.example.animepeak.Activity.Profile;
 import com.example.animepeak.Adapters.MainAdapter;
 
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
-import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -60,7 +51,7 @@ public class HomeFragment extends Fragment {
     public static List<String> Home_IDList = new ArrayList<>();
     public static GogoAnime.Gogoanime_popular gogoanime_popular;
     public static Zoro.Zoro_popular zoro_popular;
-    public static Hanime.Hanime_popular hanime_popular;
+
     CardView profile_card;
     String Source;
 
@@ -158,9 +149,6 @@ public class HomeFragment extends Fragment {
         } else if (Source.equals("Zoro")) {
             zoro_popular = new Zoro.Zoro_popular(getActivity(), isAdded());
             zoro_popular.execute();
-        } else if (Source.equals("Hanime")) {
-            hanime_popular = new Hanime.Hanime_popular(getActivity(), isAdded());
-            hanime_popular.execute();
         }
 
     }
@@ -219,9 +207,6 @@ public class HomeFragment extends Fragment {
             } else if (Source.equals("Zoro")) {
                 zoro_popular = new Zoro.Zoro_popular(getActivity(), isAdded());
                 zoro_popular.execute();
-            } else if (Source.equals("Hanime")) {
-                hanime_popular = new Hanime.Hanime_popular(getActivity(), isAdded());
-                hanime_popular.execute();
             }
         }
     }
@@ -235,7 +220,7 @@ public class HomeFragment extends Fragment {
             Home_TitleUrlList.clear();
             Home_imageUrlList.clear();
             Home_IDList.clear();
-            Log.d("Here","null");
+            
             if (gogoanime_popular != null  ) {
 
                 gogoanime_popular.cancel(true);
@@ -245,10 +230,7 @@ public class HomeFragment extends Fragment {
                 zoro_popular.cancel(true);
                 zoro_popular = null;
             }
-            if (hanime_popular != null ) {
-                hanime_popular.cancel(true);
-                hanime_popular = null;
-            }
+
         }
     }
 
@@ -259,7 +241,7 @@ public class HomeFragment extends Fragment {
         Home_imageUrlList.clear();
         Home_IDList.clear();
         if (gogoanime_popular != null  ) {
-            Log.d("Here","null");
+       
             gogoanime_popular.cancel(true);
             gogoanime_popular = null;
         }
@@ -267,10 +249,7 @@ public class HomeFragment extends Fragment {
             zoro_popular.cancel(true);
             zoro_popular = null;
         }
-        if (hanime_popular != null ) {
-            hanime_popular.cancel(true);
-            hanime_popular = null;
-        }
+
 
     }
 
@@ -299,7 +278,7 @@ public class HomeFragment extends Fragment {
         Home_imageUrlList.clear();
         Home_IDList.clear();
         if (gogoanime_popular != null  ) {
-            Log.d("Here","null");
+        
             gogoanime_popular.cancel(true);
             gogoanime_popular = null;
         }
@@ -307,10 +286,7 @@ public class HomeFragment extends Fragment {
             zoro_popular.cancel(true);
             zoro_popular = null;
         }
-        if (hanime_popular != null ) {
-            hanime_popular.cancel(true);
-            hanime_popular = null;
-        }
+
     }
 
 

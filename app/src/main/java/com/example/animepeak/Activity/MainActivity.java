@@ -1,10 +1,11 @@
 package com.example.animepeak.Activity;
 
+import static com.example.animepeak.Fragments.FavouriteFragment.countSource;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.gogoanime_popular;
-import static com.example.animepeak.Fragments.HomeFragment.hanime_popular;
+
 import static com.example.animepeak.Fragments.HomeFragment.zoro_popular;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.animepeak.Fragments.FavouriteFragment;
 import com.example.animepeak.Fragments.HomeFragment;
@@ -28,8 +31,23 @@ import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.Functions.UpdateApp;
 import com.example.animepeak.R;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -48,11 +66,16 @@ public class MainActivity extends AppCompatActivity {
     public static boolean is_auto_update = false;
     public static boolean is_home = false;
     public static ArrayList<Fav_object> fav_list ;
+    private static FirebaseAuth mAuth;
+    public static boolean is_login =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SplashScreen.installSplashScreen(this);
         setContentView(R.layout.activity_main);
+        FirebaseApp.initializeApp(this);
+        mAuth = FirebaseAuth.getInstance();
+
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
@@ -60,7 +83,19 @@ public class MainActivity extends AppCompatActivity {
         tr.addToBackStack(null);
         tr.commit();
 
-        fav_list = get_fav_list();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if (acct != null) {
+            is_login=true;
+            Log.d("Status","Sucess");
+        }else{
+            Log.d("Status","Failed");
+            is_login=false;
+        }
+
+        fav_list = new ArrayList<Fav_object>();
+
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         if (fav_list==null){
             fav_list = new ArrayList<>();
@@ -95,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
-                            Log.d("Here","null");
+                            
                             gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
@@ -103,10 +138,7 @@ public class MainActivity extends AppCompatActivity {
                             zoro_popular.cancel(true);
                             zoro_popular = null;
                         }
-                        if (hanime_popular != null ) {
-                            hanime_popular.cancel(true);
-                            hanime_popular = null;
-                        }
+
                         return true;
                     case R.id.fav:
                         item.setIcon(R.drawable.baseline_favorite_24_selected);
@@ -117,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
-                            Log.d("Here","null");
+                           
                             gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
@@ -125,10 +157,7 @@ public class MainActivity extends AppCompatActivity {
                             zoro_popular.cancel(true);
                             zoro_popular = null;
                         }
-                        if (hanime_popular != null ) {
-                            hanime_popular.cancel(true);
-                            hanime_popular = null;
-                        }
+
                         return true;
                     case R.id.settings:
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
@@ -136,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
-                            Log.d("Here","null");
+                            
                             gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
@@ -144,10 +173,7 @@ public class MainActivity extends AppCompatActivity {
                             zoro_popular.cancel(true);
                             zoro_popular = null;
                         }
-                        if (hanime_popular != null ) {
-                            hanime_popular.cancel(true);
-                            hanime_popular = null;
-                        }
+
                         return true;
 
                 }
@@ -173,4 +199,43 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+    public static void storeArrayToFirebase() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+            Fav_object favObject = fav_list.get(0);
+            Log.d("Fav", "Title: " + favObject.title);
+            Log.d("Fav", "ID: " + favObject.id);
+            Log.d("Fav", "Image: " + favObject.img);
+            Log.d("Fav", "Fav Source: " + favObject.fav_source);
+
+            databaseRef.setValue(fav_list)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+//                                Toast.makeText(MainActivity.this, "Array stored in Firebase", Toast.LENGTH_SHORT).show();
+                                Log.d("Here","SUCCESS");
+                            } else {
+//                                Toast.makeText(MainActivity.this, "Failed to store array in Firebase", Toast.LENGTH_SHORT).show();
+                                Log.d("Here","Failed");
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("Error",e.toString());
+                        }
+                    });
+        }
+    }
+
+
+
+
+
+
 }

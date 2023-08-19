@@ -2,6 +2,8 @@ package com.example.animepeak.Activity;
 
 import static com.example.animepeak.Activity.MainActivity.fav_list;
 
+import static com.example.animepeak.Activity.MainActivity.is_login;
+import static com.example.animepeak.Activity.MainActivity.storeArrayToFirebase;
 import static com.example.animepeak.Functions.Fav_object.removeFavByID;
 
 import androidx.annotation.NonNull;
@@ -41,7 +43,6 @@ import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
-import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
 import com.google.gson.Gson;
 
@@ -83,7 +84,6 @@ public class Anime_Details extends AppCompatActivity {
     public static List<String> episodeID_list = new ArrayList<>();
     GogoAnime.Gogoanime_details gogoanime_details;
     Zoro.Zoro_details zoro_details;
-    Hanime.Hanime_details hanime_details;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -91,6 +91,7 @@ public class Anime_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_anime_details);
+
 
 
         Toolbar customToolbar = findViewById(R.id.custom_toolbar);
@@ -130,22 +131,32 @@ public class Anime_Details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Change heart icon's color and/or image
-                if (!is_fav) {
-                    is_fav = true;
-                    favoriteButton.setColorFilter(Color.RED);
-                    favoriteButton.setImageResource(R.drawable.baseline_favorite_24_selected);
-                    SharedPreferences sharedpreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
-                    String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
-                    fav_list.add(new Fav_object(Title, Ani_ID,img,Source));
-                }else{
-                    is_fav = false;
-                    favoriteButton.setColorFilter(Color.WHITE);
-                    favoriteButton.setImageResource(R.drawable.baseline_favorite_unselected);
-                    removeFavByID(Ani_ID);
+                if (is_login) {
+                    if (!is_fav) {
+                        is_fav = true;
+                        favoriteButton.setColorFilter(Color.RED);
+                        favoriteButton.setImageResource(R.drawable.baseline_favorite_24_selected);
+                        SharedPreferences sharedpreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                        String source = sharedpreferences.getString("Source_Name", "GogoAnime");
+
+                        if (source != null && !source.isEmpty()) {
+                            Fav_object favObject = new Fav_object(Title, Ani_ID, img, source);
+                            fav_list.add(favObject);
+
+                        }
+
+                    } else {
+                        is_fav = false;
+                        favoriteButton.setColorFilter(Color.WHITE);
+                        favoriteButton.setImageResource(R.drawable.baseline_favorite_unselected);
+                        removeFavByID(Ani_ID);
+
+                    }
+
+
+                    save_Fav_List();
 
                 }
-
-                save_Fav_List();
             }
         });
 
@@ -179,12 +190,14 @@ public class Anime_Details extends AppCompatActivity {
         // Convert the fav_list ArrayList to a JSON string
         Gson gson = new Gson();
         String favListJson = gson.toJson(fav_list);
+//        Log.d("")
 
         // Save the JSON string to SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("favListJson", favListJson);
         editor.apply();
+        storeArrayToFirebase();
     }
 
     public static List<String> extractEpisodeIds(String json) {
@@ -232,13 +245,7 @@ public class Anime_Details extends AppCompatActivity {
                         zoro_details.execute();
                     }
                     break;
-                case "Hanime":
-                    hanime_details = new Hanime.Hanime_details(this);
-                    if (hanime_details.getStatus() != AsyncTask.Status.RUNNING) {
 
-                        hanime_details.execute();
-                    }
-                    break;
             }
 
 
@@ -281,10 +288,7 @@ public class Anime_Details extends AppCompatActivity {
             zoro_details.cancel(true);
             zoro_details=null;
         }
-        if (hanime_details != null) {
-            hanime_details.cancel(true);
-            hanime_details =null;
-        }
+
 
     }
 
@@ -320,10 +324,6 @@ public class Anime_Details extends AppCompatActivity {
         if (zoro_details != null) {
             zoro_details.cancel(true);
             zoro_details =null;
-        }
-        if (hanime_details != null) {
-            hanime_details.cancel(true);
-            hanime_details =null;
         }
 
     }

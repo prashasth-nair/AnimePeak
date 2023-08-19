@@ -146,10 +146,6 @@ public class SettingsFragment extends Fragment {
 
             autoCompleteTextView.setText("Zoro");
 
-        } else if (Current_Source.equals("Hanime")) {
-
-            autoCompleteTextView.setText("Hanime");
-
         }
         if (Current_Quality.equals("360p")) {
 
@@ -178,8 +174,6 @@ public class SettingsFragment extends Fragment {
                 } else if (adapterView.getItemAtPosition(i).toString().equals("Zoro")) {
                     editor.putString("Source_Name", "Zoro");
 
-                } else if (adapterView.getItemAtPosition(i).toString().equals("Hanime")) {
-                    editor.putString("Source_Name", "Hanime");
                 }
 
                 editor.commit();

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +13,6 @@ import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,12 +20,10 @@ import android.view.ViewGroup;
 
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
-import com.example.animepeak.Sources.Hanime;
 import com.example.animepeak.Sources.Zoro;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
@@ -48,7 +43,6 @@ public class SearchFragment extends Fragment {
     public static List<String> Search_IDList = new ArrayList<>();
     GogoAnime.GogoAnime_search gogoAnime_search;
     Zoro.Zoro_search zoro_search;
-    Hanime.Hanime_search hanime_search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,9 +93,6 @@ public class SearchFragment extends Fragment {
                 } else if (Source.equals("Zoro")) {
                     zoro_search = new Zoro.Zoro_search(getActivity(), isAdded(),query);
                     zoro_search.execute();
-                } else if (Source.equals("Hanime")) {
-                    hanime_search = new Hanime.Hanime_search(getActivity(), isAdded(),query);
-                    hanime_search.execute();
                 }
             }
 

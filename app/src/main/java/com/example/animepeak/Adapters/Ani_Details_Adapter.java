@@ -1,7 +1,6 @@
 package com.example.animepeak.Adapters;
 
 import static com.example.animepeak.Activity.Anime_Details.Title;
-import static com.example.animepeak.Sources.Hanime.Hanime_details.HID;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -53,18 +52,12 @@ public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapte
 
             SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
             String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
-            if (Source.equals("Hanime")) {
 
-                id = String.valueOf(HID);
+            JSONObject firstElement = episodes.getJSONObject(position);
+            name = firstElement.getString("number");
+            id = firstElement.getString("id");
 
-                holder.episode_name.setText("1");
-            } else {
-                JSONObject firstElement = episodes.getJSONObject(position);
-                name = firstElement.getString("number");
-                id = firstElement.getString("id");
-
-                holder.episode_name.setText(name);
-            }
+            holder.episode_name.setText(name);
 
 
             holder.episode_name.setOnClickListener(new View.OnClickListener() {
@@ -72,17 +65,10 @@ public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapte
                 public void onClick(View view) {
                     Intent intent = new Intent(activity, VideoPlayer.class);
 
-                    if (Source.equals("Hanime")) {
-                        id = String.valueOf(HID);
-                        intent.putExtra("ID", id);
-                        intent.putExtra("Length", 1);
-                    }
 
+                    intent.putExtra("Title", Title);
+                    intent.putExtra("current_episode", position);
 
-                    if (!Source.equals("Hanime")) {
-                        intent.putExtra("Title", Title);
-                        intent.putExtra("current_episode", position);
-                    }
                     activity.startActivity(intent);
 
 
@@ -97,13 +83,9 @@ public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapte
 
     @Override
     public int getItemCount() {
-        SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
-        if (Source.equals("Hanime")) {
-            return 1;
-        } else {
-            return episodes.length();
-        }
+
+        return episodes.length();
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

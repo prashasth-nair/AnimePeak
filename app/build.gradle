@@ -59,7 +59,7 @@ dependencies {
 
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-auth:22.0.0'
+    implementation 'com.google.firebase:firebase-auth:22.1.1'
 
 
     // Also add the dependency for the Google Play services library and specify its version
@@ -68,10 +68,10 @@ dependencies {
 
 
 //    Exoplayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.19.0'
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.19.0'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.19.0'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.19.0'
+    implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.19.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.19.1'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.19.1'
     //Expandable TextView
     implementation 'io.github.glailton.expandabletextview:expandabletextview:1.0.3'
 
