@@ -139,7 +139,7 @@ public class Anime_Details extends AppCompatActivity {
                         SharedPreferences sharedpreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
                         String source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
-                        if (source != null && !source.isEmpty()) {
+                        if (!source.isEmpty()) {
                             Fav_object favObject = new Fav_object(Title, Ani_ID, img, source);
                             fav_list.add(favObject);
 
@@ -155,6 +155,7 @@ public class Anime_Details extends AppCompatActivity {
 
 
                     save_Fav_List();
+
 
                 }
             }
@@ -288,7 +289,7 @@ public class Anime_Details extends AppCompatActivity {
             zoro_details.cancel(true);
             zoro_details=null;
         }
-
+    finish();
 
     }
 

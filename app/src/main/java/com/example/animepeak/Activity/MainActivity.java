@@ -205,11 +205,6 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             String userId = user.getUid();
             DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
-            Fav_object favObject = fav_list.get(0);
-            Log.d("Fav", "Title: " + favObject.title);
-            Log.d("Fav", "ID: " + favObject.id);
-            Log.d("Fav", "Image: " + favObject.img);
-            Log.d("Fav", "Fav Source: " + favObject.fav_source);
 
             databaseRef.setValue(fav_list)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -232,10 +227,4 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
     }
-
-
-
-
-
-
 }

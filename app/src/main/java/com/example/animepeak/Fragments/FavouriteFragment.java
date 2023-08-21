@@ -232,17 +232,18 @@ public class FavouriteFragment extends Fragment {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
-            RetreiveArrayFromFirebase();
+//            RetreiveArrayFromFirebase();
         } else {
             fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
-            RetreiveArrayFromFirebase();
+//            RetreiveArrayFromFirebase();
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        RetreiveArrayFromFirebase();
+
+//        RetreiveArrayFromFirebase();
     }
     @SuppressLint("NotifyDataSetChanged")
     public static void countSource(Activity activity){
