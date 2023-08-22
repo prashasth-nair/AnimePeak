@@ -107,21 +107,6 @@ public class FavouriteFragment extends Fragment {
             // Landscape orientation
             fav_recycler.setLayoutManager(new GridLayoutManager(requireView().getContext(), 4));
         }
-        // Build a GoogleSignInClient with the options specified by gso.
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(requireContext());
-        if (acct != null) {
-            is_login=true;
-            Log.d("Status","Sucess");
-            RetreiveArrayFromFirebase();
-        }else{
-            Log.d("Status","Failed");
-            is_login=false;
-            fav_list.clear();
-
-        }
-
-
-//        countSource(getActivity());
 
     }
     public void removeArrayFromFirebase(){
@@ -149,8 +134,9 @@ public class FavouriteFragment extends Fragment {
     }
     public void RetreiveArrayFromFirebase(){
         FirebaseUser user = mAuth.getCurrentUser();
+        fav_list.clear();
         if (user != null) {
-            fav_list.clear();
+
             String userId = user.getUid();
             DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
             databaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -178,6 +164,12 @@ public class FavouriteFragment extends Fragment {
                         // ...
                     } else {
                         // Handle the case when the array does not exist in the database
+                        countSource(getActivity());
+                        if (fav_list.size()==0){
+                            no_fav.setVisibility(View.VISIBLE);
+                        }else {
+                            no_fav.setVisibility(View.GONE);
+                        }
                     }
                 }
 
@@ -243,7 +235,19 @@ public class FavouriteFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-//        RetreiveArrayFromFirebase();
+        // Build a GoogleSignInClient with the options specified by gso.
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(requireContext());
+        fav_list.clear();
+        if (acct != null) {
+            is_login=true;
+            Log.d("Status","Sucess");
+            RetreiveArrayFromFirebase();
+        }else{
+            Log.d("Status","Failed");
+            is_login=false;
+
+
+        }
     }
     @SuppressLint("NotifyDataSetChanged")
     public static void countSource(Activity activity){

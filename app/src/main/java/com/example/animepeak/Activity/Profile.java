@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,15 +56,16 @@ public class Profile extends AppCompatActivity  {
     ImageView profile_dp;
     SignInButton signInButton;
     Button logout;
+    public Uri personPhoto ;
 
     private FirebaseAuth mAuth;
-    private SignInClient oneTapClient;
-    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+//    private SignInClient oneTapClient;
+//    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private static final int RC_SIGN_IN = 100;  // Can be any integer unique to the Activity.
-    private boolean showOneTapUI = true;
+//    private boolean showOneTapUI = true;
 
     GoogleSignInClient mGoogleSignInClient;
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "CheckResult"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +87,7 @@ public class Profile extends AppCompatActivity  {
                 finish();
             }
         });
-        oneTapClient = Identity.getSignInClient(Profile.this);
+//        oneTapClient = Identity.getSignInClient(Profile.this);
 
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -107,12 +109,11 @@ public class Profile extends AppCompatActivity  {
             String personFamilyName = acct.getFamilyName();
             String personEmail = acct.getEmail();
             String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
+            personPhoto = acct.getPhotoUrl();
 
             name.setText(personName);
             Glide.with(this)
                     .load(personPhoto)
-
                     .into(profile_dp);
             signInButton.setVisibility(View.GONE);
             logout.setVisibility(View.VISIBLE);
@@ -120,6 +121,10 @@ public class Profile extends AppCompatActivity  {
         else{
             signInButton.setVisibility(View.VISIBLE);
             logout.setVisibility(View.GONE);
+            Glide.with(this)
+                    .load(R.raw.boy1)
+                    .into(profile_dp);
+            name.setText("John Doe");
         }
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +134,10 @@ public class Profile extends AppCompatActivity  {
                     public void onComplete(@NonNull Task<Void> task) {
                         signInButton.setVisibility(View.VISIBLE);
                         logout.setVisibility(View.GONE);
+                        Glide.with(Profile.this)
+                                .load(R.raw.boy1)
+                                .into(profile_dp);
+                        name.setText("John Doe");
                         fav_list.clear();
                     }
                 });
@@ -208,7 +217,6 @@ public class Profile extends AppCompatActivity  {
                             }
                         });
                 logout.setVisibility(View.VISIBLE);
-//                RetreiveArrayFromFirebase();
 
             }
 

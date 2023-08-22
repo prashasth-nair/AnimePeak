@@ -60,6 +60,7 @@
             app:cardCornerRadius="40dp">
 
             <ImageView
+                android:id="@+id/Profile_pic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"

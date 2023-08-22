@@ -2,12 +2,14 @@ package com.example.animepeak.Fragments;
 
 import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 
+
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,12 +29,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.Profile;
 import com.example.animepeak.Adapters.MainAdapter;
 
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
 import com.example.animepeak.Sources.Zoro;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import java.util.ArrayList;
@@ -46,6 +53,7 @@ public class HomeFragment extends Fragment {
     public static ImageView home_loading;
     public static TextView network_error;
     TextView titleText;
+    public ImageView profile;
     public static List<String> Home_TitleUrlList = new ArrayList<>();
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
@@ -54,7 +62,8 @@ public class HomeFragment extends Fragment {
 
     CardView profile_card;
     String Source;
-
+    private FirebaseAuth mAuth;
+    public Uri personPhoto;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -70,6 +79,19 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.home);
+        mAuth = FirebaseAuth.getInstance();
+        // Build a GoogleSignInClient with the options specified by gso.
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+        if (acct != null) {
+            personPhoto = acct.getPhotoUrl();
+            Glide.with(this)
+                    .load(personPhoto)
+                    .into(profile);
+        }else{
+            Glide.with(this)
+                    .load(R.raw.boy1)
+                    .into(profile);
+        }
     }
 
 
@@ -85,6 +107,10 @@ public class HomeFragment extends Fragment {
         network_error = (TextView) getView().findViewById(R.id.net_error);
         titleText = (TextView) getView().findViewById(R.id.home_title);
         profile_card = (CardView) getView().findViewById(R.id.profile_card);
+        profile = getView().findViewById(R.id.Profile_pic);
+
+        FirebaseApp.initializeApp(getActivity());
+
 
         profile_card.setOnClickListener(new View.OnClickListener() {
             @Override

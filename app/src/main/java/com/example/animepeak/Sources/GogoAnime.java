@@ -84,13 +84,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
 public class GogoAnime {
     //    GogoAnime
-    public static class Gogoanime_popular extends AsyncTask<Void, Void, String> {
+    public static class Gogoanime_popular extends AsyncTask<Void, Void, List<String> > {
         @SuppressLint("StaticFieldLeak")
         Activity activity;
         boolean is_added;
@@ -107,6 +109,7 @@ public class GogoAnime {
 
 
 
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -119,11 +122,13 @@ public class GogoAnime {
         }
 
         @Override
-        protected String doInBackground(Void... voids) {
-            StringBuilder response = new StringBuilder();
+        protected List<String>  doInBackground(Void... voids) {
+
+            List<String> Results = new ArrayList<>();
             try {
                 if (Home_TitleUrlList.isEmpty()) {
-                    for (int page = 1; page <= 4; page++) {
+                    for (int page = 1; page <= 20; page++) {
+                        StringBuilder response = new StringBuilder();
                         if (isCancelled()) {
                             Log.d("Here", "Cancel");
                             break; // Exit the loop if the task is canceled
@@ -144,7 +149,7 @@ public class GogoAnime {
                         }
                         reader.close();
                         conn.disconnect();
-
+                        Results.add(response.toString());
 
                     }
                 }
@@ -152,7 +157,7 @@ public class GogoAnime {
 //                activity.runOnUiThread(() -> network_error.setVisibility(View.GONE));
                 isLoading = false;
 
-                return response.toString();
+                return Results;
             } catch (IOException e) {
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
 //                activity.runOnUiThread(() -> network_error.setVisibility(View.VISIBLE));
@@ -162,37 +167,42 @@ public class GogoAnime {
         }
 
         @Override
-        protected void onPostExecute(String response) {
+        protected void onPostExecute(List<String>  response) {
             super.onPostExecute(response);
             if (is_added&&response!=null) {
                 JSONObject jsonObject = null;
-                try {
-                    jsonObject = new JSONObject(response.toString());
-                    JSONArray animeList = jsonObject.getJSONArray("results");
+                for (int j = 0; j < response.size(); j++) {
+                    try {
+                        jsonObject = new JSONObject(response.get(j).toString());
 
-                    for (int i = 0; i < animeList.length(); i++) {
-                        if (isCancelled()) {
-                            Log.d("Here", "Cancel");
-                            break; // Exit the loop if the task is canceled
-                        }
-                        JSONObject anime = animeList.getJSONObject(i);
-                        String title = anime.getString("title");
-                        String image = anime.getString("image");
-                        String ani_id = anime.getString("id");
+                        JSONArray animeList = jsonObject.getJSONArray("results");
+                        Log.d("Anime", String.valueOf(animeList.length()));
 
-                        if (!title.isEmpty() && !image.isEmpty() && !ani_id.isEmpty()) {
-                            Home_TitleUrlList.add(title);
-                            Home_imageUrlList.add(image);
-                            Home_IDList.add(ani_id);
+                        for (int i = 0; i < animeList.length(); i++) {
+                            if (isCancelled()) {
+                                Log.d("Here", "Cancel");
+                                break; // Exit the loop if the task is canceled
+                            }
+                            JSONObject anime = animeList.getJSONObject(i);
+                            String title = anime.getString("title");
+                            String image = anime.getString("image");
+                            String ani_id = anime.getString("id");
+
+                            if (!title.isEmpty() && !image.isEmpty() && !ani_id.isEmpty()) {
+                                Home_TitleUrlList.add(title);
+                                Home_imageUrlList.add(image);
+                                Home_IDList.add(ani_id);
+                            }
                         }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
 
-                MainAdapter mainAdapter = new MainAdapter(activity, Home_TitleUrlList, Home_imageUrlList, Home_IDList);
-                recyclerView.setAdapter(mainAdapter);
+
+                }
             }
+            MainAdapter mainAdapter = new MainAdapter(activity, Home_TitleUrlList, Home_imageUrlList, Home_IDList);
+            recyclerView.setAdapter(mainAdapter);
 
             // Check if loading animation is still visible before hiding it
             if (home_loading.getVisibility() == View.VISIBLE) {
