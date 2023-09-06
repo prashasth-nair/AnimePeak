@@ -78,6 +78,7 @@ public class VideoPlayer extends AppCompatActivity {
     TextView EpisodeName;
     public static TextView exo_quality_txt;
     public static TextView exo_remaining_time;
+    public static ImageView video_loading;
 
     public static ExoPlayer player;
     private GogoAnime.Gogoanime_stream gogoanime_stream;
@@ -99,6 +100,7 @@ public class VideoPlayer extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         videoView = findViewById(R.id.videoView);
+        video_loading = findViewById(R.id.loading);
 
 
         Intent intent = getIntent();
@@ -311,7 +313,7 @@ public class VideoPlayer extends AppCompatActivity {
                     int Episode = Current + 1;
                     EpisodeName.setText("Episode: " + Episode);
                     if (gogoanime_stream != null) {
-                        gogoanime_stream.cancel(true);
+                        gogoanime_stream.Cancel();
                     }
                     if (zoro_stream != null) {
                         zoro_stream.cancel(true);
@@ -353,7 +355,7 @@ public class VideoPlayer extends AppCompatActivity {
                 if (next_int < episodeID_list.size()) {
                     Current = next_int;
                     if (gogoanime_stream != null) {
-                        gogoanime_stream.cancel(true);
+                        gogoanime_stream.Cancel();
                     }
                     if (zoro_stream != null) {
                         zoro_stream.cancel(true);
@@ -502,6 +504,9 @@ public class VideoPlayer extends AppCompatActivity {
         super.onBackPressed();
         video_quality.clear();
         video_subtitles.clear();
+        if (gogoanime_stream != null) {
+            gogoanime_stream.Cancel();
+        }
         if (player != null) {
 
 
@@ -520,7 +525,7 @@ public class VideoPlayer extends AppCompatActivity {
         video_quality.clear();
         video_subtitles.clear();
         if (gogoanime_stream != null) {
-            gogoanime_stream.cancel(true);
+            gogoanime_stream.Cancel();
         }
         if (zoro_stream != null) {
             zoro_stream.cancel(true);

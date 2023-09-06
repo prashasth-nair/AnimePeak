@@ -233,10 +233,7 @@ public class Anime_Details extends AppCompatActivity {
             switch (Source) {
                 case "GogoAnime":
                     gogoanime_details = new GogoAnime.Gogoanime_details(this);
-                    if (gogoanime_details.getStatus() != AsyncTask.Status.RUNNING) {
-
-                        gogoanime_details.execute();
-                    }
+                    gogoanime_details.execute();
 
                     break;
                 case "Zoro":
@@ -282,7 +279,6 @@ public class Anime_Details extends AppCompatActivity {
         episodeID_list.clear();
 
         if (gogoanime_details != null) {
-            gogoanime_details.cancel(true);
             gogoanime_details = null;
         }
         if (zoro_details != null) {
@@ -319,7 +315,8 @@ public class Anime_Details extends AppCompatActivity {
         episodeID_list.clear();
 
         if (gogoanime_details != null) {
-            gogoanime_details.cancel(true);
+            gogoanime_details.executor.shutdown();
+
             gogoanime_details=null;
         }
         if (zoro_details != null) {

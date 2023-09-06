@@ -249,8 +249,8 @@ public class HomeFragment extends Fragment {
             
             if (gogoanime_popular != null  ) {
 
-                gogoanime_popular.cancel(true);
-                gogoanime_popular = null;
+//                gogoanime_popular.cancel(true);
+//                gogoanime_popular = null;
             }
             if (zoro_popular != null ) {
                 zoro_popular.cancel(true);
@@ -268,7 +268,7 @@ public class HomeFragment extends Fragment {
         Home_IDList.clear();
         if (gogoanime_popular != null  ) {
        
-            gogoanime_popular.cancel(true);
+//            gogoanime_popular.cancel(true);
             gogoanime_popular = null;
         }
         if (zoro_popular != null ) {
@@ -305,7 +305,7 @@ public class HomeFragment extends Fragment {
         Home_IDList.clear();
         if (gogoanime_popular != null  ) {
         
-            gogoanime_popular.cancel(true);
+//            gogoanime_popular.cancel(true);
             gogoanime_popular = null;
         }
         if (zoro_popular != null ) {

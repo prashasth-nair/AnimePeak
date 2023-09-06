@@ -152,9 +152,7 @@ public class SearchFragment extends Fragment {
         Search_imageUrlList.clear();
         Search_IDList.clear();
 
-        if (gogoAnime_search != null) {
-            gogoAnime_search.cancel(true);
-        }
+
         if (zoro_search != null) {
             zoro_search.cancel(true);
         }

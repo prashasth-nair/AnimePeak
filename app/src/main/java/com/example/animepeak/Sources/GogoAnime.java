@@ -29,6 +29,7 @@ import static com.example.animepeak.Activity.VideoPlayer.previous_eps;
 import static com.example.animepeak.Activity.VideoPlayer.sources;
 import static com.example.animepeak.Activity.VideoPlayer.videoView;
 
+import static com.example.animepeak.Activity.VideoPlayer.video_loading;
 import static com.example.animepeak.Activity.VideoPlayer.video_quality;
 import static com.example.animepeak.Activity.VideoPlayer.video_quality_num;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
@@ -87,55 +88,63 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 
 public class GogoAnime {
     //    GogoAnime
-    public static class Gogoanime_popular extends AsyncTask<Void, Void, List<String> > {
-        @SuppressLint("StaticFieldLeak")
-        Activity activity;
-        boolean is_added;
+    public static class Gogoanime_popular {
 
+        private static final String TAG = "Hello";
+        private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/top-airing?page=";
+        private boolean isLoading;
+
+        private final Activity activity;
+        private final boolean is_added;
+        ExecutorService executor;
         public Gogoanime_popular(Activity activity, boolean is_added) {
             this.activity = activity;
             this.is_added = is_added;
+            executor = Executors.newSingleThreadExecutor();
         }
 
-        private static final String TAG = "Hello";
+        public void execute() {
+            onPreExecute();
 
-        private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/top-airing?page=";
-        boolean isLoading;
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    List<String> results = doInBackground();
+                    onPostExecute(results);
+                }
+            });
+            executor.shutdown();
+        }
 
-
-
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
+        private void onPreExecute() {
             isLoading = true;
             // Display loading animation
-            Glide.with(activity)
-                    .asGif()
-                    .load(R.raw.loading_animation)
-                    .into(home_loading);
+            activity.runOnUiThread(() -> {
+                // Your code for displaying loading animation goes here
+                Glide.with(activity)
+                        .asGif()
+                        .load(R.raw.loading_animation)
+                        .into(home_loading);
+            });
         }
 
-        @Override
-        protected List<String>  doInBackground(Void... voids) {
-
+        private List<String> doInBackground() {
             List<String> Results = new ArrayList<>();
             try {
                 if (Home_TitleUrlList.isEmpty()) {
                     for (int page = 1; page <= 20; page++) {
                         StringBuilder response = new StringBuilder();
-                        if (isCancelled()) {
-                            Log.d("Here", "Cancel");
-                            break; // Exit the loop if the task is canceled
-                        }
+
 
                         URL url = new URL(API_ENDPOINT + page);
-                        Log.d("Url",url.toString());
+                        Log.d("Url", url.toString());
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                         conn.setRequestMethod("GET");
                         conn.setRequestProperty("Content-Type", "application/json");
@@ -150,39 +159,35 @@ public class GogoAnime {
                         reader.close();
                         conn.disconnect();
                         Results.add(response.toString());
-
                     }
                 }
 
-//                activity.runOnUiThread(() -> network_error.setVisibility(View.GONE));
-                isLoading = false;
+                activity.runOnUiThread(() -> {
+                    // Your code to update UI elements goes here
+                });
 
+                isLoading = false;
                 return Results;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
-//                activity.runOnUiThread(() -> network_error.setVisibility(View.VISIBLE));
                 isLoading = false;
                 return null;
             }
         }
 
-        @Override
-        protected void onPostExecute(List<String>  response) {
-            super.onPostExecute(response);
-            if (is_added&&response!=null) {
+        private void onPostExecute(List<String> response) {
+            boolean is_available;
+            if (is_added && response != null) {
+                is_available = true;
                 JSONObject jsonObject = null;
                 for (int j = 0; j < response.size(); j++) {
                     try {
                         jsonObject = new JSONObject(response.get(j).toString());
-
                         JSONArray animeList = jsonObject.getJSONArray("results");
                         Log.d("Anime", String.valueOf(animeList.length()));
 
                         for (int i = 0; i < animeList.length(); i++) {
-                            if (isCancelled()) {
-                                Log.d("Here", "Cancel");
-                                break; // Exit the loop if the task is canceled
-                            }
+
                             JSONObject anime = animeList.getJSONObject(i);
                             String title = anime.getString("title");
                             String image = anime.getString("image");
@@ -197,58 +202,84 @@ public class GogoAnime {
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }
-
-
                 }
+            } else {
+                is_available = false;
             }
-            MainAdapter mainAdapter = new MainAdapter(activity, Home_TitleUrlList, Home_imageUrlList, Home_IDList);
-            recyclerView.setAdapter(mainAdapter);
 
-            // Check if loading animation is still visible before hiding it
-            if (home_loading.getVisibility() == View.VISIBLE) {
-                home_loading.setVisibility(View.GONE);
-            }
+            activity.runOnUiThread(() -> {
+                // Your code to update UI elements goes here
+                // Check if loading animation is still visible before hiding it
+
+                if (home_loading.getVisibility() == View.VISIBLE) {
+                    home_loading.setVisibility(View.GONE);
+                }
+
+            });
+
 
             // Show or hide the network error based on loading status and data availability
-            if (!isLoading && Home_TitleUrlList.isEmpty()) {
-                network_error.setVisibility(View.VISIBLE);
-            } else {
-                network_error.setVisibility(View.GONE);
-            }
+            activity.runOnUiThread(() -> {
+                // Your code to handle network error visibility goes here
+                if (!is_available){
+                    network_error.setVisibility(View.VISIBLE);
+                }else {
+                    network_error.setVisibility(View.GONE);
+                }
+            });
         }
 
+        public void Cancel() {
+            // Implement your cancellation logic here
+            executor.shutdownNow();
 
+        }
     }
 
-    public static class Gogoanime_details extends AsyncTask<Void, Void, String> {
+    public static class Gogoanime_details {
         Activity activity;
         int originalOrientation;
         int Error;
+        public ExecutorService executor;
 
         public Gogoanime_details(Activity activity) {
             this.activity = activity;
         }
 
-        @Override
+        public void execute() {
+            onPreExecute();
+            executor = Executors.newSingleThreadExecutor();
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    String result = doInBackground();
+                    onPostExecute(result);
+                }
+            });
+            executor.shutdown();
+        }
+
         protected void onPreExecute() {
-            super.onPreExecute();
             // Store the original orientation.
             originalOrientation = activity.getRequestedOrientation();
 
             // Lock the orientation to the current orientation.
             int currentOrientation = activity.getResources().getConfiguration().orientation;
             activity.setRequestedOrientation(currentOrientation);
-            anime_details.setVisibility(View.GONE);
-            episode_text.setVisibility(View.GONE);
-            Glide.with(activity)
-                    .asGif()
-                    .load(R.raw.loading_animation)
-                    .into(details_loading);
+            activity.runOnUiThread(() -> {
+                // Your code for displaying loading animation goes here
+                anime_details.setVisibility(View.GONE);
+                episode_text.setVisibility(View.GONE);
+                Glide.with(activity)
+                        .asGif()
+                        .load(R.raw.loading_animation)
+                        .into(details_loading);
+            });
+
         }
 
 
-        @Override
-        protected String doInBackground(Void... voids) {
+        protected String doInBackground() {
             String result = "";
             HttpURLConnection urlConnection = null;
             try {
@@ -280,23 +311,15 @@ public class GogoAnime {
             return result;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
 
-            details_loading.setVisibility(View.GONE);
-            if (Error == 0) {
-                net_error_ani_details.setVisibility(View.GONE);
-                anime_details.setVisibility(View.VISIBLE);
-                episode_text.setVisibility(View.VISIBLE);
+        protected void onPostExecute(String result) {
 
                 try {
-
                     JSONObject jsonObject = new JSONObject(result);
                     img = jsonObject.getString("image");
                     releasedDate = jsonObject.getString("releaseDate");
                     status = jsonObject.getString("status");
-
+                    desc = jsonObject.getString("description");
                     if (episodes.length() == 0) {
 
                         episodes = jsonObject.getJSONArray("episodes");
@@ -304,11 +327,8 @@ public class GogoAnime {
 
                     }
 
-                    Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
-                    details_recyclerView.setAdapter(ani_details_adapter);
-
                     genres = jsonObject.getJSONArray("genres");
-                    if (genres.length()>4){
+                    if (genres.length() > 4) {
                         JSONArray firstThreeItems = new JSONArray();
                         for (int i = 0; i < 4 && i < genres.length(); i++) {
                             firstThreeItems.put(genres.getString(i));
@@ -316,37 +336,58 @@ public class GogoAnime {
                         }
                         genres = firstThreeItems;
                     }
-                    Ani_Details_Genre_Adapter ani_details_genre_adapter = new Ani_Details_Genre_Adapter(activity, genres);
-                    genre_recyclerView.setAdapter(ani_details_genre_adapter);
-
-                    Release.setText("Release Date: " + releasedDate);
-                    Anime_Details.Status.setText("Status: " + status);
-                    Glide.with(activity)
-                            .load(img)
-                            .into(Anime_Image);
-
-
-                    desc = jsonObject.getString("description");
-                    expandableTextView.setText(desc);
-                    expandableTextView.setReadMoreText("More");
-                    expandableTextView.setReadLessText("Less");
-//
-                    expandableTextView.setAnimationDuration(500);
-
-                    // Reset the orientation to the original orientation.
-                    activity.setRequestedOrientation(originalOrientation);
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            } else {
-                net_error_ani_details.setVisibility(View.VISIBLE);
+            if(!activity.isFinishing()) {
+                activity.runOnUiThread(() -> {
+
+
+                    details_loading.setVisibility(View.GONE);
+                    if (Error == 0) {
+
+                        net_error_ani_details.setVisibility(View.GONE);
+                        anime_details.setVisibility(View.VISIBLE);
+                        episode_text.setVisibility(View.VISIBLE);
+
+
+                        Release.setText("Release Date: " + releasedDate);
+                        Anime_Details.Status.setText("Status: " + status);
+
+                        Glide.with(activity)
+                                .load(img)
+                                .into(Anime_Image);
+
+                        Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, activity);
+                        details_recyclerView.setAdapter(ani_details_adapter);
+
+                        Ani_Details_Genre_Adapter ani_details_genre_adapter = new Ani_Details_Genre_Adapter(activity, genres);
+                        genre_recyclerView.setAdapter(ani_details_genre_adapter);
+
+                        expandableTextView.setText(desc);
+                        expandableTextView.setReadMoreText("More");
+                        expandableTextView.setReadLessText("Less");
+//
+                        expandableTextView.setAnimationDuration(500);
+
+                        // Reset the orientation to the original orientation.
+                        activity.setRequestedOrientation(originalOrientation);
+
+
+                    } else {
+                        net_error_ani_details.setVisibility(View.VISIBLE);
+                    }
+
+                });
             }
+
         }
+
     }
 
-    public static class GogoAnime_search extends AsyncTask<Void, Void, Void> {
+    public static class GogoAnime_search{
         private static final String TAG = "Search";
 
         private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/";
@@ -359,22 +400,35 @@ public class GogoAnime {
             this.is_added = is_added;
             this.text = text;
         }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Search_loading.setVisibility(View.VISIBLE);
-            Glide.with(activity)
-                    .asGif()
-                    .load(R.raw.loading_animation)
-                    .into(Search_loading);
-//            search_Box.clearFocus();
-            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(searchBar.getWindowToken(), 0);
+        public void execute() {
+            onPreExecute();
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    doInBackground();
+                    onPostExecute();
+                }
+            });
+            executor.shutdown();
         }
 
-        @Override
-        protected Void doInBackground(Void... voids) {
+        private void onPreExecute() {
+            activity.runOnUiThread(() -> {
+                Search_loading.setVisibility(View.VISIBLE);
+                Glide.with(activity)
+                        .asGif()
+                        .load(R.raw.loading_animation)
+                        .into(Search_loading);
+//            search_Box.clearFocus();
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(searchBar.getWindowToken(), 0);
+            });
+
+        }
+
+
+        private Void doInBackground() {
 
             try {
 
@@ -422,70 +476,94 @@ public class GogoAnime {
 
                 }
 
-                return null;
+
             } catch (IOException | JSONException e) {
 
                 Log.e(TAG, "Error retrieving top anime: " + e.getMessage());
-                return null;
+
             }
+            return null;
         }
 
 
-        @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
-            Search_loading.setVisibility(View.GONE);
 
-            if (is_added) {
-                // clear the data from the adapter
+        private void onPostExecute() {
+            activity.runOnUiThread(() -> {
+                Search_loading.setVisibility(View.GONE);
+
+                if (is_added) {
+                    // clear the data from the adapter
 
 
-                SearchAdapter searchAdapter = new SearchAdapter(activity, Search_TitleUrlList, Search_imageUrlList, Search_IDList);
-                // notify the adapter that the data has changed
-                searchAdapter.notifyDataSetChanged();
-                searchView.setAdapter(searchAdapter);
-            }
-            if (Search_TitleUrlList.size() == 0) {
+                    SearchAdapter searchAdapter = new SearchAdapter(activity, Search_TitleUrlList, Search_imageUrlList, Search_IDList);
+                    // notify the adapter that the data has changed
+                    searchAdapter.notifyDataSetChanged();
+                    searchView.setAdapter(searchAdapter);
+                }
+                if (Search_TitleUrlList.size() == 0) {
 //                String query = search_Box.getText().toString();
 
 //                not_found.setText("Cannot Find Anime \'" + query + "\'");
-                not_found.setText("Cannot Find the Anime ");
-                not_found.setVisibility(View.VISIBLE);
-            } else {
-                not_found.setVisibility(View.GONE);
-            }
+                    not_found.setText("Cannot Find the Anime ");
+                    not_found.setVisibility(View.VISIBLE);
+                } else {
+                    not_found.setVisibility(View.GONE);
+                }
+            });
+
         }
     }
 
-    public static class Gogoanime_stream extends AsyncTask<Void, Void, String> {
+    public static class Gogoanime_stream {
         Activity activity;
         JSONObject source;
+        ExecutorService executor;
 
         public Gogoanime_stream(Activity activity) {
             this.activity = activity;
+            executor = Executors.newSingleThreadExecutor();
         }
 
-        @Override
+        public void execute() {
+            onPreExecute();
+
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    String results = doInBackground();
+                    onPostExecute(results);
+                }
+            });
+            executor.shutdown();
+        }
         protected void onPreExecute() {
-            super.onPreExecute();
+            activity.runOnUiThread(() -> {
+                videoView.setVisibility(View.INVISIBLE);
+                previous_eps.setVisibility(View.GONE);
+                next_eps.setVisibility(View.GONE);
+            });
+            activity.runOnUiThread(() -> {
+                // Your code for displaying loading animation goes here
+                if (video_loading.getVisibility() == View.GONE) {
+                    video_loading.setVisibility(View.VISIBLE);
+                }
+                Glide.with(activity)
+                        .asGif()
+                        .load(R.raw.loading_animation)
+                        .into(video_loading);
+            });
 
-            videoView.setVisibility(View.INVISIBLE);
-            previous_eps.setVisibility(View.GONE);
-            next_eps.setVisibility(View.GONE);
 
         }
 
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            if (player.isPlaying()) {
-                player.stop();
-                player.release();
-            }
+        public void Cancel() {
+            // Implement your cancellation logic here
+            executor.shutdownNow();
+
         }
 
-        @Override
-        protected String doInBackground(Void... voids) {
+
+        private String doInBackground() {
             String result = "";
             HttpURLConnection urlConnection = null;
             try {
@@ -511,60 +589,68 @@ public class GogoAnime {
             return result;
         }
 
-        @SuppressLint("SetTextI18n")
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
 
-            try {
-                if (player.isPlaying()) {
-                    player.stop();
-                }
+        private void onPostExecute(String result) {
+            activity.runOnUiThread(() -> {
+                try {
+                    if (player != null) {
+                        if (player.isPlaying()) {
+                            player.stop();
+                        }
 
-                JSONObject jsonObject = new JSONObject(result);
-                sources = jsonObject.getJSONArray("sources");
-                for (int i = 0; i < sources.length(); i++) {
-                    JSONObject source = sources.getJSONObject(i);
-                    String quality = source.getString("quality");
-                    if (!quality.equals("backup") && !quality.equals("default")) {
-                        video_quality.add(quality);
-                    }
-                }
+                        JSONObject jsonObject = new JSONObject(result);
+                        sources = jsonObject.getJSONArray("sources");
+                        for (int i = 0; i < sources.length(); i++) {
+                            JSONObject source = sources.getJSONObject(i);
+                            String quality = source.getString("quality");
+                            if (!quality.equals("backup") && !quality.equals("default")) {
+                                video_quality.add(quality);
+                            }
+                        }
 
 
-                SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
-                String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
-                video_quality_num = video_quality.indexOf(Current_Quality);
-                if (video_quality_num == -1) {
-                    exo_quality_txt.setText("Quality(" + video_quality.get(0) + ")");
+                        SharedPreferences sharedpreferences = activity.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+                        String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
+                        video_quality_num = video_quality.indexOf(Current_Quality);
+                        if (video_quality_num == -1) {
+                            exo_quality_txt.setText("Quality(" + video_quality.get(0) + ")");
 
-                    source = sources.getJSONObject(0);
-                } else {
+                            source = sources.getJSONObject(0);
+                        } else {
 
-                    exo_quality_txt.setText("Quality(" + video_quality.get(video_quality_num) + ")");
-                    source = sources.getJSONObject(video_quality_num);
-                }
-                String Link = source.getString("url");
+                            exo_quality_txt.setText("Quality(" + video_quality.get(video_quality_num) + ")");
+                            source = sources.getJSONObject(video_quality_num);
+                        }
+                        String Link = source.getString("url");
 
 
 // Create a MediaSource from the URL.
-                Uri videoUri = Uri.parse(Link);
+                        Uri videoUri = Uri.parse(Link);
 
 // Set the media item to be played.
-                player.setMediaItem(MediaItem.fromUri(videoUri));
+                        player.setMediaItem(MediaItem.fromUri(videoUri));
 
-                player.prepare();
+                        player.prepare();
 
-                videoView.setPlayer(player);
-                player.setPlayWhenReady(true);
+                        videoView.setPlayer(player);
+                        player.setPlayWhenReady(true);
 
-                videoView.setVisibility(View.VISIBLE);
-                previous_eps.setVisibility(View.VISIBLE);
-                next_eps.setVisibility(View.VISIBLE);
+                        videoView.setVisibility(View.VISIBLE);
+                        previous_eps.setVisibility(View.VISIBLE);
+                        next_eps.setVisibility(View.VISIBLE);
+                        if (video_loading.getVisibility() == View.VISIBLE) {
+                            video_loading.setVisibility(View.GONE);
+                        }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            });
+
+
         }
     }
 

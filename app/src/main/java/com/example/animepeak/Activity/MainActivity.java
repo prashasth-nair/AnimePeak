@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
                             
-                            gogoanime_popular.cancel(true);
+//                            gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
                         if (zoro_popular != null ) {
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
                            
-                            gogoanime_popular.cancel(true);
+//                            gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
                         if (zoro_popular != null ) {
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
                             
-                            gogoanime_popular.cancel(true);
+//                            gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
                         if (zoro_popular != null ) {
