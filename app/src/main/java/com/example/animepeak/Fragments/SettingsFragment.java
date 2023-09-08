@@ -216,10 +216,10 @@ public class SettingsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         String[] source_lists = getResources().getStringArray(R.array.source_list);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, source_lists);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.dropdown, source_lists);
         autoCompleteTextView.setAdapter(arrayAdapter);
         String[] quality_lists = getResources().getStringArray(R.array.quality_list);
-        ArrayAdapter videoarrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, quality_lists);
+        ArrayAdapter<String> videoarrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.dropdown, quality_lists);
         videoautoCompleteTextView.setAdapter(videoarrayAdapter);
     }
 }
