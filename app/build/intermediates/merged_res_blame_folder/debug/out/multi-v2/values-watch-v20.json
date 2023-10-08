@@ -1,0 +1,62 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.animepeak.app-mergeDebugResources-46:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "/home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/res/values-watch-v20/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11",
+                        "startColumns": "0,0,0,0,0,0,0,0",
+                        "startOffsets": "173,248,324,399,474,561,638,725",
+                        "endColumns": "74,75,74,74,86,76,86,75",
+                        "endOffsets": "247,323,398,473,560,637,724,800"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,134,214,293,372,463,544,635",
+                        "endColumns": "78,79,78,78,90,80,90,79",
+                        "endOffsets": "129,209,288,367,458,539,630,710"
+                    }
+                },
+                {
+                    "source": "/home/vishnu/.gradle/caches/transforms-3/80605cc2cfb8a50001822c6c8bc17a1f/transformed/appcompat-1.6.1/res/values-watch-v20/values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    },
+                    "to": {
+                        "startLines": "18,21,24",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1294,1453,1624",
+                        "endLines": "20,23,26",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "1448,1619,1792"
+                    }
+                },
+                {
+                    "source": "/home/vishnu/.gradle/caches/transforms-3/6ef93579675b9afee442d083d2f2c5e1/transformed/jetified-core-splashscreen-1.0.1/res/values-watch-v20/values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,129,205,280,357,428,496,566",
+                        "endColumns": "73,75,74,76,70,67,69,67",
+                        "endOffsets": "124,200,275,352,423,491,561,629"
+                    },
+                    "to": {
+                        "startLines": "10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "715,789,865,940,1017,1088,1156,1226",
+                        "endColumns": "73,75,74,76,70,67,69,67",
+                        "endOffsets": "784,860,935,1012,1083,1151,1221,1289"
+                    }
+                }
+            ]
+        }
+    ]
+}

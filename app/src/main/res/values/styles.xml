@@ -1,0 +1,32 @@
+<resources>
+
+    <style name="Widget.Theme.AnimePeak.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.AnimePeak.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <style name="BottomNavItemStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/background_main</item>
+        <item name="android:textColor">@color/white</item>
+        <!--        Title Color-->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!--        Radio button unchecked-->
+        <item name="android:colorControlNormal">@color/background_second</item>
+        <!--        Radio button checked-->
+        <item name="android:colorControlActivated">@color/yellow</item>
+        <!--        List item on click highlight color-->
+        <item name="android:colorControlHighlight">@android:color/transparent</item>
+        <!--        Radio Button list text color-->
+        <item name="android:textColorAlertDialogListItem">@color/white</item>
+
+        <item name="dialogCornerRadius">16dp</item>
+    </style>
+</resources>
