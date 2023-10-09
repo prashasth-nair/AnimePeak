@@ -22,7 +22,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
+<<<<<<< HEAD
 import android.os.AsyncTask;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import android.os.Bundle;
 
 
@@ -43,7 +46,10 @@ import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
+<<<<<<< HEAD
 import com.example.animepeak.Sources.Zoro;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -54,6 +60,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.glailton.expandabletextview.ExpandableTextView;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 @SuppressLint("StaticFieldLeak")
 public class Anime_Details extends AppCompatActivity {
 
@@ -83,7 +93,10 @@ public class Anime_Details extends AppCompatActivity {
     boolean is_fav = false;
     public static List<String> episodeID_list = new ArrayList<>();
     GogoAnime.Gogoanime_details gogoanime_details;
+<<<<<<< HEAD
     Zoro.Zoro_details zoro_details;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -93,7 +106,10 @@ public class Anime_Details extends AppCompatActivity {
         setContentView(R.layout.activity_anime_details);
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         Toolbar customToolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(customToolbar);
 
@@ -116,7 +132,11 @@ public class Anime_Details extends AppCompatActivity {
         favoriteButton = findViewById(R.id.fav_button);
         genre_recyclerView = findViewById(R.id.genre_recycler);
 
+<<<<<<< HEAD
         if (fav_list!=null) {
+=======
+        if (fav_list != null) {
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             for (Fav_object favObject : fav_list) {
                 if (favObject.getID().contains(Ani_ID)) {
                     is_fav = true;
@@ -127,6 +147,7 @@ public class Anime_Details extends AppCompatActivity {
             }
         }
 
+<<<<<<< HEAD
         favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,6 +179,31 @@ public class Anime_Details extends AppCompatActivity {
 
 
                 }
+=======
+        favoriteButton.setOnClickListener(v -> {
+            // Change heart icon's color and/or image
+            if (is_login) {
+                if (!is_fav) {
+                    is_fav = true;
+                    favoriteButton.setColorFilter(Color.RED);
+                    favoriteButton.setImageResource(R.drawable.baseline_favorite_24_selected);
+
+                    Fav_object favObject = new Fav_object(Title, Ani_ID, img);
+                    fav_list.add(favObject);
+
+                } else {
+                    is_fav = false;
+                    favoriteButton.setColorFilter(Color.WHITE);
+                    favoriteButton.setImageResource(R.drawable.baseline_favorite_unselected);
+                    removeFavByID(Ani_ID);
+
+                }
+
+
+                save_Fav_List();
+
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             }
         });
 
@@ -187,7 +233,11 @@ public class Anime_Details extends AppCompatActivity {
         }
     }
 
+<<<<<<< HEAD
     public void save_Fav_List(){
+=======
+    public void save_Fav_List() {
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         // Convert the fav_list ArrayList to a JSON string
         Gson gson = new Gson();
         String favListJson = gson.toJson(fav_list);
@@ -214,7 +264,11 @@ public class Anime_Details extends AppCompatActivity {
             }
         } catch (JSONException e) {
 //            throw new RuntimeException(e);
+<<<<<<< HEAD
             Log.d("Error",e.toString());
+=======
+            Log.d("Error", e.toString());
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         }
 
         return episodeIds;
@@ -226,6 +280,7 @@ public class Anime_Details extends AppCompatActivity {
             // Load the image using Glide or Picasso here
 
             System.setProperty("okio.buffer-size", "16384");
+<<<<<<< HEAD
             SharedPreferences sharedpreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
             String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
@@ -245,6 +300,11 @@ public class Anime_Details extends AppCompatActivity {
                     break;
 
             }
+=======
+
+            gogoanime_details = new GogoAnime.Gogoanime_details(this);
+            gogoanime_details.execute();
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 
         } else if (episodes.length() != 0) {
@@ -279,6 +339,7 @@ public class Anime_Details extends AppCompatActivity {
         episodeID_list.clear();
 
         if (gogoanime_details != null) {
+<<<<<<< HEAD
             gogoanime_details = null;
         }
         if (zoro_details != null) {
@@ -286,6 +347,14 @@ public class Anime_Details extends AppCompatActivity {
             zoro_details=null;
         }
     finish();
+=======
+            gogoanime_details.executor.shutdown();
+            gogoanime_details = null;
+
+        }
+
+        finish();
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     }
 
@@ -317,6 +386,7 @@ public class Anime_Details extends AppCompatActivity {
         if (gogoanime_details != null) {
             gogoanime_details.executor.shutdown();
 
+<<<<<<< HEAD
             gogoanime_details=null;
         }
         if (zoro_details != null) {
@@ -324,6 +394,11 @@ public class Anime_Details extends AppCompatActivity {
             zoro_details =null;
         }
 
+=======
+            gogoanime_details = null;
+        }
+        finish();
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     }
 
     @Override

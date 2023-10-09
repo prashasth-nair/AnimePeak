@@ -16,10 +16,17 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+=======
+
+import android.content.DialogInterface;
+import android.content.Intent;
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,7 +46,10 @@ import android.widget.TextView;
 
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
+<<<<<<< HEAD
 import com.example.animepeak.Sources.Zoro;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 
@@ -58,14 +68,25 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+<<<<<<< HEAD
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 
+=======
+
+import java.util.concurrent.TimeUnit;
+
+@SuppressLint("StaticFieldLeak")
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 public class VideoPlayer extends AppCompatActivity {
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
     public static int Current;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     public static PlayerView videoView;
     public static LinearLayout previous_eps;
     public static LinearLayout next_eps;
@@ -82,7 +103,10 @@ public class VideoPlayer extends AppCompatActivity {
 
     public static ExoPlayer player;
     private GogoAnime.Gogoanime_stream gogoanime_stream;
+<<<<<<< HEAD
     private Zoro.Zoro_stream zoro_stream;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     public static int video_quality_num = 0;
     public static int video_SUBTITLE_num = 0;
     public static List<String> video_quality = new ArrayList<>();
@@ -107,8 +131,11 @@ public class VideoPlayer extends AppCompatActivity {
         Current = intent.getIntExtra("current_episode", 0);
         String AnimeTitle = intent.getStringExtra("Title");
 
+<<<<<<< HEAD
         SharedPreferences sharedpreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
         if (gestureDetector == null) {
             gestureDetector = new GestureDetector(this, new GestureListener());
@@ -315,6 +342,7 @@ public class VideoPlayer extends AppCompatActivity {
                     if (gogoanime_stream != null) {
                         gogoanime_stream.Cancel();
                     }
+<<<<<<< HEAD
                     if (zoro_stream != null) {
                         zoro_stream.cancel(true);
                     }
@@ -336,6 +364,14 @@ public class VideoPlayer extends AppCompatActivity {
                             throw new RuntimeException(e);
                         }
                     }
+=======
+                    if (player != null) {
+                        player.stop();
+                    }
+                    gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
+                    gogoanime_stream.execute();
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 
                 }
@@ -357,6 +393,7 @@ public class VideoPlayer extends AppCompatActivity {
                     if (gogoanime_stream != null) {
                         gogoanime_stream.Cancel();
                     }
+<<<<<<< HEAD
                     if (zoro_stream != null) {
                         zoro_stream.cancel(true);
                     }
@@ -372,6 +409,14 @@ public class VideoPlayer extends AppCompatActivity {
                         zoro_stream = new Zoro.Zoro_stream(VideoPlayer.this);
                         zoro_stream.execute();
                     }
+=======
+
+                    if (player != null) {
+                        player.stop();
+                    }
+                    gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
+                    gogoanime_stream.execute();
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
                 }
                 video_quality.clear();
                 video_subtitles.clear();
@@ -380,6 +425,7 @@ public class VideoPlayer extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
 
         if (Source.equals("GogoAnime")) {
 
@@ -390,6 +436,10 @@ public class VideoPlayer extends AppCompatActivity {
             zoro_stream = new Zoro.Zoro_stream(this);
             zoro_stream.execute();
         }
+=======
+        gogoanime_stream = new GogoAnime.Gogoanime_stream(this);
+        gogoanime_stream.execute();
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         // Add a Player.EventListener to the player
         // Create a handler and a runnable to update the remaining time TextView on each player tick
         Handler handler = new Handler();
@@ -416,6 +466,7 @@ public class VideoPlayer extends AppCompatActivity {
 
     }
 
+<<<<<<< HEAD
     private void animateButtons(boolean button) {
         if (button) {
 
@@ -428,6 +479,8 @@ public class VideoPlayer extends AppCompatActivity {
             fastForwardAnimator.start();
         }
     }
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     public void checkPrevious() {
         if ((Current - 1) >= 0) {
@@ -527,9 +580,12 @@ public class VideoPlayer extends AppCompatActivity {
         if (gogoanime_stream != null) {
             gogoanime_stream.Cancel();
         }
+<<<<<<< HEAD
         if (zoro_stream != null) {
             zoro_stream.cancel(true);
         }
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
         if (player != null) {
             if (player.isPlaying()) {

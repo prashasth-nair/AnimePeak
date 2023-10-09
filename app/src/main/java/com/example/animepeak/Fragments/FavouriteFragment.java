@@ -62,6 +62,10 @@ public class FavouriteFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_favourite, container, false);
     }
 
+<<<<<<< HEAD
+=======
+    @SuppressLint("NotifyDataSetChanged")
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -107,6 +111,7 @@ public class FavouriteFragment extends Fragment {
             // Landscape orientation
             fav_recycler.setLayoutManager(new GridLayoutManager(requireView().getContext(), 4));
         }
+<<<<<<< HEAD
 
     }
     public void removeArrayFromFirebase(){
@@ -130,6 +135,11 @@ public class FavouriteFragment extends Fragment {
                         }
                     });
         }
+=======
+        FavAdapter favAdapter = new FavAdapter(getActivity(),fav_list);
+        fav_recycler.setAdapter(favAdapter);
+        favAdapter.notifyDataSetChanged();
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     }
     public void RetreiveArrayFromFirebase(){
@@ -147,14 +157,21 @@ public class FavouriteFragment extends Fragment {
                             Fav_object favObject = snapshot.getValue(Fav_object.class);
                             if (favObject != null) {
                                 Log.d("Fav", "Fav Title: " + favObject.getTitle());
+<<<<<<< HEAD
                                 Log.d("Fav", "Fav Source: " + favObject.fav_source);
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
                                 fav_list.add(favObject);
                             } else {
                                 Log.d("Fav", "Fav_object is null for snapshot: " + snapshot.toString());
                             }
                         }
                         Log.d("Fav", "fav_list size after retrieval: " + fav_list.size()); // Verify the size of fav_list
+<<<<<<< HEAD
                         countSource(getActivity());
+=======
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
                         if (fav_list.size()==0){
                             no_fav.setVisibility(View.VISIBLE);
                         }else {
@@ -164,7 +181,10 @@ public class FavouriteFragment extends Fragment {
                         // ...
                     } else {
                         // Handle the case when the array does not exist in the database
+<<<<<<< HEAD
                         countSource(getActivity());
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
                         if (fav_list.size()==0){
                             no_fav.setVisibility(View.VISIBLE);
                         }else {
@@ -199,6 +219,7 @@ public class FavouriteFragment extends Fragment {
     }
 
     public static ArrayList<Fav_object> temp_fav_list(){
+<<<<<<< HEAD
         // Create a temporary ArrayList to store items with a source of "gogo"
         ArrayList<Fav_object> tempArray = new ArrayList<>();
 
@@ -218,16 +239,26 @@ public class FavouriteFragment extends Fragment {
             }
         }
         return tempArray;
+=======
+
+        return new ArrayList<>(fav_list);
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     }
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
+<<<<<<< HEAD
 //            RetreiveArrayFromFirebase();
         } else {
             fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
 //            RetreiveArrayFromFirebase();
+=======
+
+        } else {
+            fav_recycler.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         }
     }
 
@@ -240,7 +271,11 @@ public class FavouriteFragment extends Fragment {
         fav_list.clear();
         if (acct != null) {
             is_login=true;
+<<<<<<< HEAD
             Log.d("Status","Sucess");
+=======
+            Log.d("Status","Success");
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             RetreiveArrayFromFirebase();
         }else{
             Log.d("Status","Failed");
@@ -249,6 +284,7 @@ public class FavouriteFragment extends Fragment {
 
         }
     }
+<<<<<<< HEAD
     @SuppressLint("NotifyDataSetChanged")
     public static void countSource(Activity activity){
         int gogoCount = 0;
@@ -279,4 +315,6 @@ public class FavouriteFragment extends Fragment {
         fav_recycler.setAdapter(favAdapter);
         favAdapter.notifyDataSetChanged();
     }
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 }

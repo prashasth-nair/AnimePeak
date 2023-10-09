@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true">
         <shape android:shape="rectangle">
@@ -19,3 +20,26 @@
         </shape>
     </item>
 </selector>
+=======
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+
+            <stroke
+                android:width="2dp"
+                android:color="#EEFF00" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="2dp"
+                android:color="#FFC107" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)

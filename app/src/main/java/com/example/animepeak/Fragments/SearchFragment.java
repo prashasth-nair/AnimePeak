@@ -24,7 +24,10 @@ import android.widget.TextView;
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
+<<<<<<< HEAD
 import com.example.animepeak.Sources.Zoro;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
@@ -42,7 +45,10 @@ public class SearchFragment extends Fragment {
     public static List<String> Search_imageUrlList = new ArrayList<>();
     public static List<String> Search_IDList = new ArrayList<>();
     GogoAnime.GogoAnime_search gogoAnime_search;
+<<<<<<< HEAD
     Zoro.Zoro_search zoro_search;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,9 +96,12 @@ public class SearchFragment extends Fragment {
                 if (Source.equals("GogoAnime")) {
                     gogoAnime_search = new GogoAnime.GogoAnime_search(getActivity(), isAdded(),query);
                     gogoAnime_search.execute();
+<<<<<<< HEAD
                 } else if (Source.equals("Zoro")) {
                     zoro_search = new Zoro.Zoro_search(getActivity(), isAdded(),query);
                     zoro_search.execute();
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
                 }
             }
 
@@ -151,6 +160,7 @@ public class SearchFragment extends Fragment {
         Search_TitleUrlList.clear();
         Search_imageUrlList.clear();
         Search_IDList.clear();
+<<<<<<< HEAD
 
 
         if (zoro_search != null) {
@@ -159,6 +169,8 @@ public class SearchFragment extends Fragment {
         if (zoro_search != null) {
             zoro_search.cancel(true);
         }
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     }
 
 

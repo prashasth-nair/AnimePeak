@@ -1,6 +1,7 @@
 package com.example.animepeak.Fragments;
 
 
+<<<<<<< HEAD
 import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 import static com.example.animepeak.Activity.MainActivity.is_auto_update;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
@@ -9,6 +10,10 @@ import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_IDList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_imageUrlList;
+=======
+import static com.example.animepeak.Activity.MainActivity.is_auto_update;
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 import android.Manifest;
 import android.content.Context;
@@ -44,7 +49,10 @@ import java.util.List;
 
 
 public class SettingsFragment extends Fragment {
+<<<<<<< HEAD
     AutoCompleteTextView autoCompleteTextView;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     AutoCompleteTextView videoautoCompleteTextView;
     LinearLayout Update;
     Switch auto_update;
@@ -68,7 +76,10 @@ public class SettingsFragment extends Fragment {
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
 
+<<<<<<< HEAD
         autoCompleteTextView = getView().findViewById(R.id.autoCompleteTextView);
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         videoautoCompleteTextView = getView().findViewById(R.id.videoautoCompleteTextView);
         Update = getView().findViewById(R.id.update_button);
         auto_update = getView().findViewById(R.id.auto_update);
@@ -139,6 +150,7 @@ public class SettingsFragment extends Fragment {
 
         String Current_Source = sharedpreferences.getString("Source_Name", "GogoAnime");
         String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
+<<<<<<< HEAD
         if (Current_Source.equals("GogoAnime")) {
 
             autoCompleteTextView.setText("GogoAnime");
@@ -147,6 +159,9 @@ public class SettingsFragment extends Fragment {
             autoCompleteTextView.setText("Zoro");
 
         }
+=======
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         if (Current_Quality.equals("360p")) {
 
             videoautoCompleteTextView.setText("360p");
@@ -164,6 +179,7 @@ public class SettingsFragment extends Fragment {
 
         }
 
+<<<<<<< HEAD
 
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -193,6 +209,8 @@ public class SettingsFragment extends Fragment {
                 getActivity().recreate();
             }
         });
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         videoautoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -215,11 +233,19 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+<<<<<<< HEAD
         String[] source_lists = getResources().getStringArray(R.array.source_list);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, source_lists);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.dropdown, source_lists);
         autoCompleteTextView.setAdapter(arrayAdapter);
+        String[] quality_lists = getResources().getStringArray(R.array.quality_list);
+        ArrayAdapter<String> videoarrayAdapter = new ArrayAdapter<>(requireContext(), R.layout.dropdown, quality_lists);
+        videoautoCompleteTextView.setAdapter(videoarrayAdapter);
+    }
+}
+=======
         String[] quality_lists = getResources().getStringArray(R.array.quality_list);
         ArrayAdapter videoarrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, quality_lists);
         videoautoCompleteTextView.setAdapter(videoarrayAdapter);
     }
 }
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)

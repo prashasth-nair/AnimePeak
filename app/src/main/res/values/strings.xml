@@ -19,6 +19,10 @@
     <string name="something_went_wrong_please_check_your_network_connection">Something went wrong. Please Check your network connection</string>
     <string name="auto_search_for_updates">Auto-search for updates</string>
     <string name="default_web_client_id">273585373512-ulh0robojhitbg80klj6i07b6op90qb7.apps.googleusercontent.com</string>
+<<<<<<< HEAD
+=======
+    <string name="something_went_wrong">Something went wrong. Please Check your network connection</string>
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     <string-array name="source_list">
         <item>GogoAnime</item>
         <item>Zoro</item>

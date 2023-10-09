@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 <paths>
     <external-path name="download" path="Download/" />
 </paths>
 
+=======
+<paths>
+    <external-path name="download" path="Download/" />
+</paths>
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="24dp"
     android:height="24dp"
@@ -7,3 +8,14 @@
         android:fillColor="@color/white"
         android:pathData="M20,11.5H7.83l5.59,-5.59L12,4l-8,8 8,8 2.41,-2.41L7.83,13.5H20v-2z" />
 </vector>
+=======
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M20,11.5H7.83l5.59,-5.59L12,4l-8,8 8,8 2.41,-2.41L7.83,13.5H20v-2z" />
+</vector>
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)

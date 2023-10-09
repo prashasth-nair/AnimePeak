@@ -21,6 +21,7 @@
         android:textStyle="bold"  />
 
     <LinearLayout
+<<<<<<< HEAD
         android:id="@+id/setting_anime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -107,6 +108,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/setting_anime"
+=======
+        android:id="@+id/setting_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Settings_Title"
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         android:orientation="vertical"
         android:paddingTop="10dp">
 

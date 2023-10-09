@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -10,4 +11,18 @@
             <corners android:radius="10dp" />
         </shape>
     </item>
+=======
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/white" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 </selector>

@@ -2,11 +2,17 @@ package com.example.animepeak.Fragments;
 
 import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 
+<<<<<<< HEAD
 
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+=======
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import android.content.res.Configuration;
 
 import android.net.Uri;
@@ -19,9 +25,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+<<<<<<< HEAD
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,19 +44,32 @@ import com.example.animepeak.Adapters.MainAdapter;
 
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
+<<<<<<< HEAD
 import com.example.animepeak.Sources.Zoro;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+=======
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.FirebaseApp;
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
+=======
+
+@SuppressLint("StaticFieldLeak")
+public class HomeFragment extends Fragment {
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     public static MainAdapter mainAdapter;
     public static RecyclerView recyclerView;
     public static ImageView home_loading;
@@ -58,12 +80,23 @@ public class HomeFragment extends Fragment {
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
     public static GogoAnime.Gogoanime_popular gogoanime_popular;
+<<<<<<< HEAD
     public static Zoro.Zoro_popular zoro_popular;
 
     CardView profile_card;
     String Source;
     private FirebaseAuth mAuth;
     public Uri personPhoto;
+=======
+
+    CardView profile_card;
+    public Uri personPhoto;
+    private int currentPage = 1;
+    public static GridLayoutManager LayoutManager;
+    public static boolean isLoading = false;
+
+    public static int pos = 0;
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     public HomeFragment() {
         // Required empty public constructor
@@ -79,15 +112,24 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.home);
+<<<<<<< HEAD
         mAuth = FirebaseAuth.getInstance();
         // Build a GoogleSignInClient with the options specified by gso.
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
+=======
+        // Build a GoogleSignInClient with the options specified by gso.
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(requireActivity());
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         if (acct != null) {
             personPhoto = acct.getPhotoUrl();
             Glide.with(this)
                     .load(personPhoto)
                     .into(profile);
+<<<<<<< HEAD
         }else{
+=======
+        } else {
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             Glide.with(this)
                     .load(R.raw.boy1)
                     .into(profile);
@@ -95,6 +137,19 @@ public class HomeFragment extends Fragment {
     }
 
 
+<<<<<<< HEAD
+=======
+    private void fetchData(int page) {
+        isLoading = true;
+
+        // Make an API request with the updated page number
+        String apiUrl = "https://api.consumet.org/anime/gogoanime/top-airing?page=" + page;
+
+        gogoanime_popular = new GogoAnime.Gogoanime_popular(getActivity(), isAdded(), apiUrl);
+
+        gogoanime_popular.execute();
+    }
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -102,6 +157,7 @@ public class HomeFragment extends Fragment {
 
         bottomNavigationView.setSelectedItemId(R.id.home);
 
+<<<<<<< HEAD
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
         home_loading = (ImageView) getView().findViewById(R.id.loading);
         network_error = (TextView) getView().findViewById(R.id.net_error);
@@ -160,11 +216,39 @@ public class HomeFragment extends Fragment {
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape orientation
             recyclerView.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
+=======
+        recyclerView = requireView().findViewById(R.id.home_recycler);
+        home_loading = requireView().findViewById(R.id.loading);
+        network_error = requireView().findViewById(R.id.net_error);
+        titleText = requireView().findViewById(R.id.home_title);
+        profile_card = requireView().findViewById(R.id.profile_card);
+        profile = requireView().findViewById(R.id.Profile_pic);
+
+        FirebaseApp.initializeApp(requireActivity());
+
+
+        profile_card.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), Profile.class);
+            startActivity(intent);
+        });
+        int orientation = getResources().getConfiguration().orientation;
+
+        LayoutManager = null;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // Portrait orientation
+            LayoutManager = new GridLayoutManager(requireView().getContext(), 2);
+            recyclerView.setLayoutManager(LayoutManager);
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Landscape orientation
+            LayoutManager = new GridLayoutManager(requireView().getContext(), 4);
+            recyclerView.setLayoutManager(LayoutManager);
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         }
 
         mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
         recyclerView.setAdapter(mainAdapter);
 
+<<<<<<< HEAD
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         Source = sharedpreferences.getString("Source_Name", "GogoAnime");
 
@@ -234,6 +318,41 @@ public class HomeFragment extends Fragment {
                 zoro_popular = new Zoro.Zoro_popular(getActivity(), isAdded());
                 zoro_popular.execute();
             }
+=======
+        // Add a scroll listener to your RecyclerView
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                // Check if the RecyclerView has reached the end of its scroll
+                if (!recyclerView.canScrollVertically(0)) {
+
+                    pos = LayoutManager.findLastVisibleItemPosition();
+
+                    currentPage++;
+                    fetchData(currentPage);
+
+
+                }
+            }
+        });
+
+
+// Make the initial API request
+        fetchData(currentPage);
+    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getView() != null) {
+
+            // Make the initial API request
+            fetchData(currentPage);
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         }
     }
 
@@ -246,6 +365,7 @@ public class HomeFragment extends Fragment {
             Home_TitleUrlList.clear();
             Home_imageUrlList.clear();
             Home_IDList.clear();
+<<<<<<< HEAD
             
             if (gogoanime_popular != null  ) {
 
@@ -256,6 +376,9 @@ public class HomeFragment extends Fragment {
                 zoro_popular.cancel(true);
                 zoro_popular = null;
             }
+=======
+
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
         }
     }
@@ -263,6 +386,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+<<<<<<< HEAD
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
@@ -275,10 +399,21 @@ public class HomeFragment extends Fragment {
             zoro_popular.cancel(true);
             zoro_popular = null;
         }
+=======
+        currentPage = 0;
+        Home_TitleUrlList.clear();
+        Home_imageUrlList.clear();
+        Home_IDList.clear();
+        if (gogoanime_popular != null) {
+
+            gogoanime_popular = null;
+        }
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 
     }
 
+<<<<<<< HEAD
 
     private void animateTextSizeChange(final TextView textView, final int newSize) {
 
@@ -297,12 +432,15 @@ public class HomeFragment extends Fragment {
     public static float convertDpToPixel(float dp, Context context){
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
+=======
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     @Override
     public void onDetach() {
         super.onDetach();
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
+<<<<<<< HEAD
         if (gogoanime_popular != null  ) {
         
 //            gogoanime_popular.cancel(true);
@@ -312,11 +450,17 @@ public class HomeFragment extends Fragment {
             zoro_popular.cancel(true);
             zoro_popular = null;
         }
+=======
+        if (gogoanime_popular != null) {
+            gogoanime_popular = null;
+        }
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
     }
 
 
     @Override
+<<<<<<< HEAD
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -328,5 +472,16 @@ public class HomeFragment extends Fragment {
             mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
             recyclerView.setAdapter(mainAdapter);
         }
+=======
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            recyclerView.setLayoutManager(new GridLayoutManager(requireView().getContext(), 4));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(requireView().getContext(), 2));
+        }
+        mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
+        recyclerView.setAdapter(mainAdapter);
+>>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     }
 }
