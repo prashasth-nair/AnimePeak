@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
-
 import android.os.Bundle;
 
 
@@ -43,7 +42,6 @@ import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
-
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -83,9 +81,7 @@ public class Anime_Details extends AppCompatActivity {
 
     boolean is_fav = false;
     public static List<String> episodeID_list = new ArrayList<>();
-    public static boolean is_exited = false;
     GogoAnime.Gogoanime_details gogoanime_details;
-
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -117,7 +113,6 @@ public class Anime_Details extends AppCompatActivity {
         favoriteButton = findViewById(R.id.fav_button);
         genre_recyclerView = findViewById(R.id.genre_recycler);
 
-
         if (fav_list != null) {
             for (Fav_object favObject : fav_list) {
                 if (favObject.getID().contains(Ani_ID)) {
@@ -128,7 +123,6 @@ public class Anime_Details extends AppCompatActivity {
                 }
             }
         }
-
 
         favoriteButton.setOnClickListener(v -> {
             // Change heart icon's color and/or image
@@ -182,7 +176,6 @@ public class Anime_Details extends AppCompatActivity {
         }
     }
 
-
     public void save_Fav_List() {
         // Convert the fav_list ArrayList to a JSON string
         Gson gson = new Gson();
@@ -210,7 +203,6 @@ public class Anime_Details extends AppCompatActivity {
             }
         } catch (JSONException e) {
 //            throw new RuntimeException(e);
-
             Log.d("Error", e.toString());
         }
 
@@ -223,7 +215,6 @@ public class Anime_Details extends AppCompatActivity {
             // Load the image using Glide or Picasso here
 
             System.setProperty("okio.buffer-size", "16384");
-
 
             gogoanime_details = new GogoAnime.Gogoanime_details(this);
             gogoanime_details.execute();
@@ -248,30 +239,25 @@ public class Anime_Details extends AppCompatActivity {
                     .into(Anime_Image);
         } else {
             // The activity has been destroyed, so don't perform any operation here
+
             finish();
         }
     }
 
-    public void exit() {
-        is_exited = true;
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         episodes = new JSONArray();
         genres = new JSONArray();
         episodeID_list.clear();
 
         if (gogoanime_details != null) {
-
             gogoanime_details.executor.shutdown();
             gogoanime_details = null;
 
         }
 
         finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        exit();
 
     }
 
@@ -296,14 +282,23 @@ public class Anime_Details extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        exit();
+        episodes = new JSONArray();
+        genres = new JSONArray();
+        episodeID_list.clear();
+
+        if (gogoanime_details != null) {
+            gogoanime_details.executor.shutdown();
+
+            gogoanime_details = null;
+        }
+        finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            exit();
-
+            episodes = new JSONArray();
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

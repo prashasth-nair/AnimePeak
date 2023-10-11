@@ -15,7 +15,6 @@ import static com.example.animepeak.Activity.Anime_Details.extractEpisodeIds;
 import static com.example.animepeak.Activity.Anime_Details.genre_recyclerView;
 import static com.example.animepeak.Activity.Anime_Details.genres;
 import static com.example.animepeak.Activity.Anime_Details.img;
-import static com.example.animepeak.Activity.Anime_Details.is_exited;
 import static com.example.animepeak.Activity.Anime_Details.net_error_ani_details;
 import static com.example.animepeak.Activity.Anime_Details.releasedDate;
 import static com.example.animepeak.Activity.Anime_Details.status;
@@ -254,15 +253,7 @@ public class GogoAnime {
             executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
                 String result = doInBackground();
-                if (!is_exited) {
-                    onPostExecute(result);
-                }else {
-                    Log.d("here","Here");
-                    is_exited = false;
-                    executor.shutdown();
-                    GogoAnime.Gogoanime_details gogoanime_details = new GogoAnime.Gogoanime_details(activity);
-                    gogoanime_details.execute();
-                }
+                onPostExecute(result);
             });
             executor.shutdown();
         }
@@ -274,17 +265,15 @@ public class GogoAnime {
             // Lock the orientation to the current orientation.
             int currentOrientation = activity.getResources().getConfiguration().orientation;
             activity.setRequestedOrientation(currentOrientation);
-            if (!activity.isDestroyed()) {
-                activity.runOnUiThread(() -> {
-                    // Your code for displaying loading animation goes here
-                    anime_details.setVisibility(View.GONE);
-                    episode_text.setVisibility(View.GONE);
-                    Glide.with(activity)
-                            .asGif()
-                            .load(R.raw.loading_animation)
-                            .into(details_loading);
-                });
-            }
+            activity.runOnUiThread(() -> {
+                // Your code for displaying loading animation goes here
+                anime_details.setVisibility(View.GONE);
+                episode_text.setVisibility(View.GONE);
+                Glide.with(activity)
+                        .asGif()
+                        .load(R.raw.loading_animation)
+                        .into(details_loading);
+            });
 
         }
 

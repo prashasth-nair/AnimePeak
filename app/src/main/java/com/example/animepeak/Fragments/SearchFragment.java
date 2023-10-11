@@ -42,7 +42,6 @@ public class SearchFragment extends Fragment {
     public static List<String> Search_IDList = new ArrayList<>();
     GogoAnime.GogoAnime_search gogoAnime_search;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -3,6 +3,7 @@ package com.example.animepeak.Fragments;
 
 import static com.example.animepeak.Activity.MainActivity.is_auto_update;
 
+
 import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -59,7 +60,6 @@ public class SettingsFragment extends Fragment {
 
         SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-
 
         videoautoCompleteTextView = getView().findViewById(R.id.videoautoCompleteTextView);
         Update = getView().findViewById(R.id.update_button);
@@ -132,7 +132,6 @@ public class SettingsFragment extends Fragment {
         String Current_Source = sharedpreferences.getString("Source_Name", "GogoAnime");
         String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
 
-
         if (Current_Quality.equals("360p")) {
 
             videoautoCompleteTextView.setText("360p");
@@ -177,4 +176,3 @@ public class SettingsFragment extends Fragment {
         videoautoCompleteTextView.setAdapter(videoarrayAdapter);
     }
 }
-

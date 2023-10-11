@@ -1,0 +1,316 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.animepeak"
+4    android:versionCode="1"
+5    android:versionName="Beta" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="33" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:5:5-67
+11-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+12-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:6:5-76
+12-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:6:22-73
+13    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+13-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:7:5-76
+13-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:7:22-73
+14    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+14-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:8:5-79
+14-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:8:22-76
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+15-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:9:5-79
+15-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:9:22-76
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:10:5-81
+16-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:10:22-78
+17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+17-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:11:5-80
+17-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:11:22-77
+18    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+18-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:12:5-14:40
+18-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:13:9-66
+19    <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+19-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:15:5-17:47
+19-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:16:9-59
+20    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+20-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:18:5-83
+20-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:18:22-80
+21
+22    <permission
+22-->[androidx.core:core:1.9.0] /home/vishnu/.gradle/caches/transforms-3/d90cd841e7f83f541051a74d1dd2c693/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+23        android:name="com.example.animepeak.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+23-->[androidx.core:core:1.9.0] /home/vishnu/.gradle/caches/transforms-3/d90cd841e7f83f541051a74d1dd2c693/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+24        android:protectionLevel="signature" />
+24-->[androidx.core:core:1.9.0] /home/vishnu/.gradle/caches/transforms-3/d90cd841e7f83f541051a74d1dd2c693/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+25
+26    <uses-permission android:name="com.example.animepeak.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+26-->[androidx.core:core:1.9.0] /home/vishnu/.gradle/caches/transforms-3/d90cd841e7f83f541051a74d1dd2c693/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+26-->[androidx.core:core:1.9.0] /home/vishnu/.gradle/caches/transforms-3/d90cd841e7f83f541051a74d1dd2c693/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+27
+28    <application
+28-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:20:5-65:19
+29        android:allowBackup="true"
+29-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:21:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.9.0] /home/vishnu/.gradle/caches/transforms-3/d90cd841e7f83f541051a74d1dd2c693/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+31        android:dataExtractionRules="@xml/data_extraction_rules"
+31-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:22:9-65
+32        android:debuggable="true"
+33        android:extractNativeLibs="false"
+34        android:fullBackupContent="@xml/backup_rules"
+34-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:23:9-54
+35        android:icon="@mipmap/ic_launcher"
+35-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:24:9-43
+36        android:label="@string/app_name"
+36-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:25:9-41
+37        android:supportsRtl="true"
+37-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:26:9-35
+38        android:testOnly="true"
+39        android:theme="@style/Theme.AnimePeak"
+39-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:27:9-47
+40        android:usesCleartextTraffic="true" >
+40-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:28:9-44
+41        <activity
+41-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:31:9-33:40
+42            android:name="com.example.animepeak.Activity.Profile"
+42-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:32:13-45
+43            android:exported="false" />
+43-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:33:13-37
+44
+45        <provider
+46            android:name="androidx.core.content.FileProvider"
+46-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:36:13-62
+47            android:authorities="com.example.animepeak.provider"
+47-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:37:13-60
+48            android:exported="false"
+48-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:38:13-37
+49            android:grantUriPermissions="true" >
+49-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:39:13-47
+50            <meta-data
+50-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:40:13-42:54
+51                android:name="android.support.FILE_PROVIDER_PATHS"
+51-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:41:17-67
+52                android:resource="@xml/file_paths" />
+52-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:42:17-51
+53        </provider>
+54
+55        <activity
+55-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:45:9-49:53
+56            android:name="com.example.animepeak.Activity.VideoPlayer"
+56-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:46:13-49
+57            android:configChanges="orientation|screenSize"
+57-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:47:13-59
+58            android:exported="false"
+58-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:48:13-37
+59            android:screenOrientation="landscape" />
+59-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:49:13-50
+60        <activity
+60-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:50:9-53:39
+61            android:name="com.example.animepeak.Activity.Anime_Details"
+61-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:51:13-51
+62            android:configChanges="keyboardHidden|orientation"
+62-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:52:13-63
+63            android:exported="true" />
+63-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:53:13-36
+64        <activity
+64-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:54:9-64:20
+65            android:name="com.example.animepeak.Activity.MainActivity"
+65-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:55:13-50
+66            android:configChanges="orientation|screenSize"
+66-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:56:13-59
+67            android:exported="true"
+67-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:57:13-36
+68            android:theme="@style/Theme.AnimePeak.MySplash" >
+68-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:58:13-60
+69            <intent-filter>
+69-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:59:13-63:29
+70                <action android:name="android.intent.action.MAIN" />
+70-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:60:17-69
+70-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:60:25-66
+71
+72                <category android:name="android.intent.category.LAUNCHER" />
+72-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:62:17-77
+72-->/home/vishnu/Android apps/AnimePeak/app/src/main/AndroidManifest.xml:62:27-74
+73            </intent-filter>
+74        </activity>
+75        <activity
+75-->[com.karumi:dexter:6.2.2] /home/vishnu/.gradle/caches/transforms-3/203c897b69a1bda941a7b11868da2e27/transformed/jetified-dexter-6.2.2/AndroidManifest.xml:27:9-29:72
+76            android:name="com.karumi.dexter.DexterActivity"
+76-->[com.karumi:dexter:6.2.2] /home/vishnu/.gradle/caches/transforms-3/203c897b69a1bda941a7b11868da2e27/transformed/jetified-dexter-6.2.2/AndroidManifest.xml:28:13-60
+77            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+77-->[com.karumi:dexter:6.2.2] /home/vishnu/.gradle/caches/transforms-3/203c897b69a1bda941a7b11868da2e27/transformed/jetified-dexter-6.2.2/AndroidManifest.xml:29:13-69
+78
+79        <service
+79-->[com.google.firebase:firebase-database:20.2.2] /home/vishnu/.gradle/caches/transforms-3/112e88ea9ed4d95d31952fe0ad4b5912/transformed/jetified-firebase-database-20.2.2/AndroidManifest.xml:28:9-34:19
+80            android:name="com.google.firebase.components.ComponentDiscoveryService"
+80-->[com.google.firebase:firebase-database:20.2.2] /home/vishnu/.gradle/caches/transforms-3/112e88ea9ed4d95d31952fe0ad4b5912/transformed/jetified-firebase-database-20.2.2/AndroidManifest.xml:29:13-84
+81            android:directBootAware="true"
+81-->[com.google.firebase:firebase-common:20.3.3] /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:34:13-43
+82            android:exported="false" >
+82-->[com.google.firebase:firebase-database:20.2.2] /home/vishnu/.gradle/caches/transforms-3/112e88ea9ed4d95d31952fe0ad4b5912/transformed/jetified-firebase-database-20.2.2/AndroidManifest.xml:30:13-37
+83            <meta-data
+83-->[com.google.firebase:firebase-database:20.2.2] /home/vishnu/.gradle/caches/transforms-3/112e88ea9ed4d95d31952fe0ad4b5912/transformed/jetified-firebase-database-20.2.2/AndroidManifest.xml:31:13-33:85
+84                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+84-->[com.google.firebase:firebase-database:20.2.2] /home/vishnu/.gradle/caches/transforms-3/112e88ea9ed4d95d31952fe0ad4b5912/transformed/jetified-firebase-database-20.2.2/AndroidManifest.xml:32:17-109
+85                android:value="com.google.firebase.components.ComponentRegistrar" />
+85-->[com.google.firebase:firebase-database:20.2.2] /home/vishnu/.gradle/caches/transforms-3/112e88ea9ed4d95d31952fe0ad4b5912/transformed/jetified-firebase-database-20.2.2/AndroidManifest.xml:33:17-82
+86            <meta-data
+86-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:69:13-71:85
+87                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+87-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:70:17-109
+88                android:value="com.google.firebase.components.ComponentRegistrar" />
+88-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:71:17-82
+89        </service>
+90
+91        <activity
+91-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:23:9-27:75
+92            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+92-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:24:13-93
+93            android:excludeFromRecents="true"
+93-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:25:13-46
+94            android:exported="false"
+94-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:26:13-37
+95            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+95-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:27:13-72
+96        <!--
+97            Service handling Google Sign-In user revocation. For apps that do not integrate with
+98            Google Sign-In, this service will never be started.
+99        -->
+100        <service
+100-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:33:9-37:51
+101            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+101-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:34:13-89
+102            android:exported="true"
+102-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:35:13-36
+103            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+103-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:36:13-107
+104            android:visibleToInstantApps="true" />
+104-->[com.google.android.gms:play-services-auth:20.7.0] /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/AndroidManifest.xml:37:13-48
+105
+106        <activity
+106-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:29:9-46:20
+107            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+107-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:30:13-80
+108            android:excludeFromRecents="true"
+108-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:31:13-46
+109            android:exported="true"
+109-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:32:13-36
+110            android:launchMode="singleTask"
+110-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:33:13-44
+111            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+111-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:34:13-72
+112            <intent-filter>
+112-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:35:13-45:29
+113                <action android:name="android.intent.action.VIEW" />
+113-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:36:17-69
+113-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:36:25-66
+114
+115                <category android:name="android.intent.category.DEFAULT" />
+115-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:38:17-76
+115-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:38:27-73
+116                <category android:name="android.intent.category.BROWSABLE" />
+116-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:39:17-78
+116-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:39:27-75
+117
+118                <data
+118-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:41:17-44:51
+119                    android:host="firebase.auth"
+119-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:42:21-49
+120                    android:path="/"
+120-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:43:21-37
+121                    android:scheme="genericidp" />
+121-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:44:21-48
+122            </intent-filter>
+123        </activity>
+124        <activity
+124-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:47:9-64:20
+125            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+125-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:48:13-79
+126            android:excludeFromRecents="true"
+126-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:49:13-46
+127            android:exported="true"
+127-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:50:13-36
+128            android:launchMode="singleTask"
+128-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:51:13-44
+129            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+129-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:52:13-72
+130            <intent-filter>
+130-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:53:13-63:29
+131                <action android:name="android.intent.action.VIEW" />
+131-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:36:17-69
+131-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:36:25-66
+132
+133                <category android:name="android.intent.category.DEFAULT" />
+133-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:38:17-76
+133-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:38:27-73
+134                <category android:name="android.intent.category.BROWSABLE" />
+134-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:39:17-78
+134-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:39:27-75
+135
+136                <data
+136-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:41:17-44:51
+137                    android:host="firebase.auth"
+137-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:42:21-49
+138                    android:path="/"
+138-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:43:21-37
+139                    android:scheme="recaptcha" />
+139-->[com.google.firebase:firebase-auth:22.1.2] /home/vishnu/.gradle/caches/transforms-3/77dbec368bd81b324a1fd5d54ac8078a/transformed/jetified-firebase-auth-22.1.2/AndroidManifest.xml:44:21-48
+140            </intent-filter>
+141        </activity>
+142
+143        <provider
+143-->[com.google.firebase:firebase-common:20.3.3] /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:25:9-30:39
+144            android:name="com.google.firebase.provider.FirebaseInitProvider"
+144-->[com.google.firebase:firebase-common:20.3.3] /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:26:13-77
+145            android:authorities="com.example.animepeak.firebaseinitprovider"
+145-->[com.google.firebase:firebase-common:20.3.3] /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:27:13-72
+146            android:directBootAware="true"
+146-->[com.google.firebase:firebase-common:20.3.3] /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:28:13-43
+147            android:exported="false"
+147-->[com.google.firebase:firebase-common:20.3.3] /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:29:13-37
+148            android:initOrder="100" />
+148-->[com.google.firebase:firebase-common:20.3.3] /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/AndroidManifest.xml:30:13-36
+149
+150        <activity
+150-->[com.google.android.gms:play-services-base:18.1.0] /home/vishnu/.gradle/caches/transforms-3/092641a788ca675a96f87bd427d13d6a/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:9-22:45
+151            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+151-->[com.google.android.gms:play-services-base:18.1.0] /home/vishnu/.gradle/caches/transforms-3/092641a788ca675a96f87bd427d13d6a/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:20:19-85
+152            android:exported="false"
+152-->[com.google.android.gms:play-services-base:18.1.0] /home/vishnu/.gradle/caches/transforms-3/092641a788ca675a96f87bd427d13d6a/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:22:19-43
+153            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+153-->[com.google.android.gms:play-services-base:18.1.0] /home/vishnu/.gradle/caches/transforms-3/092641a788ca675a96f87bd427d13d6a/transformed/jetified-play-services-base-18.1.0/AndroidManifest.xml:21:19-78
+154
+155        <meta-data
+155-->[com.google.android.gms:play-services-basement:18.2.0] /home/vishnu/.gradle/caches/transforms-3/f9557f3fde5db8682fa2257fedb9c8ba/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:21:9-23:69
+156            android:name="com.google.android.gms.version"
+156-->[com.google.android.gms:play-services-basement:18.2.0] /home/vishnu/.gradle/caches/transforms-3/f9557f3fde5db8682fa2257fedb9c8ba/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:22:13-58
+157            android:value="@integer/google_play_services_version" />
+157-->[com.google.android.gms:play-services-basement:18.2.0] /home/vishnu/.gradle/caches/transforms-3/f9557f3fde5db8682fa2257fedb9c8ba/transformed/jetified-play-services-basement-18.2.0/AndroidManifest.xml:23:13-66
+158
+159        <provider
+159-->[androidx.emoji2:emoji2:1.2.0] /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+160            android:name="androidx.startup.InitializationProvider"
+160-->[androidx.emoji2:emoji2:1.2.0] /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+161            android:authorities="com.example.animepeak.androidx-startup"
+161-->[androidx.emoji2:emoji2:1.2.0] /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+162            android:exported="false" >
+162-->[androidx.emoji2:emoji2:1.2.0] /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+163            <meta-data
+163-->[androidx.emoji2:emoji2:1.2.0] /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+164                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+164-->[androidx.emoji2:emoji2:1.2.0] /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+165                android:value="androidx.startup" />
+165-->[androidx.emoji2:emoji2:1.2.0] /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+166            <meta-data
+166-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/vishnu/.gradle/caches/transforms-3/5068555dd7632f85f0ef550912e4539f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+167                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+167-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/vishnu/.gradle/caches/transforms-3/5068555dd7632f85f0ef550912e4539f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+168                android:value="androidx.startup" />
+168-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/vishnu/.gradle/caches/transforms-3/5068555dd7632f85f0ef550912e4539f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+169        </provider>
+170    </application>
+171
+172</manifest>

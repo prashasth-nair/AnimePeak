@@ -58,7 +58,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-
 import java.util.concurrent.TimeUnit;
 
 @SuppressLint("StaticFieldLeak")
@@ -83,7 +82,6 @@ public class VideoPlayer extends AppCompatActivity {
 
     public static ExoPlayer player;
     private GogoAnime.Gogoanime_stream gogoanime_stream;
-
     public static int video_quality_num = 0;
     public static int video_SUBTITLE_num = 0;
     public static List<String> video_quality = new ArrayList<>();
@@ -314,12 +312,12 @@ public class VideoPlayer extends AppCompatActivity {
                     if (gogoanime_stream != null) {
                         gogoanime_stream.Cancel();
                     }
-
                     if (player != null) {
                         player.stop();
                     }
                     gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
                     gogoanime_stream.execute();
+
 
 
                 }
@@ -342,7 +340,6 @@ public class VideoPlayer extends AppCompatActivity {
                         gogoanime_stream.Cancel();
                     }
 
-
                     if (player != null) {
                         player.stop();
                     }
@@ -355,7 +352,6 @@ public class VideoPlayer extends AppCompatActivity {
                 checkNext();
             }
         });
-
 
         gogoanime_stream = new GogoAnime.Gogoanime_stream(this);
         gogoanime_stream.execute();
@@ -384,7 +380,6 @@ public class VideoPlayer extends AppCompatActivity {
         });
 
     }
-
 
 
     public void checkPrevious() {
@@ -485,7 +480,6 @@ public class VideoPlayer extends AppCompatActivity {
         if (gogoanime_stream != null) {
             gogoanime_stream.Cancel();
         }
-
 
         if (player != null) {
             if (player.isPlaying()) {

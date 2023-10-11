@@ -18,4 +18,6 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18dp" />
+
+
 </androidx.cardview.widget.CardView>

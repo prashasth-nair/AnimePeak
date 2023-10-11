@@ -17,8 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +30,6 @@ import com.example.animepeak.Adapters.MainAdapter;
 
 import com.example.animepeak.R;
 import com.example.animepeak.Sources.GogoAnime;
-
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.FirebaseApp;
@@ -40,7 +37,6 @@ import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 @SuppressLint("StaticFieldLeak")
 public class HomeFragment extends Fragment {
@@ -78,7 +74,6 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         bottomNavigationView.setSelectedItemId(R.id.home);
-
         // Build a GoogleSignInClient with the options specified by gso.
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(requireActivity());
         if (acct != null) {
@@ -86,7 +81,6 @@ public class HomeFragment extends Fragment {
             Glide.with(this)
                     .load(personPhoto)
                     .into(profile);
-
         } else {
             Glide.with(this)
                     .load(R.raw.boy1)
@@ -95,10 +89,9 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     private void fetchData(int page) {
         isLoading = true;
-        Log.d("Here","Here");
+
         // Make an API request with the updated page number
         String apiUrl = "https://api.consumet.org/anime/gogoanime/top-airing?page=" + page;
 
@@ -112,7 +105,6 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         bottomNavigationView.setSelectedItemId(R.id.home);
-
 
         recyclerView = requireView().findViewById(R.id.home_recycler);
         home_loading = requireView().findViewById(R.id.loading);
@@ -164,7 +156,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        currentPage = 0;
+
 // Make the initial API request
         fetchData(currentPage);
     }
@@ -174,7 +166,7 @@ public class HomeFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (getView() != null) {
-            currentPage = 0;
+
             // Make the initial API request
             fetchData(currentPage);
         }
@@ -186,17 +178,17 @@ public class HomeFragment extends Fragment {
         if (hidden) {
             // Fragment is not currently visible
             // Perform actions or update UI accordingly
-
             Home_TitleUrlList.clear();
             Home_imageUrlList.clear();
             Home_IDList.clear();
+
+
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         currentPage = 0;
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
@@ -209,15 +201,12 @@ public class HomeFragment extends Fragment {
 
     }
 
-
     @Override
     public void onDetach() {
         super.onDetach();
-        currentPage = 0;
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
-
         if (gogoanime_popular != null) {
             gogoanime_popular = null;
         }

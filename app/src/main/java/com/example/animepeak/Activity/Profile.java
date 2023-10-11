@@ -34,13 +34,11 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
@@ -50,14 +48,15 @@ public class Profile extends AppCompatActivity {
     ImageView profile_dp;
     SignInButton signInButton;
     Button logout;
-
     public Uri personPhoto;
 
     private FirebaseAuth mAuth;
+    //    private SignInClient oneTapClient;
+//    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private static final int RC_SIGN_IN = 100;  // Can be any integer unique to the Activity.
+//    private boolean showOneTapUI = true;
 
     GoogleSignInClient mGoogleSignInClient;
-
 
     @SuppressLint({"MissingInflatedId", "CheckResult", "SetTextI18n"})
     @Override
@@ -75,7 +74,12 @@ public class Profile extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
-        back.setOnClickListener(view -> finish());
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 //        oneTapClient = Identity.getSignInClient(Profile.this);
 
 
@@ -94,7 +98,6 @@ public class Profile extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
-
 //            String personGivenName = acct.getGivenName();
 //            String personFamilyName = acct.getFamilyName();
 //            String personEmail = acct.getEmail();
@@ -107,7 +110,6 @@ public class Profile extends AppCompatActivity {
                     .into(profile_dp);
             signInButton.setVisibility(View.GONE);
             logout.setVisibility(View.VISIBLE);
-
         } else {
             signInButton.setVisibility(View.VISIBLE);
             logout.setVisibility(View.GONE);
@@ -172,7 +174,6 @@ public class Profile extends AppCompatActivity {
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
                 String personName = acct.getDisplayName();
-
 //                String personGivenName = acct.getGivenName();
 //                String personFamilyName = acct.getFamilyName();
 //                String personEmail = acct.getEmail();
@@ -196,7 +197,6 @@ public class Profile extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // User is successfully authenticated with Firebase.
                                     // Store the array in the user's Firebase database.
-
                                     if (fav_list.size() > 0) {
                                         storeArrayToFirebase();
                                     }
@@ -216,8 +216,7 @@ public class Profile extends AppCompatActivity {
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatus());
-
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
             Toast.makeText(this, "Error!!", Toast.LENGTH_LONG).show();
 
         }

@@ -5,14 +5,12 @@ import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.gogoanime_popular;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
-
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -39,7 +37,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
@@ -124,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
-
                             gogoanime_popular = null;
                         }
 

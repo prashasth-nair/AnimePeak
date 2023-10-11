@@ -1,0 +1,258 @@
+[
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_search_box_background.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/search_box_background.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_fragment_favourite.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/fragment_favourite.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_baseline_favorite_24_selected.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/baseline_favorite_24_selected.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_ic_back_arrow.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/ic_back_arrow.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_back.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/back.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_baseline_search_24.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/baseline_search_24.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_network_error_background.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/network_error_background.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_fragment_settings.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/fragment_settings.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_baseline_settings_24.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/baseline_settings_24.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_forward.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/forward.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_baseline_favorite_unselected.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/baseline_favorite_unselected.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_activity_profile.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_test_img.jpg.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/test_img.jpg"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_fav_button_background.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/fav_button_background.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_nav_background_curved.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/nav_background_curved.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/xml_file_paths.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/xml/file_paths.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_previous.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/previous.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/xml_backup_rules.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_episode_list.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/episode_list.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_dropdown.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/dropdown.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_imageview_gradient.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/imageview_gradient.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/xml_data_extraction_rules.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/raw_boy1.jpg.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/raw/boy1.jpg"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/raw_girl2.jpg.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/raw/girl2.jpg"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_next.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/next.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/anim_fade_in_recycler.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/anim/fade_in_recycler.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/menu_bottom_navigation_menu.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/menu/bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_baseline_home_24.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/baseline_home_24.xml"
+    },
+    {
+        "merged": "com.example.animepeak.app-merged_res-48:/layout_fragment_home.xml.flat",
+        "source": "com.example.animepeak.app-main-50:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_quality.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/quality.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/raw_banner.jpg.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/raw/banner.jpg"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_player_custom_controls.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/player_custom_controls.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_baseline_fast_rewind_24.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/baseline_fast_rewind_24.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_activity_main.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_baseline_subtitles_24.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/baseline_subtitles_24.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_activity_video_player.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/activity_video_player.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/raw_girl1.jpg.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/raw/girl1.jpg"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_fragment_home.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_item_last_request.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/item_last_request.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/font_font.ttf.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/font/font.ttf"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_activity_anime_details.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/activity_anime_details.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_pause.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/pause.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/drawable_play.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/drawable/play.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_list.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/list.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_fragment_search.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/fragment_search.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/raw_loading_animation.gif.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/raw/loading_animation.gif"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/layout_genre_list.xml.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/layout/genre_list.xml"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-merged_res-48:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/home/vishnu/.gradle/daemon/8.0/com.example.animepeak.app-main-50:/mipmap-hdpi/ic_launcher.png"
+    }
+]

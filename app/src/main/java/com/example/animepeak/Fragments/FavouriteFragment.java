@@ -62,7 +62,6 @@ public class FavouriteFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_favourite, container, false);
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -109,10 +108,10 @@ public class FavouriteFragment extends Fragment {
             // Landscape orientation
             fav_recycler.setLayoutManager(new GridLayoutManager(requireView().getContext(), 4));
         }
-
         FavAdapter favAdapter = new FavAdapter(getActivity(),fav_list);
         fav_recycler.setAdapter(favAdapter);
         favAdapter.notifyDataSetChanged();
+
     }
     public void RetreiveArrayFromFirebase(){
         FirebaseUser user = mAuth.getCurrentUser();
@@ -135,6 +134,7 @@ public class FavouriteFragment extends Fragment {
                             }
                         }
                         Log.d("Fav", "fav_list size after retrieval: " + fav_list.size()); // Verify the size of fav_list
+
                         if (fav_list.size()==0){
                             no_fav.setVisibility(View.VISIBLE);
                         }else {
