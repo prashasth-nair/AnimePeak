@@ -1,19 +1,11 @@
 package com.example.animepeak.Activity;
 
-<<<<<<< HEAD
-import static com.example.animepeak.Fragments.FavouriteFragment.countSource;
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.gogoanime_popular;
 
-<<<<<<< HEAD
-import static com.example.animepeak.Fragments.HomeFragment.zoro_popular;
 
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
@@ -21,19 +13,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 
-<<<<<<< HEAD
-import android.app.Activity;
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-<<<<<<< HEAD
-import android.widget.Toast;
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 import com.example.animepeak.Fragments.FavouriteFragment;
 import com.example.animepeak.Fragments.HomeFragment;
@@ -45,12 +30,7 @@ import com.example.animepeak.R;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-<<<<<<< HEAD
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-=======
 
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -59,16 +39,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-<<<<<<< HEAD
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-=======
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -151,19 +124,9 @@ public class MainActivity extends AppCompatActivity {
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
                         if (gogoanime_popular != null  ) {
-<<<<<<< HEAD
-                            
-//                            gogoanime_popular.cancel(true);
+
                             gogoanime_popular = null;
                         }
-                        if (zoro_popular != null ) {
-                            zoro_popular.cancel(true);
-                            zoro_popular = null;
-                        }
-=======
-                            gogoanime_popular = null;
-                        }
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
                         return true;
                     case R.id.fav:
@@ -179,13 +142,6 @@ public class MainActivity extends AppCompatActivity {
 //                            gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
-<<<<<<< HEAD
-                        if (zoro_popular != null ) {
-                            zoro_popular.cancel(true);
-                            zoro_popular = null;
-                        }
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
                         return true;
                     case R.id.settings:
@@ -198,13 +154,6 @@ public class MainActivity extends AppCompatActivity {
 //                            gogoanime_popular.cancel(true);
                             gogoanime_popular = null;
                         }
-<<<<<<< HEAD
-                        if (zoro_popular != null ) {
-                            zoro_popular.cancel(true);
-                            zoro_popular = null;
-                        }
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
                         return true;
 

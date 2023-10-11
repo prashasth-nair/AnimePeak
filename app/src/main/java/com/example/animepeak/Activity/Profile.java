@@ -13,10 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-<<<<<<< HEAD
-import android.graphics.drawable.Drawable;
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,12 +25,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.animepeak.R;
 
-<<<<<<< HEAD
-import com.google.android.gms.auth.api.identity.Identity;
-import com.google.android.gms.auth.api.identity.SignInClient;
-
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -44,56 +34,32 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-<<<<<<< HEAD
-import com.google.android.gms.tasks.OnFailureListener;
-=======
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-<<<<<<< HEAD
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-
-public class Profile extends AppCompatActivity  {
-=======
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
 public class Profile extends AppCompatActivity {
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     ImageView back;
     TextView name;
     ImageView profile_dp;
     SignInButton signInButton;
     Button logout;
-<<<<<<< HEAD
-    public Uri personPhoto ;
 
-    private FirebaseAuth mAuth;
-//    private SignInClient oneTapClient;
-=======
     public Uri personPhoto;
 
     private FirebaseAuth mAuth;
-    //    private SignInClient oneTapClient;
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
-//    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private static final int RC_SIGN_IN = 100;  // Can be any integer unique to the Activity.
-//    private boolean showOneTapUI = true;
 
     GoogleSignInClient mGoogleSignInClient;
-<<<<<<< HEAD
-    @SuppressLint({"MissingInflatedId", "CheckResult"})
-=======
+
 
     @SuppressLint({"MissingInflatedId", "CheckResult", "SetTextI18n"})
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,12 +75,7 @@ public class Profile extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        back.setOnClickListener(view -> finish());
 //        oneTapClient = Identity.getSignInClient(Profile.this);
 
 
@@ -133,17 +94,11 @@ public class Profile extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
-<<<<<<< HEAD
-            String personGivenName = acct.getGivenName();
-            String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-=======
+
 //            String personGivenName = acct.getGivenName();
 //            String personFamilyName = acct.getFamilyName();
 //            String personEmail = acct.getEmail();
 //            String personId = acct.getId();
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             personPhoto = acct.getPhotoUrl();
 
             name.setText(personName);
@@ -152,12 +107,8 @@ public class Profile extends AppCompatActivity {
                     .into(profile_dp);
             signInButton.setVisibility(View.GONE);
             logout.setVisibility(View.VISIBLE);
-<<<<<<< HEAD
-        }
-        else{
-=======
+
         } else {
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             signInButton.setVisibility(View.VISIBLE);
             logout.setVisibility(View.GONE);
             Glide.with(this)
@@ -184,19 +135,10 @@ public class Profile extends AppCompatActivity {
         });
 
 
-<<<<<<< HEAD
-
-
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            signIn();
-=======
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             }
         });
 
@@ -207,10 +149,7 @@ public class Profile extends AppCompatActivity {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -223,10 +162,7 @@ public class Profile extends AppCompatActivity {
             handleSignInResult(task);
         }
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -236,17 +172,11 @@ public class Profile extends AppCompatActivity {
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
                 String personName = acct.getDisplayName();
-<<<<<<< HEAD
-                String personGivenName = acct.getGivenName();
-                String personFamilyName = acct.getFamilyName();
-                String personEmail = acct.getEmail();
-                String personId = acct.getId();
-=======
+
 //                String personGivenName = acct.getGivenName();
 //                String personFamilyName = acct.getFamilyName();
 //                String personEmail = acct.getEmail();
 //                String personId = acct.getId();
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
                 Uri personPhoto = acct.getPhotoUrl();
 
                 name.setText(personName);
@@ -266,11 +196,8 @@ public class Profile extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     // User is successfully authenticated with Firebase.
                                     // Store the array in the user's Firebase database.
-<<<<<<< HEAD
-                                    if (fav_list.size()>0) {
-=======
+
                                     if (fav_list.size() > 0) {
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
                                         storeArrayToFirebase();
                                     }
 //                                    Toast.makeText(Profile.this, "Successful", Toast.LENGTH_SHORT).show();
@@ -289,12 +216,9 @@ public class Profile extends AppCompatActivity {
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-<<<<<<< HEAD
-            Toast.makeText(this,"Error!!",Toast.LENGTH_LONG).show();
-=======
+            Log.w(TAG, "signInResult:failed code=" + e.getStatus());
+
             Toast.makeText(this, "Error!!", Toast.LENGTH_LONG).show();
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
         }
     }

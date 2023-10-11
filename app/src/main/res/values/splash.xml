@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.AnimePeak.MySplash" parent="Theme.SplashScreen">
@@ -7,14 +6,4 @@
         <item name="splashScreenIconSize">10dp</item>
         <item name="postSplashScreenTheme">@style/Theme.AnimePeak</item>
     </style>
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.AnimePeak.MySplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#FFFFFF</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
-        <item name="splashScreenIconSize">10dp</item>
-        <item name="postSplashScreenTheme">@style/Theme.AnimePeak</item>
-    </style>
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 </resources>

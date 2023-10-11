@@ -16,11 +16,8 @@
         android:layout_margin="10dp"
         android:background="@drawable/network_error_background"
         android:padding="10dp"
-<<<<<<< HEAD
-        android:text="Something went wrong. Please Check your network connection"
-=======
+
         android:text="@string/something_went_wrong"
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
         android:textAlignment="center"
         android:textColor="@color/white"
         android:visibility="gone"
@@ -57,13 +54,9 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
-<<<<<<< HEAD
-            android:layout_marginEnd="25dp"
-            android:layout_marginTop="12dp"
-=======
+
             android:layout_marginTop="12dp"
             android:layout_marginEnd="25dp"
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
             android:layout_marginBottom="5dp"
             android:elevation="12dp"
             app:cardCornerRadius="40dp">
@@ -83,13 +76,8 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/title_bar"
         android:paddingStart="10dp"
-<<<<<<< HEAD
-        android:paddingEnd="10dp"
 
-        />
-=======
         android:paddingEnd="10dp" />
->>>>>>> 5ae3732 (Removed Zoro,Added infinte scroll (#23),Changed from few depreciated api to latest,Fixed few bugs)
 
 
 </RelativeLayout>
