@@ -4,6 +4,9 @@
 
 **AnimePeak** is an Android app designed to immerse you in the captivating world of anime. With its extensive collection of anime shows and movies, AnimePeak aims to be your go-to platform for all things anime, providing a seamless and feature-rich streaming experience right on your mobile device.
 
+**Note: This project is a personal project. This project uses API to access anime contents.**
+
+
 ## Features that Elevate Your Anime Experience
 
 ### 🎬 A World of Anime Delights
