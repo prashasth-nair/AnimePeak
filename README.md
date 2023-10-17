@@ -6,7 +6,6 @@
 
 **Note: This project is a personal project. This project uses API to access anime contents.**
 
-
 ## Features that Elevate Your Anime Experience
 
 ### 🎬 A World of Anime Delights
@@ -48,4 +47,9 @@ Stay tuned for more updates, and thank you for being a part of the AnimePeak com
 Best regards,
 Prashasth Nair
 
+<<<<<<< HEAD
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+=======
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+>>>>>>> f78c98f7774cee527f8b11362db527d7da6a98ab
+ification. Contributions of any kind welcome!
