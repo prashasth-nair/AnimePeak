@@ -18,7 +18,6 @@ import android.os.AsyncTask;
 
 import android.os.Environment;
 
-import android.util.Log;
 import android.widget.Toast;
 
 
@@ -47,6 +46,7 @@ public class UpdateApp {
     private static long downloadId;
 
     public static class update_app extends AsyncTask<Void, Void, String> {
+        @SuppressLint("StaticFieldLeak")
         static Activity activity;
 
         public update_app(Activity activity) {
@@ -95,7 +95,7 @@ public class UpdateApp {
 
                 if (!isUpdateAvailable(currentVersionName, version)) {
                     checkForUpdates(download);
-                }else {
+                } else {
                     if (!is_home) {
                         Toast.makeText(activity, "No Update Available", Toast.LENGTH_LONG).show();
                     }
@@ -133,6 +133,7 @@ public class UpdateApp {
             return Objects.equals(new_version, current);
         }
 
+        @SuppressLint("UnspecifiedRegisterReceiverFlag")
         private static void downloadApk(String url) {
             DownloadManager downloadManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));

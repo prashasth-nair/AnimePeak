@@ -38,6 +38,7 @@ import static com.example.animepeak.Fragments.HomeFragment.LayoutManager;
 import static com.example.animepeak.Fragments.HomeFragment.home_loading;
 import static com.example.animepeak.Fragments.HomeFragment.isLoading;
 import static com.example.animepeak.Fragments.HomeFragment.mainAdapter;
+import static com.example.animepeak.Fragments.HomeFragment.more_loading;
 import static com.example.animepeak.Fragments.HomeFragment.network_error;
 import static com.example.animepeak.Fragments.HomeFragment.pos;
 import static com.example.animepeak.Fragments.SearchFragment.Search_IDList;
@@ -94,17 +95,20 @@ public class GogoAnime {
     public static class Gogoanime_popular {
 
         private static final String TAG = "Hello";
-        private final String API_ENDPOINT;
 
         private final Activity activity;
         private final boolean is_added;
         ExecutorService executor;
         boolean is_new_page = false;
+        boolean is_more = false;
+        int page;
 
-        public Gogoanime_popular(Activity activity, boolean is_added, String API_ENDPOINT) {
+        public Gogoanime_popular(Activity activity, boolean is_added, boolean is_more, int page) {
             this.activity = activity;
             this.is_added = is_added;
-            this.API_ENDPOINT = API_ENDPOINT;
+
+            this.is_more = is_more;
+            this.page = page;
             executor = Executors.newSingleThreadExecutor();
         }
 
@@ -119,15 +123,24 @@ public class GogoAnime {
         }
 
         private void onPreExecute() {
+            if (is_more) {
+                activity.runOnUiThread(() -> {
+                    more_loading.setVisibility(View.VISIBLE);
+                    Glide.with(activity)
+                            .asGif()
+                            .load(R.raw.loading_animation)
+                            .into(more_loading);
+                });
+            }
 
             // Display loading animation
             activity.runOnUiThread(() -> {
-                // Your code for displaying loading animation goes here
                 Glide.with(activity)
                         .asGif()
                         .load(R.raw.loading_animation)
                         .into(home_loading);
             });
+
         }
 
         private String doInBackground() {
@@ -138,20 +151,25 @@ public class GogoAnime {
                     if (isLoading) {
                         is_new_page = true;
                     }
-                    URL url = new URL(API_ENDPOINT);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    conn.setRequestProperty("Content-Type", "application/json");
 
-                    InputStream in = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+                    int last_page = page + 4;
+                    for (int first_page = page; first_page < last_page; first_page++) {
+                        String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/top-airing?page=" + page;
+                        URL url = new URL(API_ENDPOINT);
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setRequestMethod("GET");
+                        conn.setRequestProperty("Content-Type", "application/json");
 
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        response.append(line);
+                        InputStream in = conn.getInputStream();
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            response.append(line);
+                        }
+                        reader.close();
+                        conn.disconnect();
                     }
-                    reader.close();
-                    conn.disconnect();
 
 
                 }
@@ -234,6 +252,11 @@ public class GogoAnime {
                     network_error.setVisibility(View.GONE);
                 }
             });
+            if (is_more) {
+                activity.runOnUiThread(() -> {
+                    more_loading.setVisibility(View.GONE);
+                });
+            }
             isLoading = false;
         }
     }

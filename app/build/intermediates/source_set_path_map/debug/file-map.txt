@@ -1,51 +1,58 @@
-com.example.animepeak.app-jetified-play-services-base-18.1.0-0 /home/vishnu/.gradle/caches/transforms-3/092641a788ca675a96f87bd427d13d6a/transformed/jetified-play-services-base-18.1.0/res
-com.example.animepeak.app-jetified-firebase-common-20.3.3-1 /home/vishnu/.gradle/caches/transforms-3/0a17d51532ac3448a248d9405c15c42e/transformed/jetified-firebase-common-20.3.3/res
-com.example.animepeak.app-jetified-core-ktx-1.9.0-2 /home/vishnu/.gradle/caches/transforms-3/0d41d0dc53724cf840c8ec64183c0d46/transformed/jetified-core-ktx-1.9.0/res
-com.example.animepeak.app-jetified-expandabletextview-1.0.3-3 /home/vishnu/.gradle/caches/transforms-3/0fa7ad4361bb5d7d00ce7f238ebe22fe/transformed/jetified-expandabletextview-1.0.3/res
-com.example.animepeak.app-jetified-startup-runtime-1.1.1-4 /home/vishnu/.gradle/caches/transforms-3/14ad20aecf638de8c3d0a360688f97f7/transformed/jetified-startup-runtime-1.1.1/res
-com.example.animepeak.app-jetified-appcompat-resources-1.6.1-5 /home/vishnu/.gradle/caches/transforms-3/156649a6d7998c0c268a8c4e075bb241/transformed/jetified-appcompat-resources-1.6.1/res
-com.example.animepeak.app-jetified-glide-4.12.0-6 /home/vishnu/.gradle/caches/transforms-3/1a5a0798b84cf279e1378e3a58420d23/transformed/jetified-glide-4.12.0/res
-com.example.animepeak.app-jetified-emoji2-views-helper-1.2.0-7 /home/vishnu/.gradle/caches/transforms-3/201f00a01408ff90126ec60852cc4240/transformed/jetified-emoji2-views-helper-1.2.0/res
-com.example.animepeak.app-jetified-dexter-6.2.2-8 /home/vishnu/.gradle/caches/transforms-3/203c897b69a1bda941a7b11868da2e27/transformed/jetified-dexter-6.2.2/res
-com.example.animepeak.app-lifecycle-livedata-core-2.5.1-9 /home/vishnu/.gradle/caches/transforms-3/20ac151b651eae7e0a2d5c4295aed904/transformed/lifecycle-livedata-core-2.5.1/res
-com.example.animepeak.app-jetified-exoplayer-ui-2.19.1-10 /home/vishnu/.gradle/caches/transforms-3/2cd39639197a1cdebe865aa0c9b666a2/transformed/jetified-exoplayer-ui-2.19.1/res
-com.example.animepeak.app-jetified-lifecycle-viewmodel-savedstate-2.5.1-11 /home/vishnu/.gradle/caches/transforms-3/379aef54060bd40ed2237ca37df64b53/transformed/jetified-lifecycle-viewmodel-savedstate-2.5.1/res
-com.example.animepeak.app-lifecycle-runtime-2.5.1-12 /home/vishnu/.gradle/caches/transforms-3/3ae6930e2bbe2c09e99cbab0b19353a4/transformed/lifecycle-runtime-2.5.1/res
-com.example.animepeak.app-jetified-lifecycle-process-2.4.1-13 /home/vishnu/.gradle/caches/transforms-3/5068555dd7632f85f0ef550912e4539f/transformed/jetified-lifecycle-process-2.4.1/res
-com.example.animepeak.app-drawerlayout-1.1.1-14 /home/vishnu/.gradle/caches/transforms-3/52517607f93eed8c153f776ce8459801/transformed/drawerlayout-1.1.1/res
-com.example.animepeak.app-jetified-annotation-experimental-1.3.0-15 /home/vishnu/.gradle/caches/transforms-3/545b2e34991bd891c61b3e88c20bf0fc/transformed/jetified-annotation-experimental-1.3.0/res
-com.example.animepeak.app-jetified-activity-1.6.0-16 /home/vishnu/.gradle/caches/transforms-3/55de67e4dcd41689695ac7787640091e/transformed/jetified-activity-1.6.0/res
-com.example.animepeak.app-material-1.9.0-17 /home/vishnu/.gradle/caches/transforms-3/5858478a4232d2508a1e8341e11601d0/transformed/material-1.9.0/res
-com.example.animepeak.app-databinding-runtime-7.3.1-18 /home/vishnu/.gradle/caches/transforms-3/68bdc726e2d69021a67aaa9bd15ea6ab/transformed/databinding-runtime-7.3.1/res
-com.example.animepeak.app-recyclerview-1.3.0-19 /home/vishnu/.gradle/caches/transforms-3/6d8f134cc2bc64f117d9fbf30fad7e1e/transformed/recyclerview-1.3.0/res
-com.example.animepeak.app-jetified-core-splashscreen-1.0.1-20 /home/vishnu/.gradle/caches/transforms-3/6ef93579675b9afee442d083d2f2c5e1/transformed/jetified-core-splashscreen-1.0.1/res
-com.example.animepeak.app-jetified-lifecycle-service-2.4.0-21 /home/vishnu/.gradle/caches/transforms-3/7332e2e0b3969083a79f146f1063d472/transformed/jetified-lifecycle-service-2.4.0/res
-com.example.animepeak.app-jetified-viewpager2-1.0.0-22 /home/vishnu/.gradle/caches/transforms-3/7a52ec80e38c64c3aa34259aeeffe7fb/transformed/jetified-viewpager2-1.0.0/res
-com.example.animepeak.app-coordinatorlayout-1.1.0-23 /home/vishnu/.gradle/caches/transforms-3/7b65f0b89736a5ca07441548ac174ff2/transformed/coordinatorlayout-1.1.0/res
-com.example.animepeak.app-databinding-adapters-7.3.1-24 /home/vishnu/.gradle/caches/transforms-3/7e5f5dbbcae53b0a6f429c2d39bc1e09/transformed/databinding-adapters-7.3.1/res
-com.example.animepeak.app-appcompat-1.6.1-25 /home/vishnu/.gradle/caches/transforms-3/80605cc2cfb8a50001822c6c8bc17a1f/transformed/appcompat-1.6.1/res
-com.example.animepeak.app-jetified-lifecycle-runtime-ktx-2.4.0-26 /home/vishnu/.gradle/caches/transforms-3/8882ee5e0ca24364d5a96fffc3ecff80/transformed/jetified-lifecycle-runtime-ktx-2.4.0/res
-com.example.animepeak.app-lifecycle-livedata-2.4.0-27 /home/vishnu/.gradle/caches/transforms-3/8a5900c38046f1578c69d4297ec3c3e7/transformed/lifecycle-livedata-2.4.0/res
-com.example.animepeak.app-jetified-MaterialSearchBar-0.8.5-28 /home/vishnu/.gradle/caches/transforms-3/9f10be2090d81ff3046c85a52f378d87/transformed/jetified-MaterialSearchBar-0.8.5/res
-com.example.animepeak.app-lifecycle-viewmodel-2.5.1-29 /home/vishnu/.gradle/caches/transforms-3/af4308a66dfc7d2a42f7367b6d88727a/transformed/lifecycle-viewmodel-2.5.1/res
-com.example.animepeak.app-jetified-emoji2-1.2.0-30 /home/vishnu/.gradle/caches/transforms-3/b0d767b9b66ec87b91cea55472b99b6f/transformed/jetified-emoji2-1.2.0/res
-com.example.animepeak.app-fragment-1.3.6-31 /home/vishnu/.gradle/caches/transforms-3/b3307916b7c1cd8bf99008d5454fe466/transformed/fragment-1.3.6/res
-com.example.animepeak.app-constraintlayout-2.1.4-32 /home/vishnu/.gradle/caches/transforms-3/bff53b03dcf70bd526b368eef937ade8/transformed/constraintlayout-2.1.4/res
-com.example.animepeak.app-jetified-customview-poolingcontainer-1.0.0-33 /home/vishnu/.gradle/caches/transforms-3/c03276485ad3afdbba74007cc10e92d4/transformed/jetified-customview-poolingcontainer-1.0.0/res
-com.example.animepeak.app-jetified-savedstate-1.2.0-34 /home/vishnu/.gradle/caches/transforms-3/c4b870b25923d2a175d37b91ab00c8f7/transformed/jetified-savedstate-1.2.0/res
-com.example.animepeak.app-media-1.6.0-35 /home/vishnu/.gradle/caches/transforms-3/c8a1a9894c1aba669b801a0aa19138af/transformed/media-1.6.0/res
-com.example.animepeak.app-cardview-1.0.0-36 /home/vishnu/.gradle/caches/transforms-3/ce78d6a3f842ee34c5580762cc7446ed/transformed/cardview-1.0.0/res
-com.example.animepeak.app-jetified-play-services-auth-20.7.0-37 /home/vishnu/.gradle/caches/transforms-3/cfc88b3c71c643daf88151098cd52749/transformed/jetified-play-services-auth-20.7.0/res
-com.example.animepeak.app-browser-1.4.0-38 /home/vishnu/.gradle/caches/transforms-3/d752a77582cd24a3046504a3120595cf/transformed/browser-1.4.0/res
-com.example.animepeak.app-core-1.9.0-39 /home/vishnu/.gradle/caches/transforms-3/d90cd841e7f83f541051a74d1dd2c693/transformed/core-1.9.0/res
-com.example.animepeak.app-transition-1.2.0-40 /home/vishnu/.gradle/caches/transforms-3/f1c1313f25e07f5598e24dc2cdd9d406/transformed/transition-1.2.0/res
-com.example.animepeak.app-jetified-play-services-basement-18.2.0-41 /home/vishnu/.gradle/caches/transforms-3/f9557f3fde5db8682fa2257fedb9c8ba/transformed/jetified-play-services-basement-18.2.0/res
-com.example.animepeak.app-jetified-exoplayer-core-2.19.1-42 /home/vishnu/.gradle/caches/transforms-3/fbc6b50f1508891979da8ac69c2b89cd/transformed/jetified-exoplayer-core-2.19.1/res
-com.example.animepeak.app-google-services-43 /home/vishnu/Android apps/AnimePeak/app/build/generated/res/google-services/debug
-com.example.animepeak.app-pngs-44 /home/vishnu/Android apps/AnimePeak/app/build/generated/res/pngs/debug
-com.example.animepeak.app-resValues-45 /home/vishnu/Android apps/AnimePeak/app/build/generated/res/resValues/debug
-com.example.animepeak.app-packageDebugResources-46 /home/vishnu/Android apps/AnimePeak/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.example.animepeak.app-packageDebugResources-47 /home/vishnu/Android apps/AnimePeak/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.example.animepeak.app-merged_res-48 /home/vishnu/Android apps/AnimePeak/app/build/intermediates/merged_res/debug
-com.example.animepeak.app-debug-49 /home/vishnu/Android apps/AnimePeak/app/src/debug/res
-com.example.animepeak.app-main-50 /home/vishnu/Android apps/AnimePeak/app/src/main/res
+com.example.animepeak.app-jetified-activity-1.8.0-0 C:\Users\Hp\.gradle\caches\transforms-3\0113514519cf22c86177c49c58941757\transformed\jetified-activity-1.8.0\res
+com.example.animepeak.app-jetified-play-services-base-18.1.0-1 C:\Users\Hp\.gradle\caches\transforms-3\092641a788ca675a96f87bd427d13d6a\transformed\jetified-play-services-base-18.1.0\res
+com.example.animepeak.app-jetified-firebase-common-20.3.3-2 C:\Users\Hp\.gradle\caches\transforms-3\0a17d51532ac3448a248d9405c15c42e\transformed\jetified-firebase-common-20.3.3\res
+com.example.animepeak.app-jetified-core-ktx-1.9.0-3 C:\Users\Hp\.gradle\caches\transforms-3\0d41d0dc53724cf840c8ec64183c0d46\transformed\jetified-core-ktx-1.9.0\res
+com.example.animepeak.app-jetified-expandabletextview-1.0.3-4 C:\Users\Hp\.gradle\caches\transforms-3\0fa7ad4361bb5d7d00ce7f238ebe22fe\transformed\jetified-expandabletextview-1.0.3\res
+com.example.animepeak.app-jetified-startup-runtime-1.1.1-5 C:\Users\Hp\.gradle\caches\transforms-3\14ad20aecf638de8c3d0a360688f97f7\transformed\jetified-startup-runtime-1.1.1\res
+com.example.animepeak.app-jetified-appcompat-resources-1.6.1-6 C:\Users\Hp\.gradle\caches\transforms-3\156649a6d7998c0c268a8c4e075bb241\transformed\jetified-appcompat-resources-1.6.1\res
+com.example.animepeak.app-jetified-glide-4.12.0-7 C:\Users\Hp\.gradle\caches\transforms-3\1a5a0798b84cf279e1378e3a58420d23\transformed\jetified-glide-4.12.0\res
+com.example.animepeak.app-jetified-emoji2-views-helper-1.2.0-8 C:\Users\Hp\.gradle\caches\transforms-3\201f00a01408ff90126ec60852cc4240\transformed\jetified-emoji2-views-helper-1.2.0\res
+com.example.animepeak.app-jetified-dexter-6.2.2-9 C:\Users\Hp\.gradle\caches\transforms-3\203c897b69a1bda941a7b11868da2e27\transformed\jetified-dexter-6.2.2\res
+com.example.animepeak.app-jetified-lifecycle-viewmodel-savedstate-2.6.1-10 C:\Users\Hp\.gradle\caches\transforms-3\246659f6c0d6c72ea03f95ae57cbe7a5\transformed\jetified-lifecycle-viewmodel-savedstate-2.6.1\res
+com.example.animepeak.app-jetified-exoplayer-ui-2.19.1-11 C:\Users\Hp\.gradle\caches\transforms-3\2cd39639197a1cdebe865aa0c9b666a2\transformed\jetified-exoplayer-ui-2.19.1\res
+com.example.animepeak.app-jetified-activity-ktx-1.8.0-12 C:\Users\Hp\.gradle\caches\transforms-3\2d07db00414bcfe4714a9ae25733d1de\transformed\jetified-activity-ktx-1.8.0\res
+com.example.animepeak.app-lifecycle-livedata-2.6.1-13 C:\Users\Hp\.gradle\caches\transforms-3\329ae44baeccc5cb11494319176c0456\transformed\lifecycle-livedata-2.6.1\res
+com.example.animepeak.app-jetified-lifecycle-runtime-ktx-2.6.1-14 C:\Users\Hp\.gradle\caches\transforms-3\33b904da9fd2a56c9af9a1d826951f18\transformed\jetified-lifecycle-runtime-ktx-2.6.1\res
+com.example.animepeak.app-drawerlayout-1.1.1-15 C:\Users\Hp\.gradle\caches\transforms-3\52517607f93eed8c153f776ce8459801\transformed\drawerlayout-1.1.1\res
+com.example.animepeak.app-jetified-annotation-experimental-1.3.0-16 C:\Users\Hp\.gradle\caches\transforms-3\545b2e34991bd891c61b3e88c20bf0fc\transformed\jetified-annotation-experimental-1.3.0\res
+com.example.animepeak.app-jetified-lifecycle-livedata-core-ktx-2.6.1-17 C:\Users\Hp\.gradle\caches\transforms-3\66d4f6cf0cc15a7d78251a84b43017f2\transformed\jetified-lifecycle-livedata-core-ktx-2.6.1\res
+com.example.animepeak.app-fragment-1.5.5-18 C:\Users\Hp\.gradle\caches\transforms-3\683127388d9c9ac47b5c325e232eb0f5\transformed\fragment-1.5.5\res
+com.example.animepeak.app-databinding-runtime-7.3.1-19 C:\Users\Hp\.gradle\caches\transforms-3\68bdc726e2d69021a67aaa9bd15ea6ab\transformed\databinding-runtime-7.3.1\res
+com.example.animepeak.app-core-runtime-2.2.0-20 C:\Users\Hp\.gradle\caches\transforms-3\6a22e1ccb6772e784f3f80a01f4e0e14\transformed\core-runtime-2.2.0\res
+com.example.animepeak.app-recyclerview-1.3.0-21 C:\Users\Hp\.gradle\caches\transforms-3\6d8f134cc2bc64f117d9fbf30fad7e1e\transformed\recyclerview-1.3.0\res
+com.example.animepeak.app-jetified-lifecycle-service-2.6.1-22 C:\Users\Hp\.gradle\caches\transforms-3\6ef9030ef6abff12763fa3babc989c0f\transformed\jetified-lifecycle-service-2.6.1\res
+com.example.animepeak.app-jetified-core-splashscreen-1.0.1-23 C:\Users\Hp\.gradle\caches\transforms-3\6ef93579675b9afee442d083d2f2c5e1\transformed\jetified-core-splashscreen-1.0.1\res
+com.example.animepeak.app-jetified-viewpager2-1.0.0-24 C:\Users\Hp\.gradle\caches\transforms-3\7a52ec80e38c64c3aa34259aeeffe7fb\transformed\jetified-viewpager2-1.0.0\res
+com.example.animepeak.app-coordinatorlayout-1.1.0-25 C:\Users\Hp\.gradle\caches\transforms-3\7b65f0b89736a5ca07441548ac174ff2\transformed\coordinatorlayout-1.1.0\res
+com.example.animepeak.app-databinding-adapters-7.3.1-26 C:\Users\Hp\.gradle\caches\transforms-3\7e5f5dbbcae53b0a6f429c2d39bc1e09\transformed\databinding-adapters-7.3.1\res
+com.example.animepeak.app-appcompat-1.6.1-27 C:\Users\Hp\.gradle\caches\transforms-3\80605cc2cfb8a50001822c6c8bc17a1f\transformed\appcompat-1.6.1\res
+com.example.animepeak.app-jetified-savedstate-1.2.1-28 C:\Users\Hp\.gradle\caches\transforms-3\87fa496f7ac29486372fd63445ed105f\transformed\jetified-savedstate-1.2.1\res
+com.example.animepeak.app-jetified-lifecycle-viewmodel-ktx-2.6.1-29 C:\Users\Hp\.gradle\caches\transforms-3\9839e74dc7578f9ff7bcb8c30d25814a\transformed\jetified-lifecycle-viewmodel-ktx-2.6.1\res
+com.example.animepeak.app-jetified-MaterialSearchBar-0.8.5-30 C:\Users\Hp\.gradle\caches\transforms-3\9f10be2090d81ff3046c85a52f378d87\transformed\jetified-MaterialSearchBar-0.8.5\res
+com.example.animepeak.app-jetified-emoji2-1.2.0-31 C:\Users\Hp\.gradle\caches\transforms-3\b0d767b9b66ec87b91cea55472b99b6f\transformed\jetified-emoji2-1.2.0\res
+com.example.animepeak.app-constraintlayout-2.1.4-32 C:\Users\Hp\.gradle\caches\transforms-3\bff53b03dcf70bd526b368eef937ade8\transformed\constraintlayout-2.1.4\res
+com.example.animepeak.app-jetified-customview-poolingcontainer-1.0.0-33 C:\Users\Hp\.gradle\caches\transforms-3\c03276485ad3afdbba74007cc10e92d4\transformed\jetified-customview-poolingcontainer-1.0.0\res
+com.example.animepeak.app-lifecycle-viewmodel-2.6.1-34 C:\Users\Hp\.gradle\caches\transforms-3\c61de642eb45119316acb7508c73205d\transformed\lifecycle-viewmodel-2.6.1\res
+com.example.animepeak.app-lifecycle-runtime-2.6.1-35 C:\Users\Hp\.gradle\caches\transforms-3\c85e78b3621777ced56c7dd641cd40e0\transformed\lifecycle-runtime-2.6.1\res
+com.example.animepeak.app-media-1.6.0-36 C:\Users\Hp\.gradle\caches\transforms-3\c8a1a9894c1aba669b801a0aa19138af\transformed\media-1.6.0\res
+com.example.animepeak.app-material-1.10.0-37 C:\Users\Hp\.gradle\caches\transforms-3\cb50d2e19d8f3fccf969a82cc8faf7bd\transformed\material-1.10.0\res
+com.example.animepeak.app-cardview-1.0.0-38 C:\Users\Hp\.gradle\caches\transforms-3\ce78d6a3f842ee34c5580762cc7446ed\transformed\cardview-1.0.0\res
+com.example.animepeak.app-jetified-lifecycle-process-2.6.1-39 C:\Users\Hp\.gradle\caches\transforms-3\cf588f7aa23bf242d38efaca159d76bb\transformed\jetified-lifecycle-process-2.6.1\res
+com.example.animepeak.app-jetified-play-services-auth-20.7.0-40 C:\Users\Hp\.gradle\caches\transforms-3\cfc88b3c71c643daf88151098cd52749\transformed\jetified-play-services-auth-20.7.0\res
+com.example.animepeak.app-browser-1.4.0-41 C:\Users\Hp\.gradle\caches\transforms-3\d752a77582cd24a3046504a3120595cf\transformed\browser-1.4.0\res
+com.example.animepeak.app-core-1.9.0-42 C:\Users\Hp\.gradle\caches\transforms-3\d90cd841e7f83f541051a74d1dd2c693\transformed\core-1.9.0\res
+com.example.animepeak.app-jetified-savedstate-ktx-1.2.1-43 C:\Users\Hp\.gradle\caches\transforms-3\d9ba79d0919db526abf88662c4dffe75\transformed\jetified-savedstate-ktx-1.2.1\res
+com.example.animepeak.app-jetified-profileinstaller-1.3.0-44 C:\Users\Hp\.gradle\caches\transforms-3\dff42ce0205a044750c78f17a064df42\transformed\jetified-profileinstaller-1.3.0\res
+com.example.animepeak.app-lifecycle-livedata-core-2.6.1-45 C:\Users\Hp\.gradle\caches\transforms-3\e4c8d5fc1449fd510de498d2c9c09c79\transformed\lifecycle-livedata-core-2.6.1\res
+com.example.animepeak.app-transition-1.2.0-46 C:\Users\Hp\.gradle\caches\transforms-3\f1c1313f25e07f5598e24dc2cdd9d406\transformed\transition-1.2.0\res
+com.example.animepeak.app-jetified-play-services-basement-18.2.0-47 C:\Users\Hp\.gradle\caches\transforms-3\f9557f3fde5db8682fa2257fedb9c8ba\transformed\jetified-play-services-basement-18.2.0\res
+com.example.animepeak.app-jetified-exoplayer-core-2.19.1-48 C:\Users\Hp\.gradle\caches\transforms-3\fbc6b50f1508891979da8ac69c2b89cd\transformed\jetified-exoplayer-core-2.19.1\res
+com.example.animepeak.app-jetified-fragment-ktx-1.5.5-49 C:\Users\Hp\.gradle\caches\transforms-3\fca125162fd5345106b4677ae0c1c073\transformed\jetified-fragment-ktx-1.5.5\res
+com.example.animepeak.app-google-services-50 E:\android app development\AnimePeak\app\build\generated\res\google-services\debug
+com.example.animepeak.app-pngs-51 E:\android app development\AnimePeak\app\build\generated\res\pngs\debug
+com.example.animepeak.app-resValues-52 E:\android app development\AnimePeak\app\build\generated\res\resValues\debug
+com.example.animepeak.app-packageDebugResources-53 E:\android app development\AnimePeak\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.animepeak.app-packageDebugResources-54 E:\android app development\AnimePeak\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.animepeak.app-merged_res-55 E:\android app development\AnimePeak\app\build\intermediates\merged_res\debug
+com.example.animepeak.app-debug-56 E:\android app development\AnimePeak\app\src\debug\res
+com.example.animepeak.app-main-57 E:\android app development\AnimePeak\app\src\main\res

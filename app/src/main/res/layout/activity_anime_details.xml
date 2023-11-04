@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/anime_details_main"
     android:layout_width="match_parent"
@@ -14,13 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/something_went_wrong_please_check_your_network_connection"
-        android:textColor="@color/white"
         android:layout_margin="10dp"
-        android:textAlignment="center"
-        android:padding="10dp"
-        android:visibility="gone"
         android:background="@drawable/network_error_background"
+        android:padding="10dp"
+        android:text="@string/something_went_wrong_please_check_your_network_connection"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:visibility="gone"
 
         />
 
@@ -44,9 +43,9 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:text="Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:text="@string/naruto_shippuden"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="18sp"
 
             android:textStyle="italic" />
     </androidx.appcompat.widget.Toolbar>
@@ -55,7 +54,8 @@
         android:id="@+id/loading"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/loading" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -93,19 +93,21 @@
                             android:id="@+id/Anime_Image"
                             android:layout_width="150dp"
                             android:layout_height="200dp"
+                            android:contentDescription="@string/anime_image"
                             android:scaleType="fitXY" />
                     </androidx.cardview.widget.CardView>
+
                     <ImageButton
                         android:id="@+id/fav_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/baseline_favorite_unselected"
-                        android:padding="10dp"
-                        android:background="@drawable/fav_button_background"
-                        android:translationZ="90dp"
                         android:layout_alignEnd="@id/Anime_Image_card"
                         android:layout_alignBottom="@id/Anime_Image_card"
-                        />
+                        android:background="@drawable/fav_button_background"
+                        android:contentDescription="@string/favourite_button"
+                        android:padding="10dp"
+                        android:src="@drawable/baseline_favorite_unselected"
+                        android:translationZ="90dp" />
 
                     <io.github.glailton.expandabletextview.ExpandableTextView
                         android:id="@+id/expand_txt"
@@ -118,49 +120,47 @@
                         android:textSize="14sp"
                         app:collapsedLines="2"
                         app:ellipsizeTextColor="@color/yellow"
-                        tools:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" />
+                        tools:text="This is a Test Description......." />
 
 
-                    <RelativeLayout
+                    <LinearLayout
+                        android:id="@+id/release_date"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/Anime_Image_card"
+                        android:layout_height="wrap_content"
                         android:layout_above="@+id/expand_txt"
+                        android:layout_toEndOf="@id/Anime_Image_card"
+                        android:orientation="vertical"
                         android:padding="10dp">
 
-                        <LinearLayout
-                            android:id="@+id/release_date"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/Anime_release"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:textColor="@color/white"
 
-                            <TextView
-                                android:id="@+id/Anime_release"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="10dp"
-                                android:textColor="@color/white"
+                            android:textSize="18sp"
+                            tools:text="Release Date: 2002" />
 
-                                android:textSize="18sp"
-                                tools:text="Release Date: 2002" />
+                        <TextView
+                            android:id="@+id/Anime_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:textColor="@color/white"
 
-                            <TextView
-                                android:id="@+id/Anime_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="10dp"
-                                android:textColor="@color/white"
+                            android:textSize="18sp"
+                            tools:text="Status: Completed" />
 
-                                android:textSize="18sp"
-                                tools:text="Status: Completed" />
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/genre_recycler"
-                                android:layout_width="match_parent"
-                                android:layout_height="140dp"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/genre_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
 
-                                />
-                        </LinearLayout>
-                    </RelativeLayout>
+                            />
+                    </LinearLayout>
 
                 </RelativeLayout>
 
@@ -171,7 +171,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ani_details"
-                android:paddingStart="10dp">
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"

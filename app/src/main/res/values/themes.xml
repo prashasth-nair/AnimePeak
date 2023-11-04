@@ -44,12 +44,12 @@
         <item name="boxStrokeColor">@android:color/transparent</item>
 
 
-
         <item name="materialThemeOverlay">@style/Overlay</item>
     </style>
 
-     -->
-    <style name="Overlay" parent="" >
+    -->
+
+    <style name="Overlay" parent="">
 
         <item name="colorSurface">@color/background_second</item>
 

@@ -35,6 +35,9 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final ImageView loading;
 
   @NonNull
+  public final ImageView moreLoading;
+
+  @NonNull
   public final TextView netError;
 
   @NonNull
@@ -45,12 +48,14 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   private FragmentHomeBinding(@NonNull RelativeLayout rootView, @NonNull ImageView ProfilePic,
       @NonNull RecyclerView homeRecycler, @NonNull TextView homeTitle, @NonNull ImageView loading,
-      @NonNull TextView netError, @NonNull CardView profileCard, @NonNull RelativeLayout titleBar) {
+      @NonNull ImageView moreLoading, @NonNull TextView netError, @NonNull CardView profileCard,
+      @NonNull RelativeLayout titleBar) {
     this.rootView = rootView;
     this.ProfilePic = ProfilePic;
     this.homeRecycler = homeRecycler;
     this.homeTitle = homeTitle;
     this.loading = loading;
+    this.moreLoading = moreLoading;
     this.netError = netError;
     this.profileCard = profileCard;
     this.titleBar = titleBar;
@@ -107,6 +112,12 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.more_loading;
+      ImageView moreLoading = ViewBindings.findChildViewById(rootView, id);
+      if (moreLoading == null) {
+        break missingId;
+      }
+
       id = R.id.net_error;
       TextView netError = ViewBindings.findChildViewById(rootView, id);
       if (netError == null) {
@@ -126,7 +137,7 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((RelativeLayout) rootView, ProfilePic, homeRecycler, homeTitle,
-          loading, netError, profileCard, titleBar);
+          loading, moreLoading, netError, profileCard, titleBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

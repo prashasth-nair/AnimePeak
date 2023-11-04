@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.animepeak.app-mergeDebugResources-46:/values-land/values-land.xml",
+            "outputFile": "com.example.animepeak.app-mergeDebugResources-53:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/home/vishnu/.gradle/caches/transforms-3/80605cc2cfb8a50001822c6c8bc17a1f/transformed/appcompat-1.6.1/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\80605cc2cfb8a50001822c6c8bc17a1f\\transformed\\appcompat-1.6.1\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/vishnu/.gradle/caches/transforms-3/5858478a4232d2508a1e8341e11601d0/transformed/material-1.9.0/res/values-land/values-land.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\cb50d2e19d8f3fccf969a82cc8faf7bd\\transformed\\material-1.10.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,35,40",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

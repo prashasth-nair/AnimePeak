@@ -15,6 +15,7 @@ public class Fav_object implements Serializable {
     public Fav_object() {
         // Required for Firebase deserialization
     }
+
     public Fav_object(String title, String id, String img) {
         this.title = title;
         this.id = id;
@@ -34,7 +35,6 @@ public class Fav_object implements Serializable {
     public String getImg() {
         return img;
     }
-
 
 
     public static void removeFavByID(String id) {

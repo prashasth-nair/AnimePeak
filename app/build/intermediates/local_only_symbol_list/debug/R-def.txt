@@ -100,6 +100,7 @@ id imageView
 id loading
 id logout
 id main_ani_item
+id more_loading
 id nameTextView
 id net_error
 id net_error_ani_details

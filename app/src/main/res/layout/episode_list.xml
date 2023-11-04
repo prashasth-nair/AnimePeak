@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="100dp"
     android:layout_height="50dp"
-    android:layout_margin="15px"
+    android:layout_margin="10dp"
     app:cardBackgroundColor="#ffd74a"
     app:cardCornerRadius="8dp"
 
@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="number"
+        android:text="@string/_100"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
 
 </androidx.cardview.widget.CardView>

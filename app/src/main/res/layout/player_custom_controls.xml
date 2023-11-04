@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="?selectableItemBackgroundBorderless"
         android:clickable="true"
+        android:contentDescription="@string/back"
         android:focusable="true"
         android:padding="8dp"
         android:src="@drawable/back"
@@ -56,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackgroundBorderless"
-        android:clickable="true"
+        android:contentDescription="@string/play"
         android:focusable="true"
         android:padding="10dp"
         android:src="@drawable/play"
@@ -82,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/rewind"
             android:padding="16dp"
             android:src="@drawable/baseline_fast_rewind_24"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,6 +102,7 @@
         android:layout_height="wrap_content"
         android:background="?selectableItemBackgroundBorderless"
         android:clickable="true"
+        android:contentDescription="@string/pause"
         android:focusable="true"
         android:padding="10dp"
         android:src="@drawable/pause"
@@ -125,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="48dp"
             android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/fast_forward"
             android:padding="16dp"
             android:src="@drawable/forward"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -172,7 +176,7 @@
             android:gravity="bottom"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/exo_subtitle_selection_view"
+            app:layout_constraintEnd_toStartOf="@id/exo_track_selection_view"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -186,36 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="previous"
-                android:textColor="@color/media_player_controls" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/exo_subtitle_selection_view"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/exo_track_selection_view"
-            app:layout_constraintStart_toEndOf="@id/previousEpisode">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-
-                app:srcCompat="@drawable/baseline_subtitles_24" />
-
-            <TextView
-                android:id="@+id/exo_subtitles"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Subtitles"
+                android:text="@string/previous"
                 android:textColor="@color/media_player_controls" />
         </LinearLayout>
 
@@ -230,7 +205,7 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/nextEpisode"
-            app:layout_constraintStart_toEndOf="@id/exo_subtitle_selection_view">
+            app:layout_constraintStart_toEndOf="@id/previousEpisode">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="20dp"
@@ -245,7 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Quality"
+                android:text="@string/quality"
                 android:textColor="@color/media_player_controls" />
         </LinearLayout>
 
@@ -273,7 +248,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Next"
+                android:text="@string/next"
                 android:textColor="@color/media_player_controls" />
         </LinearLayout>
 

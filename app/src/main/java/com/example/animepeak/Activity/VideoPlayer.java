@@ -70,7 +70,6 @@ public class VideoPlayer extends AppCompatActivity {
     public static LinearLayout previous_eps;
     public static LinearLayout next_eps;
     public static LinearLayout exo_track_selection_view;
-    public static LinearLayout exo_subtitle_selection_view;
     ImageButton temp_ffwd;
     ImageButton temp_rewind;
 
@@ -132,13 +131,8 @@ public class VideoPlayer extends AppCompatActivity {
         previous_eps = findViewById(R.id.previousEpisode);
         next_eps = findViewById(R.id.nextEpisode);
         exo_track_selection_view = findViewById(R.id.exo_track_selection_view);
-        exo_subtitle_selection_view = findViewById(R.id.exo_subtitle_selection_view);
         exo_quality_txt = findViewById(R.id.exoQuality);
         exo_remaining_time = findViewById(R.id.exo_remaining_time);
-
-
-        exo_subtitle_selection_view.setEnabled(false);
-        exo_subtitle_selection_view.setAlpha(0.5f);
 
         AnimeName.setText(AnimeTitle);
         int Episode = Current + 1;
@@ -174,73 +168,6 @@ public class VideoPlayer extends AppCompatActivity {
             }
         });
 
-        exo_subtitle_selection_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (video_subtitles != null && video_subtitles.size() > 0) {
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(VideoPlayer.this, R.style.MyDialogTheme);
-                    alertDialog.setTitle("Video Subtitles");
-
-                    int checkedItem = video_SUBTITLE_num;
-                    String[] video_subtitles_items = video_subtitles.toArray(new String[0]);
-                    alertDialog.setSingleChoiceItems(video_subtitles_items, checkedItem, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            try {
-                                long LastPosition = player.getCurrentPosition();
-                                video_SUBTITLE_num = which;
-                                if (which == 0) {
-                                    // Set the media item to be played.
-                                    player.setMediaItem(MediaItem.fromUri(videoUri));
-
-                                    player.prepare();
-                                    player.seekTo(LastPosition);
-
-                                    videoView.setPlayer(player);
-                                    player.setPlayWhenReady(true);
-                                } else {
-                                    JSONObject subtitleobj = subtitles.getJSONObject(which - 1);
-                                    String subtitleUri = subtitleobj.getString("url");
-
-                                    MediaItem.SubtitleConfiguration subtitle =
-                                            new MediaItem.SubtitleConfiguration.Builder(Uri.parse(subtitleUri))
-                                                    .setMimeType(MimeTypes.TEXT_VTT) // The correct MIME type (required).
-                                                    .setLanguage("en") // MUST, The subtitle language (optional).
-                                                    .setSelectionFlags(C.SELECTION_FLAG_DEFAULT) //MUST,  Selection flags for the track (optional).
-                                                    .build();
-                                    MediaItem mediaItem =
-                                            new MediaItem.Builder()
-                                                    .setUri(videoUri)
-                                                    .setSubtitleConfigurations(ImmutableList.of(subtitle))
-
-                                                    .build();
-
-                                    player.setMediaItem(mediaItem);
-                                    player.setPlayWhenReady(true);
-                                    player.prepare();
-                                    player.seekTo(LastPosition);
-                                    player.play();
-                                }
-                                dialog.dismiss();
-                            } catch (JSONException e) {
-                                throw new RuntimeException(e);
-                            }
-
-                        }
-                    });
-
-                    AlertDialog alert = alertDialog.create();
-
-                    alert.setCanceledOnTouchOutside(true);
-                    alert.getWindow().setLayout(500, 400);
-                    alert.show();
-                } else {
-                    Log.d("Here", String.valueOf(video_quality));
-                }
-
-            }
-        });
         exo_track_selection_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -317,7 +244,6 @@ public class VideoPlayer extends AppCompatActivity {
                     }
                     gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
                     gogoanime_stream.execute();
-
 
 
                 }

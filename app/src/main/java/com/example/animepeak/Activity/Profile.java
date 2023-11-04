@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,21 +26,36 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.animepeak.R;
 
+import com.google.android.gms.auth.api.identity.Identity;
+import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.common.base.Charsets;
+import com.google.common.io.CharStreams;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 
 public class Profile extends AppCompatActivity {
@@ -50,11 +66,14 @@ public class Profile extends AppCompatActivity {
     Button logout;
     public Uri personPhoto;
 
+    String responce;
+
+
     private FirebaseAuth mAuth;
-    //    private SignInClient oneTapClient;
-//    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+    private SignInClient oneTapClient;
+    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private static final int RC_SIGN_IN = 100;  // Can be any integer unique to the Activity.
-//    private boolean showOneTapUI = true;
+    private boolean showOneTapUI = true;
 
     GoogleSignInClient mGoogleSignInClient;
 
@@ -63,6 +82,7 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
 
@@ -80,20 +100,20 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
-//        oneTapClient = Identity.getSignInClient(Profile.this);
+        oneTapClient = Identity.getSignInClient(Profile.this);
+        String RequestIDToken = getAssetJsonData(this);
 
-
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+//         Configure sign-in to request the user's ID, email address, and basic
+//         profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestIdToken("273585373512-ulh0robojhitbg80klj6i07b6op90qb7.apps.googleusercontent.com")
+                .requestIdToken(RequestIDToken)
                 .build();
 
-        // Build a GoogleSignInClient with the options specified by gso.
+//         Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // Check for existing Google Sign In account, if the user is already signed in
+//
+//         Check for existing Google Sign In account, if the user is already signed in
 // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
@@ -143,6 +163,29 @@ public class Profile extends AppCompatActivity {
                 signIn();
             }
         });
+
+    }
+    public static String getAssetJsonData(Context context) {
+        String json = null;
+        String value = null;
+        try {
+            InputStream is = context.getAssets().open("keys.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+            JSONArray jsonArray = new JSONArray(json);
+            JSONObject jsonObject = jsonArray.getJSONObject(0);
+            value = jsonObject.getString("value");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return value;
 
     }
 

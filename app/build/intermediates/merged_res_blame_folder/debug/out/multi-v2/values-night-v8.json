@@ -1,46 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.animepeak.app-mergeDebugResources-46:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.animepeak.app-mergeDebugResources-53:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/vishnu/.gradle/caches/transforms-3/5858478a4232d2508a1e8341e11601d0/transformed/material-1.9.0/res/values-night-v8/values-night-v8.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,130,241,330,431,538,645,744,851,954,1042,1166,1268,1370,1486,1588,1702,1830,1946,2068,2204,2324,2458,2578,2690,2816,2933,3057,3187,3309,3447,3581,3697",
-                        "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
-                        "endOffsets": "125,236,325,426,533,640,739,846,949,1037,1161,1263,1365,1481,1583,1697,1825,1941,2063,2199,2319,2453,2573,2685,2811,2928,3052,3182,3304,3442,3576,3692,3812"
-                    },
-                    "to": {
-                        "startLines": "42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,72,73,74,75,76,77,78,79",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2312,2387,2498,2587,2688,2795,2902,3001,3108,3211,3299,3423,3525,3627,3743,3845,3959,4087,4203,4325,4461,4581,4715,4835,4947,5377,5494,5618,5748,5870,6008,6142,6258",
-                        "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
-                        "endOffsets": "2382,2493,2582,2683,2790,2897,2996,3103,3206,3294,3418,3520,3622,3738,3840,3954,4082,4198,4320,4456,4576,4710,4830,4942,5068,5489,5613,5743,5865,6003,6137,6253,6373"
-                    }
-                },
-                {
-                    "source": "/home/vishnu/Android apps/AnimePeak/app/src/main/res/values-night/splash.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "57",
-                        "endLines": "7",
-                        "endColumns": "12",
-                        "endOffsets": "371"
-                    },
-                    "to": {
-                        "startLines": "16",
-                        "startColumns": "4",
-                        "startOffsets": "753",
-                        "endLines": "21",
-                        "endColumns": "12",
-                        "endOffsets": "1062"
-                    }
-                },
-                {
-                    "source": "/home/vishnu/.gradle/caches/transforms-3/0fa7ad4361bb5d7d00ce7f238ebe22fe/transformed/jetified-expandabletextview-1.0.3/res/values-night-v8/values-night-v8.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\0fa7ad4361bb5d7d00ce7f238ebe22fe\\transformed\\jetified-expandabletextview-1.0.3\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -59,24 +23,24 @@
                     }
                 },
                 {
-                    "source": "/home/vishnu/.gradle/caches/transforms-3/6ef93579675b9afee442d083d2f2c5e1/transformed/jetified-core-splashscreen-1.0.1/res/values-night-v8/values-night-v8.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\cb50d2e19d8f3fccf969a82cc8faf7bd\\transformed\\material-1.10.0\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "85",
-                        "endOffsets": "136"
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,130,241,330,431,538,645,744,851,954,1042,1166,1268,1370,1486,1588,1702,1830,1946,2068,2204,2324,2458,2578,2690,2816,2933,3057,3187,3309,3447,3581,3697",
+                        "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
+                        "endOffsets": "125,236,325,426,533,640,739,846,949,1037,1161,1263,1365,1481,1583,1697,1825,1941,2063,2199,2319,2453,2573,2685,2811,2928,3052,3182,3304,3442,3576,3692,3812"
                     },
                     "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "100",
-                        "endColumns": "85",
-                        "endOffsets": "181"
+                        "startLines": "42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,72,73,74,75,76,77,78,79",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2312,2387,2498,2587,2688,2795,2902,3001,3108,3211,3299,3423,3525,3627,3743,3845,3959,4087,4203,4325,4461,4581,4715,4835,4947,5377,5494,5618,5748,5870,6008,6142,6258",
+                        "endColumns": "74,110,88,100,106,106,98,106,102,87,123,101,101,115,101,113,127,115,121,135,119,133,119,111,125,116,123,129,121,137,133,115,119",
+                        "endOffsets": "2382,2493,2582,2683,2790,2897,2996,3103,3206,3294,3418,3520,3622,3738,3840,3954,4082,4198,4320,4456,4576,4710,4830,4942,5068,5489,5613,5743,5865,6003,6137,6253,6373"
                     }
                 },
                 {
-                    "source": "/home/vishnu/Android apps/AnimePeak/app/src/main/res/values-night/themes.xml",
+                    "source": "E:\\android app development\\AnimePeak\\app\\src\\main\\res\\values-night\\themes.xml",
                     "from": {
                         "startLines": "2,16",
                         "startColumns": "4,4",
@@ -95,7 +59,43 @@
                     }
                 },
                 {
-                    "source": "/home/vishnu/.gradle/caches/transforms-3/80605cc2cfb8a50001822c6c8bc17a1f/transformed/appcompat-1.6.1/res/values-night-v8/values-night-v8.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\6ef93579675b9afee442d083d2f2c5e1\\transformed\\jetified-core-splashscreen-1.0.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "85",
+                        "endOffsets": "136"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "100",
+                        "endColumns": "85",
+                        "endOffsets": "181"
+                    }
+                },
+                {
+                    "source": "E:\\android app development\\AnimePeak\\app\\src\\main\\res\\values-night\\splash.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endLines": "7",
+                        "endColumns": "12",
+                        "endOffsets": "371"
+                    },
+                    "to": {
+                        "startLines": "16",
+                        "startColumns": "4",
+                        "startOffsets": "753",
+                        "endLines": "21",
+                        "endColumns": "12",
+                        "endOffsets": "1062"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\80605cc2cfb8a50001822c6c8bc17a1f\\transformed\\appcompat-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

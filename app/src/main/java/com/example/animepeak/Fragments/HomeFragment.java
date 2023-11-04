@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
     public static MainAdapter mainAdapter;
     public static RecyclerView recyclerView;
     public static ImageView home_loading;
+    public static ImageView more_loading;
     public static TextView network_error;
     TextView titleText;
     public ImageView profile;
@@ -54,7 +55,7 @@ public class HomeFragment extends Fragment {
 
     CardView profile_card;
     public Uri personPhoto;
-    private int currentPage = 1;
+    private int currentPage;
     public static GridLayoutManager LayoutManager;
     public static boolean isLoading = false;
 
@@ -91,13 +92,17 @@ public class HomeFragment extends Fragment {
 
     private void fetchData(int page) {
         isLoading = true;
-
+        boolean is_more = false;
         // Make an API request with the updated page number
-        String apiUrl = "https://api.consumet.org/anime/gogoanime/top-airing?page=" + page;
 
-        gogoanime_popular = new GogoAnime.Gogoanime_popular(getActivity(), isAdded(), apiUrl);
+        if (page>1){
+            is_more = true;
+        }
+
+        gogoanime_popular = new GogoAnime.Gogoanime_popular(getActivity(), isAdded(),is_more,page);
 
         gogoanime_popular.execute();
+
     }
 
     @Override
@@ -108,10 +113,12 @@ public class HomeFragment extends Fragment {
 
         recyclerView = requireView().findViewById(R.id.home_recycler);
         home_loading = requireView().findViewById(R.id.loading);
+        more_loading = requireView().findViewById(R.id.more_loading);
         network_error = requireView().findViewById(R.id.net_error);
         titleText = requireView().findViewById(R.id.home_title);
         profile_card = requireView().findViewById(R.id.profile_card);
         profile = requireView().findViewById(R.id.Profile_pic);
+
 
         FirebaseApp.initializeApp(requireActivity());
 
@@ -135,6 +142,9 @@ public class HomeFragment extends Fragment {
 
         mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
         recyclerView.setAdapter(mainAdapter);
+        currentPage = 1;
+        // Make the initial API request
+        fetchData(currentPage);
 
         // Add a scroll listener to your RecyclerView
 
@@ -156,10 +166,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-// Make the initial API request
-        fetchData(currentPage);
     }
+
 
 
     @Override
@@ -167,7 +175,6 @@ public class HomeFragment extends Fragment {
         super.onAttach(context);
         if (getView() != null) {
 
-            // Make the initial API request
             fetchData(currentPage);
         }
     }
@@ -189,7 +196,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        currentPage = 0;
+
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
@@ -204,6 +211,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();

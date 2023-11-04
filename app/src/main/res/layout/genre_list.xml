@@ -13,12 +13,12 @@
         android:id="@+id/genre_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Romantic"
-        android:padding="5dp"
         android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="@string/romantic"
 
         android:textColor="@color/white"
-        android:textSize="12dp" />
+        android:textSize="12sp" />
 
 
 </androidx.cardview.widget.CardView>
