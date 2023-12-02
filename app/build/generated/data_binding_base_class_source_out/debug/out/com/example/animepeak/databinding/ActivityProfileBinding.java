@@ -31,9 +31,6 @@ public final class ActivityProfileBinding implements ViewBinding {
   public final ImageView bannerImage;
 
   @NonNull
-  public final TextView bioTextView;
-
-  @NonNull
   public final LinearLayout headerLayout;
 
   @NonNull
@@ -61,15 +58,13 @@ public final class ActivityProfileBinding implements ViewBinding {
   public final SignInButton signInButton;
 
   private ActivityProfileBinding(@NonNull RelativeLayout rootView, @NonNull CardView bannerCard,
-      @NonNull ImageView bannerImage, @NonNull TextView bioTextView,
-      @NonNull LinearLayout headerLayout, @NonNull Button logout, @NonNull TextView nameTextView,
-      @NonNull ImageView profileBack, @NonNull CardView profileCard,
+      @NonNull ImageView bannerImage, @NonNull LinearLayout headerLayout, @NonNull Button logout,
+      @NonNull TextView nameTextView, @NonNull ImageView profileBack, @NonNull CardView profileCard,
       @NonNull ImageView profileImage, @NonNull TextView profileTitle,
       @NonNull LinearLayout profileTitleBar, @NonNull SignInButton signInButton) {
     this.rootView = rootView;
     this.bannerCard = bannerCard;
     this.bannerImage = bannerImage;
-    this.bioTextView = bioTextView;
     this.headerLayout = headerLayout;
     this.logout = logout;
     this.nameTextView = nameTextView;
@@ -117,12 +112,6 @@ public final class ActivityProfileBinding implements ViewBinding {
       id = R.id.bannerImage;
       ImageView bannerImage = ViewBindings.findChildViewById(rootView, id);
       if (bannerImage == null) {
-        break missingId;
-      }
-
-      id = R.id.bioTextView;
-      TextView bioTextView = ViewBindings.findChildViewById(rootView, id);
-      if (bioTextView == null) {
         break missingId;
       }
 
@@ -181,8 +170,8 @@ public final class ActivityProfileBinding implements ViewBinding {
       }
 
       return new ActivityProfileBinding((RelativeLayout) rootView, bannerCard, bannerImage,
-          bioTextView, headerLayout, logout, nameTextView, profileBack, profileCard, profileImage,
-          profileTitle, profileTitleBar, signInButton);
+          headerLayout, logout, nameTextView, profileBack, profileCard, profileImage, profileTitle,
+          profileTitleBar, signInButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

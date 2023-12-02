@@ -48,8 +48,10 @@ dependencies {
 //    Image Loader
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
+
+
     implementation 'com.karumi:dexter:6.2.2'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10'
 
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
 
@@ -62,13 +64,11 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:32.1.1')
 
     // Firebase Authentication library
-    implementation 'com.google.firebase:firebase-auth:22.2.0'
+    implementation 'com.google.firebase:firebase-auth:22.3.0'
 
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
-
-    implementation("io.appwrite:sdk-for-android:4.0.0")
 
 //    Exoplayer
     implementation 'com.google.android.exoplayer:exoplayer:2.19.1'

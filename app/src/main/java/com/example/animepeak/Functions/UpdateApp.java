@@ -24,8 +24,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.FileProvider;
 
-import com.example.animepeak.BuildConfig;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -91,15 +89,15 @@ public class UpdateApp {
                 String version = jsonObject.getString("Version");
                 String download = jsonObject.getString("Download");
                 // Get the version name of the currently installed APK
-                String currentVersionName = BuildConfig.VERSION_NAME;
+//                String currentVersionName = BuildConfig.VERSION_NAME;
 
-                if (!isUpdateAvailable(currentVersionName, version)) {
-                    checkForUpdates(download);
-                } else {
-                    if (!is_home) {
-                        Toast.makeText(activity, "No Update Available", Toast.LENGTH_LONG).show();
-                    }
-                }
+//                if (!isUpdateAvailable(currentVersionName, version)) {
+//                    checkForUpdates(download);
+//                } else {
+//                    if (!is_home) {
+//                        Toast.makeText(activity, "No Update Available", Toast.LENGTH_LONG).show();
+//                    }
+//                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

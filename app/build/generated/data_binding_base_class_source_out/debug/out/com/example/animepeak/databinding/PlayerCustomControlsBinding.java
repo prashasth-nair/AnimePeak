@@ -66,12 +66,6 @@ public final class PlayerCustomControlsBinding implements ViewBinding {
   public final ConstraintLayout exoRewindContainer;
 
   @NonNull
-  public final LinearLayout exoSubtitleSelectionView;
-
-  @NonNull
-  public final TextView exoSubtitles;
-
-  @NonNull
   public final LinearLayout exoTrackSelectionView;
 
   @NonNull
@@ -95,8 +89,7 @@ public final class PlayerCustomControlsBinding implements ViewBinding {
       @NonNull ConstraintLayout exoForwardContainer, @NonNull ImageButton exoPause,
       @NonNull ImageButton exoPlay, @NonNull DefaultTimeBar exoProgress,
       @NonNull TextView exoQuality, @NonNull TextView exoRemainingTime, @NonNull ImageButton exoRew,
-      @NonNull ConstraintLayout exoRewindContainer, @NonNull LinearLayout exoSubtitleSelectionView,
-      @NonNull TextView exoSubtitles, @NonNull LinearLayout exoTrackSelectionView,
+      @NonNull ConstraintLayout exoRewindContainer, @NonNull LinearLayout exoTrackSelectionView,
       @NonNull ConstraintLayout extraControls, @NonNull LinearLayout nextEpisode,
       @NonNull LinearLayout previousEpisode, @NonNull Guideline startGuideLine,
       @NonNull Guideline topGuideLine) {
@@ -115,8 +108,6 @@ public final class PlayerCustomControlsBinding implements ViewBinding {
     this.exoRemainingTime = exoRemainingTime;
     this.exoRew = exoRew;
     this.exoRewindContainer = exoRewindContainer;
-    this.exoSubtitleSelectionView = exoSubtitleSelectionView;
-    this.exoSubtitles = exoSubtitles;
     this.exoTrackSelectionView = exoTrackSelectionView;
     this.extraControls = extraControls;
     this.nextEpisode = nextEpisode;
@@ -236,18 +227,6 @@ public final class PlayerCustomControlsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.exo_subtitle_selection_view;
-      LinearLayout exoSubtitleSelectionView = ViewBindings.findChildViewById(rootView, id);
-      if (exoSubtitleSelectionView == null) {
-        break missingId;
-      }
-
-      id = R.id.exo_subtitles;
-      TextView exoSubtitles = ViewBindings.findChildViewById(rootView, id);
-      if (exoSubtitles == null) {
-        break missingId;
-      }
-
       id = R.id.exo_track_selection_view;
       LinearLayout exoTrackSelectionView = ViewBindings.findChildViewById(rootView, id);
       if (exoTrackSelectionView == null) {
@@ -287,8 +266,8 @@ public final class PlayerCustomControlsBinding implements ViewBinding {
       return new PlayerCustomControlsBinding((ConstraintLayout) rootView, animeName, back,
           bottomGuideLine, endGuideLine, episodeName, exoFfwd, exoForwardContainer, exoPause,
           exoPlay, exoProgress, exoQuality, exoRemainingTime, exoRew, exoRewindContainer,
-          exoSubtitleSelectionView, exoSubtitles, exoTrackSelectionView, extraControls, nextEpisode,
-          previousEpisode, startGuideLine, topGuideLine);
+          exoTrackSelectionView, extraControls, nextEpisode, previousEpisode, startGuideLine,
+          topGuideLine);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

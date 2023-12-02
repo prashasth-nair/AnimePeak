@@ -17,7 +17,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.animepeak.Adapters.FavAdapter;
 import com.example.animepeak.Fragments.FavouriteFragment;
 import com.example.animepeak.Fragments.HomeFragment;
 import com.example.animepeak.Fragments.SearchFragment;
@@ -37,11 +39,13 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 
 
 import java.lang.reflect.Type;
@@ -56,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
     SettingsFragment settingsFragment = new SettingsFragment();
     public static boolean is_auto_update = false;
     public static boolean is_home = false;
-    public static ArrayList<Fav_object> fav_list ;
+    public static ArrayList<Fav_object> fav_list;
     private static FirebaseAuth mAuth;
-    public static boolean is_login =false;
+    public static boolean is_login = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,21 +83,21 @@ public class MainActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
-            is_login=true;
-            Log.d("Status","Sucess");
-        }else{
-            Log.d("Status","Failed");
-            is_login=false;
+            is_login = true;
+            Log.d("Status", "Sucess");
+        } else {
+            Log.d("Status", "Failed");
+            is_login = false;
         }
 
         fav_list = new ArrayList<Fav_object>();
 
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        if (fav_list==null){
+        if (fav_list == null) {
             fav_list = new ArrayList<>();
         }
-        is_auto_update = sharedPreferences.getBoolean("is_auto_update",false);
-        if (is_auto_update){
+        is_auto_update = sharedPreferences.getBoolean("is_auto_update", false);
+        if (is_auto_update) {
             is_home = true;
             new UpdateApp.update_app(this).execute();
 
@@ -102,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint({"NonConstantResourceId", "RestrictedApi"})
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId()!=R.id.fav){
+                if (item.getItemId() != R.id.fav) {
                     MenuItem menuItem = bottomNavigationView.getMenu().findItem(R.id.fav);
                     menuItem.setIcon(R.drawable.baseline_favorite_unselected);
                 }
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                         Home_TitleUrlList.clear();
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
-                        if (gogoanime_popular != null  ) {
+                        if (gogoanime_popular != null) {
                             gogoanime_popular = null;
                         }
 
@@ -133,9 +138,9 @@ public class MainActivity extends AppCompatActivity {
                         Home_TitleUrlList.clear();
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
-                        if (gogoanime_popular != null  ) {
-                           
-//                            gogoanime_popular.cancel(true);
+                        if (gogoanime_popular != null) {
+
+                            gogoanime_popular.cancel();
                             gogoanime_popular = null;
                         }
 
@@ -145,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
                         Home_TitleUrlList.clear();
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
-                        if (gogoanime_popular != null  ) {
-                            
-//                            gogoanime_popular.cancel(true);
+                        if (gogoanime_popular != null) {
+
+                            gogoanime_popular.cancel();
                             gogoanime_popular = null;
                         }
 
@@ -159,14 +164,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public ArrayList<Fav_object> get_fav_list(){
+
+    public ArrayList<Fav_object> get_fav_list() {
         // Get the JSON string from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String favListJson = sharedPreferences.getString("favListJson", "");
 
 // Convert the JSON string to an ArrayList
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Fav_object>>() {}.getType();
+        Type type = new TypeToken<ArrayList<Fav_object>>() {
+        }.getType();
         return gson.fromJson(favListJson, type);
 
     }
@@ -189,19 +196,29 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
 //                                Toast.makeText(MainActivity.this, "Array stored in Firebase", Toast.LENGTH_SHORT).show();
-                                Log.d("Here","SUCCESS");
+                                Log.d("Here", "SUCCESS");
                             } else {
 //                                Toast.makeText(MainActivity.this, "Failed to store array in Firebase", Toast.LENGTH_SHORT).show();
-                                Log.d("Here","Failed");
+                                Log.d("Here", "Failed");
                             }
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d("Error",e.toString());
+                            Log.d("Error", e.toString());
                         }
                     });
+        }
+    }
+
+    public static void removeFavByID(String id) {
+
+        for (int i = 0; i < fav_list.size(); i++) {
+            if (fav_list.get(i).getID().equals(id)) {
+                fav_list.remove(i);
+                break;
+            }
         }
     }
 }

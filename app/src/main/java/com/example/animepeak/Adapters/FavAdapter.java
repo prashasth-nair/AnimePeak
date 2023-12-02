@@ -1,7 +1,5 @@
 package com.example.animepeak.Adapters;
 
-import static com.example.animepeak.Activity.MainActivity.fav_list;
-import static com.example.animepeak.Fragments.FavouriteFragment.fav_recycler;
 import static com.example.animepeak.Fragments.FavouriteFragment.no_fav;
 
 import android.annotation.SuppressLint;
@@ -24,7 +22,6 @@ import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     public static Activity fav_activity;
@@ -55,6 +52,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FavAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.ani_title.setText(fav_list.get(position).getTitle());
+        Log.d("FavAdapter", "onBindViewHolder: "+fav_list.get(position).getTitle());
         Glide.with(fav_activity)
                 .load(fav_list.get(position).getImg())
                 .into(holder.ani_image);

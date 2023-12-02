@@ -1,62 +1,58 @@
 [
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\episode_list.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\episode_list.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\dropdown.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\dropdown.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\genre_list.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\genre_list.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\fragment_search.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_search.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\fragment_settings.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\fragment_settings.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\activity_anime_details.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_anime_details.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\player_custom_controls.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\player_custom_controls.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\dropdown.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\dropdown.xml"
+        "merged": "com.example.animepeak.app-mergeDebugResources-49:/layout/fragment_favourite.xml",
+        "source": "com.example.animepeak.app-main-52:/layout/fragment_favourite.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\activity_anime_details.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\activity_anime_details.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\player_custom_controls.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\player_custom_controls.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\fragment_settings.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_settings.xml"
     },
     {
-        "merged": "com.example.animepeak.app-mergeDebugResources-54:/layout/fragment_home.xml",
-        "source": "com.example.animepeak.app-main-57:/layout/fragment_home.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\fragment_home.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\episode_list.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\episode_list.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\fragment_search.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\fragment_search.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\list.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\list.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\item_last_request.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\item_last_request.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\activity_profile.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_profile.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\activity_profile.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\activity_profile.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\genre_list.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\genre_list.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\list.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\list.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\activity_video_player.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_video_player.xml"
     },
     {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\activity_video_player.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\activity_video_player.xml"
-    },
-    {
-        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-mergeDebugResources-54:\\layout\\fragment_favourite.xml",
-        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.0\\com.example.animepeak.app-main-57:\\layout\\fragment_favourite.xml"
+        "merged": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-mergeDebugResources-49:\\layout\\fragment_favourite.xml",
+        "source": "C:\\Users\\Hp\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_favourite.xml"
     }
 ]

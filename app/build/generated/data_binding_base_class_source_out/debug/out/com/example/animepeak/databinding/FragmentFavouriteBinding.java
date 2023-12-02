@@ -4,6 +4,7 @@ package com.example.animepeak.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -21,6 +22,9 @@ public final class FragmentFavouriteBinding implements ViewBinding {
   private final RelativeLayout rootView;
 
   @NonNull
+  public final ImageView favLoading;
+
+  @NonNull
   public final RecyclerView favRecycler;
 
   @NonNull
@@ -29,9 +33,10 @@ public final class FragmentFavouriteBinding implements ViewBinding {
   @NonNull
   public final TextView noFav;
 
-  private FragmentFavouriteBinding(@NonNull RelativeLayout rootView,
+  private FragmentFavouriteBinding(@NonNull RelativeLayout rootView, @NonNull ImageView favLoading,
       @NonNull RecyclerView favRecycler, @NonNull TextView favTitle, @NonNull TextView noFav) {
     this.rootView = rootView;
+    this.favLoading = favLoading;
     this.favRecycler = favRecycler;
     this.favTitle = favTitle;
     this.noFav = noFav;
@@ -64,6 +69,12 @@ public final class FragmentFavouriteBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.fav_loading;
+      ImageView favLoading = ViewBindings.findChildViewById(rootView, id);
+      if (favLoading == null) {
+        break missingId;
+      }
+
       id = R.id.fav_recycler;
       RecyclerView favRecycler = ViewBindings.findChildViewById(rootView, id);
       if (favRecycler == null) {
@@ -82,7 +93,8 @@ public final class FragmentFavouriteBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentFavouriteBinding((RelativeLayout) rootView, favRecycler, favTitle, noFav);
+      return new FragmentFavouriteBinding((RelativeLayout) rootView, favLoading, favRecycler,
+          favTitle, noFav);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

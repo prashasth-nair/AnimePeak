@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.animepeak.app-mergeDebugResources-53:/values-v25/values-v25.xml",
+            "outputFile": "com.example.animepeak.app-mergeDebugResources-48:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\80605cc2cfb8a50001822c6c8bc17a1f\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\4aa96de154a7481891e460a464bcaef7\\transformed\\appcompat-1.6.1\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

@@ -38,24 +38,20 @@ import com.google.android.gms.common.api.ApiException;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.gson.JsonObject;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 
 public class Profile extends AppCompatActivity {
@@ -66,14 +62,9 @@ public class Profile extends AppCompatActivity {
     Button logout;
     public Uri personPhoto;
 
-    String responce;
-
 
     private FirebaseAuth mAuth;
-    private SignInClient oneTapClient;
-    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
     private static final int RC_SIGN_IN = 100;  // Can be any integer unique to the Activity.
-    private boolean showOneTapUI = true;
 
     GoogleSignInClient mGoogleSignInClient;
 
@@ -100,11 +91,12 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
-        oneTapClient = Identity.getSignInClient(Profile.this);
+        SignInClient oneTapClient = Identity.getSignInClient(Profile.this);
         String RequestIDToken = getAssetJsonData(this);
 
 //         Configure sign-in to request the user's ID, email address, and basic
 //         profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        assert RequestIDToken != null;
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestIdToken(RequestIDToken)
@@ -174,7 +166,7 @@ public class Profile extends AppCompatActivity {
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
             JSONArray jsonArray = new JSONArray(json);
             JSONObject jsonObject = jsonArray.getJSONObject(0);
             value = jsonObject.getString("value");

@@ -2,11 +2,10 @@ package com.example.animepeak.Fragments;
 
 import static com.example.animepeak.Activity.MainActivity.fav_list;
 import static com.example.animepeak.Activity.MainActivity.is_login;
-import static com.example.animepeak.Activity.MainActivity.storeArrayToFirebase;
+import static com.example.animepeak.Fragments.HomeFragment.home_loading;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -24,16 +23,15 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.animepeak.Adapters.FavAdapter;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -52,7 +50,7 @@ public class FavouriteFragment extends Fragment {
     @SuppressLint("StaticFieldLeak")
     public static TextView no_fav;
     TextView FavTitle;
-    static String Source;
+    public ImageView fav_loading;
     private FirebaseAuth mAuth;
 
     @Override
@@ -71,12 +69,14 @@ public class FavouriteFragment extends Fragment {
         fav_recycler = requireView().findViewById(R.id.fav_recycler);
         no_fav = requireView().findViewById(R.id.no_fav);
         FavTitle = requireView().findViewById(R.id.fav_title);
+        fav_loading = requireView().findViewById(R.id.fav_loading);
 
+        fav_loading.setVisibility(View.VISIBLE);
 
-
-        SharedPreferences sharedpreferences = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-        Source = sharedpreferences.getString("Source_Name", "GogoAnime");
-
+        Glide.with(this)
+                .asGif()
+                .load(R.raw.loading_animation)
+                .into(home_loading);
 
         fav_recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -108,9 +108,7 @@ public class FavouriteFragment extends Fragment {
             // Landscape orientation
             fav_recycler.setLayoutManager(new GridLayoutManager(requireView().getContext(), 4));
         }
-        FavAdapter favAdapter = new FavAdapter(getActivity(),fav_list);
-        fav_recycler.setAdapter(favAdapter);
-        favAdapter.notifyDataSetChanged();
+
 
     }
     public void RetreiveArrayFromFirebase(){
@@ -133,7 +131,11 @@ public class FavouriteFragment extends Fragment {
                                 Log.d("Fav", "Fav_object is null for snapshot: " + snapshot.toString());
                             }
                         }
-                        Log.d("Fav", "fav_list size after retrieval: " + fav_list.size()); // Verify the size of fav_list
+                        fav_loading.setVisibility(View.GONE);
+                        FavAdapter favAdapter = new FavAdapter(getActivity(),fav_list);
+                        fav_recycler.setAdapter(favAdapter);
+//                        favAdapter.notifyDataSetChanged();
+
 
                         if (fav_list.size()==0){
                             no_fav.setVisibility(View.VISIBLE);
@@ -201,7 +203,6 @@ public class FavouriteFragment extends Fragment {
         fav_list.clear();
         if (acct != null) {
             is_login=true;
-            Log.d("Status","Success");
             RetreiveArrayFromFirebase();
         }else{
             Log.d("Status","Failed");

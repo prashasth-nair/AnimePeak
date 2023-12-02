@@ -102,10 +102,13 @@ public class GogoAnime {
         boolean is_new_page = false;
         boolean is_more = false;
         int page;
+        boolean is_Cancelled = false;
 
         public Gogoanime_popular(Activity activity, boolean is_added, boolean is_more, int page) {
             this.activity = activity;
             this.is_added = is_added;
+
+
 
             this.is_more = is_more;
             this.page = page;
@@ -120,6 +123,11 @@ public class GogoAnime {
                 onPostExecute(results);
             });
             executor.shutdown();
+        }
+        public void  cancel(){
+            executor.shutdownNow();
+            executor = null;
+            is_Cancelled = true;
         }
 
         private void onPreExecute() {
@@ -154,7 +162,7 @@ public class GogoAnime {
 
                     int last_page = page + 4;
                     for (int first_page = page; first_page < last_page; first_page++) {
-                        String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/top-airing?page=" + page;
+                        String API_ENDPOINT = "https://consumet-five-lemon.vercel.app/meta/anilist/trending?page=" + page;
                         URL url = new URL(API_ENDPOINT);
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                         conn.setRequestMethod("GET");
@@ -187,11 +195,10 @@ public class GogoAnime {
         }
 
         private void onPostExecute(String response) {
-            boolean is_available;
+            boolean is_available = true;
             int Old_Home_TitleUrlList_size = 0;
 
             if (is_added && response != null) {
-                is_available = true;
                 JSONObject jsonObject;
 
                 try {
@@ -200,7 +207,10 @@ public class GogoAnime {
 
                     for (int i = 0; i < animeList.length(); i++) {
                         JSONObject anime = animeList.getJSONObject(i);
-                        String title = anime.getString("title");
+                        JSONObject title_object = anime.getJSONObject("title");
+                        String title = title_object.getString("english");
+
+
                         String image = anime.getString("image");
                         String ani_id = anime.getString("id");
                         Old_Home_TitleUrlList_size = Home_TitleUrlList.size();
@@ -214,7 +224,9 @@ public class GogoAnime {
 
                 } catch (JSONException e) {
 //                        throw new RuntimeException(e);
-                    Toast.makeText(activity, "End!!", Toast.LENGTH_SHORT).show();
+                    is_available = false;
+                    Log.d("Error", "Error: " + e.getMessage());
+//                    Toast.makeText(activity, "End!!", Toast.LENGTH_SHORT).show();
                 }
 
             } else {
@@ -223,7 +235,6 @@ public class GogoAnime {
 
             int finalOld_Home_TitleUrlList_size = Old_Home_TitleUrlList_size;
             activity.runOnUiThread(() -> {
-                // Your code to update UI elements goes here
                 // Check if loading animation is still visible before hiding it
                 mainAdapter = new MainAdapter(activity, Home_TitleUrlList, Home_imageUrlList, Home_IDList);
 //                recyclerView.setAdapter(mainAdapter);
@@ -244,9 +255,9 @@ public class GogoAnime {
             });
 
             // Show or hide the network error based on loading status and data availability
+            boolean finalIs_available = is_available;
             activity.runOnUiThread(() -> {
-                // Your code to handle network error visibility goes here
-                if (!is_available) {
+                if (!finalIs_available && !is_Cancelled) {
                     network_error.setVisibility(View.VISIBLE);
                 } else {
                     network_error.setVisibility(View.GONE);
@@ -258,6 +269,7 @@ public class GogoAnime {
                 });
             }
             isLoading = false;
+
         }
     }
 
@@ -306,7 +318,7 @@ public class GogoAnime {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://api.consumet.org/anime/gogoanime/info/" + Ani_ID);
+                URL url = new URL("https://consumet-five-lemon.vercel.app/meta/anilist/info/" + Ani_ID);
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -336,6 +348,7 @@ public class GogoAnime {
 
         @SuppressLint("SetTextI18n")
         protected void onPostExecute(String result) {
+
 
             try {
                 JSONObject jsonObject = new JSONObject(result);
@@ -413,7 +426,7 @@ public class GogoAnime {
     public static class GogoAnime_search {
         private static final String TAG = "Search";
 
-        private static final String API_ENDPOINT = "https://api.consumet.org/anime/gogoanime/";
+        private static final String API_ENDPOINT = "https://consumet-five-lemon.vercel.app/meta/anilist/";
         Activity activity;
         boolean is_added;
         String text;
@@ -481,7 +494,8 @@ public class GogoAnime {
 
                 for (int i = 0; i < animeList.length(); i++) {
                     JSONObject anime = animeList.getJSONObject(i);
-                    String title = anime.getString("title");
+                    JSONObject title_object = anime.getJSONObject("title");
+                    String title = title_object.getString("english");
 
                     String image = anime.getString("image");
 
@@ -582,7 +596,7 @@ public class GogoAnime {
             HttpURLConnection urlConnection = null;
             try {
 
-                URL url = new URL("https://api.consumet.org/anime/gogoanime/watch/" + episodeID_list.get(Current));
+                URL url = new URL("https://consumet-five-lemon.vercel.app/meta/anilist/watch/" + episodeID_list.get(Current));
                 urlConnection = (HttpURLConnection) url.openConnection();
 
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));

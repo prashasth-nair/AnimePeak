@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
 
         >
+
         <TextView
             android:id="@+id/ani_title"
             android:layout_width="match_parent"
@@ -23,23 +24,24 @@
             android:maxLines="2"
             android:padding="10dp"
             android:text="@string/anime_name"
-            android:translationZ="100dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:translationZ="100dp"
 
 
             />
 
 
-            <ImageView
-                android:id="@+id/ani_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:foreground="@drawable/imageview_gradient"
-                android:scaleType="centerCrop"
+        <ImageView
+            android:id="@+id/ani_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/anime_image"
+            android:foreground="@drawable/imageview_gradient"
 
-                android:src="@drawable/test_img" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_img" />
 
 
     </RelativeLayout>

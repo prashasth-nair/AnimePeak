@@ -1,6 +1,5 @@
 package com.example.animepeak.Functions;
 
-import static com.example.animepeak.Activity.MainActivity.fav_list;
 
 
 import java.io.Serializable;
@@ -37,13 +36,6 @@ public class Fav_object implements Serializable {
     }
 
 
-    public static void removeFavByID(String id) {
-        for (int i = 0; i < fav_list.size(); i++) {
-            if (fav_list.get(i).getID().equals(id)) {
-                fav_list.remove(i);
-                break;
-            }
-        }
-    }
+
 
 }

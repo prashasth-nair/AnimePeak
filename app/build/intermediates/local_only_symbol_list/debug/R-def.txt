@@ -1,6 +1,5 @@
 R_DEF: Internal format may change without notice
 local
-anim fade_in_recycler
 array quality_list
 array source_list
 attr? fullscreenBackgroundColor
@@ -32,7 +31,6 @@ drawable baseline_favorite_unselected
 drawable baseline_home_24
 drawable baseline_search_24
 drawable baseline_settings_24
-drawable baseline_subtitles_24
 drawable fav_button_background
 drawable forward
 drawable ic_back_arrow
@@ -62,7 +60,6 @@ id auto_update
 id back
 id bannerImage
 id banner_card
-id bioTextView
 id bottomGuideLine
 id bottom_navigation
 id container
@@ -81,13 +78,12 @@ id exo_progress
 id exo_remaining_time
 id exo_rew
 id exo_rewind_container
-id exo_subtitle_selection_view
-id exo_subtitles
 id exo_track_selection_view
 id expand_txt
 id extraControls
 id fav
 id fav_button
+id fav_loading
 id fav_recycler
 id fav_title
 id genre_name
@@ -96,7 +92,6 @@ id headerLayout
 id home
 id home_recycler
 id home_title
-id imageView
 id loading
 id logout
 id main_ani_item
@@ -114,7 +109,6 @@ id profile_card
 id profile_title
 id profile_title_bar
 id release_date
-id requestItem
 id search
 id searchBar
 id search_recycle
@@ -124,7 +118,6 @@ id sign_in_button
 id startGuideLine
 id temp_fast_forward
 id temp_rewind
-id text
 id title_bar
 id toolbar_title
 id topGuideLine
@@ -142,7 +135,6 @@ layout fragment_home
 layout fragment_search
 layout fragment_settings
 layout genre_list
-layout item_last_request
 layout list
 layout player_custom_controls
 menu bottom_navigation_menu
@@ -154,15 +146,26 @@ raw boy1
 raw girl1
 raw girl2
 raw loading_animation
+string _100
+string anime_image
 string anime_name
 string app_name
 string auto_search_for_updates
+string back
+string banner
 string cannot_find_anime
+string check_for_newer_version_of_the_app
+string check_for_updates
+string default_qaulity
 string default_web_client_id
 string dummy_button
 string dummy_content
 string episodes
+string example
+string fast_forward
 string favourite
+string favourite_button
+string favourites
 string firebase_database_url
 string gcm_defaultSenderId
 string google_api_key
@@ -171,7 +174,23 @@ string google_crash_reporting_api_key
 string google_storage_bucket
 string hello_blank_fragment
 string home
+string john_doe
+string loading
+string log_out
+string more_loading
+string naruto_shippuden
+string next
+string pause
+string play
+string previous
+string profile
+string profile_background
+string profile_image
+string profile_pic
 string project_id
+string quality
+string rewind
+string romantic
 string search
 string settings
 string settings_str
@@ -179,6 +198,8 @@ string something_went_wrong
 string something_went_wrong_please_check_your_network_connection
 string sources
 string title_activity_video_player
+string update
+string video
 string your_favorites_will_show_here
 string zoro
 style BottomNavItemStyle

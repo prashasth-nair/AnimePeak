@@ -3,8 +3,8 @@ package com.example.animepeak.Activity;
 import static com.example.animepeak.Activity.MainActivity.fav_list;
 
 import static com.example.animepeak.Activity.MainActivity.is_login;
+import static com.example.animepeak.Activity.MainActivity.removeFavByID;
 import static com.example.animepeak.Activity.MainActivity.storeArrayToFirebase;
-import static com.example.animepeak.Functions.Fav_object.removeFavByID;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,13 +57,12 @@ public class Anime_Details extends AppCompatActivity {
 
     public static ImageView Anime_Image;
 
-    public static ImageButton favoriteButton;
+    public ImageButton favoriteButton;
     public static TextView Release;
     public static TextView Status;
     public static TextView net_error_ani_details;
     public static CardView anime_details;
     public static RelativeLayout episode_text;
-    public static RelativeLayout anime_details_main;
 
     public static ImageView details_loading;
     public static String Title;
@@ -107,7 +106,6 @@ public class Anime_Details extends AppCompatActivity {
         anime_details = findViewById(R.id.ani_details);
         expandableTextView = findViewById(R.id.expand_txt);
         episode_text = findViewById(R.id.episode_text);
-        anime_details_main = findViewById(R.id.anime_details_main);
         net_error_ani_details = findViewById(R.id.net_error_ani_details);
         favoriteButton = findViewById(R.id.fav_button);
         genre_recyclerView = findViewById(R.id.genre_recycler);

@@ -201,8 +201,9 @@ public class HomeFragment extends Fragment {
         Home_imageUrlList.clear();
         Home_IDList.clear();
         if (gogoanime_popular != null) {
-
+            gogoanime_popular.cancel();
             gogoanime_popular = null;
+
         }
 
 
@@ -216,7 +217,9 @@ public class HomeFragment extends Fragment {
         Home_imageUrlList.clear();
         Home_IDList.clear();
         if (gogoanime_popular != null) {
+            gogoanime_popular.cancel();
             gogoanime_popular = null;
+
         }
 
     }
