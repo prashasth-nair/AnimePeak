@@ -1,0 +1,60 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AnimePeak" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/background_main</item>
+        <item name="colorPrimaryVariant">@color/yellow</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/yellow</item>
+        <item name="android:textColorSecondary">@color/white</item>
+
+        <item name="colorSecondaryVariant">@color/yellow</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="Theme.AnimePeak.Fullscreen" parent="Theme.AnimePeak">
+        <item name="android:actionBarStyle">@style/Widget.Theme.AnimePeak.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.AnimePeak.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/yellow</item>
+        <item name="fullscreenTextColor">@color/yellow</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AnimePeak">
+        <item name="colorPrimary">@color/yellow</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:colorForeground">@color/white</item>
+
+    </style>
+
+    <style name="Widget.AnimePeak.Spinner" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <!-- Color of box ONLY, not dropdown -->
+        <item name="boxBackgroundColor">@color/background_second</item>
+        <item name="boxStrokeColor">@android:color/transparent</item>
+
+
+        <item name="materialThemeOverlay">@style/Overlay</item>
+    </style>
+
+    -->
+
+    <style name="Overlay" parent="">
+
+        <item name="colorSurface">@color/background_second</item>
+
+
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="android:dropDownVerticalOffset">10dp</item>
+    </style>
+</resources>

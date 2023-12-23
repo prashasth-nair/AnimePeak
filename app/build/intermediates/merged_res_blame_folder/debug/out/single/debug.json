@@ -1,0 +1,246 @@
+[
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_baseline_home_24.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\baseline_home_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\xml\\file_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_baseline_settings_24.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\baseline_settings_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_dropdown.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\dropdown.xml"
+    },
+    {
+        "merged": "com.example.animepeak.app-merged_res-50:/layout_fragment_home.xml.flat",
+        "source": "com.example.animepeak.app-main-52:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-mdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\raw_loading_animation.gif.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\raw\\loading_animation.gif"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_fav_button_background.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\fav_button_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_nav_background_curved.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\nav_background_curved.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_baseline_favorite_unselected.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\baseline_favorite_unselected.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_list.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\list.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_search_box_background.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\search_box_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_next.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\next.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_forward.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\forward.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_genre_list.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\genre_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\raw_banner.jpg.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\raw\\banner.jpg"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\raw_girl2.jpg.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\raw\\girl2.jpg"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\menu_bottom_navigation_menu.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\menu\\bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_fragment_settings.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_quality.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\quality.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_player_custom_controls.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\player_custom_controls.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_baseline_search_24.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\baseline_search_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_fragment_favourite.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_favourite.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_pause.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\pause.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_episode_list.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\episode_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_baseline_fast_rewind_24.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\baseline_fast_rewind_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_test_img.jpg.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\test_img.jpg"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_activity_profile.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_network_error_background.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\network_error_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\font_font.ttf.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\font\\font.ttf"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\mipmap-hdpi\\ic_launcher_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_back.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\back.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_fragment_search.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\fragment_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\raw_boy1.jpg.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\raw\\boy1.jpg"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\raw_girl1.jpg.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\raw\\girl1.jpg"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_previous.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\previous.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_activity_video_player.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_video_player.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_ic_back_arrow.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\ic_back_arrow.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\layout_activity_anime_details.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\layout\\activity_anime_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_imageview_gradient.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\imageview_gradient.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_play.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\play.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\drawable_baseline_favorite_24_selected.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\drawable\\baseline_favorite_24_selected.xml"
+    },
+    {
+        "merged": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-merged_res-50:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\prash\\.gradle\\daemon\\8.2\\com.example.animepeak.app-main-52:\\xml\\data_extraction_rules.xml"
+    }
+]
