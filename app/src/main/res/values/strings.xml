@@ -50,7 +50,7 @@
     <string name="check_for_newer_version_of_the_app">Check for newer version of the app</string>
     <string name="romantic">Romantic</string>
     <string-array name="source_list">
-        <item>AniList</item>
+        <item>GogoAnime</item>
         <item>Zoro</item>
 
     </string-array>

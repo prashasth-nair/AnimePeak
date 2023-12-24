@@ -4,13 +4,13 @@
             "outputFile": "com.example.animepeak.app-mergeDebugResources-48:/values-h320dp-port-v13/values-h320dp-port-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\prash\\.gradle\\caches\\transforms-3\\e4e797fd9ee0c5e7cbd012fac2eda3cc\\transformed\\material-1.11.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
+                    "source": "C:\\Users\\prash\\.gradle\\caches\\transforms-3\\b535b465905ee936cea1e5019eff40af\\transformed\\material-1.10.0\\res\\values-h320dp-port-v13\\values-h320dp-port-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "63",
-                        "endOffsets": "114"
+                        "endColumns": "75",
+                        "endOffsets": "126"
                     }
                 }
             ]

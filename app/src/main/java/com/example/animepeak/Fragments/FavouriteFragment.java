@@ -7,6 +7,7 @@ import static com.example.animepeak.Fragments.HomeFragment.home_loading;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -75,7 +76,7 @@ public class FavouriteFragment extends Fragment {
         Glide.with(this)
                 .asGif()
                 .load(R.raw.loading_animation)
-                .into(fav_loading);
+                .into(home_loading);
 
         fav_recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -141,6 +142,8 @@ public class FavouriteFragment extends Fragment {
                         }else {
                             no_fav.setVisibility(View.GONE);
                         }
+                        // Perform other operations on fav_list here if needed
+                        // ...
                     } else {
                         // Handle the case when the array does not exist in the database
                         if (fav_list.size()==0){
@@ -202,12 +205,8 @@ public class FavouriteFragment extends Fragment {
             is_login=true;
             RetreiveArrayFromFirebase();
         }else{
-            no_fav.setVisibility(View.VISIBLE);
-            no_fav.setText("Error!: Please login to your account.");
-            fav_loading.setVisibility(View.GONE);
             Log.d("Status","Failed");
             is_login=false;
-
 
 
         }

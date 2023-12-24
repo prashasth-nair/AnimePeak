@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,6 @@ import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,13 +23,12 @@ import android.widget.TextView;
 
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.AniList;
+import com.example.animepeak.Sources.GogoAnime;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class SearchFragment extends Fragment {
@@ -43,7 +40,7 @@ public class SearchFragment extends Fragment {
     public static List<String> Search_TitleUrlList = new ArrayList<>();
     public static List<String> Search_imageUrlList = new ArrayList<>();
     public static List<String> Search_IDList = new ArrayList<>();
-    AniList.AniList_search AniList_search;
+    GogoAnime.GogoAnime_search gogoAnime_search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,21 +66,10 @@ public class SearchFragment extends Fragment {
                 return true;
             }
         });
-
         searchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
             public void onSearchStateChanged(boolean enabled) {
-                if (!enabled) {
 
-                    Search_TitleUrlList.clear();
-                    Search_imageUrlList.clear();
-                    Search_IDList.clear();
-                    SearchAdapter searchAdapter = new SearchAdapter(getActivity(), Search_TitleUrlList, Search_imageUrlList, Search_IDList);
-                    // notify the adapter that the data has changed
-                    searchAdapter.notifyDataSetChanged();
-                    searchView.setAdapter(searchAdapter);
-                    searchBar.setNavButtonEnabled(false);
-                }
             }
 
             @Override
@@ -94,14 +80,14 @@ public class SearchFragment extends Fragment {
 
 
                 SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-                String Source = sharedpreferences.getString("Source_Name", "AniList");
+                String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
                 String query = searchBar.getText();
 
 
 
-                if (Source.equals("AniList")) {
-                    AniList_search = new AniList.AniList_search(getActivity(), isAdded(),query);
-                    AniList_search.execute();
+                if (Source.equals("GogoAnime")) {
+                    gogoAnime_search = new GogoAnime.GogoAnime_search(getActivity(), isAdded(),query);
+                    gogoAnime_search.execute();
                 }
             }
 
@@ -119,11 +105,8 @@ public class SearchFragment extends Fragment {
                     searchView.setAdapter(searchAdapter);
                     searchBar.setNavButtonEnabled(false);
                 }
-
             }
-
         });
-
 
         not_found = getView().findViewById(R.id.not_found);
 
@@ -164,7 +147,6 @@ public class SearchFragment extends Fragment {
         Search_imageUrlList.clear();
         Search_IDList.clear();
     }
-
 
 
     @NonNull

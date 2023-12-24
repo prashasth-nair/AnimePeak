@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_google_signin_btn_text_dark_default">#90000000</color>
+    <color name="common_google_signin_btn_text_dark_disabled">#1F000000</color>
+    <color name="common_google_signin_btn_text_dark_focused">#90000000</color>
+    <color name="common_google_signin_btn_text_dark_pressed">#DE000000</color>
+    <color name="common_google_signin_btn_text_light_default">@android:color/white</color>
+    <color name="common_google_signin_btn_text_light_disabled">#DEFFFFFF</color>
+    <color name="common_google_signin_btn_text_light_focused">@android:color/black</color>
+    <color name="common_google_signin_btn_text_light_pressed">#DEFFFFFF</color>
+    <dimen name="splashscreen_icon_mask_size_no_background">128dp</dimen>
+    <dimen name="splashscreen_icon_mask_size_with_background">103dp</dimen>
+    <dimen name="splashscreen_icon_mask_stroke_no_background">34dp</dimen>
+    <dimen name="splashscreen_icon_mask_stroke_with_background">28dp</dimen>
+    <dimen name="splashscreen_icon_size">?splashScreenIconSize</dimen>
+    <dimen name="splashscreen_icon_size_no_background">90dp</dimen>
+    <dimen name="splashscreen_icon_size_with_background">72dp</dimen>
+    <integer name="default_icon_animation_duration">10000</integer>
+    <style name="Base.Theme.AppCompat.Dialog" parent="Base.V7.Theme.AppCompat.Dialog">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <style name="Base.Theme.AppCompat.Light.Dialog" parent="Base.V7.Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <style name="Base.ThemeOverlay.AppCompat.Dialog" parent="Base.V7.ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+</resources>

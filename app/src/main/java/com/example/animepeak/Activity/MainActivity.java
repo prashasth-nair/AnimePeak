@@ -3,7 +3,7 @@ package com.example.animepeak.Activity;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
-import static com.example.animepeak.Fragments.HomeFragment.AniList_popular;
+import static com.example.animepeak.Fragments.HomeFragment.gogoanime_popular;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
                         Home_TitleUrlList.clear();
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
-                        if (AniList_popular != null) {
-                            AniList_popular = null;
+                        if (gogoanime_popular != null) {
+                            gogoanime_popular = null;
                         }
 
                         return true;
@@ -138,10 +138,10 @@ public class MainActivity extends AppCompatActivity {
                         Home_TitleUrlList.clear();
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
-                        if (AniList_popular != null) {
+                        if (gogoanime_popular != null) {
 
-                            AniList_popular.cancel();
-                            AniList_popular = null;
+                            gogoanime_popular.cancel();
+                            gogoanime_popular = null;
                         }
 
                         return true;
@@ -150,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
                         Home_TitleUrlList.clear();
                         Home_imageUrlList.clear();
                         Home_IDList.clear();
-                        if (AniList_popular != null) {
+                        if (gogoanime_popular != null) {
 
-                            AniList_popular.cancel();
-                            AniList_popular = null;
+                            gogoanime_popular.cancel();
+                            gogoanime_popular = null;
                         }
 
                         return true;

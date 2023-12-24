@@ -37,7 +37,6 @@ import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.LayoutManager;
 import static com.example.animepeak.Fragments.HomeFragment.home_loading;
 import static com.example.animepeak.Fragments.HomeFragment.isLoading;
-import static com.example.animepeak.Fragments.HomeFragment.is_down;
 import static com.example.animepeak.Fragments.HomeFragment.mainAdapter;
 import static com.example.animepeak.Fragments.HomeFragment.more_loading;
 import static com.example.animepeak.Fragments.HomeFragment.network_error;

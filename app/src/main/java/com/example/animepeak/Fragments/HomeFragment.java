@@ -3,7 +3,6 @@ package com.example.animepeak.Fragments;
 import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -18,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +29,7 @@ import com.example.animepeak.Activity.Profile;
 import com.example.animepeak.Adapters.MainAdapter;
 
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.AniList;
+import com.example.animepeak.Sources.GogoAnime;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.FirebaseApp;
@@ -39,13 +37,12 @@ import com.google.firebase.FirebaseApp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @SuppressLint("StaticFieldLeak")
 public class HomeFragment extends Fragment {
 
     public static MainAdapter mainAdapter;
-    private RecyclerView recyclerView;
+    public static RecyclerView recyclerView;
     public static ImageView home_loading;
     public static ImageView more_loading;
     public static TextView network_error;
@@ -54,7 +51,7 @@ public class HomeFragment extends Fragment {
     public static List<String> Home_TitleUrlList = new ArrayList<>();
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
-    public static AniList.AniList_popular AniList_popular;
+    public static GogoAnime.Gogoanime_popular gogoanime_popular;
 
     CardView profile_card;
     public Uri personPhoto;
@@ -63,7 +60,7 @@ public class HomeFragment extends Fragment {
     public static boolean isLoading = false;
 
     public static int pos = 0;
-    public static boolean is_down = false;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -96,17 +93,15 @@ public class HomeFragment extends Fragment {
     private void fetchData(int page) {
         isLoading = true;
         boolean is_more = false;
-        Log.d("Here","Here");
         // Make an API request with the updated page number
 
-        if (page > 1) {
+        if (page>1){
             is_more = true;
         }
 
-        AniList_popular = new AniList.AniList_popular(getActivity(), isAdded(), is_more, page);
+        gogoanime_popular = new GogoAnime.Gogoanime_popular(getActivity(), isAdded(),is_more,page);
 
-        AniList_popular.execute();
-
+        gogoanime_popular.execute();
 
     }
 
@@ -123,8 +118,6 @@ public class HomeFragment extends Fragment {
         titleText = requireView().findViewById(R.id.home_title);
         profile_card = requireView().findViewById(R.id.profile_card);
         profile = requireView().findViewById(R.id.Profile_pic);
-        currentPage = 1;
-        Log.d("Current Page ", String.valueOf(currentPage));
 
 
         FirebaseApp.initializeApp(requireActivity());
@@ -149,10 +142,9 @@ public class HomeFragment extends Fragment {
 
         mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
         recyclerView.setAdapter(mainAdapter);
+        currentPage = 1;
         // Make the initial API request
-        if (currentPage == 1) {
-            fetchData(currentPage);
-        }
+        fetchData(currentPage);
 
         // Add a scroll listener to your RecyclerView
 
@@ -167,28 +159,15 @@ public class HomeFragment extends Fragment {
                     pos = LayoutManager.findLastVisibleItemPosition();
 
                     currentPage++;
-                    more_loading.setVisibility(View.VISIBLE);
-
-                    Glide.with(requireActivity())
-                            .asGif()
-                            .load(R.raw.loading_animation)
-                            .into(more_loading);
-                    // Get the last position in the adapter
-                    int lastPosition = mainAdapter.getItemCount();
-                    // Scroll to the last position
-                    recyclerView.smoothScrollToPosition(lastPosition);
                     fetchData(currentPage);
-                    is_down = true;
 
 
-                }else {
-                    is_down = false;
-                    more_loading.setVisibility(View.GONE);
                 }
             }
         });
 
     }
+
 
 
     @Override
@@ -204,33 +183,46 @@ public class HomeFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-            clear();
+            // Fragment is not currently visible
+            // Perform actions or update UI accordingly
+            Home_TitleUrlList.clear();
+            Home_imageUrlList.clear();
+            Home_IDList.clear();
+
+
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        clear();
+
+        Home_TitleUrlList.clear();
+        Home_imageUrlList.clear();
+        Home_IDList.clear();
+        if (gogoanime_popular != null) {
+            gogoanime_popular.cancel();
+            gogoanime_popular = null;
+
+        }
+
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        clear();
-    }
 
-    public void clear() {
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
-        if (AniList_popular != null) {
-            AniList_popular.cancel();
-            AniList_popular = null;
+        if (gogoanime_popular != null) {
+            gogoanime_popular.cancel();
+            gogoanime_popular = null;
 
         }
-    }
 
+    }
 
 
     @Override

@@ -38,7 +38,7 @@ import android.widget.TextView;
 
 
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.AniList;
+import com.example.animepeak.Sources.GogoAnime;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
 
@@ -80,7 +80,7 @@ public class VideoPlayer extends AppCompatActivity {
     public static ImageView video_loading;
 
     public static ExoPlayer player;
-    private AniList.AniList_stream AniList_stream;
+    private GogoAnime.Gogoanime_stream gogoanime_stream;
     public static int video_quality_num = 0;
     public static int video_SUBTITLE_num = 0;
     public static List<String> video_quality = new ArrayList<>();
@@ -236,14 +236,14 @@ public class VideoPlayer extends AppCompatActivity {
 
                     int Episode = Current + 1;
                     EpisodeName.setText("Episode: " + Episode);
-                    if (AniList_stream != null) {
-                        AniList_stream.Cancel();
+                    if (gogoanime_stream != null) {
+                        gogoanime_stream.Cancel();
                     }
                     if (player != null) {
                         player.stop();
                     }
-                    AniList_stream = new AniList.AniList_stream(VideoPlayer.this);
-                    AniList_stream.execute();
+                    gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
+                    gogoanime_stream.execute();
 
 
                 }
@@ -262,15 +262,15 @@ public class VideoPlayer extends AppCompatActivity {
                 EpisodeName.setText("Episode: " + Episode);
                 if (next_int < episodeID_list.size()) {
                     Current = next_int;
-                    if (AniList_stream != null) {
-                        AniList_stream.Cancel();
+                    if (gogoanime_stream != null) {
+                        gogoanime_stream.Cancel();
                     }
 
                     if (player != null) {
                         player.stop();
                     }
-                    AniList_stream = new AniList.AniList_stream(VideoPlayer.this);
-                    AniList_stream.execute();
+                    gogoanime_stream = new GogoAnime.Gogoanime_stream(VideoPlayer.this);
+                    gogoanime_stream.execute();
                 }
                 video_quality.clear();
                 video_subtitles.clear();
@@ -279,8 +279,8 @@ public class VideoPlayer extends AppCompatActivity {
             }
         });
 
-        AniList_stream = new AniList.AniList_stream(this);
-        AniList_stream.execute();
+        gogoanime_stream = new GogoAnime.Gogoanime_stream(this);
+        gogoanime_stream.execute();
         // Add a Player.EventListener to the player
         // Create a handler and a runnable to update the remaining time TextView on each player tick
         Handler handler = new Handler();
@@ -383,8 +383,8 @@ public class VideoPlayer extends AppCompatActivity {
         super.onBackPressed();
         video_quality.clear();
         video_subtitles.clear();
-        if (AniList_stream != null) {
-            AniList_stream.Cancel();
+        if (gogoanime_stream != null) {
+            gogoanime_stream.Cancel();
         }
         if (player != null) {
 
@@ -403,8 +403,8 @@ public class VideoPlayer extends AppCompatActivity {
         super.onDestroy();
         video_quality.clear();
         video_subtitles.clear();
-        if (AniList_stream != null) {
-            AniList_stream.Cancel();
+        if (gogoanime_stream != null) {
+            gogoanime_stream.Cancel();
         }
 
         if (player != null) {

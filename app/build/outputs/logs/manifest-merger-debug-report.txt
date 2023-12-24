@@ -21,7 +21,7 @@ MERGED from [androidx.databinding:databinding-ktx:7.3.1] C:\Users\prash\.gradle\
 MERGED from [androidx.databinding:databinding-runtime:7.3.1] C:\Users\prash\.gradle\caches\transforms-3\1e0c153fc36f0a77eacfebff533cb7e5\transformed\databinding-runtime-7.3.1\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.databinding:viewbinding:8.2.0] C:\Users\prash\.gradle\caches\transforms-3\429c1a44ace40a3fb35edc9bfbb0d0f3\transformed\jetified-viewbinding-8.2.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.karumi:dexter:6.2.2] C:\Users\prash\.gradle\caches\transforms-3\e002b1fbfe36d795914cf30b543040cb\transformed\jetified-dexter-6.2.2\AndroidManifest.xml:17:1-32:12
-MERGED from [com.google.android.material:material:1.11.0] C:\Users\prash\.gradle\caches\transforms-3\e4e797fd9ee0c5e7cbd012fac2eda3cc\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.material:material:1.10.0] C:\Users\prash\.gradle\caches\transforms-3\b535b465905ee936cea1e5019eff40af\transformed\material-1.10.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\prash\.gradle\caches\transforms-3\871f8bffc32c74f19c66e58411483d79\transformed\jetified-MaterialSearchBar-0.8.5\AndroidManifest.xml:2:1-17:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\prash\.gradle\caches\transforms-3\7c5e9487eafeddafd1c9ef72dc6c88b9\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\prash\.gradle\caches\transforms-3\aa0d0e43c34eb9cacd9870c8addd713b\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -178,8 +178,8 @@ ADDED from E:\Cloud\MEGAsync Uploads\Android app development\AnimePeak\app\src\m
 INJECTED from E:\Cloud\MEGAsync Uploads\Android app development\AnimePeak\app\src\main\AndroidManifest.xml:20:5-65:19
 MERGED from [com.karumi:dexter:6.2.2] C:\Users\prash\.gradle\caches\transforms-3\e002b1fbfe36d795914cf30b543040cb\transformed\jetified-dexter-6.2.2\AndroidManifest.xml:26:5-30:19
 MERGED from [com.karumi:dexter:6.2.2] C:\Users\prash\.gradle\caches\transforms-3\e002b1fbfe36d795914cf30b543040cb\transformed\jetified-dexter-6.2.2\AndroidManifest.xml:26:5-30:19
-MERGED from [com.google.android.material:material:1.11.0] C:\Users\prash\.gradle\caches\transforms-3\e4e797fd9ee0c5e7cbd012fac2eda3cc\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.11.0] C:\Users\prash\.gradle\caches\transforms-3\e4e797fd9ee0c5e7cbd012fac2eda3cc\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.10.0] C:\Users\prash\.gradle\caches\transforms-3\b535b465905ee936cea1e5019eff40af\transformed\material-1.10.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.10.0] C:\Users\prash\.gradle\caches\transforms-3\b535b465905ee936cea1e5019eff40af\transformed\material-1.10.0\AndroidManifest.xml:22:5-20
 MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\prash\.gradle\caches\transforms-3\871f8bffc32c74f19c66e58411483d79\transformed\jetified-MaterialSearchBar-0.8.5\AndroidManifest.xml:11:5-15:19
 MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\prash\.gradle\caches\transforms-3\871f8bffc32c74f19c66e58411483d79\transformed\jetified-MaterialSearchBar-0.8.5\AndroidManifest.xml:11:5-15:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\prash\.gradle\caches\transforms-3\7c5e9487eafeddafd1c9ef72dc6c88b9\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -316,8 +316,8 @@ MERGED from [androidx.databinding:viewbinding:8.2.0] C:\Users\prash\.gradle\cach
 MERGED from [androidx.databinding:viewbinding:8.2.0] C:\Users\prash\.gradle\caches\transforms-3\429c1a44ace40a3fb35edc9bfbb0d0f3\transformed\jetified-viewbinding-8.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.karumi:dexter:6.2.2] C:\Users\prash\.gradle\caches\transforms-3\e002b1fbfe36d795914cf30b543040cb\transformed\jetified-dexter-6.2.2\AndroidManifest.xml:22:5-24:41
 MERGED from [com.karumi:dexter:6.2.2] C:\Users\prash\.gradle\caches\transforms-3\e002b1fbfe36d795914cf30b543040cb\transformed\jetified-dexter-6.2.2\AndroidManifest.xml:22:5-24:41
-MERGED from [com.google.android.material:material:1.11.0] C:\Users\prash\.gradle\caches\transforms-3\e4e797fd9ee0c5e7cbd012fac2eda3cc\transformed\material-1.11.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.11.0] C:\Users\prash\.gradle\caches\transforms-3\e4e797fd9ee0c5e7cbd012fac2eda3cc\transformed\material-1.11.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.10.0] C:\Users\prash\.gradle\caches\transforms-3\b535b465905ee936cea1e5019eff40af\transformed\material-1.10.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.10.0] C:\Users\prash\.gradle\caches\transforms-3\b535b465905ee936cea1e5019eff40af\transformed\material-1.10.0\AndroidManifest.xml:20:5-44
 MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\prash\.gradle\caches\transforms-3\871f8bffc32c74f19c66e58411483d79\transformed\jetified-MaterialSearchBar-0.8.5\AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\prash\.gradle\caches\transforms-3\871f8bffc32c74f19c66e58411483d79\transformed\jetified-MaterialSearchBar-0.8.5\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\prash\.gradle\caches\transforms-3\7c5e9487eafeddafd1c9ef72dc6c88b9\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
