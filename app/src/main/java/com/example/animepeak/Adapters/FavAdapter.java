@@ -32,9 +32,10 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         this.fav_list = fav_list;
 
 
-        if (source_list_size()==0){
+        if (source_list_size() == 0) {
+            no_fav.setText(R.string.your_favorites_will_show_here);
             no_fav.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             no_fav.setVisibility(View.GONE);
         }
     }
@@ -52,7 +53,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FavAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.ani_title.setText(fav_list.get(position).getTitle());
-        Log.d("FavAdapter", "onBindViewHolder: "+fav_list.get(position).getTitle());
+        Log.d("FavAdapter", "onBindViewHolder: " + fav_list.get(position).getTitle());
         Glide.with(fav_activity)
                 .load(fav_list.get(position).getImg())
                 .into(holder.ani_image);
@@ -71,8 +72,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
     }
 
-    public int source_list_size(){
-       return fav_list.size();
+    public int source_list_size() {
+        return fav_list.size();
     }
 
     @Override

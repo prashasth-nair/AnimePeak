@@ -111,7 +111,8 @@ public class FavouriteFragment extends Fragment {
 
 
     }
-    public void RetreiveArrayFromFirebase(){
+
+    public void RetreiveArrayFromFirebase() {
         FirebaseUser user = mAuth.getCurrentUser();
         fav_list.clear();
         if (user != null) {
@@ -132,25 +133,17 @@ public class FavouriteFragment extends Fragment {
                             }
                         }
                         fav_loading.setVisibility(View.GONE);
-                        FavAdapter favAdapter = new FavAdapter(getActivity(),fav_list);
+                        FavAdapter favAdapter = new FavAdapter(getActivity(), fav_list);
                         fav_recycler.setAdapter(favAdapter);
 //                        favAdapter.notifyDataSetChanged();
 
 
-                        if (fav_list.size()==0){
-                            no_fav.setVisibility(View.VISIBLE);
-                        }else {
-                            no_fav.setVisibility(View.GONE);
-                        }
+                        setNo_fav(fav_list.size() == 0);
                         // Perform other operations on fav_list here if needed
                         // ...
                     } else {
                         // Handle the case when the array does not exist in the database
-                        if (fav_list.size()==0){
-                            no_fav.setVisibility(View.VISIBLE);
-                        }else {
-                            no_fav.setVisibility(View.GONE);
-                        }
+                        setNo_fav(fav_list.size() == 0);
                     }
                 }
 
@@ -159,6 +152,15 @@ public class FavouriteFragment extends Fragment {
                     // Handle any errors that occur during the database read operation
                 }
             });
+        }
+    }
+
+    public void setNo_fav(boolean visible) {
+        if (visible) {
+            no_fav.setVisibility(View.VISIBLE);
+            no_fav.setText(R.string.your_favorites_will_show_here);
+        } else {
+            no_fav.setVisibility(View.GONE);
         }
     }
 
@@ -175,14 +177,16 @@ public class FavouriteFragment extends Fragment {
         });
         animator.start();
     }
-    public static float convertDpToPixel(float dp, Context context){
+
+    public static float convertDpToPixel(float dp, Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
-    public static ArrayList<Fav_object> temp_fav_list(){
+    public static ArrayList<Fav_object> temp_fav_list() {
 
         return new ArrayList<>(fav_list);
     }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -202,11 +206,13 @@ public class FavouriteFragment extends Fragment {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(requireContext());
         fav_list.clear();
         if (acct != null) {
-            is_login=true;
+            is_login = true;
             RetreiveArrayFromFirebase();
-        }else{
-            Log.d("Status","Failed");
-            is_login=false;
+        } else {
+            no_fav.setText("Login to your account.");
+            no_fav.setVisibility(View.VISIBLE);
+            Log.d("Status", "Failed");
+            is_login = false;
 
 
         }

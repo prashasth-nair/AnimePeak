@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.GogoAnime;
+import com.example.animepeak.Sources.AniList;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
@@ -40,7 +40,7 @@ public class SearchFragment extends Fragment {
     public static List<String> Search_TitleUrlList = new ArrayList<>();
     public static List<String> Search_imageUrlList = new ArrayList<>();
     public static List<String> Search_IDList = new ArrayList<>();
-    GogoAnime.GogoAnime_search gogoAnime_search;
+    AniList.AniList_search AniList_search;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,14 +80,14 @@ public class SearchFragment extends Fragment {
 
 
                 SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-                String Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+                String Source = sharedpreferences.getString("Source_Name", "AniList");
                 String query = searchBar.getText();
 
 
 
-                if (Source.equals("GogoAnime")) {
-                    gogoAnime_search = new GogoAnime.GogoAnime_search(getActivity(), isAdded(),query);
-                    gogoAnime_search.execute();
+                if (Source.equals("AniList")) {
+                    AniList_search = new AniList.AniList_search(getActivity(), isAdded(),query);
+                    AniList_search.execute();
                 }
             }
 

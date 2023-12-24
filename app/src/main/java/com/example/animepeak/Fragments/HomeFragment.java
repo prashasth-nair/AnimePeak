@@ -29,7 +29,7 @@ import com.example.animepeak.Activity.Profile;
 import com.example.animepeak.Adapters.MainAdapter;
 
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.GogoAnime;
+import com.example.animepeak.Sources.AniList;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.FirebaseApp;
@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
     public static List<String> Home_TitleUrlList = new ArrayList<>();
     public static List<String> Home_imageUrlList = new ArrayList<>();
     public static List<String> Home_IDList = new ArrayList<>();
-    public static GogoAnime.Gogoanime_popular gogoanime_popular;
+    public static AniList.AniList_popular AniList_popular;
 
     CardView profile_card;
     public Uri personPhoto;
@@ -99,9 +99,9 @@ public class HomeFragment extends Fragment {
             is_more = true;
         }
 
-        gogoanime_popular = new GogoAnime.Gogoanime_popular(getActivity(), isAdded(),is_more,page);
+        AniList_popular = new AniList.AniList_popular(getActivity(), isAdded(),is_more,page);
 
-        gogoanime_popular.execute();
+        AniList_popular.execute();
 
     }
 
@@ -110,6 +110,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         bottomNavigationView.setSelectedItemId(R.id.home);
+        currentPage = 1;
 
         recyclerView = requireView().findViewById(R.id.home_recycler);
         home_loading = requireView().findViewById(R.id.loading);
@@ -142,10 +143,11 @@ public class HomeFragment extends Fragment {
 
         mainAdapter = new MainAdapter(getActivity(), Home_TitleUrlList, Home_imageUrlList, Home_IDList);
         recyclerView.setAdapter(mainAdapter);
-        currentPage = 1;
-        // Make the initial API request
-        fetchData(currentPage);
 
+        // Make the initial API request
+        if (currentPage==1) {
+            fetchData(currentPage);
+        }
         // Add a scroll listener to your RecyclerView
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -157,6 +159,18 @@ public class HomeFragment extends Fragment {
                 if (!recyclerView.canScrollVertically(0)) {
 
                     pos = LayoutManager.findLastVisibleItemPosition();
+                    more_loading.setVisibility(View.VISIBLE);
+                    Glide.with(requireActivity())
+                            .asGif()
+                            .load(R.raw.loading_animation)
+                            .into(more_loading);
+
+
+// Get the last position in the adapter
+                    int lastPosition = mainAdapter.getItemCount();
+
+// Scroll to the last position
+                    recyclerView.smoothScrollToPosition(lastPosition);
 
                     currentPage++;
                     fetchData(currentPage);
@@ -200,9 +214,9 @@ public class HomeFragment extends Fragment {
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
-        if (gogoanime_popular != null) {
-            gogoanime_popular.cancel();
-            gogoanime_popular = null;
+        if (AniList_popular != null) {
+            AniList_popular.cancel();
+            AniList_popular = null;
 
         }
 
@@ -216,9 +230,9 @@ public class HomeFragment extends Fragment {
         Home_TitleUrlList.clear();
         Home_imageUrlList.clear();
         Home_IDList.clear();
-        if (gogoanime_popular != null) {
-            gogoanime_popular.cancel();
-            gogoanime_popular = null;
+        if (AniList_popular != null) {
+            AniList_popular.cancel();
+            AniList_popular = null;
 
         }
 

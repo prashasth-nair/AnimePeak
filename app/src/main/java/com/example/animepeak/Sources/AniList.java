@@ -34,13 +34,11 @@ import static com.example.animepeak.Activity.VideoPlayer.video_quality_num;
 import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
 import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
-import static com.example.animepeak.Fragments.HomeFragment.LayoutManager;
 import static com.example.animepeak.Fragments.HomeFragment.home_loading;
 import static com.example.animepeak.Fragments.HomeFragment.isLoading;
 import static com.example.animepeak.Fragments.HomeFragment.mainAdapter;
 import static com.example.animepeak.Fragments.HomeFragment.more_loading;
 import static com.example.animepeak.Fragments.HomeFragment.network_error;
-import static com.example.animepeak.Fragments.HomeFragment.pos;
 import static com.example.animepeak.Fragments.SearchFragment.Search_IDList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_TitleUrlList;
 import static com.example.animepeak.Fragments.SearchFragment.Search_imageUrlList;
@@ -62,7 +60,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.Anime_Details;

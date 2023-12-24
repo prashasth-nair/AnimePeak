@@ -129,7 +129,7 @@ public class SettingsFragment extends Fragment {
         });
 
 
-        String Current_Source = sharedpreferences.getString("Source_Name", "GogoAnime");
+        String Current_Source = sharedpreferences.getString("Source_Name", "AniList");
         String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
 
         if (Current_Quality.equals("360p")) {

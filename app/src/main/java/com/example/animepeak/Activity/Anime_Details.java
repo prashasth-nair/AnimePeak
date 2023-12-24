@@ -40,7 +40,7 @@ import com.example.animepeak.Adapters.Ani_Details_Adapter;
 import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
 import com.example.animepeak.Functions.Fav_object;
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.GogoAnime;
+import com.example.animepeak.Sources.AniList;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -79,7 +79,7 @@ public class Anime_Details extends AppCompatActivity {
 
     boolean is_fav = false;
     public static List<String> episodeID_list = new ArrayList<>();
-    GogoAnime.Gogoanime_details gogoanime_details;
+    AniList.AniList_details AniList_details;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -213,8 +213,8 @@ public class Anime_Details extends AppCompatActivity {
 
             System.setProperty("okio.buffer-size", "16384");
 
-            gogoanime_details = new GogoAnime.Gogoanime_details(this);
-            gogoanime_details.execute();
+            AniList_details = new AniList.AniList_details(this);
+            AniList_details.execute();
 
 
         } else if (episodes.length() != 0) {
@@ -248,9 +248,9 @@ public class Anime_Details extends AppCompatActivity {
         genres = new JSONArray();
         episodeID_list.clear();
 
-        if (gogoanime_details != null) {
-            gogoanime_details.executor.shutdown();
-            gogoanime_details = null;
+        if (AniList_details != null) {
+            AniList_details.executor.shutdown();
+            AniList_details = null;
 
         }
 
@@ -283,10 +283,10 @@ public class Anime_Details extends AppCompatActivity {
         genres = new JSONArray();
         episodeID_list.clear();
 
-        if (gogoanime_details != null) {
-            gogoanime_details.executor.shutdown();
+        if (AniList_details != null) {
+            AniList_details.executor.shutdown();
 
-            gogoanime_details = null;
+            AniList_details = null;
         }
         finish();
     }
