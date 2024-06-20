@@ -1,6 +1,6 @@
 plugins {
-    id 'com.android.application'
-    id 'com.google.gms.google-services'
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.gms.services)
 }
 
 android {
@@ -34,48 +34,45 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.constraintlayout
+    implementation libs.retrofit
+    implementation libs.recyclerview
+    implementation libs.gson
+    implementation libs.flow.layout
+    implementation libs.multisnaprecyclerview
+    implementation libs.circleimageview
+    implementation libs.cardview
+    implementation libs.activity
 //    Firebase Database
-    implementation 'com.google.firebase:firebase-database:20.3.1'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation libs.firebase.database
 //    Splash Screen
-    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation libs.splashscreen
 //    Image Loader
-    implementation 'com.github.bumptech.glide:glide:4.16.0'
-
-
-
-    implementation 'com.karumi:dexter:6.2.2'
-    implementation 'com.google.code.gson:gson:2.10.1'
-
-    implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
-
-
+    implementation libs.glide
+    implementation libs.dexter
+    implementation libs.google.gson
+    implementation libs.searchbar
 //    Google Login
-    implementation 'com.google.android.gms:play-services-auth:21.0.0'
-    implementation 'com.google.android.gms:play-services-drive:17.0.0'
+    implementation libs.google.auth
+    implementation libs.play.services.drive
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:32.8.1')
-
+    implementation platform(libs.firebase.bom)
     // Firebase Authentication library
-    implementation 'com.google.firebase:firebase-auth:22.3.1'
-
-
+    implementation libs.firebase.auth
     // Also add the dependency for the Google Play services library and specify its version
-    implementation 'com.google.android.gms:play-services-auth:21.0.0'
-
+    implementation libs.google.auth
 //    Exoplayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.19.1'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.19.1'
-    implementation 'com.google.android.exoplayer:exoplayer-hls:2.19.1'
+    implementation libs.exoplayer
+    implementation libs.controller.ui
+    implementation libs.exoplayer.hls
     //Expandable TextView
-    implementation 'io.github.glailton.expandabletextview:expandabletextview:1.0.3'
+    implementation libs.expandableteaxtview
+    debugImplementation libs.leakcanary
+    // Testing dependencies
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
 
 }
