@@ -56,7 +56,6 @@ dependencies {
 
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
 
-    implementation 'com.google.android.material:material:1.11.0'
 
 //    Google Login
     implementation 'com.google.android.gms:play-services-auth:21.0.0'
