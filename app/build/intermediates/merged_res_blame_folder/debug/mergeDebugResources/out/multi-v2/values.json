@@ -512,25 +512,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\arunb\\.gradle\\caches\\transforms-4\\3d93b744fc1de2406574bcca784920a5\\transformed\\jetified-multisnaprecyclerview-2.0.1\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "114",
-                        "endLines": "11",
-                        "endColumns": "22",
-                        "endOffsets": "459"
-                    },
-                    "to": {
-                        "startLines": "13554",
-                        "startColumns": "4",
-                        "startOffsets": "827659",
-                        "endLines": "13562",
-                        "endColumns": "22",
-                        "endOffsets": "828004"
-                    }
-                },
-                {
                     "source": "C:\\Users\\arunb\\.gradle\\caches\\transforms-4\\5b6539d23b32c7417381b19f53c4d3c5\\transformed\\recyclerview-1.3.2\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
@@ -621,6 +602,25 @@
                         "endLines": "12516",
                         "endColumns": "24",
                         "endOffsets": "788230"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\arunb\\.gradle\\caches\\transforms-4\\5ede93c26544561893b4273d9fcb9d40\\transformed\\jetified-multisnaprecyclerview-2.0.4\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "114",
+                        "endLines": "11",
+                        "endColumns": "22",
+                        "endOffsets": "459"
+                    },
+                    "to": {
+                        "startLines": "13554",
+                        "startColumns": "4",
+                        "startOffsets": "827659",
+                        "endLines": "13562",
+                        "endColumns": "22",
+                        "endOffsets": "828004"
                     }
                 },
                 {

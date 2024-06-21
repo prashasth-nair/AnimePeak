@@ -21,7 +21,7 @@ MERGED from [io.github.glailton.expandabletextview:expandabletextview:1.0.4] C:\
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\arunb\.gradle\caches\transforms-4\5e7b92097d0957d7f497588953d4a47c\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\arunb\.gradle\caches\transforms-4\e5b03c6b6759008c4f3cda9f882a9a9e\transformed\jetified-MaterialSearchBar-0.8.5\AndroidManifest.xml:2:1-17:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arunb\.gradle\caches\transforms-4\fd1fd6b3defdb81db1e235cfce3fc6e0\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
-MERGED from [com.github.takusemba:multisnaprecyclerview:2.0.1] C:\Users\arunb\.gradle\caches\transforms-4\3d93b744fc1de2406574bcca784920a5\transformed\jetified-multisnaprecyclerview-2.0.1\AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.takusemba:multisnaprecyclerview:2.0.4] C:\Users\arunb\.gradle\caches\transforms-4\5ede93c26544561893b4273d9fcb9d40\transformed\jetified-multisnaprecyclerview-2.0.4\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\arunb\.gradle\caches\transforms-4\51f1ae42355cfe2394abb24b70d69948\transformed\jetified-appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\arunb\.gradle\caches\transforms-4\c315f6b932cf01701cb6693b8704a27c\transformed\appcompat-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.media3:media3-exoplayer-hls:1.3.1] C:\Users\arunb\.gradle\caches\transforms-4\1b94f3558e1ebb34d9d258efa06d569e\transformed\jetified-media3-exoplayer-hls-1.3.1\AndroidManifest.xml:17:1-22:12
@@ -338,8 +338,8 @@ MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\arunb\.gradle\ca
 MERGED from [com.github.mancj:MaterialSearchBar:0.8.5] C:\Users\arunb\.gradle\caches\transforms-4\e5b03c6b6759008c4f3cda9f882a9a9e\transformed\jetified-MaterialSearchBar-0.8.5\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arunb\.gradle\caches\transforms-4\fd1fd6b3defdb81db1e235cfce3fc6e0\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\arunb\.gradle\caches\transforms-4\fd1fd6b3defdb81db1e235cfce3fc6e0\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
-MERGED from [com.github.takusemba:multisnaprecyclerview:2.0.1] C:\Users\arunb\.gradle\caches\transforms-4\3d93b744fc1de2406574bcca784920a5\transformed\jetified-multisnaprecyclerview-2.0.1\AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.takusemba:multisnaprecyclerview:2.0.1] C:\Users\arunb\.gradle\caches\transforms-4\3d93b744fc1de2406574bcca784920a5\transformed\jetified-multisnaprecyclerview-2.0.1\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.takusemba:multisnaprecyclerview:2.0.4] C:\Users\arunb\.gradle\caches\transforms-4\5ede93c26544561893b4273d9fcb9d40\transformed\jetified-multisnaprecyclerview-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.takusemba:multisnaprecyclerview:2.0.4] C:\Users\arunb\.gradle\caches\transforms-4\5ede93c26544561893b4273d9fcb9d40\transformed\jetified-multisnaprecyclerview-2.0.4\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\arunb\.gradle\caches\transforms-4\51f1ae42355cfe2394abb24b70d69948\transformed\jetified-appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\arunb\.gradle\caches\transforms-4\51f1ae42355cfe2394abb24b70d69948\transformed\jetified-appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\arunb\.gradle\caches\transforms-4\c315f6b932cf01701cb6693b8704a27c\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44

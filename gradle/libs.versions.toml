@@ -59,11 +59,9 @@ exoplayer ={group="androidx.media3",name="media3-exoplayer",version.ref="exoplay
 controller-ui = {group="androidx.media3",name="media3-ui",version.ref="exoplayer"}
 exoplayer-hls = {group="androidx.media3",name="media3-exoplayer-hls",version.ref="exoplayer"}
 google-auth = {group="com.google.android.gms",name="play-services-auth",version.ref="google-auth"}
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 gms-services= {id = "com.google.gms.google-services",version.ref="gms-googleServices"}
-
 
 
 
