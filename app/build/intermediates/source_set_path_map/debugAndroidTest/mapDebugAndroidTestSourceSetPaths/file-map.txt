@@ -1,0 +1,6 @@
+com.example.animepeak.test.app-jetified-annotation-experimental-1.4.0-0 C:\Users\arunb\.gradle\caches\transforms-4\773688fc535f26c5849d7201634022d0\transformed\jetified-annotation-experimental-1.4.0\res
+com.example.animepeak.test.app-jetified-core-1.5.0-1 C:\Users\arunb\.gradle\caches\transforms-4\7bdd2162beed558b6d70f0eeefba8f48\transformed\jetified-core-1.5.0\res
+com.example.animepeak.test.app-androidTest-2 C:\Users\arunb\StudioProjects\AnimePeak\app\build\generated\res\resValues\androidTest\debug
+com.example.animepeak.test.app-mergeDebugAndroidTestResources-3 C:\Users\arunb\StudioProjects\AnimePeak\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.animepeak.test.app-mergeDebugAndroidTestResources-4 C:\Users\arunb\StudioProjects\AnimePeak\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.animepeak.test.app-debugAndroidTest-5 C:\Users\arunb\StudioProjects\AnimePeak\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
