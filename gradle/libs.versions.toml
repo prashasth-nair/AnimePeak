@@ -1,0 +1,69 @@
+[versions]
+agp = "8.5.0"
+dexter = "6.2.3"
+firebaseBom = "33.1.0"
+gson = "2.10.1"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.9.0"
+constraintlayout = "2.1.4"
+flowLayout = "1.3.3"
+multisnaprecyclerview = "2.0.1"
+playServicesDrive = "17.0.0"
+recyclerview = "1.3.2"
+cardview = "1.0.0"
+firebase-auth="23.0.0"
+firebase-database = "21.0.0"
+splashscreen ="1.0.1"
+expandabletextview= "1.0.4"
+leakcanary ="2.14"
+circleimageview = "3.1.0"
+gms-googleServices ="4.4.2"
+glide = "4.16.0"
+retrofit="2.11.0"
+exoplayer="1.3.1"
+google-auth="21.2.0"
+searchbar="0.8.5"
+
+[libraries]
+dexter = { module = "com.karumi:dexter", version.ref = "dexter" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+google-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+flow-layout = { module = "com.nex3z:flow-layout", version.ref = "flowLayout" }
+multisnaprecyclerview = { module = "com.github.takusemba:multisnaprecyclerview", version.ref = "multisnaprecyclerview" }
+play-services-drive = { module = "com.google.android.gms:play-services-drive", version.ref = "playServicesDrive" }
+searchbar={group="com.github.mancj",name="MaterialSearchBar",version.ref= "searchbar" }
+expandableteaxtview ={group="io.github.glailton.expandabletextview",name="expandabletextview",version.ref="expandabletextview"}
+leakcanary = {group ="com.squareup.leakcanary",name ="leakcanary-android",version.ref="leakcanary"}
+gms-googleServices ={module = "com.google.gms:google-services",version.ref="gms-googleServices"}
+circleimageview = { group = "de.hdodenhof",name="circleimageview", version.ref = "circleimageview" }
+recyclerview = { group ="androidx.recyclerview",name ="recyclerview",version.ref = "recyclerview"}
+cardview = { group ="androidx.cardview",name ="cardview",version.ref="cardview"}
+firebase-database={group = "com.google.firebase",name ="firebase-database",version.ref="firebase-database"}
+firebase-auth={group = "com.google.firebase",name ="firebase-auth",version.ref="firebase-auth"}
+splashscreen ={ group ="androidx.core",name ="core-splashscreen",version.ref="splashscreen"}
+glide = {group = "com.github.bumptech.glide",name="glide",version.ref="glide"}
+retrofit = {group = "com.squareup.retrofit2",name = "retrofit",version.ref="retrofit"}
+gson ={group="com.squareup.retrofit2",name ="converter-gson",version.ref="retrofit"}
+exoplayer ={group="androidx.media3",name="media3-exoplayer",version.ref="exoplayer"}
+controller-ui = {group="androidx.media3",name="media3-ui",version.ref="exoplayer"}
+exoplayer-hls = {group="androidx.media3",name="media3-exoplayer-hls",version.ref="exoplayer"}
+google-auth = {group="com.google.android.gms",name="play-services-auth",version.ref="google-auth"}
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+gms-services= {id = "com.google.gms.google-services",version.ref="gms-googleServices"}
+
+
+
+
