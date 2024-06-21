@@ -27,6 +27,8 @@ retrofit="2.11.0"
 exoplayer="1.3.1"
 google-auth="21.2.0"
 searchbar="0.8.5"
+secrets_gradle_plugin ="0.4"
+
 
 [libraries]
 dexter = { module = "com.karumi:dexter", version.ref = "dexter" }
@@ -45,7 +47,6 @@ play-services-drive = { module = "com.google.android.gms:play-services-drive", v
 searchbar={group="com.github.mancj",name="MaterialSearchBar",version.ref= "searchbar" }
 expandableteaxtview ={group="io.github.glailton.expandabletextview",name="expandabletextview",version.ref="expandabletextview"}
 leakcanary = {group ="com.squareup.leakcanary",name ="leakcanary-android",version.ref="leakcanary"}
-gms-googleServices ={module = "com.google.gms:google-services",version.ref="gms-googleServices"}
 circleimageview = { group = "de.hdodenhof",name="circleimageview", version.ref = "circleimageview" }
 recyclerview = { group ="androidx.recyclerview",name ="recyclerview",version.ref = "recyclerview"}
 cardview = { group ="androidx.cardview",name ="cardview",version.ref="cardview"}
@@ -59,9 +60,13 @@ exoplayer ={group="androidx.media3",name="media3-exoplayer",version.ref="exoplay
 controller-ui = {group="androidx.media3",name="media3-ui",version.ref="exoplayer"}
 exoplayer-hls = {group="androidx.media3",name="media3-exoplayer-hls",version.ref="exoplayer"}
 google-auth = {group="com.google.android.gms",name="play-services-auth",version.ref="google-auth"}
+
+
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 gms-services= {id = "com.google.gms.google-services",version.ref="gms-googleServices"}
+secrets_gradle_plugin ={id = "com.google.secrets_gradle_plugin" ,version.ref="secrets_gradle_plugin"}
 
 
 
