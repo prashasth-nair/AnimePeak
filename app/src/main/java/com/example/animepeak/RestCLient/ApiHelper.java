@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiHelper {
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl()
+            .baseUrl("https://consumet-five-lemon.vercel.app")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
