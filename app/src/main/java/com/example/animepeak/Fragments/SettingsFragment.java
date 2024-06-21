@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -22,7 +23,6 @@ import android.widget.AutoCompleteTextView;
 
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.animepeak.Functions.UpdateApp;
@@ -40,7 +40,7 @@ import java.util.List;
 public class SettingsFragment extends Fragment {
     AutoCompleteTextView videoautoCompleteTextView;
     LinearLayout Update;
-    Switch auto_update;
+    SwitchCompat auto_update;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -172,7 +172,7 @@ public class SettingsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         String[] quality_lists = getResources().getStringArray(R.array.quality_list);
-        ArrayAdapter videoarrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, quality_lists);
+        ArrayAdapter<String> videoarrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown, quality_lists);
         videoautoCompleteTextView.setAdapter(videoarrayAdapter);
     }
 }
