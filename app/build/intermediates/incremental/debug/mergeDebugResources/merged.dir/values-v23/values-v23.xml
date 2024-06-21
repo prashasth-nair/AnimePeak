@@ -65,15 +65,6 @@
     <style name="ThemeOverlay.Material3.TextInputEditText" parent="Base.ThemeOverlay.Material3.TextInputEditText">
     <item name="colorControlNormal">@color/m3_textfield_indicator_text_color</item>
   </style>
-    <style name="Widget.Material3.ActionBar.Solid" parent="Base.Widget.Material3.ActionBar.Solid">
-    <item name="background">@drawable/m3_appbar_background</item>
-    <item name="backgroundStacked">@drawable/m3_appbar_background</item>
-    <item name="backgroundSplit">@drawable/m3_appbar_background</item>
-  </style>
-    <style name="Widget.Material3.ActionMode" parent="Base.Widget.Material3.ActionMode">
-    <item name="background">@drawable/m3_appbar_background</item>
-    <item name="backgroundSplit">@drawable/m3_appbar_background</item>
-  </style>
     <style name="Widget.Material3.CompoundButton.CheckBox" parent="Base.Widget.Material3.CompoundButton.CheckBox">
     <item name="android:background">@drawable/m3_selection_control_ripple</item>
   </style>
@@ -82,11 +73,6 @@
   </style>
     <style name="Widget.Material3.CompoundButton.Switch" parent="Base.Widget.Material3.CompoundButton.Switch">
     <item name="android:background">@drawable/m3_selection_control_ripple</item>
-  </style>
-    <style name="Widget.Material3.Light.ActionBar.Solid" parent="Base.Widget.Material3.Light.ActionBar.Solid">
-    <item name="background">@drawable/m3_appbar_background</item>
-    <item name="backgroundStacked">@drawable/m3_appbar_background</item>
-    <item name="backgroundSplit">@drawable/m3_appbar_background</item>
   </style>
     <style name="Widget.Material3.TabLayout.OnSurface" parent="Base.Widget.Material3.TabLayout.OnSurface">
     <item name="android:background">@drawable/m3_tabs_transparent_background</item>

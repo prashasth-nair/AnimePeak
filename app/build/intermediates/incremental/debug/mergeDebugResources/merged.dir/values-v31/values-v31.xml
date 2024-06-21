@@ -65,7 +65,7 @@
     <color name="m3_ref_palette_dynamic_tertiary90">@android:color/system_accent3_100</color>
     <color name="m3_ref_palette_dynamic_tertiary95">@android:color/system_accent3_50</color>
     <color name="m3_ref_palette_dynamic_tertiary99">@android:color/system_accent3_10</color>
-    <color name="m3_sys_color_dynamic_dark_background">@color/m3_ref_palette_dynamic_neutral10</color>
+    <color name="m3_sys_color_dynamic_dark_background">@color/m3_ref_palette_dynamic_neutral_variant6</color>
     <color name="m3_sys_color_dynamic_dark_inverse_on_surface">@color/m3_ref_palette_dynamic_neutral20</color>
     <color name="m3_sys_color_dynamic_dark_inverse_primary">@color/m3_ref_palette_dynamic_primary40</color>
     <color name="m3_sys_color_dynamic_dark_inverse_surface">@color/m3_ref_palette_dynamic_neutral90</color>
@@ -84,18 +84,18 @@
     <color name="m3_sys_color_dynamic_dark_primary_container">@color/m3_ref_palette_dynamic_primary30</color>
     <color name="m3_sys_color_dynamic_dark_secondary">@color/m3_ref_palette_dynamic_secondary80</color>
     <color name="m3_sys_color_dynamic_dark_secondary_container">@color/m3_ref_palette_dynamic_secondary30</color>
-    <color name="m3_sys_color_dynamic_dark_surface">@color/m3_ref_palette_dynamic_neutral10</color>
-    <color name="m3_sys_color_dynamic_dark_surface_bright">@color/m3_ref_palette_dynamic_neutral24</color>
-    <color name="m3_sys_color_dynamic_dark_surface_container">@color/m3_ref_palette_dynamic_neutral12</color>
-    <color name="m3_sys_color_dynamic_dark_surface_container_high">@color/m3_ref_palette_dynamic_neutral17</color>
-    <color name="m3_sys_color_dynamic_dark_surface_container_highest">@color/m3_ref_palette_dynamic_neutral22</color>
-    <color name="m3_sys_color_dynamic_dark_surface_container_low">@color/m3_ref_palette_dynamic_neutral10</color>
-    <color name="m3_sys_color_dynamic_dark_surface_container_lowest">@color/m3_ref_palette_dynamic_neutral4</color>
-    <color name="m3_sys_color_dynamic_dark_surface_dim">@color/m3_ref_palette_dynamic_neutral6</color>
+    <color name="m3_sys_color_dynamic_dark_surface">@color/m3_ref_palette_dynamic_neutral_variant6</color>
+    <color name="m3_sys_color_dynamic_dark_surface_bright">@color/m3_ref_palette_dynamic_neutral_variant24</color>
+    <color name="m3_sys_color_dynamic_dark_surface_container">@color/m3_ref_palette_dynamic_neutral_variant12</color>
+    <color name="m3_sys_color_dynamic_dark_surface_container_high">@color/m3_ref_palette_dynamic_neutral_variant17</color>
+    <color name="m3_sys_color_dynamic_dark_surface_container_highest">@color/m3_ref_palette_dynamic_neutral_variant22</color>
+    <color name="m3_sys_color_dynamic_dark_surface_container_low">@color/m3_ref_palette_dynamic_neutral_variant10</color>
+    <color name="m3_sys_color_dynamic_dark_surface_container_lowest">@color/m3_ref_palette_dynamic_neutral_variant4</color>
+    <color name="m3_sys_color_dynamic_dark_surface_dim">@color/m3_ref_palette_dynamic_neutral_variant6</color>
     <color name="m3_sys_color_dynamic_dark_surface_variant">@color/m3_ref_palette_dynamic_neutral_variant30</color>
     <color name="m3_sys_color_dynamic_dark_tertiary">@color/m3_ref_palette_dynamic_tertiary80</color>
     <color name="m3_sys_color_dynamic_dark_tertiary_container">@color/m3_ref_palette_dynamic_tertiary30</color>
-    <color name="m3_sys_color_dynamic_light_background">@color/m3_ref_palette_dynamic_neutral99</color>
+    <color name="m3_sys_color_dynamic_light_background">@color/m3_ref_palette_dynamic_neutral_variant98</color>
     <color name="m3_sys_color_dynamic_light_inverse_on_surface">@color/m3_ref_palette_dynamic_neutral95</color>
     <color name="m3_sys_color_dynamic_light_inverse_primary">@color/m3_ref_palette_dynamic_primary80</color>
     <color name="m3_sys_color_dynamic_light_inverse_surface">@color/m3_ref_palette_dynamic_neutral20</color>
@@ -114,14 +114,14 @@
     <color name="m3_sys_color_dynamic_light_primary_container">@color/m3_ref_palette_dynamic_primary90</color>
     <color name="m3_sys_color_dynamic_light_secondary">@color/m3_ref_palette_dynamic_secondary40</color>
     <color name="m3_sys_color_dynamic_light_secondary_container">@color/m3_ref_palette_dynamic_secondary90</color>
-    <color name="m3_sys_color_dynamic_light_surface">@color/m3_ref_palette_dynamic_neutral99</color>
-    <color name="m3_sys_color_dynamic_light_surface_bright">@color/m3_ref_palette_dynamic_neutral98</color>
-    <color name="m3_sys_color_dynamic_light_surface_container">@color/m3_ref_palette_dynamic_neutral94</color>
-    <color name="m3_sys_color_dynamic_light_surface_container_high">@color/m3_ref_palette_dynamic_neutral92</color>
-    <color name="m3_sys_color_dynamic_light_surface_container_highest">@color/m3_ref_palette_dynamic_neutral90</color>
-    <color name="m3_sys_color_dynamic_light_surface_container_low">@color/m3_ref_palette_dynamic_neutral96</color>
-    <color name="m3_sys_color_dynamic_light_surface_container_lowest">@color/m3_ref_palette_dynamic_neutral100</color>
-    <color name="m3_sys_color_dynamic_light_surface_dim">@color/m3_ref_palette_dynamic_neutral87</color>
+    <color name="m3_sys_color_dynamic_light_surface">@color/m3_ref_palette_dynamic_neutral_variant98</color>
+    <color name="m3_sys_color_dynamic_light_surface_bright">@color/m3_ref_palette_dynamic_neutral_variant98</color>
+    <color name="m3_sys_color_dynamic_light_surface_container">@color/m3_ref_palette_dynamic_neutral_variant94</color>
+    <color name="m3_sys_color_dynamic_light_surface_container_high">@color/m3_ref_palette_dynamic_neutral_variant92</color>
+    <color name="m3_sys_color_dynamic_light_surface_container_highest">@color/m3_ref_palette_dynamic_neutral_variant90</color>
+    <color name="m3_sys_color_dynamic_light_surface_container_low">@color/m3_ref_palette_dynamic_neutral_variant96</color>
+    <color name="m3_sys_color_dynamic_light_surface_container_lowest">@color/m3_ref_palette_dynamic_neutral_variant100</color>
+    <color name="m3_sys_color_dynamic_light_surface_dim">@color/m3_ref_palette_dynamic_neutral_variant87</color>
     <color name="m3_sys_color_dynamic_light_surface_variant">@color/m3_ref_palette_dynamic_neutral_variant90</color>
     <color name="m3_sys_color_dynamic_light_tertiary">@color/m3_ref_palette_dynamic_tertiary40</color>
     <color name="m3_sys_color_dynamic_light_tertiary_container">@color/m3_ref_palette_dynamic_tertiary90</color>
@@ -137,6 +137,14 @@
     <color name="m3_sys_color_dynamic_secondary_fixed_dim">@color/m3_ref_palette_dynamic_secondary80</color>
     <color name="m3_sys_color_dynamic_tertiary_fixed">@color/m3_ref_palette_dynamic_tertiary90</color>
     <color name="m3_sys_color_dynamic_tertiary_fixed_dim">@color/m3_ref_palette_dynamic_tertiary80</color>
+    <color name="material_dynamic_color_dark_error">@color/m3_sys_color_dark_error</color>
+    <color name="material_dynamic_color_dark_error_container">@color/m3_sys_color_dark_error_container</color>
+    <color name="material_dynamic_color_dark_on_error">@color/m3_sys_color_dark_on_error</color>
+    <color name="material_dynamic_color_dark_on_error_container">@color/m3_sys_color_dark_on_error_container</color>
+    <color name="material_dynamic_color_light_error">@color/m3_sys_color_light_error</color>
+    <color name="material_dynamic_color_light_error_container">@color/m3_sys_color_light_error_container</color>
+    <color name="material_dynamic_color_light_on_error">@color/m3_sys_color_light_on_error</color>
+    <color name="material_dynamic_color_light_on_error_container">@color/m3_sys_color_light_on_error_container</color>
     <color name="material_dynamic_neutral0">@color/m3_ref_palette_dynamic_neutral0</color>
     <color name="material_dynamic_neutral10">@color/m3_ref_palette_dynamic_neutral10</color>
     <color name="material_dynamic_neutral100">@color/m3_ref_palette_dynamic_neutral100</color>
@@ -390,10 +398,10 @@
     <item name="colorSurfaceContainerHighest">@color/m3_sys_color_dynamic_dark_surface_container_highest</item>
     <item name="colorOutline">@color/m3_sys_color_dynamic_dark_outline</item>
     <item name="colorOutlineVariant">@color/m3_sys_color_dynamic_dark_outline_variant</item>
-    <item name="colorError">@color/m3_sys_color_dark_error</item>
-    <item name="colorOnError">@color/m3_sys_color_dark_on_error</item>
-    <item name="colorErrorContainer">@color/m3_sys_color_dark_error_container</item>
-    <item name="colorOnErrorContainer">@color/m3_sys_color_dark_on_error_container</item>
+    <item name="colorError">@color/material_dynamic_color_dark_error</item>
+    <item name="colorOnError">@color/material_dynamic_color_dark_on_error</item>
+    <item name="colorErrorContainer">@color/material_dynamic_color_dark_error_container</item>
+    <item name="colorOnErrorContainer">@color/material_dynamic_color_dark_on_error_container</item>
 
     
     <item name="android:textColorPrimary">@color/m3_dynamic_dark_default_color_primary_text</item>
@@ -456,10 +464,10 @@
     <item name="colorSurfaceContainerHighest">@color/m3_sys_color_dynamic_light_surface_container_highest</item>
     <item name="colorOutline">@color/m3_sys_color_dynamic_light_outline</item>
     <item name="colorOutlineVariant">@color/m3_sys_color_dynamic_light_outline_variant</item>
-    <item name="colorError">@color/m3_sys_color_light_error</item>
-    <item name="colorOnError">@color/m3_sys_color_light_on_error</item>
-    <item name="colorErrorContainer">@color/m3_sys_color_light_error_container</item>
-    <item name="colorOnErrorContainer">@color/m3_sys_color_light_on_error_container</item>
+    <item name="colorError">@color/material_dynamic_color_light_error</item>
+    <item name="colorOnError">@color/material_dynamic_color_light_on_error</item>
+    <item name="colorErrorContainer">@color/material_dynamic_color_light_error_container</item>
+    <item name="colorOnErrorContainer">@color/material_dynamic_color_light_on_error_container</item>
 
     
     <item name="android:textColorPrimary">@color/m3_dynamic_default_color_primary_text</item>

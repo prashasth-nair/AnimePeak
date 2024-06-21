@@ -48,11 +48,20 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"இதில் பகிர்"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g> மூலம் பகிர்"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"சுருக்கும்"</string>
+    <string msgid="8397015543330865059" name="android.credentials.TYPE_PASSWORD_CREDENTIAL">"கடவுச்சொல்"</string>
+    <string msgid="3929015085059320822" name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">"கடவுச்சாவி"</string>
     <string name="bottomsheet_action_collapse">கீழ்ப்புறச் சீட்டைச் சுருக்கும்</string>
     <string name="bottomsheet_action_expand">கீழ்ப்புறச் சீட்டை விரிவாக்கும்</string>
     <string name="bottomsheet_action_expand_halfway">பாதியளவு விரிவாக்கும்</string>
     <string name="bottomsheet_drag_handle_clicked">இழுப்பதற்கான ஹேண்டில் இருமுறை தட்டப்பட்டது</string>
     <string name="bottomsheet_drag_handle_content_description">இழுப்பதற்கான ஹேண்டில்</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"பதிலளி"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"வீடியோ"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"நிராகரி"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"துண்டி"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"உள்வரும் அழைப்பு"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"செயலில் இருக்கும் அழைப்பு"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"உள்வரும் அழைப்பை மதிப்பாய்வு செய்கிறது"</string>
     <string name="character_counter_content_description">%2$d இல் %1$d எழுத்துகள் உள்ளிடப்பட்டுள்ளன</string>
     <string name="character_counter_overflowed_content_description">%2$d இல் %1$d எழுத்து வரம்பு மீறப்பட்டது</string>
     <string name="clear_text_end_icon_content_description">உரையை அழிக்கும்</string>
@@ -75,6 +84,7 @@
     <string name="common_signin_button_text">உள்நுழைக</string>
     <string name="common_signin_button_text_long">Google மூலம் உள்நுழைக</string>
     <string msgid="3260749812566568062" name="copy_toast_msg">"கிளிப்-போர்டுக்கு இணைப்பு நகலெடுக்கப்பட்டது"</string>
+    <string name="error_a11y_label">பிழை: தவறானது</string>
     <string name="error_icon_content_description">பிழை</string>
     <string name="exo_controls_cc_disabled_description">சப்டைட்டில்களை இயக்கும்</string>
     <string name="exo_controls_cc_enabled_description">சப்டைட்டில்களை முடக்கும்</string>
@@ -127,6 +137,7 @@
     <string name="exo_track_surround_5_point_1">5.1 சரவுண்ட் சவுண்ட்</string>
     <string name="exo_track_surround_7_point_1">7.1 சரவுண்ட் சவுண்ட்</string>
     <string name="exo_track_unknown">தெரியாதவை</string>
+    <string name="exo_track_unknown_name">தெரியாதது (%1$s)</string>
     <string name="exposed_dropdown_menu_content_description">கீழ் தோன்றல் மெனுவைக் காட்டும் பட்டன்</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"இணைப்பை நகலெடு"</string>
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"உலாவியில் திற"</string>
@@ -147,6 +158,9 @@
     <string name="material_timepicker_select_time">நேரத்தைத் தேர்ந்தெடுக்கவும்</string>
     <string name="material_timepicker_text_input_mode_description">உரை உள்ளீட்டிற்காக, கடிகாரப் பயன்முறைக்கு மாற்றும்.</string>
     <string name="mtrl_badge_numberless_content_description">புதிய அறிவிப்பு</string>
+    <string name="mtrl_checkbox_state_description_checked">தேர்வுசெய்யப்பட்டுள்ளது</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">பாதி தேர்வுசெய்யப்பட்டுள்ளது</string>
+    <string name="mtrl_checkbox_state_description_unchecked">தேர்வுசெய்யப்படவில்லை</string>
     <string name="mtrl_chip_close_icon_content_description">%1$sஐ அகற்று</string>
     <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">%1$d+ புதிய அறிவிப்புகள்</string>
     <string name="mtrl_picker_a11y_next_month">அடுத்த மாதத்தைக் காட்டு</string>
@@ -159,7 +173,7 @@
     <string name="mtrl_picker_date_header_selected">%1$s</string>
     <string name="mtrl_picker_date_header_title">தேதியைத் தேர்ந்தெடுக்கவும்</string>
     <string name="mtrl_picker_date_header_unselected">தேர்ந்தெடுக்கப்பட்ட தேதி</string>
-    <string name="mtrl_picker_day_of_week_column_header">நாட்களின் நெடுவரிசை: %1$s</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
     <string name="mtrl_picker_end_date_description">முடியும் தேதி %1$s</string>
     <string name="mtrl_picker_invalid_format">தவறான வடிவம்.</string>
     <string name="mtrl_picker_invalid_format_example">உதாரணம்: %1$s</string>
@@ -190,5 +204,8 @@
     <string name="mtrl_timepicker_confirm">சரி</string>
     <string name="password_toggle_content_description">கடவுச்சொல்லைக் காட்டு</string>
     <string msgid="6264217191555673260" name="search_menu_title">"தேடல்"</string>
+    <string name="searchview_clear_text_content_description">வார்த்தைகளை அழிக்கும்</string>
+    <string name="searchview_navigation_content_description">பின்செல்லும்</string>
+    <string name="side_sheet_accessibility_pane_title">பக்கவாட்டுத் தாள்</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

@@ -54,11 +54,20 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Bendrinti su"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Bendrinti naudojant programą „<ns1:g id="APPLICATION_NAME">%s</ns1:g>“"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Sutraukti"</string>
+    <string msgid="8397015543330865059" name="android.credentials.TYPE_PASSWORD_CREDENTIAL">"Slaptažodis"</string>
+    <string msgid="3929015085059320822" name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">"Passkey"</string>
     <string name="bottomsheet_action_collapse">Sutraukti apatinį lapą</string>
     <string name="bottomsheet_action_expand">Išskleisti apatinį lapą</string>
     <string name="bottomsheet_action_expand_halfway">Išskleisti iki pusės</string>
     <string name="bottomsheet_drag_handle_clicked">Vilkimo rankenėlė dukart paliesta</string>
     <string name="bottomsheet_drag_handle_content_description">Vilkimo rankenėlė</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Atsakyti"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Vaizdo įrašas"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Atmesti"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Baigti pok."</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Gaunamasis skambutis"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Vykstantis skambutis"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Gaunamojo skambučio tikrinimas"</string>
     <string name="character_counter_content_description">Įvesta simbolių: %1$d iš %2$d</string>
     <string name="character_counter_overflowed_content_description">Viršytas simbolių skaičius: %1$d iš %2$d</string>
     <string name="clear_text_end_icon_content_description">Išvalyti tekstą</string>
@@ -81,6 +90,7 @@
     <string name="common_signin_button_text">Prisijungti</string>
     <string name="common_signin_button_text_long">Prisijungti naudojant „Google“</string>
     <string msgid="3260749812566568062" name="copy_toast_msg">"Nuoroda nukopijuota į iškarpinę"</string>
+    <string name="error_a11y_label">Klaida: netinkama</string>
     <string name="error_icon_content_description">Klaida</string>
     <string name="exo_controls_cc_disabled_description">Įgalinti subtitrus</string>
     <string name="exo_controls_cc_enabled_description">Išjungti subtitrus</string>
@@ -133,6 +143,7 @@
     <string name="exo_track_surround_5_point_1">5.1 erdvinis garsas</string>
     <string name="exo_track_surround_7_point_1">7.1 erdvinis garsas</string>
     <string name="exo_track_unknown">Nežinomas</string>
+    <string name="exo_track_unknown_name">Nežinoma (%1$s)</string>
     <string name="exposed_dropdown_menu_content_description">Rodyti išskleidžiamąjį meniu</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopijuoti nuorodą"</string>
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Atidaryti naršyklėje"</string>
@@ -153,6 +164,9 @@
     <string name="material_timepicker_select_time">Pasirinkite laiką</string>
     <string name="material_timepicker_text_input_mode_description">Laiko įvestį pateikti perjungus į teksto įvesties režimą.</string>
     <string name="mtrl_badge_numberless_content_description">Naujas pranešimas</string>
+    <string name="mtrl_checkbox_state_description_checked">Pažymėta</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Iš dalies pažymėta</string>
+    <string name="mtrl_checkbox_state_description_unchecked">Nepažymėta</string>
     <string name="mtrl_chip_close_icon_content_description">Pašalinti %1$s</string>
     <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Naujų pranešimų: daugiau nei %1$d</string>
     <string name="mtrl_picker_a11y_next_month">Pakeisti į kitą mėnesį</string>
@@ -165,7 +179,7 @@
     <string name="mtrl_picker_date_header_selected">%1$s</string>
     <string name="mtrl_picker_date_header_title">Pasirinkite datą</string>
     <string name="mtrl_picker_date_header_unselected">Pasirinkta data</string>
-    <string name="mtrl_picker_day_of_week_column_header">Dienų stulpelis: %1$s</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
     <string name="mtrl_picker_end_date_description">Pabaigos data %1$s</string>
     <string name="mtrl_picker_invalid_format">Netinkamas formatas.</string>
     <string name="mtrl_picker_invalid_format_example">Pavyzdys: %1$s</string>
@@ -196,5 +210,8 @@
     <string name="mtrl_timepicker_confirm">Gerai</string>
     <string name="password_toggle_content_description">Rodyti slaptažodį</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Ieškoti"</string>
+    <string name="searchview_clear_text_content_description">Išvalyti tekstą</string>
+    <string name="searchview_navigation_content_description">Atgal</string>
+    <string name="side_sheet_accessibility_pane_title">Šoninis lapas</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

@@ -48,11 +48,20 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"اس کے ساتھ اشتراک کریں"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g> کے ساتھ اشتراک کریں"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"سکیڑیں"</string>
+    <string msgid="8397015543330865059" name="android.credentials.TYPE_PASSWORD_CREDENTIAL">"پاس ورڈ"</string>
+    <string msgid="3929015085059320822" name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">"پاس کی"</string>
     <string name="bottomsheet_action_collapse">نیچے کی شیٹ کو سکیڑیں</string>
     <string name="bottomsheet_action_expand">نیچے کی شیٹ کو پھیلائیں</string>
     <string name="bottomsheet_action_expand_halfway">نصف تک پھیلائیں</string>
     <string name="bottomsheet_drag_handle_clicked">گھسیٹنے کے ہینڈل کو دو بار تھپتھپائیں</string>
     <string name="bottomsheet_drag_handle_content_description">گھسیٹنے کا ہینڈل</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"جواب دیں"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"ویڈیو"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"مسترد کریں"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"منقطع کر دیں"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"اِن کمنگ کال"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"جاری کال"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"اِن کمنگ کال کی اسکریننگ"</string>
     <string name="character_counter_content_description">%2$d میں سے %1$d حروف درج کیے گئے</string>
     <string name="character_counter_overflowed_content_description">حروف کی تعداد کی حد %2$d سے %1$d پہنچ گئی</string>
     <string name="clear_text_end_icon_content_description">ٹیکسٹ صاف کریں</string>
@@ -75,6 +84,7 @@
     <string name="common_signin_button_text">سائن ان کریں</string>
     <string name="common_signin_button_text_long">‏Google کے ساتھ سائن ان کریں</string>
     <string msgid="3260749812566568062" name="copy_toast_msg">"لنک کلپ بورڈ پر کاپی ہو گیا"</string>
+    <string name="error_a11y_label">خرابی: غلط</string>
     <string name="error_icon_content_description">خرابی</string>
     <string name="exo_controls_cc_disabled_description">سب ٹائٹلز کو فعال کریں</string>
     <string name="exo_controls_cc_enabled_description">سب ٹائٹلز کو غیر فعال کریں</string>
@@ -127,7 +137,8 @@
     <string name="exo_track_surround_5_point_1">5.1 محیط آواز</string>
     <string name="exo_track_surround_7_point_1">7.1 محیط آواز</string>
     <string name="exo_track_unknown">نامعلوم</string>
-    <string name="exposed_dropdown_menu_content_description">ڈراپ ڈاؤن مینو دکھائیں</string>
+    <string name="exo_track_unknown_name">نامعلوم (%1$s)</string>
+    <string name="exposed_dropdown_menu_content_description">ڈراپ ڈاؤن مینیو دکھائیں</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"لنک کاپی کریں"</string>
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"براؤزر میں کھولیں"</string>
     <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"لنک کا اشتراک کریں"</string>
@@ -147,6 +158,9 @@
     <string name="material_timepicker_select_time">وقت منتخب کریں</string>
     <string name="material_timepicker_text_input_mode_description">وقت ان پٹ کے لیے ٹیکسٹ ان پٹ وضع پر سوئچ کریں۔</string>
     <string name="mtrl_badge_numberless_content_description">نئی اطلاع</string>
+    <string name="mtrl_checkbox_state_description_checked">نشان زد ہو گیا</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">جزوی طور پر نشان زد</string>
+    <string name="mtrl_checkbox_state_description_unchecked">نشان زد نہیں ہوا</string>
     <string name="mtrl_chip_close_icon_content_description">%1$s کو ہٹائیں</string>
     <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">%1$d سے زیادہ نئی اطلاعات</string>
     <string name="mtrl_picker_a11y_next_month">اگلے مہینہ میں منتقل کریں</string>
@@ -159,7 +173,7 @@
     <string name="mtrl_picker_date_header_selected">%1$s</string>
     <string name="mtrl_picker_date_header_title">تاریخ منتخب کریں</string>
     <string name="mtrl_picker_date_header_unselected">منتخب کردہ تاریخ</string>
-    <string name="mtrl_picker_day_of_week_column_header">دنوں کا کالم: %1$s</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
     <string name="mtrl_picker_end_date_description">تاریخ اختتام %1$s</string>
     <string name="mtrl_picker_invalid_format">غلط فارمیٹ۔</string>
     <string name="mtrl_picker_invalid_format_example">مثال: %1$s۔</string>
@@ -190,5 +204,8 @@
     <string name="mtrl_timepicker_confirm">ٹھیک ہے</string>
     <string name="password_toggle_content_description">پاس ورڈ دکھائیں</string>
     <string msgid="6264217191555673260" name="search_menu_title">"تلاش کریں"</string>
+    <string name="searchview_clear_text_content_description">ٹیکسٹ صاف کریں</string>
+    <string name="searchview_navigation_content_description">واپس جائیں</string>
+    <string name="side_sheet_accessibility_pane_title">سائیڈ شیٹ</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"+999"</string>
 </resources>

@@ -3,9 +3,9 @@
     <color name="notification_action_color_filter">@color/androidx_core_secondary_text_default_material_light</color>
     <dimen name="exo_styled_controls_padding">24dp</dimen>
     <item format="float" name="m3_sys_state_dragged_state_layer_opacity" type="dimen">0.32</item>
-    <item format="float" name="m3_sys_state_focus_state_layer_opacity" type="dimen">0.24</item>
+    <item format="float" name="m3_sys_state_focus_state_layer_opacity" type="dimen">0.2</item>
     <item format="float" name="m3_sys_state_hover_state_layer_opacity" type="dimen">0.16</item>
-    <item format="float" name="m3_sys_state_pressed_state_layer_opacity" type="dimen">0.24</item>
+    <item format="float" name="m3_sys_state_pressed_state_layer_opacity" type="dimen">0.2</item>
     <dimen name="mtrl_calendar_pre_l_text_clip_padding">0dp</dimen>
     <dimen name="mtrl_exposed_dropdown_menu_popup_vertical_offset">1dp</dimen>
     <item format="float" name="mtrl_high_ripple_default_alpha" type="dimen">0.48</item>
@@ -526,6 +526,14 @@
     <item name="android:fontFamily">sans-serif-medium</item>
     <item name="android:textStyle">normal</item>
   </style>
+    <style name="Theme.Hidden" parent="@android:style/Theme.DeviceDefault">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
     <style name="ThemeOverlay.Material3.Dialog.Alert.Framework" parent="ThemeOverlay.MaterialComponents.Dialog.Alert.Framework">
     <item name="android:windowElevation">@dimen/m3_alert_dialog_elevation</item>
     <item name="android:buttonBarButtonStyle">@style/Widget.Material3.Button.TextButton.Dialog.Flush</item>
@@ -578,5 +586,13 @@
   </style>
     <style name="Widget.MaterialComponents.Slider" parent="Base.Widget.MaterialComponents.Slider">
     <item name="android:background">?attr/controlBackground</item>
+  </style>
+    <style name="leak_canary_LeakCanary.Base" parent="android:Theme.Material">
+    <item name="android:windowBackground">@color/leak_canary_background_color</item>
+    <item name="android:actionBarStyle">@style/leak_canary_Widget.ActionBar</item>
+  </style>
+    <style name="leak_canary_Widget.ActionBar" parent="android:Widget.Material.ActionBar">
+    <item name="android:background">@color/leak_canary_background_color</item>
+    <item name="android:elevation">0dp</item>
   </style>
 </resources>

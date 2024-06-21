@@ -33,8 +33,8 @@
     <string msgid="4692188335987374352" name="abc_action_mode_done">"Готово"</string>
     <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Показати всі"</string>
     <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Вибрати програму"</string>
-    <string msgid="4215997306490295099" name="abc_capital_off">"ЗНИЖКА"</string>
-    <string msgid="884982626291842264" name="abc_capital_on">"УВІМК."</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"ВИМКНЕНО"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"УВІМКНЕНО"</string>
     <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
     <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
     <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
@@ -54,11 +54,20 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Поділитися:"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Поділитися через додаток <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Згорнути"</string>
+    <string msgid="8397015543330865059" name="android.credentials.TYPE_PASSWORD_CREDENTIAL">"Пароль"</string>
+    <string msgid="3929015085059320822" name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">"Ключ доступу"</string>
     <string name="bottomsheet_action_collapse">Згорнути нижній екран</string>
     <string name="bottomsheet_action_expand">Розгорнути нижній екран</string>
     <string name="bottomsheet_action_expand_halfway">Розгорнути нижню половину</string>
     <string name="bottomsheet_drag_handle_clicked">Маркер переміщення активовано подвійним дотиком</string>
     <string name="bottomsheet_drag_handle_content_description">Маркер переміщення</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Відповісти"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Відео"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Відхилити"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Завершити"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Вхідний виклик"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Активний виклик"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Вхідний виклик (Фільтр)"</string>
     <string name="character_counter_content_description">Введено символів: %1$d з %2$d</string>
     <string name="character_counter_overflowed_content_description">Перевищено ліміт символів: %1$d з %2$d</string>
     <string name="clear_text_end_icon_content_description">Видалити текст</string>
@@ -81,6 +90,7 @@
     <string name="common_signin_button_text">Увійти</string>
     <string name="common_signin_button_text_long">Увійти в облік. запис Google</string>
     <string msgid="3260749812566568062" name="copy_toast_msg">"Посилання скопійовано в буфер обміну"</string>
+    <string name="error_a11y_label">Помилка: недійсне значення</string>
     <string name="error_icon_content_description">Помилка</string>
     <string name="exo_controls_cc_disabled_description">Увімкнути субтитри</string>
     <string name="exo_controls_cc_enabled_description">Вимкнути субтитри</string>
@@ -133,6 +143,7 @@
     <string name="exo_track_surround_5_point_1">Об’ємний звук у форматі 5.1</string>
     <string name="exo_track_surround_7_point_1">Об’ємний звук у форматі 7.1</string>
     <string name="exo_track_unknown">Невідомо</string>
+    <string name="exo_track_unknown_name">Невідомо (%1$s)</string>
     <string name="exposed_dropdown_menu_content_description">Показати спадне меню</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Копіювати посилання"</string>
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Відкрити у веб-переглядачі"</string>
@@ -153,6 +164,9 @@
     <string name="material_timepicker_select_time">Виберіть час</string>
     <string name="material_timepicker_text_input_mode_description">Перейти в текстовий режим, щоб ввести час.</string>
     <string name="mtrl_badge_numberless_content_description">Нове сповіщення</string>
+    <string name="mtrl_checkbox_state_description_checked">Вибрано</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Частково вибрано</string>
+    <string name="mtrl_checkbox_state_description_unchecked">Не вибрано</string>
     <string name="mtrl_chip_close_icon_content_description">Видалити %1$s</string>
     <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Нових сповіщень більше ніж %1$d</string>
     <string name="mtrl_picker_a11y_next_month">Перейти до наступного місяця</string>
@@ -165,11 +179,11 @@
     <string name="mtrl_picker_date_header_selected">%1$s</string>
     <string name="mtrl_picker_date_header_title">Виберіть дату</string>
     <string name="mtrl_picker_date_header_unselected">Вибрана дата</string>
-    <string name="mtrl_picker_day_of_week_column_header">Стовпець із днями: %1$s</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
     <string name="mtrl_picker_end_date_description">Дата завершення: %1$s</string>
     <string name="mtrl_picker_invalid_format">Недійсний формат.</string>
     <string name="mtrl_picker_invalid_format_example">Приклад: %1$s</string>
-    <string name="mtrl_picker_invalid_format_use">Використовувати: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Потрібний формат: %1$s</string>
     <string name="mtrl_picker_invalid_range">Недійсний діапазон.</string>
     <string name="mtrl_picker_navigate_to_current_year_description">Перейти до поточного року: %1$d</string>
     <string name="mtrl_picker_navigate_to_year_description">Перейти до %1$d року</string>
@@ -196,5 +210,8 @@
     <string name="mtrl_timepicker_confirm">OK</string>
     <string name="password_toggle_content_description">Показувати пароль</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Пошук"</string>
+    <string name="searchview_clear_text_content_description">Видалити текст</string>
+    <string name="searchview_navigation_content_description">Назад</string>
+    <string name="side_sheet_accessibility_pane_title">Бічна панель</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

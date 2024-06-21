@@ -48,11 +48,20 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Yabelana no"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Yabelana ne-<ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Goqa"</string>
+    <string msgid="8397015543330865059" name="android.credentials.TYPE_PASSWORD_CREDENTIAL">"Iphasiwedi"</string>
+    <string msgid="3929015085059320822" name="androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL">"Ukhiye wokudlula"</string>
     <string name="bottomsheet_action_collapse">Goqa ishidi eliphansi</string>
     <string name="bottomsheet_action_expand">Nweba ishidi eliphansi</string>
     <string name="bottomsheet_action_expand_halfway">Nweba phakathi</string>
     <string name="bottomsheet_drag_handle_clicked">Hudula isibambi esithephwe kabili</string>
     <string name="bottomsheet_drag_handle_content_description">Hudula isibambi</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Phendula"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Ividiyo"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Yenqaba"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Vala Ucingo"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Ikholi engenayo"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Ikholi eqhubekayo"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Ukuveza ikholi engenayo"</string>
     <string name="character_counter_content_description">Izinhlamvu ezifakiwe ezingu-%1$d zokungu-%2$d</string>
     <string name="character_counter_overflowed_content_description">Umkhawulo wezinhlamvu udlule u-%1$d kokungu-%2$d</string>
     <string name="clear_text_end_icon_content_description">Sula umbhalo</string>
@@ -75,6 +84,7 @@
     <string name="common_signin_button_text">Ngena ngemvume</string>
     <string name="common_signin_button_text_long">Ngena ngemvume nge-Google</string>
     <string msgid="3260749812566568062" name="copy_toast_msg">"Isixhumanisi sikopishelwe ku-clipboard"</string>
+    <string name="error_a11y_label">Iphutha: okungavumelekile</string>
     <string name="error_icon_content_description">Iphutha</string>
     <string name="exo_controls_cc_disabled_description">Nika amandla imibhalo engezansi</string>
     <string name="exo_controls_cc_enabled_description">Khubaza imibhalo engezansi</string>
@@ -127,6 +137,7 @@
     <string name="exo_track_surround_5_point_1">Umsindo ozungelezile ongu-5.1</string>
     <string name="exo_track_surround_7_point_1">Umsindo ozungelezile ongu-7.1</string>
     <string name="exo_track_unknown">Akwaziwa</string>
+    <string name="exo_track_unknown_name">Akwaziwa (%1$s)</string>
     <string name="exposed_dropdown_menu_content_description">Bonisa imenyu yokudonsela phansi</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Kopisha isixhumanisi"</string>
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Vula kusiphequluli"</string>
@@ -147,6 +158,9 @@
     <string name="material_timepicker_select_time">Khetha isikhathi</string>
     <string name="material_timepicker_text_input_mode_description">Shintshela kumodi yokufaka umbhalo ngokufaka isikhathi.</string>
     <string name="mtrl_badge_numberless_content_description">Isaziso esisha</string>
+    <string name="mtrl_checkbox_state_description_checked">Kumakiwe</string>
+    <string name="mtrl_checkbox_state_description_indeterminate">Kumakwe kancane</string>
+    <string name="mtrl_checkbox_state_description_unchecked">Akumakiwe</string>
     <string name="mtrl_chip_close_icon_content_description">Susa i-%1$s</string>
     <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Izaziso ezintsha ezingaphezu kokungu-%1$d</string>
     <string name="mtrl_picker_a11y_next_month">Shintshela kunyanga elandelayo</string>
@@ -159,7 +173,7 @@
     <string name="mtrl_picker_date_header_selected">%1$s</string>
     <string name="mtrl_picker_date_header_title">Khetha Idethi</string>
     <string name="mtrl_picker_date_header_unselected">Khetha idethi</string>
-    <string name="mtrl_picker_day_of_week_column_header">Ikholomu yezinsuku: %1$s</string>
+    <string name="mtrl_picker_day_of_week_column_header">%1$s</string>
     <string name="mtrl_picker_end_date_description">Ilanga lokuphela %1$s</string>
     <string name="mtrl_picker_invalid_format">Ifomethi engavumelekile.</string>
     <string name="mtrl_picker_invalid_format_example">Isibonelo: %1$s</string>
@@ -190,5 +204,8 @@
     <string name="mtrl_timepicker_confirm">KULUNGILE</string>
     <string name="password_toggle_content_description">Bonisa iphasiwedi</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Sesha"</string>
+    <string name="searchview_clear_text_content_description">Sula umbhalo</string>
+    <string name="searchview_navigation_content_description">Emuva</string>
+    <string name="side_sheet_accessibility_pane_title">Ishidi Eliseceleni</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
 </resources>

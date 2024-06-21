@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">273585373512-ulh0robojhitbg80klj6i07b6op90qb7.apps.googleusercontent.com</string>
-    <string name="firebase_database_url" translatable="false">https://animepeak-default-rtdb.asia-southeast1.firebasedatabase.app</string>
-    <string name="gcm_defaultSenderId" translatable="false">273585373512</string>
-    <string name="google_api_key" translatable="false">AIzaSyABDrWSDdaB7H36bENiz9_i70-k7Kv7yr0</string>
-    <string name="google_app_id" translatable="false">1:273585373512:android:9e0132a2e1c133b33df37d</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyABDrWSDdaB7H36bENiz9_i70-k7Kv7yr0</string>
-    <string name="google_storage_bucket" translatable="false">animepeak.appspot.com</string>
-    <string name="project_id" translatable="false">animepeak</string>
+    <string name="gcm_defaultSenderId" translatable="false">164136048967</string>
+    <string name="google_api_key" translatable="false">AIzaSyC_WiGa0qzv779RMQL9yWXNU3MoXo-xNc4</string>
+    <string name="google_app_id" translatable="false">1:164136048967:android:5333c335370384ecb51462</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC_WiGa0qzv779RMQL9yWXNU3MoXo-xNc4</string>
+    <string name="google_storage_bucket" translatable="false">media-streaming-768a7.appspot.com</string>
+    <string name="project_id" translatable="false">media-streaming-768a7</string>
 </resources>
