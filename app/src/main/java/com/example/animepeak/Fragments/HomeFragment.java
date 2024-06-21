@@ -2,7 +2,6 @@ package com.example.animepeak.Fragments;
 
 import static com.example.animepeak.Activity.MainActivity.bottomNavigationView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -38,7 +37,7 @@ import com.google.firebase.FirebaseApp;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressLint("StaticFieldLeak")
+
 public class HomeFragment extends Fragment {
 
     public static MainAdapter mainAdapter;

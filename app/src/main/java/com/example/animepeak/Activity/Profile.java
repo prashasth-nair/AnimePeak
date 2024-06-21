@@ -68,7 +68,6 @@ public class Profile extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
 
-    @SuppressLint({"MissingInflatedId", "CheckResult", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

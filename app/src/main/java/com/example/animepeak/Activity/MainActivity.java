@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @SuppressLint({"NonConstantResourceId", "RestrictedApi"})
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() != R.id.fav) {

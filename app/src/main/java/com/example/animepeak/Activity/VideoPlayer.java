@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 
@@ -60,7 +58,6 @@ import java.util.Locale;
 
 import java.util.concurrent.TimeUnit;
 
-@SuppressLint("StaticFieldLeak")
 public class VideoPlayer extends AppCompatActivity {
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
@@ -89,7 +86,6 @@ public class VideoPlayer extends AppCompatActivity {
     public static JSONArray subtitles;
     public static Uri videoUri;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

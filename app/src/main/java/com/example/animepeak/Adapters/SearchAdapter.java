@@ -1,6 +1,5 @@
 package com.example.animepeak.Adapters;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -43,7 +42,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder holder, int position) {
         holder.ani_title.setText(TitleUrlList.get(position)); // Setting title of the anime
         String imageUrl = imageUrlList.get(position);
 

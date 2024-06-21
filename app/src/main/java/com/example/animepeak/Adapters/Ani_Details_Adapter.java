@@ -2,7 +2,6 @@ package com.example.animepeak.Adapters;
 
 import static com.example.animepeak.Activity.Anime_Details.Title;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 
 import android.content.Intent;
@@ -45,7 +44,7 @@ public class Ani_Details_Adapter extends RecyclerView.Adapter<Ani_Details_Adapte
 
 
     @Override
-    public void onBindViewHolder(@NonNull Ani_Details_Adapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull Ani_Details_Adapter.ViewHolder holder, int position) {
         try {
             // Get the first element of the array
 

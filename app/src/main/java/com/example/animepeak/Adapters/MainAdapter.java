@@ -1,6 +1,5 @@
 package com.example.animepeak.Adapters;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 
 
@@ -50,7 +49,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
 
         holder.ani_title.setText(TitleUrlList.get(position)); // Setting title of the anime
 

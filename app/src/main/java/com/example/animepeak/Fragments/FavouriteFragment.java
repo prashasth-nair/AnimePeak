@@ -5,9 +5,7 @@ import static com.example.animepeak.Activity.MainActivity.is_login;
 import static com.example.animepeak.Fragments.HomeFragment.home_loading;
 
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -47,7 +45,6 @@ import java.util.Objects;
 
 public class FavouriteFragment extends Fragment {
     public static RecyclerView fav_recycler;
-    @SuppressLint("StaticFieldLeak")
     public static TextView no_fav;
     TextView FavTitle;
     public ImageView fav_loading;
@@ -60,7 +57,6 @@ public class FavouriteFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_favourite, container, false);
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

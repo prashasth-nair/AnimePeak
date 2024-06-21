@@ -1,9 +1,6 @@
 package com.example.animepeak.Functions;
 
 
-import static com.example.animepeak.Activity.MainActivity.is_home;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DownloadManager;
 
@@ -39,12 +36,10 @@ import java.net.URL;
 import java.util.Objects;
 
 public class UpdateApp {
-    @SuppressLint("StaticFieldLeak")
 
     private static long downloadId;
 
     public static class update_app extends AsyncTask<Void, Void, String> {
-        @SuppressLint("StaticFieldLeak")
         static Activity activity;
 
         public update_app(Activity activity) {
@@ -131,7 +126,6 @@ public class UpdateApp {
             return Objects.equals(new_version, current);
         }
 
-        @SuppressLint("UnspecifiedRegisterReceiverFlag")
         private static void downloadApk(String url) {
             DownloadManager downloadManager = (DownloadManager) activity.getSystemService(Context.DOWNLOAD_SERVICE);
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));

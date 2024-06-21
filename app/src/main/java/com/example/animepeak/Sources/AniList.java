@@ -47,7 +47,6 @@ import static com.example.animepeak.Fragments.SearchFragment.not_found;
 import static com.example.animepeak.Fragments.SearchFragment.searchBar;
 import static com.example.animepeak.Fragments.SearchFragment.searchView;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
@@ -70,8 +69,6 @@ import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
 import com.example.animepeak.Adapters.MainAdapter;
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
-
-import com.google.android.exoplayer2.MediaItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -333,7 +330,6 @@ public class AniList {
         }
 
 
-        @SuppressLint("SetTextI18n")
         protected void onPostExecute(String result) {
 
 
@@ -506,7 +502,6 @@ public class AniList {
         }
 
 
-        @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
         private void onPostExecute() {
             activity.runOnUiThread(() -> {
                 Search_loading.setVisibility(View.GONE);
@@ -612,7 +607,6 @@ public class AniList {
         }
 
 
-        @SuppressLint("SetTextI18n")
         private void onPostExecute(String result) {
             activity.runOnUiThread(() -> {
                 try {

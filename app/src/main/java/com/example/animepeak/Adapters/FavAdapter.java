@@ -2,7 +2,6 @@ package com.example.animepeak.Adapters;
 
 import static com.example.animepeak.Fragments.FavouriteFragment.no_fav;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
@@ -51,7 +50,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull FavAdapter.ViewHolder holder, int position) {
         holder.ani_title.setText(fav_list.get(position).getTitle());
         Log.d("FavAdapter", "onBindViewHolder: " + fav_list.get(position).getTitle());
         Glide.with(fav_activity)

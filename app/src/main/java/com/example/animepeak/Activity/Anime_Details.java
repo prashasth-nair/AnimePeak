@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -52,7 +51,7 @@ import java.util.List;
 
 import io.github.glailton.expandabletextview.ExpandableTextView;
 
-@SuppressLint("StaticFieldLeak")
+
 public class Anime_Details extends AppCompatActivity {
 
     public static ImageView Anime_Image;
@@ -81,7 +80,7 @@ public class Anime_Details extends AppCompatActivity {
     public static List<String> episodeID_list = new ArrayList<>();
     AniList.AniList_details AniList_details;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,7 +205,6 @@ public class Anime_Details extends AppCompatActivity {
         return episodeIds;
     }
 
-    @SuppressLint("SetTextI18n")
     public void load() {
         if (!isDestroyed() && episodes.length() == 0) {
             // Load the image using Glide or Picasso here
