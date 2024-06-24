@@ -60,6 +60,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 
+import androidx.media3.common.MediaItem;
 
 import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.Anime_Details;
@@ -71,7 +72,6 @@ import com.example.animepeak.Adapters.MainAdapter;
 import com.example.animepeak.Adapters.SearchAdapter;
 import com.example.animepeak.R;
 
-import com.google.android.exoplayer2.MediaItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
