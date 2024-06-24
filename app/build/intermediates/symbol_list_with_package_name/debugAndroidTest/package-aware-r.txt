@@ -1,3 +1,0 @@
-com.example.animepeak.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
