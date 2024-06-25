@@ -17,18 +17,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.Profile;
 import com.example.animepeak.Adapters.MainAdapter;
 
+import com.example.animepeak.Model.AnimeResponseModel;
 import com.example.animepeak.R;
+import com.example.animepeak.RestApiClient.ApiInterface;
+import com.example.animepeak.RestApiClient.RetrofitHelper;
 import com.example.animepeak.Sources.AniList;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -38,9 +43,14 @@ import com.google.firebase.FirebaseApp;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 @SuppressLint("StaticFieldLeak")
 public class HomeFragment extends Fragment {
 
+    private static final String TAG = "HomeFragment";
     public static MainAdapter mainAdapter;
     public static RecyclerView recyclerView;
     public static ImageView home_loading;
@@ -98,6 +108,22 @@ public class HomeFragment extends Fragment {
         if (page>1){
             is_more = true;
         }
+
+        RetrofitHelper.getRetrofitHelper().create(ApiInterface.class).getPopularAnime().enqueue(new Callback<AnimeResponseModel>() {
+            @Override
+            public void onResponse(Call<AnimeResponseModel> call, Response<AnimeResponseModel> response) {
+                if (response.isSuccessful()&&response.body()!=null){
+                    Log.d(TAG, "onResponse: " + response.body().getResults());
+                    Toast.makeText(getContext(), "anime fetch Successfull", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AnimeResponseModel> call, Throwable throwable) {
+                Toast.makeText(getActivity(), "error fetching anime", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         AniList_popular = new AniList.AniList_popular(getActivity(), isAdded(),is_more,page);
 
