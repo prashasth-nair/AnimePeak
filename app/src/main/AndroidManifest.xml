@@ -29,7 +29,7 @@
         tools:targetApi="31"
         tools:ignore="Instantiatable">
         <activity
-            android:name=".Activity.Profile"
+            android:name=".Activity.ProfileActivity"
             android:exported="false" />
 
         <provider
@@ -43,12 +43,12 @@
         </provider>
 
         <activity
-            android:name=".Activity.VideoPlayer"
+            android:name=".Activity.VideoPlayerActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Activity.Anime_Details"
+            android:name=".Activity.AnimeDetailsActivity"
             android:configChanges="keyboardHidden|orientation"
             android:exported="true" />
         <activity

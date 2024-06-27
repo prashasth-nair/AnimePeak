@@ -1,8 +1,5 @@
 package com.example.animepeak.Fragments;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -18,29 +15,32 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.animepeak.Adapters.SearchAdapter;
+import com.example.animepeak.Model.AnimeResponseModel;
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.AniList;
+import com.example.animepeak.RestApiClient.ApiInterface;
+import com.example.animepeak.RestApiClient.RetrofitHelper;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class SearchFragment extends Fragment {
-    public  static MaterialSearchBar searchBar;
-    public static TextView not_found;
-    public static RecyclerView searchView;
-    public static SearchAdapter searchAdapter;
-    public static ImageView Search_loading;
-    public static List<String> Search_TitleUrlList = new ArrayList<>();
-    public static List<String> Search_imageUrlList = new ArrayList<>();
-    public static List<String> Search_IDList = new ArrayList<>();
-    AniList.AniList_search AniList_search;
+    MaterialSearchBar searchBar;
+    TextView not_found;
+    RecyclerView searchView;
+    SearchAdapter searchAdapter;
+    ProgressBar Search_loading;
+    List<AnimeResponseModel> animeInfoModelList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,16 +49,13 @@ public class SearchFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
-    @SuppressLint({"NotifyDataSetChanged", "ClickableViewAccessibility"})
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         searchBar = getView().findViewById(R.id.searchBar);
 
-
         //enable searchbar callbacks
         searchBar.setOnTouchListener(new View.OnTouchListener() {
-
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 searchBar.setNavButtonEnabled(true);
@@ -74,32 +71,29 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onSearchConfirmed(CharSequence text) {
-                Search_TitleUrlList.clear();
-                Search_imageUrlList.clear();
-                Search_IDList.clear();
-
-
-                SharedPreferences sharedpreferences = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
-                String Source = sharedpreferences.getString("Source_Name", "AniList");
+                animeInfoModelList.clear();
                 String query = searchBar.getText();
+                RetrofitHelper.getRetrofitHelper().create(ApiInterface.class).getAllAnime().enqueue(new Callback<List<AnimeResponseModel>>() {
+                    @Override
+                    public void onResponse(Call<List<AnimeResponseModel>> call, Response<List<AnimeResponseModel>> response) {
+                        if (response.isSuccessful()&&response.body()!=null){
+                            animeInfoModelList.addAll(response.body());
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<List<AnimeResponseModel>> call, Throwable throwable) {
 
-
-                if (Source.equals("AniList")) {
-                    AniList_search = new AniList.AniList_search(getActivity(), isAdded(),query);
-                    AniList_search.execute();
-                }
+                    }
+                });
             }
 
             @Override
             public void onButtonClicked(int buttonCode) {
 
                 if (buttonCode == MaterialSearchBar.BUTTON_BACK) {
-
-                    Search_TitleUrlList.clear();
-                    Search_imageUrlList.clear();
-                    Search_IDList.clear();
-                    SearchAdapter searchAdapter = new SearchAdapter(getActivity(), Search_TitleUrlList, Search_imageUrlList, Search_IDList);
+                    animeInfoModelList.clear();
+                    SearchAdapter searchAdapter = new SearchAdapter(getActivity(),animeInfoModelList);
                     // notify the adapter that the data has changed
                     searchAdapter.notifyDataSetChanged();
                     searchView.setAdapter(searchAdapter);
@@ -110,8 +104,8 @@ public class SearchFragment extends Fragment {
 
         not_found = getView().findViewById(R.id.not_found);
 
-        searchView = (RecyclerView) getView().findViewById(R.id.search_recycle);
-        Search_loading = (ImageView) getView().findViewById(R.id.loading);
+        searchView = getView().findViewById(R.id.search_recycle);
+        Search_loading = getView().findViewById(R.id.loading);
 
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -121,7 +115,7 @@ public class SearchFragment extends Fragment {
             // Landscape orientation
             searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
         }
-        searchAdapter = new SearchAdapter(getActivity(), Search_TitleUrlList, Search_imageUrlList, Search_IDList);
+        searchAdapter = new SearchAdapter(getActivity(),animeInfoModelList);
         // notify the adapter that the data has changed
         searchAdapter.notifyDataSetChanged();
         searchView.setAdapter(searchAdapter);
@@ -133,7 +127,6 @@ public class SearchFragment extends Fragment {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 4));
-
         } else {
             searchView.setLayoutManager(new GridLayoutManager(getView().getContext(), 2));
 
@@ -143,9 +136,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        Search_TitleUrlList.clear();
-        Search_imageUrlList.clear();
-        Search_IDList.clear();
+       animeInfoModelList.clear();
     }
 
 

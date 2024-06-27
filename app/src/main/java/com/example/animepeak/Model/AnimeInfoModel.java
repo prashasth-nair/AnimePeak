@@ -3,13 +3,14 @@ package com.example.animepeak.Model;
 import java.util.List;
 
 public class AnimeInfoModel {
-    private String id,title,description,subOrDub,status,image,url,type,releaseDate;
+    private String id,title,description,subOrDub,status,image,url,type,releaseDate,otherNames;
+    private int totalEpisodes;
     private List<String> genres;
-    private List<Episode> episodes;
+    private List<EpisodeModel> episodes;
 
-    public AnimeInfoModel(String id, String title, String description, String subOrDub,
-                          String status, String image, String url, String type, String releaseDate,
-                          List<String> genres, List<Episode> episodes) {
+    public AnimeInfoModel(String id, String title, String description, String subOrDub, String status,
+                          String image, String url, String type, String releaseDate, String otherNames, int totalEpisodes, List<String> genres,
+                          List<EpisodeModel> episodes) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -19,6 +20,8 @@ public class AnimeInfoModel {
         this.url = url;
         this.type = type;
         this.releaseDate = releaseDate;
+        this.otherNames = otherNames;
+        this.totalEpisodes = totalEpisodes;
         this.genres = genres;
         this.episodes = episodes;
     }
@@ -103,48 +106,27 @@ public class AnimeInfoModel {
         this.genres = genres;
     }
 
-    public List<Episode> getEpisodes() {
+    public List<EpisodeModel> getEpisodes() {
         return episodes;
     }
 
-    public void setEpisodes(List<Episode> episodes) {
+    public void setEpisodes(List<EpisodeModel> episodes) {
         this.episodes = episodes;
     }
 
-    private class Episode {
-        private String id, url;
-        private int number;
-
-        public Episode(String id, String url, int number) {
-            this.id = id;
-            this.url = url;
-            this.number = number;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public int getNumber() {
-            return number;
-        }
-
-        public void setNumber(int number) {
-            this.number = number;
-        }
+    public String getOtherNames() {
+        return otherNames;
     }
 
+    public void setOtherNames(String otherNames) {
+        this.otherNames = otherNames;
+    }
 
+    public int getTotalEpisodes() {
+        return totalEpisodes;
+    }
+
+    public void setTotalEpisodes(int totalEpisodes) {
+        this.totalEpisodes = totalEpisodes;
+    }
 }

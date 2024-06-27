@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:fitsSystemWindows="true"
-    tools:context=".Activity.VideoPlayer">
+    tools:context=".Activity.VideoPlayerActivity">
 
     <ImageView
         android:id="@+id/loading"

@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-
     tools:context=".Fragments.HomeFragment">
 
     <TextView
@@ -20,10 +19,9 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:visibility="gone"
+        tools:visibility="visible"/>
 
-        />
-
-    <ImageView
+    <ProgressBar
         android:id="@+id/loading"
         android:layout_width="100dp"
         android:layout_height="100dp"

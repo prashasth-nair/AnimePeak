@@ -1,7 +1,5 @@
-package com.example.animepeak.Functions;
+package com.example.animepeak.Utils;
 
-
-import static com.example.animepeak.Activity.MainActivity.is_home;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
