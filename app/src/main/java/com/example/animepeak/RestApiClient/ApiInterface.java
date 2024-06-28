@@ -12,11 +12,11 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
     @GET("/anime/gogoanime/popular")
-    Call<PopularAnimeResponse> getPopularAnime(@Query("page") int page);
+    Call<PopularAnimeResponse> getPopularAnime(@Query("page") int currentPage);
 
     @GET("/anime/gogoanime/info/{id}")
     Call<AnimeInfoModel> getAnimeInfo(@Path("id")String id);
 
-    @GET("/anime/gosoanime/anime-list")
+    @GET("/anime/gogoanime/anime-list")
     Call<List<PopularAnimeResponse>> getAllAnime();
 }
