@@ -39,7 +39,6 @@ import com.example.animepeak.Adapters.Genre_Adapter;
 import com.example.animepeak.Model.AnimeInfoModel;
 import com.example.animepeak.Model.EpisodeModel;
 import com.example.animepeak.RestApiClient.ApiInterface;
-import com.example.animepeak.RestApiClient.RetrofitHelper;
 import com.example.animepeak.Utils.Fav_object;
 import com.example.animepeak.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -51,6 +50,8 @@ import io.github.glailton.expandabletextview.ExpandableTextView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AnimeDetailsActivity extends AppCompatActivity {
     ImageView Anime_Image;
@@ -79,6 +80,7 @@ public class AnimeDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Title = intent.getStringExtra("Title");
         Ani_ID = intent.getStringExtra("ID");
+        img = intent.getStringExtra("Image");
 
         details_loading = findViewById(R.id.loading);
         Release = findViewById(R.id.Anime_release);
@@ -164,33 +166,40 @@ public class AnimeDetailsActivity extends AppCompatActivity {
 
     public void load() {
             // Load the image using Glide or Picasso here
-            RetrofitHelper.getRetrofitHelper().create(ApiInterface.class).getAnimeInfo(Ani_ID).enqueue(new Callback<AnimeInfoModel>() {
-                @Override
-                public void onResponse(Call<AnimeInfoModel> call, Response<AnimeInfoModel> response) {
-                    if (response.isSuccessful()&&response.body()!=null){
-                        EpisodeAdapter episode_adapter = new EpisodeAdapter(AnimeDetailsActivity.this,episodeModelArrayList);
-                        details_recyclerView.setAdapter(episode_adapter);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api-consumet-org-mu.vercel.app")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-                        Genre_Adapter _genre_adapter = new Genre_Adapter(genres);
-                        genre_recyclerView.setAdapter(_genre_adapter);
+        ApiInterface service = retrofit.create(ApiInterface.class);
 
-                        Release.setText("Release Date: " + releasedDate);
-                        Status.setText("Status: " + status);
-                        expandableTextView.setText(desc);
-                        expandableTextView.setReadMoreText("More");
-                        expandableTextView.setReadLessText("Less");
-                        expandableTextView.setAnimationDuration(500);
-                        Glide.with(AnimeDetailsActivity.this)
-                                .load(img)
-                                .into(Anime_Image);
-                    }
+        service.getAnimeInfo(Ani_ID).enqueue(new Callback<AnimeInfoModel>() {
+            @Override
+            public void onResponse(Call<AnimeInfoModel> call, Response<AnimeInfoModel> response) {
+                if (response.isSuccessful()&&response.body()!=null){
+                    EpisodeAdapter episode_adapter = new EpisodeAdapter(AnimeDetailsActivity.this,episodeModelArrayList);
+                    details_recyclerView.setAdapter(episode_adapter);
+
+                    Genre_Adapter _genre_adapter = new Genre_Adapter(genres);
+                    genre_recyclerView.setAdapter(_genre_adapter);
+
+                    Release.setText("Release Date: " + response.body().getReleaseDate());
+                    Status.setText("Status: " + response.body().getStatus());
+                    expandableTextView.setText(desc);
+                    expandableTextView.setReadMoreText("More");
+                    expandableTextView.setReadLessText("Less");
+                    expandableTextView.setAnimationDuration(500);
+                    Glide.with(AnimeDetailsActivity.this)
+                            .load(img)
+                            .into(Anime_Image);
                 }
+            }
 
-                @Override
-                public void onFailure(Call<AnimeInfoModel> call, Throwable throwable) {
+            @Override
+            public void onFailure(Call<AnimeInfoModel> call, Throwable throwable) {
 
-                }
-            });
+            }
+        });
     }
 
     @Override

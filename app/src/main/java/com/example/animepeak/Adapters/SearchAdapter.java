@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.animepeak.Activity.AnimeDetailsActivity;
-import com.example.animepeak.Model.AnimeResponseModel;
+import com.example.animepeak.Model.PopularAnimeResponse;
 import com.example.animepeak.R;
 
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
     Context context;
-    List<AnimeResponseModel> animeInfoModelList;
+    List<PopularAnimeResponse> animeInfoModelList;
 
-    public SearchAdapter(Context context, List<AnimeResponseModel> animeInfoModelList) {
+    public SearchAdapter(Context context, List<PopularAnimeResponse> animeInfoModelList) {
         this.context = context;
         this.animeInfoModelList = animeInfoModelList;
     }

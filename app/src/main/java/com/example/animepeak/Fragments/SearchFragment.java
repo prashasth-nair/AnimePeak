@@ -19,10 +19,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.animepeak.Adapters.SearchAdapter;
-import com.example.animepeak.Model.AnimeResponseModel;
+import com.example.animepeak.Model.PopularAnimeResponse;
 import com.example.animepeak.R;
 import com.example.animepeak.RestApiClient.ApiInterface;
-import com.example.animepeak.RestApiClient.RetrofitHelper;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
@@ -32,6 +31,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class SearchFragment extends Fragment {
@@ -40,7 +41,7 @@ public class SearchFragment extends Fragment {
     RecyclerView searchView;
     SearchAdapter searchAdapter;
     ProgressBar Search_loading;
-    List<AnimeResponseModel> animeInfoModelList = new ArrayList<>();
+    List<PopularAnimeResponse> animeInfoModelList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,16 +74,21 @@ public class SearchFragment extends Fragment {
             public void onSearchConfirmed(CharSequence text) {
                 animeInfoModelList.clear();
                 String query = searchBar.getText();
-                RetrofitHelper.getRetrofitHelper().create(ApiInterface.class).getAllAnime().enqueue(new Callback<List<AnimeResponseModel>>() {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://api-consumet-org-mu.vercel.app")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                ApiInterface service = retrofit.create(ApiInterface.class);
+
+                service.getAllAnime().enqueue(new Callback<List<PopularAnimeResponse>>() {
                     @Override
-                    public void onResponse(Call<List<AnimeResponseModel>> call, Response<List<AnimeResponseModel>> response) {
-                        if (response.isSuccessful()&&response.body()!=null){
-                            animeInfoModelList.addAll(response.body());
-                        }
+                    public void onResponse(Call<List<PopularAnimeResponse>> call, Response<List<PopularAnimeResponse>> response) {
+
                     }
 
                     @Override
-                    public void onFailure(Call<List<AnimeResponseModel>> call, Throwable throwable) {
+                    public void onFailure(Call<List<PopularAnimeResponse>> call, Throwable throwable) {
 
                     }
                 });
