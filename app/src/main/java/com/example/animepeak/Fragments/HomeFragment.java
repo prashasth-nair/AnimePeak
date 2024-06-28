@@ -56,8 +56,6 @@ public class HomeFragment extends Fragment {
         noInternet = view.findViewById(R.id.net_error);
 
         popularAnimeAdapter = new PopularAnimeAdapter(getContext(),popularAnimeArrayList);
-        recyclerView.setAdapter(popularAnimeAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         // Get the connectivity manager
         connectivityManager = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         return view;
@@ -73,6 +71,7 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         // Refresh search results when the fragment is resumed
+        currentPage++;
         fetchData(currentPage);
         noInternet.setVisibility(View.GONE);
     }
@@ -147,6 +146,8 @@ public class HomeFragment extends Fragment {
                             return;
                         }
                         popularAnimeArrayList.addAll(popularAnimeResponse.getResults());
+                        recyclerView.setAdapter(popularAnimeAdapter);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
                         popularAnimeAdapter.notifyDataSetChanged();
                     }
                 }
