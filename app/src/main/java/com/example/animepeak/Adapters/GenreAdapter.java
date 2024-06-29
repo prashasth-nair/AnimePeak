@@ -12,21 +12,21 @@ import com.example.animepeak.R;
 
 import java.util.List;
 
-public class Genre_Adapter extends RecyclerView.Adapter<Genre_Adapter.ViewHolder>{
+public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder>{
 List<String> genresList;
 
-    public Genre_Adapter(List<String> genresList) {
+    public GenreAdapter(List<String> genresList) {
         this.genresList = genresList;
     }
 
     @NonNull
     @Override
-    public Genre_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GenreAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.genre_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Genre_Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GenreAdapter.ViewHolder holder, int position) {
             holder.Anime_Genre.setText(genresList.get(position));
 
     }
