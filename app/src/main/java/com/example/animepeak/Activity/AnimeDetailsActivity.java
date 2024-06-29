@@ -26,6 +26,7 @@ import android.os.Bundle;
 
 import android.view.MenuItem;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -35,7 +36,7 @@ import com.bumptech.glide.Glide;
 import com.example.animepeak.Adapters.EpisodeAdapter;
 
 
-import com.example.animepeak.Adapters.Genre_Adapter;
+import com.example.animepeak.Adapters.GenreAdapter;
 import com.example.animepeak.Model.AnimeInfoModel;
 import com.example.animepeak.Model.EpisodeModel;
 import com.example.animepeak.RestApiClient.ApiInterface;
@@ -137,13 +138,11 @@ public class AnimeDetailsActivity extends AppCompatActivity {
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             // Portrait orientation
-
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
             genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
             load();
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape orientation
-
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
             genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 6));
             load();
@@ -177,15 +176,20 @@ public class AnimeDetailsActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AnimeInfoModel> call, Response<AnimeInfoModel> response) {
                 if (response.isSuccessful()&&response.body()!=null){
+                    details_loading.setVisibility(View.GONE);
+                    AnimeInfoModel animeInfoModel = response.body();
+                    genres.addAll(animeInfoModel.getGenres());
+                    episodeModelArrayList.addAll(animeInfoModel.getEpisodes());
+
                     EpisodeAdapter episode_adapter = new EpisodeAdapter(AnimeDetailsActivity.this,episodeModelArrayList);
                     details_recyclerView.setAdapter(episode_adapter);
 
-                    Genre_Adapter _genre_adapter = new Genre_Adapter(genres);
+                    GenreAdapter _genre_adapter = new GenreAdapter(genres);
                     genre_recyclerView.setAdapter(_genre_adapter);
 
-                    Release.setText("Release Date: " + response.body().getReleaseDate());
-                    Status.setText("Status: " + response.body().getStatus());
-                    expandableTextView.setText(desc);
+                    Release.setText("Release Date: " + animeInfoModel.getReleaseDate());
+                    Status.setText("Status: " + animeInfoModel.getStatus());
+                    expandableTextView.setText(animeInfoModel.getDescription());
                     expandableTextView.setReadMoreText("More");
                     expandableTextView.setReadLessText("Less");
                     expandableTextView.setAnimationDuration(500);
