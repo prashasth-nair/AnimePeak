@@ -45,15 +45,14 @@
         <activity
             android:name=".Activity.VideoPlayerActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="false"
-            android:screenOrientation="landscape" />
+            android:exported="false" />
         <activity
             android:name=".Activity.AnimeDetailsActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="true" />
+            android:configChanges="keyboardHidden"
+            android:exported="true"/>
         <activity
             android:name=".Activity.MainActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="screenSize"
             android:exported="true"
             android:theme="@style/Theme.AnimePeak.MySplash">
             <intent-filter>
