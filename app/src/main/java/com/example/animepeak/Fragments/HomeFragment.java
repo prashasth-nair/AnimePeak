@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.example.animepeak.Model.PopularAnimeResponse;
 import com.example.animepeak.R;
 import com.example.animepeak.RestApiClient.ApiInterface;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -39,9 +41,8 @@ public class HomeFragment extends Fragment {
     private boolean hasNextPage = true;
     private ConnectivityManager connectivityManager;
     private NetworkInfo networkInfo;
-
-    TextView noInternet;
-
+    private TextView noInternet;
+    private RelativeLayout relativeLayout;
     ArrayList<PopularAnimeResponse.PopularAnime> popularAnimeArrayList = new ArrayList<>();
 
     public HomeFragment() {
@@ -64,7 +65,17 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fetchData(currentPage);
+        if(isNetworkAvailable()){
+            fetchData(currentPage);
+        }else {
+            noInternet.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private boolean isNetworkAvailable() {
+        networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo !=null&&networkInfo.isAvailable();
     }
 
     @Override
@@ -90,6 +101,7 @@ public class HomeFragment extends Fragment {
         super.onDestroy();
         // Clean up any resources when the fragment is destroyed
         // For example, you can release the Retrofit instance here
+        popularAnimeArrayList.clear();
         releaseRetrofitInstance();
         noInternet.setVisibility(View.GONE);
     }
@@ -113,16 +125,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchData(int page) {
-        // Check network connectivity
-        networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
             showProgressBar();
             makeApiCall(page);
             noInternet.setVisibility(View.GONE);
-        } else {
-            // Display a message in the TextView when there's no internet connection
-            noInternet.setVisibility(View.VISIBLE);
-        }
 
     }
     private void makeApiCall(int page) {
@@ -159,5 +164,16 @@ public class HomeFragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        popularAnimeAdapter=null;
+        connectivityManager=null;
+        recyclerView=null;
+        progressBar=null;
+        noInternet=null;
+        relativeLayout=null;
     }
 }
