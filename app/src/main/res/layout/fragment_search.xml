@@ -7,7 +7,7 @@
     android:background="@color/background_main"
     tools:context=".Fragments.SearchFragment">
 
-    <ImageView
+    <ProgressBar
         android:id="@+id/loading"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -21,7 +21,7 @@
         android:text="@string/cannot_find_anime"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:visibility="gone" />
     <RelativeLayout
         android:id="@+id/title_bar"
@@ -39,7 +39,7 @@
             android:paddingBottom="2dp"
             android:text="Search"
             android:textColor="@color/white"
-            android:textSize="34dp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
 
@@ -69,7 +69,6 @@
         app:mt_roundedSearchBarEnabled="true"
         app:mt_searchBarColor="@color/background_second"
         app:mt_searchIconTint="@color/white"
-
         app:mt_speechMode="false"
         app:mt_textColor="@color/white" />
 
@@ -77,7 +76,6 @@
         android:id="@+id/search_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_below="@+id/searchBar" />
 
 </RelativeLayout>

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,80 +24,64 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 
-import android.util.Log;
 import android.view.MenuItem;
 
-import android.widget.ImageButton;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.animepeak.Adapters.Ani_Details_Adapter;
+import com.example.animepeak.Adapters.EpisodeAdapter;
 
 
-import com.example.animepeak.Adapters.Ani_Details_Genre_Adapter;
-import com.example.animepeak.Functions.Fav_object;
+import com.example.animepeak.Adapters.GenreAdapter;
+import com.example.animepeak.Model.AnimeInfoModel;
+import com.example.animepeak.Model.EpisodeModel;
+import com.example.animepeak.RestApiClient.ApiInterface;
+import com.example.animepeak.Utils.Fav_object;
 import com.example.animepeak.R;
-import com.example.animepeak.Sources.AniList;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import io.github.glailton.expandabletextview.ExpandableTextView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-@SuppressLint("StaticFieldLeak")
-public class Anime_Details extends AppCompatActivity {
-
-    public static ImageView Anime_Image;
-
-    public ImageButton favoriteButton;
-    public static TextView Release;
-    public static TextView Status;
-    public static TextView net_error_ani_details;
-    public static CardView anime_details;
-    public static RelativeLayout episode_text;
-
-    public static ImageView details_loading;
-    public static String Title;
-    public static String Ani_ID;
-    public static String img;
-    public static String releasedDate;
-    public static ExpandableTextView expandableTextView;
-    public static String status;
-    public static RecyclerView details_recyclerView;
-    public static RecyclerView genre_recyclerView;
-    public static JSONArray episodes = new JSONArray();
-    public static JSONArray genres = new JSONArray();
-    public static String desc;
-
+public class AnimeDetailsActivity extends AppCompatActivity {
+    ImageView Anime_Image;
+    FloatingActionButton favoriteButton;
+    TextView Release,Status,net_error_ani_details;
+    CardView anime_details;
+    RelativeLayout episode_text;
+    ExpandableTextView expandableTextView;
+    ProgressBar details_loading;
+    String Title,Ani_ID,img,releasedDate,status,desc;
+    RecyclerView details_recyclerView,genre_recyclerView;
+    ArrayList<EpisodeModel> episodeModelArrayList = new ArrayList<>();
+    ArrayList<String> genres = new ArrayList<>();
     boolean is_fav = false;
-    public static List<String> episodeID_list = new ArrayList<>();
-    AniList.AniList_details AniList_details;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_anime_details);
-
 
         Toolbar customToolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(customToolbar);
 
-
         AppCompatTextView toolbar_title = findViewById(R.id.toolbar_title);
-
 
         Intent intent = getIntent();
         Title = intent.getStringExtra("Title");
         Ani_ID = intent.getStringExtra("ID");
+        img = intent.getStringExtra("Image");
 
         details_loading = findViewById(R.id.loading);
         Release = findViewById(R.id.Anime_release);
@@ -137,13 +120,8 @@ public class Anime_Details extends AppCompatActivity {
                     favoriteButton.setColorFilter(Color.WHITE);
                     favoriteButton.setImageResource(R.drawable.baseline_favorite_unselected);
                     removeFavByID(Ani_ID);
-
                 }
-
-
                 save_Fav_List();
-
-
             }
         });
 
@@ -160,13 +138,11 @@ public class Anime_Details extends AppCompatActivity {
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             // Portrait orientation
-
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
             genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
             load();
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape orientation
-
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
             genre_recyclerView.setLayoutManager(new GridLayoutManager(this, 6));
             load();
@@ -187,75 +163,54 @@ public class Anime_Details extends AppCompatActivity {
         storeArrayToFirebase();
     }
 
-    public static List<String> extractEpisodeIds(String json) {
-        List<String> episodeIds = new ArrayList<>();
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = new JSONObject(json);
-            JSONArray episodesArray = jsonObject.getJSONArray("episodes");
-            for (int i = 0; i < episodesArray.length(); i++) {
-                JSONObject episodeObject = episodesArray.getJSONObject(i);
-                String episodeId = episodeObject.getString("id");
-                episodeIds.add(episodeId);
-            }
-        } catch (JSONException e) {
-//            throw new RuntimeException(e);
-            Log.d("Error", e.toString());
-        }
-
-        return episodeIds;
-    }
-
-    @SuppressLint("SetTextI18n")
     public void load() {
-        if (!isDestroyed() && episodes.length() == 0) {
             // Load the image using Glide or Picasso here
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api-consumet-org-mu.vercel.app")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-            System.setProperty("okio.buffer-size", "16384");
+        ApiInterface service = retrofit.create(ApiInterface.class);
 
-            AniList_details = new AniList.AniList_details(this);
-            AniList_details.execute();
+        service.getAnimeInfo(Ani_ID).enqueue(new Callback<AnimeInfoModel>() {
+            @Override
+            public void onResponse(Call<AnimeInfoModel> call, Response<AnimeInfoModel> response) {
+                if (response.isSuccessful()&&response.body()!=null){
+                    details_loading.setVisibility(View.GONE);
+                    AnimeInfoModel animeInfoModel = response.body();
+                    genres.addAll(animeInfoModel.getGenres());
+                    episodeModelArrayList.addAll(animeInfoModel.getEpisodes());
 
+                    EpisodeAdapter episode_adapter = new EpisodeAdapter(AnimeDetailsActivity.this,episodeModelArrayList);
+                    details_recyclerView.setAdapter(episode_adapter);
 
-        } else if (episodes.length() != 0) {
-            Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, Anime_Details.this);
-            details_recyclerView.setAdapter(ani_details_adapter);
+                    GenreAdapter _genre_adapter = new GenreAdapter(genres);
+                    genre_recyclerView.setAdapter(_genre_adapter);
 
-            Ani_Details_Genre_Adapter ani_details_genre_adapter = new Ani_Details_Genre_Adapter(Anime_Details.this, genres);
-            genre_recyclerView.setAdapter(ani_details_genre_adapter);
+                    Release.setText("Release Date: " + animeInfoModel.getReleaseDate());
+                    Status.setText("Status: " + animeInfoModel.getStatus());
+                    expandableTextView.setText(animeInfoModel.getDescription());
+                    expandableTextView.setReadMoreText("More");
+                    expandableTextView.setReadLessText("Less");
+                    expandableTextView.setAnimationDuration(500);
+                    Glide.with(AnimeDetailsActivity.this)
+                            .load(img)
+                            .into(Anime_Image);
+                }
+            }
 
-            Release.setText("Release Date: " + releasedDate);
-            Anime_Details.Status.setText("Status: " + status);
-            expandableTextView.setText(desc);
-            expandableTextView.setReadMoreText("More");
-            expandableTextView.setReadLessText("Less");
-//
-            expandableTextView.setAnimationDuration(500);
-            Glide.with(this)
-                    .load(img)
-                    .into(Anime_Image);
-        } else {
-            // The activity has been destroyed, so don't perform any operation here
+            @Override
+            public void onFailure(Call<AnimeInfoModel> call, Throwable throwable) {
 
-            finish();
-        }
+            }
+        });
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        episodes = new JSONArray();
-        genres = new JSONArray();
-        episodeID_list.clear();
-
-        if (AniList_details != null) {
-            AniList_details.executor.shutdown();
-            AniList_details = null;
-
-        }
-
+        episodeModelArrayList.clear();
         finish();
-
     }
 
     @Override
@@ -263,14 +218,14 @@ public class Anime_Details extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 5));
-            Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, Anime_Details.this);
-            details_recyclerView.setAdapter(ani_details_adapter);
+            EpisodeAdapter episode_adapter = new EpisodeAdapter(this,episodeModelArrayList);
+            details_recyclerView.setAdapter(episode_adapter);
 
 
         } else {
             details_recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-            Ani_Details_Adapter ani_details_adapter = new Ani_Details_Adapter(episodes, Anime_Details.this);
-            details_recyclerView.setAdapter(ani_details_adapter);
+            EpisodeAdapter episode_adapter = new EpisodeAdapter(this,episodeModelArrayList);
+            details_recyclerView.setAdapter(episode_adapter);
 
 
         }
@@ -279,22 +234,14 @@ public class Anime_Details extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        episodes = new JSONArray();
-        genres = new JSONArray();
-        episodeID_list.clear();
-
-        if (AniList_details != null) {
-            AniList_details.executor.shutdown();
-
-            AniList_details = null;
-        }
+        episodeModelArrayList.clear();
         finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            episodes = new JSONArray();
+            episodeModelArrayList = new ArrayList<>();
             finish();
             return true;
         }

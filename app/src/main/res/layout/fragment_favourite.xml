@@ -18,7 +18,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:visibility="gone"
-        />
+        tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/fav_title"
@@ -33,7 +33,7 @@
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold" />
-    <ImageView
+    <ProgressBar
         android:id="@+id/fav_loading"
         android:layout_width="100dp"
         android:layout_height="100dp"

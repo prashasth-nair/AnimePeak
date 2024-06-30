@@ -5,6 +5,7 @@ import static com.example.animepeak.Activity.MainActivity.is_auto_update;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.animepeak.Functions.UpdateApp;
+import com.example.animepeak.Utils.UpdateApp;
 import com.example.animepeak.R;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -40,6 +41,7 @@ import java.util.List;
 public class SettingsFragment extends Fragment {
     AutoCompleteTextView videoautoCompleteTextView;
     LinearLayout Update;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch auto_update;
 
     public SettingsFragment() {
@@ -81,12 +83,7 @@ public class SettingsFragment extends Fragment {
                             @Override
                             public void onPermissionsChecked(MultiplePermissionsReport report) {
                                 if (report.areAllPermissionsGranted()) {
-                                    if (b){
-                                        is_auto_update = true;
-
-                                    }else{
-                                        is_auto_update = false;
-                                    }
+                                    is_auto_update = b;
                                     editor.putBoolean("is_auto_update", is_auto_update);
                                     editor.apply();
                                 } else {
@@ -128,8 +125,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
-        String Current_Source = sharedpreferences.getString("Source_Name", "AniList");
         String Current_Quality = sharedpreferences.getString("Video_Quality", "480p");
 
         if (Current_Quality.equals("360p")) {
@@ -172,7 +167,7 @@ public class SettingsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         String[] quality_lists = getResources().getStringArray(R.array.quality_list);
-        ArrayAdapter videoarrayAdapter = new ArrayAdapter(getContext(), R.layout.dropdown, quality_lists);
+        ArrayAdapter<String> videoarrayAdapter = new ArrayAdapter<>(getContext(), R.layout.dropdown, quality_lists);
         videoautoCompleteTextView.setAdapter(videoarrayAdapter);
     }
 }

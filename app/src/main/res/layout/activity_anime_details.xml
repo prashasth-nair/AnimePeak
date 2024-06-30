@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-    tools:context=".Activity.Anime_Details">
+    tools:context=".Activity.AnimeDetailsActivity">
 
     <TextView
         android:id="@+id/net_error_ani_details"
@@ -19,17 +19,13 @@
         android:text="@string/something_went_wrong_please_check_your_network_connection"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:visibility="gone"
-
-        />
+        android:visibility="gone" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/custom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:elevation="4dp"
-
-
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:titleTextColor="@color/white">
 
@@ -46,11 +42,10 @@
             android:text="@string/naruto_shippuden"
             android:textColor="@color/white"
             android:textSize="18sp"
-
             android:textStyle="italic" />
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
+    <ProgressBar
         android:id="@+id/loading"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -70,10 +65,8 @@
                 android:id="@+id/ani_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_margin="10dp"
                 app:cardBackgroundColor="@color/background_second"
-
                 app:cardCornerRadius="20dp"
                 app:cardElevation="6dp">
 
@@ -97,7 +90,7 @@
                             android:scaleType="fitXY" />
                     </androidx.cardview.widget.CardView>
 
-                    <ImageButton
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fav_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -107,7 +100,7 @@
                         android:contentDescription="@string/favourite_button"
                         android:padding="10dp"
                         android:src="@drawable/baseline_favorite_unselected"
-                        android:translationZ="90dp" />
+                        android:translationZ="90dp"/>
 
                     <io.github.glailton.expandabletextview.ExpandableTextView
                         android:id="@+id/expand_txt"
@@ -139,7 +132,6 @@
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:textColor="@color/white"
-
                             android:textSize="18sp"
                             tools:text="Release Date: 2002" />
 
@@ -150,16 +142,13 @@
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:textColor="@color/white"
-
                             android:textSize="18sp"
                             tools:text="Status: Completed" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/genre_recycler"
                             android:layout_width="match_parent"
-                            android:layout_height="140dp"
-
-                            />
+                            android:layout_height="140dp" />
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -190,7 +179,6 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/episode_text"
                 android:layout_marginStart="10dp"
-
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp" />

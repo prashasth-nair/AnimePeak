@@ -19,13 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/nav_background_curved"
-
         android:theme="@style/BottomNavigationTheme"
         app:itemIconTint="@color/white"
-
         app:labelVisibilityMode="selected"
-        app:menu="@menu/bottom_navigation_menu"
-
-        />
+        app:menu="@menu/bottom_navigation_menu" />
 
 </RelativeLayout>

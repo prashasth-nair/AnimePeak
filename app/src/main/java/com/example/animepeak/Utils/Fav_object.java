@@ -1,4 +1,4 @@
-package com.example.animepeak.Functions;
+package com.example.animepeak.Utils;
 
 
 

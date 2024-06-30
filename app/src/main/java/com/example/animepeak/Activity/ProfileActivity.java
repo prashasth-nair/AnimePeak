@@ -54,7 +54,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 
-public class Profile extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     ImageView back;
     TextView name;
     ImageView profile_dp;
@@ -91,7 +91,7 @@ public class Profile extends AppCompatActivity {
                 finish();
             }
         });
-        SignInClient oneTapClient = Identity.getSignInClient(Profile.this);
+        SignInClient oneTapClient = Identity.getSignInClient(ProfileActivity.this);
         String RequestIDToken = getAssetJsonData(this);
 
 //         Configure sign-in to request the user's ID, email address, and basic
@@ -138,7 +138,7 @@ public class Profile extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         signInButton.setVisibility(View.VISIBLE);
                         logout.setVisibility(View.GONE);
-                        Glide.with(Profile.this)
+                        Glide.with(ProfileActivity.this)
                                 .load(R.raw.boy1)
                                 .into(profile_dp);
                         name.setText("John Doe");
@@ -239,7 +239,7 @@ public class Profile extends AppCompatActivity {
 
                                 } else {
                                     // Handle authentication failure.
-                                    Toast.makeText(Profile.this, "Firebase authentication failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ProfileActivity.this, "Firebase authentication failed", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

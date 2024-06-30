@@ -2,12 +2,9 @@ package com.example.animepeak.Fragments;
 
 import static com.example.animepeak.Activity.MainActivity.fav_list;
 import static com.example.animepeak.Activity.MainActivity.is_login;
-import static com.example.animepeak.Fragments.HomeFragment.home_loading;
 
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -23,12 +20,11 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.animepeak.Adapters.FavAdapter;
-import com.example.animepeak.Functions.Fav_object;
+import com.example.animepeak.Utils.Fav_object;
 import com.example.animepeak.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -46,11 +42,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class FavouriteFragment extends Fragment {
-    public static RecyclerView fav_recycler;
-    @SuppressLint("StaticFieldLeak")
-    public static TextView no_fav;
-    TextView FavTitle;
-    public ImageView fav_loading;
+    RecyclerView fav_recycler;
+    TextView no_fav,FavTitle;
+    ProgressBar fav_loading;
     private FirebaseAuth mAuth;
 
     @Override
@@ -60,7 +54,6 @@ public class FavouriteFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_favourite, container, false);
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -73,11 +66,6 @@ public class FavouriteFragment extends Fragment {
 
         fav_loading.setVisibility(View.VISIBLE);
 
-        Glide.with(this)
-                .asGif()
-                .load(R.raw.loading_animation)
-                .into(home_loading);
-
         fav_recycler.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -88,8 +76,6 @@ public class FavouriteFragment extends Fragment {
                     // The user has scrolled down, so shrink the title text
                     animateTextSizeChange(FavTitle, 20);
                 }
-
-
                 if (topVisiblePosition == 0) {
                     // The user has scrolled to the top, so expand the title text
                     animateTextSizeChange(FavTitle, 34);

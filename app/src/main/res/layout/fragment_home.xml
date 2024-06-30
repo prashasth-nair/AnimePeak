@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-
+    android:id="@+id/relative_layout"
     tools:context=".Fragments.HomeFragment">
 
     <TextView
@@ -20,15 +20,16 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:visibility="gone"
+        tools:visibility="visible"/>
 
-        />
-
-    <ImageView
+    <ProgressBar
         android:id="@+id/loading"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:contentDescription="@string/loading" />
+        android:contentDescription="@string/loading"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <RelativeLayout
         android:id="@+id/title_bar"

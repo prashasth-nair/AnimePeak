@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main"
-    tools:context=".Activity.Profile">
+    tools:context=".Activity.ProfileActivity">
 
     <LinearLayout
         android:id="@+id/profile_title_bar"

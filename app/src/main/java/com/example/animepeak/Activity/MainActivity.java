@@ -1,31 +1,22 @@
 package com.example.animepeak.Activity;
 
-import static com.example.animepeak.Fragments.HomeFragment.Home_IDList;
-import static com.example.animepeak.Fragments.HomeFragment.Home_TitleUrlList;
-import static com.example.animepeak.Fragments.HomeFragment.Home_imageUrlList;
-import static com.example.animepeak.Fragments.HomeFragment.AniList_popular;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.annotation.SuppressLint;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.animepeak.Adapters.FavAdapter;
 import com.example.animepeak.Fragments.FavouriteFragment;
 import com.example.animepeak.Fragments.HomeFragment;
 import com.example.animepeak.Fragments.SearchFragment;
 import com.example.animepeak.Fragments.SettingsFragment;
-import com.example.animepeak.Functions.Fav_object;
-import com.example.animepeak.Functions.UpdateApp;
+import com.example.animepeak.Utils.Fav_object;
+import com.example.animepeak.Utils.UpdateApp;
 import com.example.animepeak.R;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -39,11 +30,8 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -53,7 +41,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    public static BottomNavigationView bottomNavigationView;
+   public static BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
     FavouriteFragment favouriteFragment = new FavouriteFragment();
     SearchFragment searchFragment = new SearchFragment();
@@ -90,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             is_login = false;
         }
 
-        fav_list = new ArrayList<Fav_object>();
+        fav_list = new ArrayList<>();
 
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         if (fav_list == null) {
@@ -104,62 +92,34 @@ public class MainActivity extends AppCompatActivity {
         }
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @SuppressLint({"NonConstantResourceId", "RestrictedApi"})
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() != R.id.fav) {
                     MenuItem menuItem = bottomNavigationView.getMenu().findItem(R.id.fav);
                     menuItem.setIcon(R.drawable.baseline_favorite_unselected);
                 }
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, homeFragment, "HOME_FRAGMENT_TAG")
-                                .commit();
-                        return true;
-                    case R.id.search:
-                        FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, searchFragment, "SEARCH_FRAGMENT_TAG");
-                        tr.addToBackStack(null);
-                        tr.commit();
-                        Home_TitleUrlList.clear();
-                        Home_imageUrlList.clear();
-                        Home_IDList.clear();
-                        if (AniList_popular != null) {
-                            AniList_popular = null;
-                        }
-
-                        return true;
-                    case R.id.fav:
-                        item.setIcon(R.drawable.baseline_favorite_24_selected);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.container, favouriteFragment, "FAV_FRAGMENT_TAG")
-                                .commit();
-                        Home_TitleUrlList.clear();
-                        Home_imageUrlList.clear();
-                        Home_IDList.clear();
-                        if (AniList_popular != null) {
-
-                            AniList_popular.cancel();
-                            AniList_popular = null;
-                        }
-
-                        return true;
-                    case R.id.settings:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
-                        Home_TitleUrlList.clear();
-                        Home_imageUrlList.clear();
-                        Home_IDList.clear();
-                        if (AniList_popular != null) {
-
-                            AniList_popular.cancel();
-                            AniList_popular = null;
-                        }
-
-                        return true;
-
+                int itemId = item.getItemId();
+                if (itemId == R.id.home) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, homeFragment, "HOME_FRAGMENT_TAG")
+                            .commit();
+                    return true;
+                } else if (itemId == R.id.search) {
+                    FragmentTransaction tr = getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, searchFragment, "SEARCH_FRAGMENT_TAG");
+                    tr.addToBackStack(null);
+                    tr.commit();
+                    return true;
+                } else if (itemId == R.id.fav) {
+                    item.setIcon(R.drawable.baseline_favorite_24_selected);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, favouriteFragment, "FAV_FRAGMENT_TAG")
+                            .commit();
+                    return true;
+                } else if (itemId == R.id.settings) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, settingsFragment).commit();
+                    return true;
                 }
-
                 return false;
             }
         });
