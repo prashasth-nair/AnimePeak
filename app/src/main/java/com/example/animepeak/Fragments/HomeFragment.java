@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.animepeak.Adapters.PopularAnimeAdapter;
@@ -23,7 +21,7 @@ import com.example.animepeak.Model.PopularAnimeResponse;
 import com.example.animepeak.R;
 import com.example.animepeak.RestApiClient.ApiInterface;
 
-import java.lang.ref.WeakReference;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -33,16 +31,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
-    private static final String TAG = "Home Fragment";
     RecyclerView recyclerView;
     private PopularAnimeAdapter popularAnimeAdapter;
     private ProgressBar progressBar;
     private int currentPage = 1;
     private boolean hasNextPage = true;
     private ConnectivityManager connectivityManager;
-    private NetworkInfo networkInfo;
     private TextView noInternet;
-    private RelativeLayout relativeLayout;
     ArrayList<PopularAnimeResponse.PopularAnime> popularAnimeArrayList = new ArrayList<>();
 
     public HomeFragment() {
@@ -66,7 +61,9 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if(isNetworkAvailable()){
-            fetchData(currentPage);
+            if (popularAnimeArrayList.isEmpty()){
+                fetchData(currentPage);
+            }
         }else {
             noInternet.setVisibility(View.VISIBLE);
         }
@@ -74,16 +71,17 @@ public class HomeFragment extends Fragment {
     }
 
     private boolean isNetworkAvailable() {
-        networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo !=null&&networkInfo.isAvailable();
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return networkInfo !=null&& networkInfo.isAvailable();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // Refresh search results when the fragment is resumed
-        currentPage++;
-        fetchData(currentPage);
+//        Check if the list is empty and fetch data if it is empty. Avoid making unnecessary loading again and again
+        if (popularAnimeArrayList.isEmpty()){
+                fetchData(currentPage);
+            }
         noInternet.setVisibility(View.GONE);
     }
 
@@ -107,11 +105,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        if (progressBar != null) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
     }
 
     private void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     private void cancelApiCall() {
@@ -125,6 +127,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void fetchData(int page) {
+
             showProgressBar();
             makeApiCall(page);
             noInternet.setVisibility(View.GONE);
@@ -140,7 +143,7 @@ public class HomeFragment extends Fragment {
 
         service.getPopularAnime(page).enqueue(new Callback<PopularAnimeResponse>() {
             @Override
-            public void onResponse(Call<PopularAnimeResponse> call, Response<PopularAnimeResponse> response) {
+            public void onResponse(@NonNull Call<PopularAnimeResponse> call, @NonNull Response<PopularAnimeResponse> response) {
                 hideProgressBar();
                 if (response.isSuccessful()){
                     PopularAnimeResponse popularAnimeResponse = response.body();
@@ -153,13 +156,13 @@ public class HomeFragment extends Fragment {
                         popularAnimeArrayList.addAll(popularAnimeResponse.getResults());
                         recyclerView.setAdapter(popularAnimeAdapter);
                         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-                        popularAnimeAdapter.notifyDataSetChanged();
+//                        popularAnimeAdapter.notifyDataSetChanged();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<PopularAnimeResponse> call, Throwable throwable) {
+            public void onFailure(@NonNull Call<PopularAnimeResponse> call, @NonNull Throwable throwable) {
                 hideProgressBar();
             }
         });
@@ -174,6 +177,5 @@ public class HomeFragment extends Fragment {
         recyclerView=null;
         progressBar=null;
         noInternet=null;
-        relativeLayout=null;
     }
 }
